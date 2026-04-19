@@ -42,6 +42,14 @@
 - Do not hardcode secrets or tokens; use environment variables.
 - For Luma, email, analytics, and LLM integrations, build adapters under `lib/integrations/`.
 
+## Theme Color Rules
+
+- Use only color tokens declared in `app/globals.css` inside `@theme`.
+- Do not add custom `neutral-*` tokens; use Tailwind default neutrals when needed.
+- Prefer direct semantic utility classes like `bg-primary`, `text-primary`, `border-primary`, `bg-secondary`, `text-success`, `bg-surface`, `text-text`.
+- Do not use arbitrary variable utilities such as `text-[var(--color-primary)]` or `bg-[var(--color-primary-600)]` unless explicitly requested.
+- Do not introduce new raw hex colors in components; add or update theme tokens first if a new color is required.
+
 ## Quality Checks
 
 - Run `npm run lint` after meaningful code edits.
