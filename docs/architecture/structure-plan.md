@@ -106,6 +106,7 @@ lib/
 config/
 docs/
   architecture/
+  design-system/
 public/
   brand/
   badges/
