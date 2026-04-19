@@ -1,0 +1,135 @@
+# ABC Site Structure Plan
+
+Bu dokuman PRD kapsamini Next.js tabanli bir klasor mimarisine ve uygulama sirasina doker.
+
+## Kararlar
+
+- Stack: Next.js 16.2.4, React 19, TypeScript strict, Tailwind v4
+- Auth + Data: Supabase (Auth + Postgres)
+- Klasor seviyesi: kok dizin yapisi korunur, `src/` altina tasinmaz
+- Agent rules: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
+
+## Ozellik-Modul Eslesmesi
+
+| Modul              | Ozellikler               | Not                                    |
+| ------------------ | ------------------------ | -------------------------------------- |
+| Marketing          | F-01, F-02               | Landing + easter egg girdileri         |
+| Auth & Onboarding  | F-03                     | Kayit, profil tamamlama                |
+| Profiles           | F-04                     | Public profil, etiketler, gecmis       |
+| Badges             | F-05                     | Luma attendance tetiklemeli rozetler   |
+| Events             | F-06, F-07, F-08, F-08-1 | Luma source of truth                   |
+| Projects           | F-09                     | Filtreli proje dizini                  |
+| Builders           | F-10                     | Filtreli uye dizini                    |
+| Matching           | F-11, F-12, F-13         | Basvuru, onay, eslestirme              |
+| Chatbot            | F-14, F-17               | RAG ve dokuman yonetimi                |
+| Admin              | F-15, F-16, F-18, F-19   | Operasyon, analitik, manuel kontroller |
+| LinkedIn Generator | F-20                     | Kart + metin uretimi                   |
+
+## Hedef Klasor Agaci
+
+```text
+app/
+  (marketing)/
+  (auth)/
+    login/
+    register/
+  (onboarding)/
+    profile/
+    project/
+  (community)/
+    events/
+    builders/
+    projects/
+  dashboard/
+    profile/
+    my-projects/
+    linkedin-card/
+    matching/
+  admin/
+    content/
+    builders/
+    badges/
+    analytics/
+    chatbot/
+    easter-egg/
+  api/
+    events/sync/
+    badges/sync-luma/
+    matching/pair/
+    analytics/events/
+    webhooks/luma/
+
+components/
+  shared/
+  marketing/
+  auth/
+  profile/
+  events/
+  projects/
+  builders/
+  matching/
+  linkedin/
+  chatbot/
+  admin/
+  easter-egg/
+
+lib/
+  supabase/
+  services/
+  integrations/
+    luma/
+    email/
+    analytics/
+    llm/
+  schemas/
+  types/
+  utils/
+
+config/
+docs/
+  architecture/
+public/
+  brand/
+  badges/
+  icons/
+```
+
+## Faz Bazli Uygulama Sirasi
+
+1. Temel altyapi: route iskeleti, lib katmanlari, config iskeleti
+2. Auth + onboarding: Supabase auth, profil cekirdegi
+3. Events read path: Luma veri cekimi, event list/detail
+4. Badge engine base: attendance sayac ve rozet atama kurallari
+5. Projeler ve builder dizinleri
+6. Admin temel operasyonlar
+7. Faz 2: matching, LinkedIn generator, analytics
+8. Faz 3: chatbot, easter egg gelismis yonetim
+
+## Domain Varliklari
+
+- users
+- profiles
+- projects
+- events
+- event_attendance
+- badges
+- user_badges
+- serious_builder_applications
+- builder_matches
+- notifications
+- linkedin_templates
+- chatbot_documents
+- easter_egg_config
+- analytics_events
+
+## Entegrasyon Sinirlari
+
+- Luma: `lib/integrations/luma/`
+- Email: `lib/integrations/email/`
+- Analytics: `lib/integrations/analytics/`
+- LLM/RAG: `lib/integrations/llm/`
+
+## Dokuman Bakimi
+
+- Klasor yapisi degisirse bu dosya ve README birlikte guncellenir.
+- Faz onceligi degisirse Faz bazli uygulama sirasi revize edilir.
