@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ABC Site
 
-## Getting Started
+Ankara Build Club resmi web sitesi ve uye platformu.
 
-First, run the development server:
+Bu repo, PRD'de tanimlanan Faz 1 -> Faz 3 kapsamini destekleyecek sekilde Next.js tabanli bir mimari iskeletle baslatilmistir.
+
+## Proje Kapsami
+
+- Marketing yuzu: landing, topluluk vitrini, etkinlik ve proje gorunurlugu
+- Uye platformu: auth, onboarding, profil, rozet, dizinler
+- Admin paneli: icerik ve operasyon yonetimi
+- Entegrasyonlar: Luma, email, analytics, gelecekte RAG/LLM
+
+Detayli urun gereksinimleri icin `PRD.md` dosyasina bakiniz.
+
+## Teknik Stack
+
+- Next.js `16.2.4` (App Router)
+- React `19`
+- TypeScript (strict)
+- Tailwind CSS `v4`
+- Supabase (Auth + Postgres)
+
+## Kritik Not: Next.js 16
+
+Bu repo klasik Next.js varsayimlariyla ele alinmamalidir.
+
+- Kod degisikligi oncesi `AGENTS.md` okunmalidir.
+- Next.js tarafinda ilgili konu icin `node_modules/next/dist/docs/` altindaki dokumanlar kontrol edilmelidir.
+
+## Klasor Yapisi
+
+Asagidaki yapi, PRD modullerini ayrik ve olceklenebilir sekilde organize eder:
+
+```text
+app/
+	(marketing)/
+	(auth)/
+		login/
+		register/
+	(onboarding)/
+		profile/
+		project/
+	(community)/
+		events/
+		builders/
+		projects/
+	dashboard/
+		profile/
+		my-projects/
+		linkedin-card/
+		matching/
+	admin/
+		content/
+		builders/
+		badges/
+		analytics/
+		chatbot/
+		easter-egg/
+	api/
+		events/sync/
+		badges/sync-luma/
+		matching/pair/
+		analytics/events/
+		webhooks/luma/
+
+components/
+	shared/
+	marketing/
+	auth/
+	profile/
+	events/
+	projects/
+	builders/
+	matching/
+	linkedin/
+	chatbot/
+	admin/
+	easter-egg/
+
+lib/
+	supabase/
+	services/
+	integrations/
+		luma/
+		email/
+		analytics/
+		llm/
+	schemas/
+	types/
+	utils/
+
+config/
+docs/
+	architecture/
+public/
+	brand/
+	badges/
+	icons/
+```
+
+Detayli plan icin `docs/architecture/structure-plan.md` dosyasina bakiniz.
+
+## Faz Bazli Yol Haritasi
+
+1. Faz 1 (MVP)
+   Landing, auth/onboarding, profile, events, badges, projects directory, builders directory, temel admin
+
+2. Faz 2 (Community)
+   Konum bazli akillar, serious builder matching, LinkedIn generator, analytics
+
+3. Faz 3 (Intelligence)
+   RAG chatbot, easter egg gelismis yonetim, ileri admin panelleri
+
+## Agent Rule Seti
+
+Bu repoda AI coding agent yonergeleri git ile versiyonlanir.
+
+- `AGENTS.md`: global guardrails ve kritik uyarilar
+- `CLAUDE.md`: Claude giris dosyasi
+- `.github/copilot-instructions.md`: Copilot ve coding agent repository kurallari
+
+Kural dosyalarini birlikte okuyup degisiklik yapiniz.
+
+## Gelistirme Ortami
+
+1. Bagimliliklari kurun:
+
+```bash
+npm install
+```
+
+2. Gelistirme sunucusunu baslatin:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Lint calistirin:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Ortam Degiskenleri
 
-## Learn More
+Supabase ve entegrasyonlar icin asagidaki degiskenler planlanmistir:
 
-To learn more about Next.js, take a look at the following resources:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `LUMA_API_KEY`
+- `LUMA_WEBHOOK_SECRET`
+- `EMAIL_PROVIDER_API_KEY`
+- `ANALYTICS_WRITE_KEY`
+- `LLM_API_KEY`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Not: `.env*` dosyalari `.gitignore` kapsamindadir. Secret degerler repoya commit edilmez.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scriptler
 
-## Deploy on Vercel
+- `npm run dev`: local gelistirme
+- `npm run build`: production build
+- `npm run start`: production calistirma
+- `npm run lint`: lint kontrolu
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Kaynak Dosyalar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `PRD.md`: urun gereksinimleri ve fazlar
+- `docs/architecture/structure-plan.md`: yapisal plan
+- `.github/copilot-instructions.md`: coding agent kurallari
