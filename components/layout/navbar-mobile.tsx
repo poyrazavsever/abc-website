@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -20,6 +20,29 @@ export function NavbarMobile({
   items,
   onClose,
 }: NavbarMobileProps) {
+  const [activeItemId, setActiveItemId] = useState<string | null>(null);
+  const [panelDirection, setPanelDirection] = useState<1 | -1>(1);
+
+  const activeItem = useMemo(
+    () => items.find((item) => item.id === activeItemId) ?? null,
+    [items, activeItemId],
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setPanelDirection(1);
+      setActiveItemId(null);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -32,6 +55,30 @@ export function NavbarMobile({
       document.body.style.overflow = previousOverflow;
     };
   }, [isOpen]);
+
+  const closeMenu = () => {
+    setPanelDirection(1);
+    setActiveItemId(null);
+    onClose();
+  };
+
+  const handleBack = () => {
+    if (activeItemId) {
+      setPanelDirection(-1);
+      setActiveItemId(null);
+      return;
+    }
+
+    closeMenu();
+  };
+
+  const openItemPanel = (itemId: string) => {
+    setPanelDirection(1);
+    setActiveItemId(itemId);
+  };
+
+  const isSubPanel = Boolean(activeItem);
+  const headerTitle = activeItem?.label ?? "Menü";
 
   return (
     <AnimatePresence>
@@ -52,7 +99,7 @@ export function NavbarMobile({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            onClick={onClose}
+            onClick={closeMenu}
           />
 
           <motion.aside
@@ -60,59 +107,65 @@ export function NavbarMobile({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.26, ease: "easeOut" }}
-            className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto border-l border-border bg-surface shadow-lg"
+            className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l border-border bg-surface shadow-lg"
           >
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <p className="text-sm font-semibold uppercase tracking-wide text-text-soft">
-                Menu
+              <p className="text-sm font-semibold text-text-soft">
+                {headerTitle}
               </p>
-              <button
-                type="button"
-                aria-label="Mobil menuyu kapat"
-                className="rounded-md p-2 text-text transition hover:bg-surface-muted"
-                onClick={onClose}
-              >
-                <Icon icon="lucide:x" className="h-5 w-5" />
-              </button>
+
+              {isSubPanel ? (
+                <button
+                  type="button"
+                  aria-label="Geri gel"
+                  className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-text transition hover:bg-surface-muted"
+                  onClick={handleBack}
+                >
+                  <Icon icon="lucide:arrow-left" className="h-4 w-4" />
+                  <span>Geri gel</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  aria-label="Mobil menuyu kapat"
+                  className="rounded-md p-2 text-text transition hover:bg-surface-muted"
+                  onClick={closeMenu}
+                >
+                  <Icon icon="lucide:x" className="h-5 w-5" />
+                </button>
+              )}
             </div>
 
-            <div className="space-y-5 px-5 py-6">
-              {items.map((item) => {
-                if (!item.groups?.length) {
-                  return (
-                    <Link
-                      key={item.id}
-                      href={item.href ?? "#"}
-                      className="block rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition hover:border-border hover:bg-surface-muted"
-                      onClick={onClose}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                }
-
-                return (
-                  <details
-                    key={item.id}
-                    className="rounded-lg border border-border bg-surface-muted"
+            <div className="relative flex-1 overflow-hidden">
+              <AnimatePresence
+                mode="wait"
+                custom={panelDirection}
+                initial={false}
+              >
+                {activeItem ? (
+                  <motion.div
+                    key={`panel-${activeItem.id}`}
+                    custom={panelDirection}
+                    variants={panelVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="absolute inset-0 overflow-y-auto px-5 py-6"
                   >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-base font-semibold text-text">
-                      {item.label}
-                      <Icon icon="lucide:chevron-down" className="h-4 w-4" />
-                    </summary>
-                    <div className="space-y-4 border-t border-border px-4 py-4">
-                      {item.groups.map((group) => (
-                        <div key={group.title} className="space-y-2">
+                    <div className="space-y-6">
+                      {activeItem.groups?.map((group) => (
+                        <div key={group.title} className="space-y-3">
                           <p className="text-xs font-semibold uppercase tracking-wide text-text-soft">
                             {group.title}
                           </p>
                           <div className="space-y-1">
-                            {group.links.map((link) => (
+                            {group.links.map((link, index) => (
                               <Link
-                                key={link.href}
+                                key={`${group.title}-${link.href}-${index}`}
                                 href={link.href}
-                                className="block rounded-md px-2 py-2 text-sm text-text-muted transition hover:bg-surface hover:text-text"
-                                onClick={onClose}
+                                className="block rounded-md border border-transparent px-3 py-2 text-sm font-medium text-text-muted transition hover:border-border hover:bg-surface-muted hover:text-text"
+                                onClick={closeMenu}
                                 target={link.external ? "_blank" : undefined}
                                 rel={link.external ? "noreferrer" : undefined}
                               >
@@ -123,17 +176,62 @@ export function NavbarMobile({
                         </div>
                       ))}
                     </div>
-                  </details>
-                );
-              })}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="panel-root"
+                    custom={panelDirection}
+                    variants={panelVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="absolute inset-0 overflow-y-auto px-5 py-6"
+                  >
+                    <div className="space-y-3">
+                      {items.map((item) => {
+                        if (!item.groups?.length) {
+                          return (
+                            <Link
+                              key={item.id}
+                              href={item.href ?? "#"}
+                              className="block rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition hover:border-border hover:bg-surface-muted"
+                              onClick={closeMenu}
+                            >
+                              {item.label}
+                            </Link>
+                          );
+                        }
 
-              <Link
-                href={cta.href}
-                className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
-                onClick={onClose}
-              >
-                {cta.label}
-              </Link>
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            className="flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition hover:border-border hover:bg-surface-muted"
+                            onClick={() => openItemPanel(item.id)}
+                          >
+                            <span>{item.label}</span>
+                            <Icon
+                              icon="lucide:chevron-right"
+                              className="h-4 w-4"
+                            />
+                          </button>
+                        );
+                      })}
+
+                      <div className="pt-2">
+                        <Link
+                          href={cta.href}
+                          className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
+                          onClick={closeMenu}
+                        >
+                          {cta.label}
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.aside>
         </motion.div>
@@ -141,3 +239,18 @@ export function NavbarMobile({
     </AnimatePresence>
   );
 }
+
+const panelVariants = {
+  enter: (direction: 1 | -1) => ({
+    opacity: 0,
+    x: direction > 0 ? 32 : -32,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: (direction: 1 | -1) => ({
+    opacity: 0,
+    x: direction > 0 ? -32 : 32,
+  }),
+};
