@@ -30,13 +30,18 @@ Bu dokuman PRD kapsamini Next.js tabanli bir klasor mimarisine ve uygulama siras
 ```text
 app/
   (marketing)/
+    layout.tsx
+    page.tsx
   (auth)/
+    layout.tsx
     login/
     register/
   (onboarding)/
+    layout.tsx
     profile/
     project/
   (community)/
+    layout.tsx
     events/
     builders/
     projects/
@@ -60,7 +65,15 @@ app/
     webhooks/luma/
 
 components/
+  layout/
+    navbar.tsx
+    navbar-mega-menu.tsx
+    navbar-mobile.tsx
+    footer.tsx
   shared/
+    container.tsx
+    providers.tsx
+    toaster.tsx
   marketing/
   auth/
   profile/
@@ -74,6 +87,11 @@ components/
   easter-egg/
 
 lib/
+  config/
+    toast.config.ts
+  data/
+    navigation.data.ts
+    footer.data.ts
   supabase/
   services/
   integrations/
@@ -93,6 +111,14 @@ public/
   badges/
   icons/
 ```
+
+## Layout Foundation Durumu (Baslatildi)
+
+- `components/shared/container.tsx` ile `max-w-7xl` standart container primitive aktif.
+- `components/shared/providers.tsx` + `components/shared/toaster.tsx` ile global toaster mount edildi.
+- `lib/config/toast.config.ts` ve `lib/utils/toast.ts` ile semantic toast varyant kurallari tanimlandi.
+- `components/layout/*` altinda data-driven navbar/footer ve mega menu shell uygulamasi baslatildi.
+- `(marketing)` ve `(community)` layoutlarinda navbar/footer shell aktif; `(auth)` ve `(onboarding)` sade layout kullanir.
 
 ## Faz Bazli Uygulama Sirasi
 
