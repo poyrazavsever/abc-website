@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
@@ -55,6 +56,8 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
   const hasSurface = !overlay || isScrolled;
   const desktopTextClass = hasSurface ? "text-text" : "text-text-inverse";
+  const brandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
+  const hasBrandImage = brandImageUrl.length > 0;
 
   return (
     <motion.header
@@ -78,12 +81,27 @@ export function Navbar({ overlay = false }: NavbarProps) {
             <div className="flex h-20 items-center justify-between gap-6">
               <Link
                 href={navigationData.brand.href}
-                className={cn(
-                  "text-sm font-semibold uppercase tracking-[0.18em] transition-colors",
-                  desktopTextClass,
-                )}
+                className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90"
               >
-                {navigationData.brand.label}
+                {hasBrandImage ? (
+                  <Image
+                    src={brandImageUrl}
+                    alt={navigationData.brand.label}
+                    width={168}
+                    height={40}
+                    className="h-8 w-auto"
+                    priority
+                  />
+                ) : (
+                  <span
+                    className={cn(
+                      "text-sm font-semibold uppercase tracking-[0.18em] transition-colors",
+                      desktopTextClass,
+                    )}
+                  >
+                    {navigationData.brand.label}
+                  </span>
+                )}
               </Link>
 
               <nav className="hidden lg:block" aria-label="Ana navigasyon">

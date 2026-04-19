@@ -4,6 +4,7 @@ export const navigationData: NavigationData = {
   brand: {
     label: "Ankara Build Club",
     href: "/",
+    imgUrl: "",
   },
   items: [
     {

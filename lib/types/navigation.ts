@@ -30,6 +30,7 @@ export type NavigationData = {
   brand: {
     label: string;
     href: string;
+    imgUrl?: string;
   };
   items: NavItem[];
   cta: {
