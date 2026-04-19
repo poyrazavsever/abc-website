@@ -47,8 +47,10 @@ export function Footer() {
                   {section.title}
                 </p>
                 <ul className="space-y-2">
-                  {section.links.map((link) => (
-                    <li key={`${section.title}-${link.href}`}>
+                  {section.links.map((link, index) => (
+                    <li
+                      key={`${section.title}-${link.label}-${link.href}-${index}`}
+                    >
                       <Link
                         href={link.href}
                         className="text-sm text-text-muted transition hover:text-primary"
