@@ -40,6 +40,7 @@
 - Avoid `any`; define explicit types.
 - Prefer server-side patterns by default; opt into client components only when necessary.
 - Do not hardcode secrets or tokens; use environment variables.
+- For required environment variables, use the shared `getEnv` helper in `lib/utils/env.ts` instead of inline `process.env` checks.
 - For Luma, email, analytics, and LLM integrations, build adapters under `lib/integrations/`.
 
 ## Theme Color Rules
