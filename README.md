@@ -35,13 +35,18 @@ Asagidaki yapi, PRD modullerini ayrik ve olceklenebilir sekilde organize eder:
 ```text
 app/
 	(marketing)/
+		layout.tsx
+		page.tsx
 	(auth)/
+		layout.tsx
 		login/
 		register/
 	(onboarding)/
+		layout.tsx
 		profile/
 		project/
 	(community)/
+		layout.tsx
 		events/
 		builders/
 		projects/
@@ -65,7 +70,15 @@ app/
 		webhooks/luma/
 
 components/
+	layout/
+		navbar.tsx
+		navbar-mega-menu.tsx
+		navbar-mobile.tsx
+		footer.tsx
 	shared/
+		container.tsx
+		providers.tsx
+		toaster.tsx
 	marketing/
 	auth/
 	profile/
@@ -79,6 +92,11 @@ components/
 	easter-egg/
 
 lib/
+	config/
+		toast.config.ts
+	data/
+		navigation.data.ts
+		footer.data.ts
 	supabase/
 	services/
 	integrations/
@@ -98,6 +116,14 @@ public/
 	badges/
 	icons/
 ```
+
+## Layout Foundation Durumu
+
+- `max-w-7xl` odakli container primitive aktif.
+- Global provider ve ozellestirilmis react-hot-toast mekanizmasi aktif.
+- Navbar ve footer data dosyalarindan yonetilir.
+- Mega dropdown paneli `w-screen` acilir; icerik container sinirinda kalir.
+- Navbar/Footer sadece `(marketing)` ve `(community)` layoutlarinda render edilir.
 
 Detayli plan icin `docs/architecture/structure-plan.md` dosyasina bakiniz.
 
