@@ -66,20 +66,22 @@ Site içinde görsel olarak gizlenmiş küçük bir kutu/element. Bulanı tebrik
 
 **F-03 — Kayıt Akışı**  
 Çok adımlı onboarding:
-1. E-posta & şifre
+
+1. E-posta & şifre(oauth kullanmayalım,insaların luma hesaplarındaki mailli ile girmesine teşfik edilebilir placeholder ile (luma kullanıyorsanız o mailiniz ile giriniz gibisinden))
 2. Ad / Soyad
 
 burdan sonra onbordingte yapalım
 
  Konum (şehir bazlı — ilerleyen etkinlik önerisi için kullanılır)
  Genel Unvan (Yazılımcı, Tasarımcı, Salesman, Ürün, Öğrenci, Diğer)
+ Bio
  LinkedIn URL
  E-posta (opsiyonel — farklı bir e-posta göstermek isteyenler için)
  Proje var mı? → Evet ise "Proje Ekle" formu (isim, açıklama, kategori, URL opsiyonel)
 
 **F-04 — Profil Sayfası**  
 Her üyenin public profil sayfası:
-- Ad, unvan, konum, LinkedIn
+- Ad, unvan,LinkedIn
 - Rozetler (görsel, sıralı)
 - Etkinlik katılım geçmişi
 - Aktif etiket: `Co-founder arıyorum` / `Fikir arıyorum` / `Takım tamamlandı` / `Sadece build ediyorum`
@@ -112,7 +114,9 @@ Katılım verisi **Luma API üzerinden otomatik** cekilir — admin manuel isare
 Rozetler admin panelinden manuel de eklenebilir. Luma hesabi olmayan uyeler icin fallback: admin tek seferlik toplu ice aktarma yapabilir.
 
 ---
-### Sponsor sayfası
+### Sponsor sayfası 
+Sponsorlara atabileceğimiz bir sayfa
+
 
 
 ### 4.4 Etkinlik Sistemi
@@ -122,18 +126,14 @@ Etkinlik verisi doğrudan **Luma API'dan çekilir** — websiteye ayrıca manuel
 
 Luma'dan çekilen alanlar: isim, tarih, konum, kapasite, açıklama, cover görseli, kayıt URL'si, katılımcı sayısı. Sitede her etkinlik kartı bu veriyle otomatik güncellenir. "Kayıt Ol" butonu kullanıcıyı Luma sayfasına yönlendirir.
 
-Senkronizasyon: Luma webhook ile anlık güncelleme + her 6 saatte bir polling fallback.
-
 **F-08 bağlantısı:** Etkinlik bitişinden sonra Luma attendance verisi çekilerek hem rozet tetiklenir hem de etkinlik sonrası öneri sistemi (F-08) aktive edilir — tüm akış otomatik, admin müdahalesi gerekmez.
 
 **F-07 — Konum Bazlı Katılımcı Tahmini**  
-Etkinlik detay sayfasında, etkinliğin yapılacağı ilçe ile eşleşen üyeler listelenir (konum bilgisine göre). onlara mail atılır,
+Etkinlik detay sayfasında, etkinliğin yapılacağı ilçe ile eşleşen üyeler listelenir (konum bilgisine göre). onlara mail atılır(mail service pahalı gelirse sadece gösterebiliriz),
 
 **F-08 — Etkinlik Sonrası Builder Önerisi**  
 Etkinlik tarihinden 7 gün sonra otomatik tetiklenen sistem:
 - Etkinliğe katılan üyelere e-posta / bildirim gönderilir
-- "Bu etkinliğe gelen şu unvanlardaki builder'larla tanışmak ister misin?" sorusu
-- Onay verenlerin profili, diğer onay verenlere görünür hale gelir
 
 **F-08-1 — Etkinlik öncesi Builder istatistiği**  
 Etkinlik tarihinden 3 gün önce otomatik tetiklenen sistem:
@@ -149,7 +149,7 @@ Tüm üye projelerinin listelendiği, filtrelenebilir sayfa.
 
 Filtreler:
 - Kategori (AI, SaaS, Mobile, Sosyal Etki, Diğer)
-- Durum (Fikir, MVP, Canlı, Pivot)
+- Durum (Fikir, MVP, Canlı, Pivot, kapalı)
 - Üye sayısı (Solo, Takım)
 - Tarih (En yeni, En eski)
 - fotoğraf ve link
@@ -164,7 +164,8 @@ Her proje kartında: isim, açıklama, kurucu(lar), kategori, durum, URL (varsa)
 Tüm üyelerin listelendiği, filtrelenebilir sayfa.
 
 Filtreler:
-- Unvan (Yazılımcı, Tasarımcı, Salesman, Ürün, Öğrenci)
+- Unvan (Yazılımcı, Tasarımcı, Salesman, Ürün )
+- bio
 - Etiket (Co-founder arıyorum, Fikir arıyorum vs.)
 - Konum (şehir)
 - Rozet sayısı (Aktiflik göstergesi olarak)
@@ -202,7 +203,7 @@ Bilgi tabanı: ABC hakkında derlenen Markdown dokümanlar (FAQ, etkinlik geçmi
 ### 4.9 Admin Paneli
 
 **F-15 — İçerik Yönetimi**  
-Etkinlik oluşturma/düzenleme/silme, proje moderasyonu (onay/red), builder profillerini görme ve düzenleme.
+Etkinlik içeriği oluşturma/düzenleme/silme, builder profillerini görme ve düzenleme.
 
 **F-16 — Rozet & Eşleştirme Yönetimi**  
 Manuel rozet atama, ciddi builder başvurularını onaylama/reddetme, eşleştirme tetikleme, eşleşme geçmişi görüntüleme.
@@ -255,18 +256,17 @@ Hotdog veya Mixpanel entegrasyonu:
 - Ad ve unvan bilgisi profil verisinden otomatik doldurulur, kullanıcı override edebilir
 - Admin panelinden yeni şablon eklenebilir, mevcut şablonların metni güncellenebilir
 
+
 ---
+
 
 ## 5. Teknik Gereksinimler
 
 ### 5.1 Önerilen Stack
-
-
+next.js 
 
 ### 5.2 Auth
-
-### 5.3 Konum Verisi
-
+supabase
 
 ---
 
@@ -394,8 +394,6 @@ Kapsam dışı, ileride değerlendirilebilir.
 ## 7. Tasarım Prensipleri
 
 - ABC renk dili ve brand identity'ye uygun (mevcut Canva iş akışlarıyla tutarlı)
-- "BUILD WITH US / in the gray city" sloganı hero'da öne çıkar
-- Koyu / nötr ton — gray city estetiği
 - Mobil uyumlu (responsive)
 - Easter egg için: merak uyandıran ama göze batmayan bir gizleme
 
