@@ -79,6 +79,15 @@ components/
 		container.tsx
 		providers.tsx
 		toaster.tsx
+	ui/
+		button.tsx
+		icon-button.tsx
+		link-button.tsx
+		card.tsx
+		badge.tsx
+		avatar.tsx
+		divider.tsx
+		section-header.tsx
 	marketing/
 	auth/
 	profile/
@@ -124,6 +133,7 @@ public/
 - Navbar ve footer data dosyalarindan yonetilir.
 - Mega dropdown paneli `w-screen` acilir; icerik container sinirinda kalir.
 - Navbar/Footer sadece `(marketing)` ve `(community)` layoutlarinda render edilir.
+- `components/ui` altinda Faz 1 foundation primitive seti olusturuldu ve ilk ekranlara entegrasyon baslatildi.
 
 Detayli plan icin `docs/architecture/structure-plan.md` dosyasina bakiniz.
 

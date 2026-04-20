@@ -1,7 +1,6 @@
-import Link from "next/link";
-
 import { Grainient } from "@/components/marketing/grainient";
 import { Container } from "@/components/shared/container";
+import { LinkButton } from "@/components/ui/link-button";
 
 export default function MarketingHomePage() {
   return (
@@ -52,18 +51,20 @@ export default function MarketingHomePage() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Link
+            <LinkButton
               href="/register"
-              className="inline-flex items-center rounded-md bg-surface px-5 py-2.5 text-sm font-semibold text-primary transition hover:bg-surface-soft"
+              variant="outline"
+              className="h-10 border-white/25 bg-surface text-primary hover:bg-surface-soft"
             >
               Topluluga Katil
-            </Link>
-            <Link
+            </LinkButton>
+            <LinkButton
               href="/events"
-              className="inline-flex items-center rounded-md border border-white/40 px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-white/10"
+              variant="ghost"
+              className="h-10 border border-white/40 text-primary-foreground hover:bg-white/10"
             >
               Etkinlikleri Kesfet
-            </Link>
+            </LinkButton>
           </div>
         </div>
       </Container>

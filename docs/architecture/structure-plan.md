@@ -74,6 +74,15 @@ components/
     container.tsx
     providers.tsx
     toaster.tsx
+  ui/
+    button.tsx
+    icon-button.tsx
+    link-button.tsx
+    card.tsx
+    badge.tsx
+    avatar.tsx
+    divider.tsx
+    section-header.tsx
   marketing/
   auth/
   profile/
@@ -120,6 +129,7 @@ public/
 - `lib/config/toast.config.ts` ve `lib/utils/toast.ts` ile semantic toast varyant kurallari tanimlandi.
 - `components/layout/*` altinda data-driven navbar/footer ve mega menu shell uygulamasi baslatildi.
 - `(marketing)` ve `(community)` layoutlarinda navbar/footer shell aktif; `(auth)` ve `(onboarding)` sade layout kullanir.
+- `components/ui/*` altinda Faz 1 foundation primitive seti baslatildi ve ilk layout entegrasyonlari acildi.
 
 ## Faz Bazli Uygulama Sirasi
 

@@ -50,4 +50,31 @@ Bir component merge edilmeden once:
 - Focus ve disabled durumlari var mi?
 - Benzer bir component zaten var mi?
 
+## 8) Faz 1 Foundation Primitive Seti
+
+Bu set, tum ekranlarda ortak kullanilacak minimum UI katmanidir.
+
+- Button
+- IconButton
+- LinkButton
+- Card (+ Header/Content/Footer/Title/Description)
+- Badge
+- Avatar
+- Divider
+- SectionHeader
+
+## 9) Faz 1 Uygulama Notlari
+
+- Bu primitive'ler `components/ui/` altinda tutulur.
+- Landing ve auth/onboarding layoutlari once bu primitive'lere gecirilir.
+- Primitive disinda ayni isi yapan yeni class tabanli local component uretilmez.
+- Variant ve state dili tum componentlerde tutarli kalir.
+
+## 10) Faz 1 Kabul Kriteri
+
+- Foundation primitive setinin tamami olusmus olmali.
+- Her primitive icin default/hover/active/disabled/focus-visible davranisi olmali.
+- Token disi stil (raw hex, keyfi variable utility) olmamali.
+- En az iki farkli ekran grubunda primitive kullanimina gecilmis olmali.
+
 Bu kadar. Bu dosya ortak tasarim dilinin tek kaynagi olarak kullanilir.
