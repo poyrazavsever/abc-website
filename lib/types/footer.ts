@@ -9,6 +9,14 @@ export type FooterSection = {
   links: FooterLink[];
 };
 
+export type FooterContact = {
+  title: string;
+  email: string;
+  location: string;
+  responseWindow: string;
+  cta: FooterLink;
+};
+
 export type FooterData = {
   brand: {
     title: string;
@@ -16,6 +24,7 @@ export type FooterData = {
   };
   sections: FooterSection[];
   socialLinks: FooterLink[];
+  contact: FooterContact;
   bottomLinks: FooterLink[];
   copyright: string;
 };
