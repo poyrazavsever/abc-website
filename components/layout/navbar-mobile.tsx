@@ -5,10 +5,12 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { cn } from "@/lib/utils/cn";
 import type { NavItem, NavigationData } from "@/lib/types/navigation";
 
 type NavbarMobileProps = {
   cta: NavigationData["cta"];
+  hasSurface: boolean;
   isOpen: boolean;
   items: NavItem[];
   onClose: () => void;
@@ -16,6 +18,7 @@ type NavbarMobileProps = {
 
 export function NavbarMobile({
   cta,
+  hasSurface,
   isOpen,
   items,
   onClose,
@@ -79,6 +82,13 @@ export function NavbarMobile({
 
   const isSubPanel = Boolean(activeItem);
   const headerTitle = activeItem?.label ?? "Menü";
+  const panelClass = hasSurface
+    ? "border-border bg-surface/88"
+    : "border-white/20 bg-surface/68";
+  const overlayClass = hasSurface ? "bg-text/22" : "bg-text/14";
+  const panelHoverClass = hasSurface
+    ? "hover:bg-surface-muted"
+    : "hover:bg-white/10";
 
   return (
     <AnimatePresence>
@@ -94,7 +104,7 @@ export function NavbarMobile({
           <motion.button
             type="button"
             aria-label="Mobil menuyu kapat"
-            className="absolute inset-0 bg-text/25"
+            className={cn("absolute inset-0", overlayClass)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -107,9 +117,17 @@ export function NavbarMobile({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.26, ease: "easeOut" }}
-            className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l border-border bg-surface shadow-lg"
+            className={cn(
+              "absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l shadow-lg backdrop-blur-xl",
+              panelClass,
+            )}
           >
-            <div className="flex items-center justify-between border-b border-border px-5 py-4">
+            <div
+              className={cn(
+                "flex items-center justify-between border-b px-5 py-4",
+                hasSurface ? "border-border" : "border-white/20",
+              )}
+            >
               <p className="text-sm font-semibold text-text-soft">
                 {headerTitle}
               </p>
@@ -118,7 +136,10 @@ export function NavbarMobile({
                 <button
                   type="button"
                   aria-label="Geri gel"
-                  className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-text transition hover:bg-surface-muted"
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-text transition",
+                    panelHoverClass,
+                  )}
                   onClick={handleBack}
                 >
                   <Icon icon="lucide:arrow-left" className="h-4 w-4" />
@@ -128,7 +149,10 @@ export function NavbarMobile({
                 <button
                   type="button"
                   aria-label="Mobil menuyu kapat"
-                  className="rounded-md p-2 text-text transition hover:bg-surface-muted"
+                  className={cn(
+                    "rounded-md p-2 text-text transition",
+                    panelHoverClass,
+                  )}
                   onClick={closeMenu}
                 >
                   <Icon icon="lucide:x" className="h-5 w-5" />
@@ -164,7 +188,12 @@ export function NavbarMobile({
                               <Link
                                 key={`${group.title}-${link.href}-${index}`}
                                 href={link.href}
-                                className="block rounded-md border border-transparent px-3 py-2 text-sm font-medium text-text-muted transition hover:border-border hover:bg-surface-muted hover:text-text"
+                                className={cn(
+                                  "block rounded-md border border-transparent px-3 py-2 text-sm font-medium text-text-muted transition hover:text-text",
+                                  hasSurface
+                                    ? "hover:border-border hover:bg-surface-muted"
+                                    : "hover:border-white/25 hover:bg-white/10",
+                                )}
                                 onClick={closeMenu}
                                 target={link.external ? "_blank" : undefined}
                                 rel={link.external ? "noreferrer" : undefined}
@@ -195,7 +224,12 @@ export function NavbarMobile({
                             <Link
                               key={item.id}
                               href={item.href ?? "#"}
-                              className="block rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition hover:border-border hover:bg-surface-muted"
+                              className={cn(
+                                "block rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition",
+                                hasSurface
+                                  ? "hover:border-border hover:bg-surface-muted"
+                                  : "hover:border-white/25 hover:bg-white/10",
+                              )}
                               onClick={closeMenu}
                             >
                               {item.label}
@@ -207,7 +241,12 @@ export function NavbarMobile({
                           <button
                             key={item.id}
                             type="button"
-                            className="flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition hover:border-border hover:bg-surface-muted"
+                            className={cn(
+                              "flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition",
+                              hasSurface
+                                ? "hover:border-border hover:bg-surface-muted"
+                                : "hover:border-white/25 hover:bg-white/10",
+                            )}
                             onClick={() => openItemPanel(item.id)}
                           >
                             <span>{item.label}</span>

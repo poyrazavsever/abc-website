@@ -79,87 +79,89 @@ export function Navbar({ overlay = false }: NavbarProps) {
         <div className="relative z-10">
           <Container>
             <div className="flex h-20 items-center justify-between gap-6">
-              <Link
-                href={navigationData.brand.href}
-                className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90"
-              >
-                {hasBrandImage ? (
-                  <Image
-                    src={brandImageUrl}
-                    alt={navigationData.brand.label}
-                    width={168}
-                    height={40}
-                    className="h-8 w-auto"
-                    priority
-                  />
-                ) : (
-                  <span
-                    className={cn(
-                      "text-sm font-semibold uppercase tracking-[0.18em] transition-colors",
-                      desktopTextClass,
-                    )}
-                  >
-                    {navigationData.brand.label}
-                  </span>
-                )}
-              </Link>
+              <div className="flex min-w-0 items-center gap-6 xl:gap-8">
+                <Link
+                  href={navigationData.brand.href}
+                  className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90"
+                >
+                  {hasBrandImage ? (
+                    <Image
+                      src={brandImageUrl}
+                      alt={navigationData.brand.label}
+                      width={168}
+                      height={40}
+                      className="h-8 w-auto"
+                      priority
+                    />
+                  ) : (
+                    <span
+                      className={cn(
+                        "text-sm font-semibold uppercase tracking-[0.18em] transition-colors",
+                        desktopTextClass,
+                      )}
+                    >
+                      {navigationData.brand.label}
+                    </span>
+                  )}
+                </Link>
 
-              <nav className="hidden lg:block" aria-label="Ana navigasyon">
-                <ul className="flex items-center gap-1">
-                  {navigationData.items.map((item) => {
-                    const hasDropdown = Boolean(item.groups?.length);
+                <nav className="hidden lg:block" aria-label="Ana navigasyon">
+                  <ul className="flex items-center gap-1">
+                    {navigationData.items.map((item) => {
+                      const hasDropdown = Boolean(item.groups?.length);
 
-                    if (!hasDropdown) {
+                      if (!hasDropdown) {
+                        return (
+                          <li key={item.id}>
+                            <Link
+                              href={item.href ?? "#"}
+                              className={cn(
+                                "rounded-md px-3 py-2 text-sm font-medium transition",
+                                desktopTextClass,
+                                hasSurface
+                                  ? "hover:bg-surface-muted"
+                                  : "hover:bg-white/15",
+                              )}
+                              onMouseEnter={() => setActiveMenuId(null)}
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        );
+                      }
+
                       return (
                         <li key={item.id}>
-                          <Link
-                            href={item.href ?? "#"}
+                          <button
+                            type="button"
                             className={cn(
-                              "rounded-md px-3 py-2 text-sm font-medium transition",
+                              "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition",
                               desktopTextClass,
                               hasSurface
                                 ? "hover:bg-surface-muted"
                                 : "hover:bg-white/15",
                             )}
-                            onMouseEnter={() => setActiveMenuId(null)}
+                            aria-expanded={activeMenuId === item.id}
+                            onMouseEnter={() => setActiveMenuId(item.id)}
+                            onFocus={() => setActiveMenuId(item.id)}
                           >
                             {item.label}
-                          </Link>
+                            <Icon
+                              icon="lucide:chevron-down"
+                              className={cn(
+                                "h-4 w-4 transition-transform",
+                                activeMenuId === item.id && "rotate-180",
+                              )}
+                            />
+                          </button>
                         </li>
                       );
-                    }
+                    })}
+                  </ul>
+                </nav>
+              </div>
 
-                    return (
-                      <li key={item.id}>
-                        <button
-                          type="button"
-                          className={cn(
-                            "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition",
-                            desktopTextClass,
-                            hasSurface
-                              ? "hover:bg-surface-muted"
-                              : "hover:bg-white/15",
-                          )}
-                          aria-expanded={activeMenuId === item.id}
-                          onMouseEnter={() => setActiveMenuId(item.id)}
-                          onFocus={() => setActiveMenuId(item.id)}
-                        >
-                          {item.label}
-                          <Icon
-                            icon="lucide:chevron-down"
-                            className={cn(
-                              "h-4 w-4 transition-transform",
-                              activeMenuId === item.id && "rotate-180",
-                            )}
-                          />
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-
-              <div className="flex items-center gap-2">
+              <div className="flex shrink-0 items-center gap-2">
                 <Link
                   href={navigationData.cta.href}
                   className={cn(
@@ -192,6 +194,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
         </div>
 
         <NavbarMegaMenu
+          hasSurface={hasSurface}
           item={activeMenuItem}
           isOpen={Boolean(activeMenuItem)}
           onClose={() => setActiveMenuId(null)}
@@ -200,6 +203,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
       <NavbarMobile
         cta={navigationData.cta}
+        hasSurface={hasSurface}
         isOpen={isMobileMenuOpen}
         items={navigationData.items}
         onClose={() => setIsMobileMenuOpen(false)}

@@ -7,12 +7,18 @@ import { cn } from "@/lib/utils/cn";
 import type { NavItem } from "@/lib/types/navigation";
 
 type NavbarMegaMenuProps = {
+  hasSurface: boolean;
   item: NavItem | null;
   isOpen: boolean;
   onClose: () => void;
 };
 
-export function NavbarMegaMenu({ item, isOpen, onClose }: NavbarMegaMenuProps) {
+export function NavbarMegaMenu({
+  hasSurface,
+  item,
+  isOpen,
+  onClose,
+}: NavbarMegaMenuProps) {
   const hasDropdown = isOpen && Boolean(item?.groups?.length);
   const groups = item?.groups ?? [];
 
@@ -33,7 +39,12 @@ export function NavbarMegaMenu({ item, isOpen, onClose }: NavbarMegaMenuProps) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.995 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="w-screen border-y border-border bg-surface shadow-md"
+            className={cn(
+              "w-screen border-y shadow-md backdrop-blur-xl",
+              hasSurface
+                ? "border-border bg-surface/85"
+                : "border-white/20 bg-surface/65",
+            )}
           >
             <Container className="py-8">
               <div
@@ -62,7 +73,12 @@ export function NavbarMegaMenu({ item, isOpen, onClose }: NavbarMegaMenuProps) {
                           <li key={link.href}>
                             <Link
                               href={link.href}
-                              className="flex items-start gap-3 rounded-md border border-transparent p-3 transition hover:border-border hover:bg-surface-muted"
+                              className={cn(
+                                "flex items-start gap-3 rounded-md border border-transparent p-3 transition",
+                                hasSurface
+                                  ? "hover:border-border hover:bg-surface-muted"
+                                  : "hover:border-white/30 hover:bg-white/10",
+                              )}
                               target={link.external ? "_blank" : undefined}
                               rel={link.external ? "noreferrer" : undefined}
                             >
@@ -93,7 +109,12 @@ export function NavbarMegaMenu({ item, isOpen, onClose }: NavbarMegaMenuProps) {
                 {item.featured ? (
                   <Link
                     href={item.featured.href}
-                    className="rounded-xl border border-border bg-surface-soft p-6 transition hover:bg-surface"
+                    className={cn(
+                      "rounded-xl border p-6 transition",
+                      hasSurface
+                        ? "border-border bg-surface-soft hover:bg-surface"
+                        : "border-white/25 bg-white/10 hover:bg-white/15",
+                    )}
                   >
                     <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
                       {item.featured.icon ? (
