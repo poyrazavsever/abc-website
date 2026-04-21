@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils/cn";
 
 const buttonBaseClass =
-  "inline-flex items-center justify-center gap-2 rounded-md border text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-55";
+  "inline-flex items-center justify-center gap-2 rounded-md border text-sm font-semibold shadow-xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-55";
 
 const buttonVariantClasses = {
   primary:
@@ -13,6 +13,8 @@ const buttonVariantClasses = {
   ghost: "border-transparent bg-transparent text-text hover:bg-surface-muted",
   outline: "border-border bg-surface text-text hover:bg-surface-muted",
   danger: "border-danger bg-danger text-danger-foreground hover:bg-danger-700",
+  success:
+    "border-success bg-success text-success-foreground hover:bg-success-700",
 } as const;
 
 const buttonSizeClasses = {
@@ -86,7 +88,7 @@ export function Button({
         leadingIcon
       )}
       <span className="truncate">{children}</span>
-      {trailingIcon}
+      {!loading ? trailingIcon : null}
     </button>
   );
 }

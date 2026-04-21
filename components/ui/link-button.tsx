@@ -1,4 +1,6 @@
-import type { ComponentProps, ReactNode } from "react";
+"use client";
+
+import type { ComponentProps, MouseEvent, ReactNode } from "react";
 import Link from "next/link";
 
 import {
@@ -15,6 +17,8 @@ type LinkButtonProps = Omit<NativeLinkProps, "children" | "className"> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
   block?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
 };
@@ -25,18 +29,48 @@ export function LinkButton({
   variant = "primary",
   size = "md",
   block = false,
+  disabled = false,
+  loading = false,
   leadingIcon,
   trailingIcon,
+  onClick,
   ...props
 }: LinkButtonProps) {
+  const isDisabled = disabled || loading;
+
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (isDisabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    onClick?.(event);
+  };
+
   return (
     <Link
-      className={buttonClassName({ variant, size, block, className })}
+      className={buttonClassName({
+        variant,
+        size,
+        block,
+        className,
+      })}
+      aria-disabled={isDisabled}
+      tabIndex={isDisabled ? -1 : props.tabIndex}
+      onClick={handleClick}
       {...props}
     >
-      {leadingIcon}
+      {loading ? (
+        <span
+          className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+          aria-hidden="true"
+        />
+      ) : (
+        leadingIcon
+      )}
       <span className="truncate">{children}</span>
-      {trailingIcon}
+      {!loading ? trailingIcon : null}
     </Link>
   );
 }

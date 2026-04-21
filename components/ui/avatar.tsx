@@ -49,6 +49,8 @@ export function Avatar({
       {...props}
     >
       {safeSrc ? (
+        // Avatar image optimization strategy is intentionally deferred.
+        // eslint-disable-next-line @next/next/no-img-element
         <img src={safeSrc} alt={alt} className="h-full w-full object-cover" />
       ) : (
         <span aria-hidden="true">{initials}</span>
