@@ -47,6 +47,8 @@ app/
 		project/
 	(community)/
 		layout.tsx
+		components/
+			page.tsx
 		events/
 		builders/
 		projects/
@@ -80,14 +82,35 @@ components/
 		providers.tsx
 		toaster.tsx
 	ui/
-		button.tsx
-		icon-button.tsx
-		link-button.tsx
-		card.tsx
-		badge.tsx
+		alert.tsx
 		avatar.tsx
+		badge.tsx
+		button.tsx
+		card.tsx
+		checkbox.tsx
+		control.ts
+		dialog.tsx
 		divider.tsx
+		empty-state.tsx
+		field.tsx
+		icon-button.tsx
+		index.ts
+		input.tsx
+		internal/
+			overlay.tsx
+			use-controllable-state.ts
+		label.tsx
+		link-button.tsx
+		progress.tsx
+		radio-group.tsx
 		section-header.tsx
+		select.tsx
+		sheet.tsx
+		skeleton.tsx
+		spinner.tsx
+		switch.tsx
+		tabs.tsx
+		textarea.tsx
 	marketing/
 	auth/
 	profile/

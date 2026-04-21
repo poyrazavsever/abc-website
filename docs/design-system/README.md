@@ -63,14 +63,83 @@ Bu set, tum ekranlarda ortak kullanilacak minimum UI katmanidir.
 - Divider
 - SectionHeader
 
-## 9) Faz 1 Uygulama Notlari
+## 9) UI-Kit V1 Component Matrisi
+
+Bu repo icin v1 kit, primitives + forms + feedback + overlay setini kapsar.
+
+### Primitives
+
+- Container
+- Button
+- IconButton
+- LinkButton
+- Card
+- Badge
+- Avatar
+- Divider
+- SectionHeader
+
+### Form Altyapisi
+
+- Label
+- Field
+- FieldHint
+- FieldError
+
+### Text / Entry
+
+- Input
+- Textarea
+- Select
+
+### Choice Controls
+
+- Checkbox
+- RadioGroup + RadioItem
+- Switch
+
+### Feedback
+
+- Alert
+- Spinner
+- Skeleton
+- Progress
+- EmptyState
+
+### Overlay / Interaction
+
+- Dialog
+- Sheet
+- Tabs
+
+## 10) API ve Davranis Kurallari
+
+- Tum public UI componentleri `components/ui/index.ts` uzerinden export edilir.
+- Button-benzeri componentlerde ortak prop dili korunur: `variant`, `size`, `loading`, `disabled`, `className`.
+- Form inputlari native HTML wrapper'idir; custom data layer veya schema adapter'i tasimaz.
+- `Field`, label / description / error baglarini ve `aria-describedby` zincirini yonetir.
+- `Select` custom dropdown degildir; styled native `select` olarak kalir.
+- `Checkbox` ve `Switch` kendi label/description duzenini tasir; `onCheckedChange` ile sade API sunar.
+- `RadioGroup`, `Tabs`, `Dialog` ve `Sheet` controlled veya uncontrolled kullanilabilir.
+- Overlay componentlerinde minimum davranis seti zorunludur: focus alma, `Escape` ile kapanma, focus return, scroll lock.
+- `Toast` ayri bir UI componenti olarak kopyalanmaz; mevcut toaster altyapisi kullanilir.
+
+## 11) State ve Accessibility Kontrolu
+
+- Her interaktif component `focus-visible` durumu tasimalidir.
+- Disabled state sadece gorunur degil, davranissal olarak da bloke edilmelidir.
+- Error state, sadece renk degisikligi degil `aria-invalid` ve yardimci metin baglantisi ile sunulmalidir.
+- `Dialog` ve `Sheet` icinde klavye odagi overlay disina kacmamalidir.
+- `Tabs` icinde ok tuslari, `Home` ve `End` ile gezinme desteklenmelidir.
+
+## 12) Faz 1 Uygulama Notlari
 
 - Bu primitive'ler `components/ui/` altinda tutulur.
 - Landing ve auth/onboarding layoutlari once bu primitive'lere gecirilir.
 - Primitive disinda ayni isi yapan yeni class tabanli local component uretilmez.
 - Variant ve state dili tum componentlerde tutarli kalir.
 
-## 10) Faz 1 Kabul Kriteri
+## 13) Faz 1 Kabul Kriteri
 
 - Foundation primitive setinin tamami olusmus olmali.
 - Her primitive icin default/hover/active/disabled/focus-visible davranisi olmali.
