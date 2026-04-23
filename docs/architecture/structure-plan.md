@@ -56,6 +56,7 @@ app/
     content/
     builders/
     badges/
+    matching/
     analytics/
     chatbot/
     easter-egg/
@@ -124,7 +125,14 @@ lib/
   data/
     navigation.data.ts
     footer.data.ts
+  mocks/
+    admin.mock.ts
+    builders.mock.ts
   supabase/
+    client.ts
+    server.ts
+  auth/
+    admin.ts
   services/
   integrations/
     luma/

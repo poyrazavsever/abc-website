@@ -208,6 +208,7 @@ Supabase ve entegrasyonlar icin asagidaki degiskenler planlanmistir:
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
+- `ADMIN_EMAIL_ALLOWLIST`
 - `LUMA_API_KEY`
 - `LUMA_WEBHOOK_SECRET`
 - `EMAIL_PROVIDER_API_KEY`
@@ -215,6 +216,9 @@ Supabase ve entegrasyonlar icin asagidaki degiskenler planlanmistir:
 - `LLM_API_KEY`
 
 Not: `.env*` dosyalari `.gitignore` kapsamindadir. Secret degerler repoya commit edilmez.
+Production admin ekranlari icin `ADMIN_EMAIL_ALLOWLIST` zorunludur. Supabase
+tablolari hazir olmayan izole demolarda mock admin datasini acmak icin
+`ADMIN_DEMO_MODE=true` kullanilabilir.
 
 ## Scriptler
 
