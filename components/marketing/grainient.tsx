@@ -33,8 +33,40 @@ type GrainientProps = {
   className?: string;
 };
 
-const hexToRgb = (hex: string): [number, number, number] => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+const resolveCssColor = (color: string): string => {
+  const trimmed = color.trim();
+  const variableMatch = /^var\(\s*(--[\w-]+)\s*(?:,\s*([^)]+))?\s*\)$/.exec(
+    trimmed,
+  );
+
+  if (!variableMatch || typeof window === "undefined") {
+    return trimmed;
+  }
+
+  const cssValue = getComputedStyle(document.documentElement)
+    .getPropertyValue(variableMatch[1])
+    .trim();
+
+  return cssValue || variableMatch[2]?.trim() || trimmed;
+};
+
+const colorToRgb = (color: string): [number, number, number] => {
+  const resolvedColor = resolveCssColor(color);
+  const shorthandResult = /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(
+    resolvedColor,
+  );
+
+  if (shorthandResult) {
+    return [
+      Number.parseInt(shorthandResult[1] + shorthandResult[1], 16) / 255,
+      Number.parseInt(shorthandResult[2] + shorthandResult[2], 16) / 255,
+      Number.parseInt(shorthandResult[3] + shorthandResult[3], 16) / 255,
+    ];
+  }
+
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
+    resolvedColor,
+  );
 
   if (!result) {
     return [1, 1, 1];
@@ -158,9 +190,9 @@ export function Grainient({
   centerX = 0.0,
   centerY = 0.0,
   zoom = 0.9,
-  color1 = "#FF9FFC",
-  color2 = "#5227FF",
-  color3 = "#B497CF",
+  color1 = "var(--color-accent-500)",
+  color2 = "var(--color-secondary-500)",
+  color3 = "var(--color-primary-950)",
   className = "",
 }: GrainientProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -218,9 +250,9 @@ export function Grainient({
         uSaturation: { value: saturation },
         uCenterOffset: { value: new Float32Array([centerX, centerY]) },
         uZoom: { value: zoom },
-        uColor1: { value: new Float32Array(hexToRgb(color1)) },
-        uColor2: { value: new Float32Array(hexToRgb(color2)) },
-        uColor3: { value: new Float32Array(hexToRgb(color3)) },
+        uColor1: { value: new Float32Array(colorToRgb(color1)) },
+        uColor2: { value: new Float32Array(colorToRgb(color2)) },
+        uColor3: { value: new Float32Array(colorToRgb(color3)) },
       },
     });
 

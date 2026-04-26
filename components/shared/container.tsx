@@ -7,7 +7,7 @@ type ContainerPadding = "compact" | "default" | "comfortable";
 
 const widthClasses: Record<ContainerWidth, string> = {
   narrow: "max-w-5xl",
-  default: "max-w-7xl",
+  default: "max-w-8xl",
   wide: "max-w-[90rem]",
   full: "max-w-none",
 };

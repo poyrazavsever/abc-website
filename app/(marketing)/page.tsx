@@ -7,9 +7,9 @@ export default function MarketingHomePage() {
     <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
       <div className="absolute inset-0 -z-20">
         <Grainient
-          color1="#eff5ff"
-          color2="#1759c0"
-          color3="#0d223f"
+          color1="var(--color-accent-500)"
+          color2="var(--color-secondary-500)"
+          color3="var(--color-primary-950)"
           timeSpeed={0.25}
           colorBalance={-0.16}
           warpStrength={1.15}

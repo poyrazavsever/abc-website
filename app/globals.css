@@ -1,128 +1,169 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary brand palette (selected from user-provided set) */
-  --color-primary-50: #eff5ff;
-  --color-primary-100: #dce8ff;
-  --color-primary-200: #c1d6ff;
-  --color-primary-300: #96bbff;
-  --color-primary-400: #6699f3;
-  --color-primary-500: #3f79df;
-  --color-primary-600: #1759c0;
-  --color-primary-700: #1349a1;
-  --color-primary-800: #123f84;
-  --color-primary-900: #143668;
-  --color-primary-950: #0d223f;
+  /* Core palette from supplied colors */
+  --color-brand-black: #000000;
+  --color-brand-charcoal: #222222;
+  --color-brand-purple: #462c7d;
+  --color-brand-violet: #831c91;
+  --color-brand-rose: #d552a3;
+  --color-brand-pink: #ff70bf;
+  --color-brand-white: #ffffff;
 
-  /* Secondary brand palette (blue family companion) */
-  --color-secondary-50: #f0f9fd;
-  --color-secondary-100: #def1fa;
-  --color-secondary-200: #c3e6f6;
-  --color-secondary-300: #97d4ee;
-  --color-secondary-400: #57aada;
-  --color-secondary-500: #3f92c2;
-  --color-secondary-600: #2f769f;
-  --color-secondary-700: #285f81;
-  --color-secondary-800: #264f6a;
-  --color-secondary-900: #244359;
+  /* Primary: #462c7d */
+  --color-primary-50: #f0eef5;
+  --color-primary-100: #e1ddea;
+  --color-primary-200: #c4bbd5;
+  --color-primary-300: #9f91bb;
+  --color-primary-400: #725f9c;
+  --color-primary-500: #462c7d;
+  --color-primary-600: #3e276e;
+  --color-primary-700: #34215c;
+  --color-primary-800: #291a49;
+  --color-primary-900: #1d1235;
+  --color-primary-950: #140c23;
 
-  /* Accent scale (cool sky accent for highlights) */
-  --color-accent-50: #eff8ff;
-  --color-accent-100: #ddf1ff;
-  --color-accent-200: #bfe7ff;
-  --color-accent-300: #8fd7ff;
-  --color-accent-400: #58beff;
-  --color-accent-500: #2e9ff2;
-  --color-accent-600: #157ecf;
-  --color-accent-700: #1166aa;
-  --color-accent-800: #12568a;
-  --color-accent-900: #144973;
+  /* Secondary: #831c91 */
+  --color-secondary-50: #f5edf6;
+  --color-secondary-100: #ebdbed;
+  --color-secondary-200: #d7b6dc;
+  --color-secondary-300: #bf89c6;
+  --color-secondary-400: #a152ab;
+  --color-secondary-500: #831c91;
+  --color-secondary-600: #731980;
+  --color-secondary-700: #61156b;
+  --color-secondary-800: #4c1054;
+  --color-secondary-900: #370c3d;
+  --color-secondary-950: #250829;
 
-  /* Semantic feedback palettes */
-  --color-success-50: #eefcf6;
-  --color-success-100: #d6f8e9;
-  --color-success-200: #b0efd5;
-  --color-success-300: #7edfb7;
-  --color-success-400: #49c693;
-  --color-success-500: #27ab77;
-  --color-success-600: #1d8c62;
-  --color-success-700: #1a704f;
-  --color-success-800: #185a42;
-  --color-success-900: #164a37;
+  /* Accent: #ff70bf */
+  --color-accent-50: #fff4fa;
+  --color-accent-100: #ffe8f5;
+  --color-accent-200: #ffd1eb;
+  --color-accent-300: #ffb5de;
+  --color-accent-400: #ff92ce;
+  --color-accent-500: #ff70bf;
+  --color-accent-600: #e063a8;
+  --color-accent-700: #bd538d;
+  --color-accent-800: #94416f;
+  --color-accent-900: #6b2f50;
+  --color-accent-950: #471f35;
 
-  --color-warning-50: #fff8eb;
-  --color-warning-100: #ffefcb;
-  --color-warning-200: #ffde96;
-  --color-warning-300: #ffc65a;
-  --color-warning-400: #f8aa2b;
-  --color-warning-500: #e58d18;
-  --color-warning-600: #c26d11;
-  --color-warning-700: #9b5111;
-  --color-warning-800: #7d4113;
-  --color-warning-900: #673712;
+  /* Highlight: #d552a3 */
+  --color-highlight-50: #fcf1f8;
+  --color-highlight-100: #f8e3f0;
+  --color-highlight-200: #f2c8e2;
+  --color-highlight-300: #e9a5cf;
+  --color-highlight-400: #df7cb9;
+  --color-highlight-500: #d552a3;
+  --color-highlight-600: #bb488f;
+  --color-highlight-700: #9e3d79;
+  --color-highlight-800: #7c305f;
+  --color-highlight-900: #592244;
+  --color-highlight-950: #3c172e;
 
-  --color-danger-50: #fff0f2;
-  --color-danger-100: #ffe0e5;
-  --color-danger-200: #ffc5d0;
-  --color-danger-300: #ff9cae;
-  --color-danger-400: #ff6b86;
-  --color-danger-500: #f23d63;
-  --color-danger-600: #d61f4d;
-  --color-danger-700: #b41842;
-  --color-danger-800: #97173d;
-  --color-danger-900: #81173a;
+  /* Ink: #222222 */
+  --color-ink-50: #ededed;
+  --color-ink-100: #dcdcdc;
+  --color-ink-200: #b8b8b8;
+  --color-ink-300: #8c8c8c;
+  --color-ink-400: #575757;
+  --color-ink-500: #222222;
+  --color-ink-600: #1e1e1e;
+  --color-ink-700: #191919;
+  --color-ink-800: #141414;
+  --color-ink-900: #0e0e0e;
+  --color-ink-950: #0a0a0a;
 
-  --color-info-50: #eef9ff;
-  --color-info-100: #d8f1ff;
-  --color-info-200: #b8e6ff;
-  --color-info-300: #85d8ff;
-  --color-info-400: #49c1ff;
-  --color-info-500: #1ba4f5;
-  --color-info-600: #0a83d2;
-  --color-info-700: #0c69aa;
-  --color-info-800: #11598c;
-  --color-info-900: #154b74;
+  /* Semantic feedback palettes remapped to the brand palette */
+  --color-success-50: var(--color-primary-50);
+  --color-success-100: var(--color-primary-100);
+  --color-success-200: var(--color-primary-200);
+  --color-success-300: var(--color-primary-300);
+  --color-success-400: var(--color-primary-400);
+  --color-success-500: var(--color-primary-500);
+  --color-success-600: var(--color-primary-600);
+  --color-success-700: var(--color-primary-700);
+  --color-success-800: var(--color-primary-800);
+  --color-success-900: var(--color-primary-900);
+
+  --color-warning-50: var(--color-highlight-50);
+  --color-warning-100: var(--color-highlight-100);
+  --color-warning-200: var(--color-highlight-200);
+  --color-warning-300: var(--color-highlight-300);
+  --color-warning-400: var(--color-highlight-400);
+  --color-warning-500: var(--color-highlight-500);
+  --color-warning-600: var(--color-highlight-600);
+  --color-warning-700: var(--color-highlight-700);
+  --color-warning-800: var(--color-highlight-800);
+  --color-warning-900: var(--color-highlight-900);
+
+  --color-danger-50: var(--color-secondary-50);
+  --color-danger-100: var(--color-secondary-100);
+  --color-danger-200: var(--color-secondary-200);
+  --color-danger-300: var(--color-secondary-300);
+  --color-danger-400: var(--color-secondary-400);
+  --color-danger-500: var(--color-secondary-500);
+  --color-danger-600: var(--color-secondary-600);
+  --color-danger-700: var(--color-secondary-700);
+  --color-danger-800: var(--color-secondary-800);
+  --color-danger-900: var(--color-secondary-900);
+
+  --color-info-50: var(--color-accent-50);
+  --color-info-100: var(--color-accent-100);
+  --color-info-200: var(--color-accent-200);
+  --color-info-300: var(--color-accent-300);
+  --color-info-400: var(--color-accent-400);
+  --color-info-500: var(--color-accent-500);
+  --color-info-600: var(--color-accent-600);
+  --color-info-700: var(--color-accent-700);
+  --color-info-800: var(--color-accent-800);
+  --color-info-900: var(--color-accent-900);
 
   /* Semantic aliases for direct usage */
-  --color-background: #f4f8ff;
-  --color-surface: #ffffff;
-  --color-surface-muted: #f8fbff;
-  --color-surface-soft: #eef4ff;
-  --color-surface-strong: #dde8ff;
+  --color-background: var(--color-accent-50);
+  --color-surface: var(--color-brand-white);
+  --color-surface-muted: var(--color-highlight-50);
+  --color-surface-soft: var(--color-secondary-50);
+  --color-surface-strong: var(--color-primary-100);
 
-  --color-text: #13233d;
-  --color-text-muted: #496285;
-  --color-text-soft: #6f83a1;
-  --color-text-inverse: #f8fbff;
+  --color-text: var(--color-brand-black);
+  --color-text-muted: var(--color-ink-500);
+  --color-text-soft: var(--color-ink-400);
+  --color-text-inverse: var(--color-brand-white);
 
-  --color-border: #d8e4fb;
-  --color-border-soft: #e6efff;
-  --color-border-strong: #b6c9ef;
+  --color-border: var(--color-primary-100);
+  --color-border-soft: var(--color-accent-100);
+  --color-border-strong: var(--color-secondary-200);
 
-  --color-link: var(--color-primary-600);
-  --color-link-hover: var(--color-primary-700);
-  --color-focus-ring: #8fb1ef;
+  --color-link: var(--color-secondary-600);
+  --color-link-hover: var(--color-primary-600);
+  --color-focus-ring: var(--color-accent-500);
 
-  --color-primary: var(--color-primary-600);
-  --color-primary-foreground: #ffffff;
-  --color-secondary: var(--color-secondary-600);
-  --color-secondary-foreground: #ffffff;
+  --color-primary: var(--color-primary-500);
+  --color-primary-foreground: var(--color-brand-white);
+  --color-secondary: var(--color-secondary-500);
+  --color-secondary-foreground: var(--color-brand-white);
+  --color-accent: var(--color-accent-500);
+  --color-accent-foreground: var(--color-brand-black);
+  --color-highlight: var(--color-highlight-500);
+  --color-highlight-foreground: var(--color-brand-black);
   --color-success: var(--color-success-600);
-  --color-success-foreground: #ffffff;
+  --color-success-foreground: var(--color-brand-white);
   --color-warning: var(--color-warning-500);
-  --color-warning-foreground: #1f1a14;
+  --color-warning-foreground: var(--color-brand-black);
   --color-danger: var(--color-danger-600);
-  --color-danger-foreground: #ffffff;
-  --color-info: var(--color-info-600);
-  --color-info-foreground: #ffffff;
+  --color-danger-foreground: var(--color-brand-white);
+  --color-info: var(--color-info-500);
+  --color-info-foreground: var(--color-brand-black);
 
   /* Data-viz colors for charts and metric cards */
-  --color-chart-1: #1759c0;
-  --color-chart-2: #1d8c62;
-  --color-chart-3: #e58d18;
-  --color-chart-4: #d61f4d;
-  --color-chart-5: #0a83d2;
-  --color-chart-6: #7a5ce0;
+  --color-chart-1: var(--color-primary-500);
+  --color-chart-2: var(--color-secondary-500);
+  --color-chart-3: var(--color-highlight-500);
+  --color-chart-4: var(--color-accent-500);
+  --color-chart-5: var(--color-brand-black);
+  --color-chart-6: var(--color-brand-charcoal);
 
   /* Radii and shadows to keep UI language consistent */
   --radius-xs: 0.25rem;
@@ -131,10 +172,10 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
 
-  --shadow-xs: 0 1px 2px rgb(12 36 78 / 0.06);
-  --shadow-sm: 0 2px 8px rgb(12 36 78 / 0.08);
-  --shadow-md: 0 8px 24px rgb(12 36 78 / 0.12);
-  --shadow-lg: 0 16px 40px rgb(12 36 78 / 0.16);
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-sm: 0 2px 8px rgb(70 44 125 / 0.1);
+  --shadow-md: 0 8px 24px rgb(70 44 125 / 0.14);
+  --shadow-lg: 0 16px 40px rgb(70 44 125 / 0.18);
 }
 
 body {
