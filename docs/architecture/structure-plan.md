@@ -111,6 +111,9 @@ components/
   auth/
   profile/
   events/
+    event-card.tsx
+    event-cover.tsx
+    event-empty-state.tsx
   projects/
   builders/
   matching/
@@ -134,8 +137,11 @@ lib/
   auth/
     admin.ts
   services/
+    events.service.ts
   integrations/
     luma/
+      client.ts
+      index.ts
     email/
     analytics/
     llm/

@@ -50,6 +50,9 @@ app/
 		components/
 			page.tsx
 		events/
+			page.tsx
+			[eventId]/
+				page.tsx
 		builders/
 		projects/
 	dashboard/
@@ -115,6 +118,9 @@ components/
 	auth/
 	profile/
 	events/
+		event-card.tsx
+		event-cover.tsx
+		event-empty-state.tsx
 	projects/
 	builders/
 	matching/
@@ -131,8 +137,11 @@ lib/
 		footer.data.ts
 	supabase/
 	services/
+		events.service.ts
 	integrations/
 		luma/
+			client.ts
+			index.ts
 		email/
 		analytics/
 		llm/
@@ -210,6 +219,7 @@ Supabase ve entegrasyonlar icin asagidaki degiskenler planlanmistir:
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ADMIN_EMAIL_ALLOWLIST`
 - `LUMA_API_KEY`
+- `LUMA_CALENDAR_ID`
 - `LUMA_WEBHOOK_SECRET`
 - `EMAIL_PROVIDER_API_KEY`
 - `ANALYTICS_WRITE_KEY`
