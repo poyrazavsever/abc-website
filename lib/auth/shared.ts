@@ -1,5 +1,7 @@
 import type { User } from "@supabase/supabase-js";
 
+import type { OnboardingStep } from "@/lib/types/profile";
+
 export type AuthUserMetadata = {
   full_name?: string;
   onboarding_completed?: boolean;
@@ -83,12 +85,22 @@ export function getRegisterHref(next: string | null | undefined) {
   return `/register?next=${encodeURIComponent(safeNext)}`;
 }
 
-export function getOnboardingHref() {
-  return "/onboarding/profile";
+export function getOnboardingHref(step: OnboardingStep = "profile") {
+  return `/onboarding/${step}`;
 }
 
 export function getDefaultAuthedHref() {
   return "/dashboard/profile";
+}
+
+export function getAuthContinueHref(next: string | null | undefined) {
+  const safeNext = getSafeNextPath(next);
+
+  if (!safeNext) {
+    return "/auth/continue";
+  }
+
+  return `/auth/continue?next=${encodeURIComponent(safeNext)}`;
 }
 
 export function getProfileHref(
@@ -100,14 +112,10 @@ export function getProfileHref(
 }
 
 export function getPostAuthRedirectTarget(
-  user: Pick<User, "user_metadata"> | null | undefined,
+  _user: Pick<User, "user_metadata"> | null | undefined,
   next: string | null | undefined,
 ) {
-  if (!isOnboardingComplete(user)) {
-    return getOnboardingHref();
-  }
-
-  return getSafeNextPath(next) ?? getDefaultAuthedHref();
+  return getAuthContinueHref(next);
 }
 
 export function buildAuthCallbackUrl(

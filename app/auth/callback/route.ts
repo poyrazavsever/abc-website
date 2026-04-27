@@ -2,8 +2,8 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import {
+  getAuthContinueHref,
   getAuthErrorMessage,
-  getPostAuthRedirectTarget,
   getSafeNextPath,
 } from "@/lib/auth/shared";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -54,6 +54,6 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.redirect(
-    new URL(getPostAuthRedirectTarget(data.user, next), request.url),
+    new URL(getAuthContinueHref(next), request.url),
   );
 }

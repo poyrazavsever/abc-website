@@ -1,13 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-import {
-  getDefaultAuthedHref,
-  getLoginHref,
-  getOnboardingHref,
-  getPostAuthRedirectTarget,
-  isOnboardingComplete,
-} from "@/lib/auth/shared";
+import { getLoginHref } from "@/lib/auth/shared";
 
 function getOptionalEnv(name: string) {
   const value = process.env[name];
@@ -28,10 +22,6 @@ function isProtectedPath(pathname: string) {
 
 function isAuthPage(pathname: string) {
   return pathname === "/login" || pathname === "/register";
-}
-
-function isOnboardingPath(pathname: string) {
-  return pathname === "/onboarding" || pathname.startsWith("/onboarding/");
 }
 
 function withSupabaseCookies(source: NextResponse, target: NextResponse) {
@@ -78,43 +68,6 @@ export async function proxy(request: NextRequest) {
     );
   }
 
-  if (!user) {
-    return response;
-  }
-
-  if (isAuthPage(pathname)) {
-    return withSupabaseCookies(
-      response,
-      NextResponse.redirect(
-        new URL(
-          getPostAuthRedirectTarget(
-            user,
-            request.nextUrl.searchParams.get("next"),
-          ),
-          request.url,
-        ),
-      ),
-    );
-  }
-
-  if (!isOnboardingComplete(user)) {
-    if (isProtectedPath(pathname) && !isOnboardingPath(pathname)) {
-      return withSupabaseCookies(
-        response,
-        NextResponse.redirect(new URL(getOnboardingHref(), request.url)),
-      );
-    }
-
-    return response;
-  }
-
-  if (isOnboardingPath(pathname)) {
-    return withSupabaseCookies(
-      response,
-      NextResponse.redirect(new URL(getDefaultAuthedHref(), request.url)),
-    );
-  }
-
   return response;
 }
 
@@ -125,6 +78,7 @@ export const config = {
     "/onboarding/:path*",
     "/login",
     "/register",
+    "/auth/continue",
     "/auth/callback",
   ],
 };

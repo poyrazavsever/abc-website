@@ -1,11 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 
-import { getCurrentUser } from "@/lib/auth/server";
-import {
-  getLoginHref,
-  getOnboardingHref,
-  isOnboardingComplete,
-} from "@/lib/auth/shared";
+import { requireCompletedOnboarding } from "@/lib/auth/server";
+import { getLoginHref } from "@/lib/auth/shared";
 
 function parseAllowlist(value: string | undefined) {
   return new Set(
@@ -17,14 +13,12 @@ function parseAllowlist(value: string | undefined) {
 }
 
 export async function requireAdminAccess(nextPath = "/admin") {
-  const user = await getCurrentUser();
+  let onboardingState;
 
-  if (!user) {
+  try {
+    onboardingState = await requireCompletedOnboarding(nextPath);
+  } catch {
     redirect(getLoginHref(nextPath));
-  }
-
-  if (!isOnboardingComplete(user)) {
-    redirect(getOnboardingHref());
   }
 
   const allowlist = parseAllowlist(process.env.ADMIN_EMAIL_ALLOWLIST);
@@ -37,7 +31,7 @@ export async function requireAdminAccess(nextPath = "/admin") {
     notFound();
   }
 
-  const email = user?.email?.toLocaleLowerCase("en");
+  const email = onboardingState.user.email?.toLocaleLowerCase("en");
 
   if (!email || !allowlist.has(email)) {
     notFound();

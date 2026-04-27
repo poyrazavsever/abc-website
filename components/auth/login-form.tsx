@@ -17,8 +17,8 @@ import {
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { loginSchema, type LoginFormValues } from "@/lib/schemas/auth";
 import {
+  getAuthContinueHref,
   getAuthErrorMessage,
-  getPostAuthRedirectTarget,
   getRegisterHref,
   getSafeNextPath,
 } from "@/lib/auth/shared";
@@ -93,7 +93,7 @@ export function LoginForm() {
       return;
     }
 
-    router.replace(getPostAuthRedirectTarget(data.user, nextPath));
+    router.replace(getAuthContinueHref(nextPath));
     router.refresh();
   });
 
