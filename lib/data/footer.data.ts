@@ -1,3 +1,7 @@
+import {
+  partnerContactEmail,
+  partnerContactHref,
+} from "@/lib/data/sponsors.data";
 import type { FooterData } from "@/lib/types/footer";
 
 export const footerData: FooterData = {
@@ -39,7 +43,7 @@ export const footerData: FooterData = {
       links: [
         { label: "Hakkimizda", href: "/" },
         { label: "Sponsor Ol", href: "/sponsors" },
-        { label: "Iletisim", href: "/contact" },
+        { label: "Iletisim", href: partnerContactHref },
         { label: "Basin Kiti", href: "/" },
       ],
     },
@@ -60,16 +64,16 @@ export const footerData: FooterData = {
   ],
   contact: {
     title: "Is Birligi ve Partnerlik",
-    email: "hello@ankarabuildclub.com",
+    email: partnerContactEmail,
     location: "Ankara, Turkiye",
     responseWindow: "Hafta ici 24 saat icinde geri donus",
     cta: {
-      label: "Partnerlik Basvurusu",
-      href: "/contact",
+      label: "Partnerlik maili gonder",
+      href: partnerContactHref,
     },
   },
   bottomLinks: [
-    { label: "Iletisim", href: "/contact" },
+    { label: "Iletisim", href: partnerContactHref },
     { label: "Kariyer", href: "/" },
     { label: "Topluluk Kurallari", href: "/" },
     { label: "Gizlilik", href: "/privacy" },
