@@ -35,7 +35,7 @@ export const footerData: FooterData = {
         { label: "Profil", href: "/dashboard/profile" },
         { label: "Rozetler", href: "/dashboard/profile" },
         { label: "LinkedIn Karti", href: "/dashboard/linkedin-card" },
-        { label: "Onboarding", href: "/onboarding" },
+        { label: "Onboarding", href: "/onboarding/profile" },
       ],
     },
     {

@@ -5,11 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import type { User } from "@supabase/supabase-js";
 
+import { LogoutButton } from "@/components/auth/logout-button";
 import { NavbarMegaMenu } from "@/components/layout/navbar-mega-menu";
 import { NavbarMobile } from "@/components/layout/navbar-mobile";
 import { Container } from "@/components/shared/container";
+import { getProfileHref } from "@/lib/auth/shared";
 import { navigationData } from "@/lib/data/navigation.data";
+import { createSupabaseClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/cn";
 
 type NavbarProps = {
@@ -17,7 +21,13 @@ type NavbarProps = {
 };
 
 export function Navbar({ overlay = false }: NavbarProps) {
+  const hasSupabaseAuthEnv = Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  );
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const [authUser, setAuthUser] = useState<User | null>(null);
+  const [isAuthReady, setIsAuthReady] = useState(!hasSupabaseAuthEnv);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -54,10 +64,54 @@ export function Navbar({ overlay = false }: NavbarProps) {
     };
   }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+    const supabase = createSupabaseClient();
+
+    if (!supabase) {
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    const syncUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!isMounted) {
+        return;
+      }
+
+      setAuthUser(user);
+      setIsAuthReady(true);
+    };
+
+    void syncUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!isMounted) {
+        return;
+      }
+
+      setAuthUser(session?.user ?? null);
+      setIsAuthReady(true);
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
+  }, [hasSupabaseAuthEnv]);
+
   const hasSurface = !overlay || isScrolled;
   const desktopTextClass = hasSurface ? "text-text" : "text-text-inverse";
   const brandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
   const hasBrandImage = brandImageUrl.length > 0;
+  const isAuthenticated = isAuthReady && Boolean(authUser);
+  const profileHref = getProfileHref(authUser);
 
   return (
     <motion.header
@@ -162,17 +216,59 @@ export function Navbar({ overlay = false }: NavbarProps) {
               </div>
 
               <div className="flex shrink-0 items-center gap-2">
-                <Link
-                  href={navigationData.cta.href}
-                  className={cn(
-                    "hidden rounded-md px-4 py-2 text-sm font-semibold transition lg:inline-flex",
-                    hasSurface
-                      ? "bg-primary text-primary-foreground hover:bg-primary-700"
-                      : "bg-surface/95 text-primary hover:bg-surface",
-                  )}
-                >
-                  {navigationData.cta.label}
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      href={profileHref}
+                      className={cn(
+                        "hidden rounded-md px-3 py-2 text-sm font-semibold transition lg:inline-flex",
+                        desktopTextClass,
+                        hasSurface
+                          ? "hover:bg-surface-muted"
+                          : "hover:bg-white/15",
+                      )}
+                    >
+                      {navigationData.auth.profileLabel}
+                    </Link>
+                    <LogoutButton
+                      variant="ghost"
+                      className={cn(
+                        "hidden lg:inline-flex",
+                        hasSurface
+                          ? ""
+                          : "text-text-inverse hover:bg-white/15 hover:text-text-inverse",
+                      )}
+                    >
+                      {navigationData.auth.logoutLabel}
+                    </LogoutButton>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href={navigationData.auth.loginHref}
+                      className={cn(
+                        "hidden rounded-md px-3 py-2 text-sm font-semibold transition lg:inline-flex",
+                        desktopTextClass,
+                        hasSurface
+                          ? "hover:bg-surface-muted"
+                          : "hover:bg-white/15",
+                      )}
+                    >
+                      {navigationData.auth.loginLabel}
+                    </Link>
+                    <Link
+                      href={navigationData.cta.href}
+                      className={cn(
+                        "hidden rounded-md px-4 py-2 text-sm font-semibold transition lg:inline-flex",
+                        hasSurface
+                          ? "bg-primary text-primary-foreground hover:bg-primary-700"
+                          : "bg-surface/95 text-primary hover:bg-surface",
+                      )}
+                    >
+                      {navigationData.cta.label}
+                    </Link>
+                  </>
+                )}
 
                 <button
                   type="button"
@@ -202,10 +298,13 @@ export function Navbar({ overlay = false }: NavbarProps) {
       </div>
 
       <NavbarMobile
+        auth={navigationData.auth}
         cta={navigationData.cta}
         hasSurface={hasSurface}
+        isAuthenticated={isAuthenticated}
         isOpen={isMobileMenuOpen}
         items={navigationData.items}
+        profileHref={profileHref}
         onClose={() => setIsMobileMenuOpen(false)}
       />
     </motion.header>

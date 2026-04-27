@@ -79,6 +79,14 @@ export const navigationData: NavigationData = {
       href: "/sponsors",
     },
   ],
+  auth: {
+    loginLabel: "Giris Yap",
+    loginHref: "/login",
+    registerLabel: "Kayit Ol",
+    registerHref: "/register",
+    profileLabel: "Profilim",
+    logoutLabel: "Cikis Yap",
+  },
   cta: {
     label: "Topluluga Katil",
     href: "/register",

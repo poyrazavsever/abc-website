@@ -5,22 +5,29 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { LogoutButton } from "@/components/auth/logout-button";
 import { cn } from "@/lib/utils/cn";
 import type { NavItem, NavigationData } from "@/lib/types/navigation";
 
 type NavbarMobileProps = {
+  auth: NavigationData["auth"];
   cta: NavigationData["cta"];
   hasSurface: boolean;
+  isAuthenticated: boolean;
   isOpen: boolean;
   items: NavItem[];
+  profileHref: string;
   onClose: () => void;
 };
 
 export function NavbarMobile({
+  auth,
   cta,
   hasSurface,
+  isAuthenticated,
   isOpen,
   items,
+  profileHref,
   onClose,
 }: NavbarMobileProps) {
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
@@ -81,7 +88,7 @@ export function NavbarMobile({
   };
 
   const isSubPanel = Boolean(activeItem);
-  const headerTitle = activeItem?.label ?? "Menü";
+  const headerTitle = activeItem?.label ?? "Menu";
   const panelClass = hasSurface
     ? "border-border bg-surface/88"
     : "border-white/20 bg-surface/68";
@@ -259,13 +266,43 @@ export function NavbarMobile({
                       })}
 
                       <div className="pt-2">
-                        <Link
-                          href={cta.href}
-                          className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
-                          onClick={closeMenu}
-                        >
-                          {cta.label}
-                        </Link>
+                        <div className="space-y-2">
+                          {isAuthenticated ? (
+                            <>
+                              <Link
+                                href={profileHref}
+                                className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
+                                onClick={closeMenu}
+                              >
+                                {auth.profileLabel}
+                              </Link>
+                              <LogoutButton
+                                block
+                                variant="outline"
+                                onComplete={closeMenu}
+                              >
+                                {auth.logoutLabel}
+                              </LogoutButton>
+                            </>
+                          ) : (
+                            <>
+                              <Link
+                                href={auth.loginHref}
+                                className="inline-flex w-full items-center justify-center rounded-md border border-border bg-surface px-4 py-3 text-sm font-semibold text-text transition hover:border-primary-200 hover:text-primary"
+                                onClick={closeMenu}
+                              >
+                                {auth.loginLabel}
+                              </Link>
+                              <Link
+                                href={cta.href}
+                                className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
+                                onClick={closeMenu}
+                              >
+                                {cta.label}
+                              </Link>
+                            </>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </motion.div>
