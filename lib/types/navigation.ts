@@ -33,6 +33,14 @@ export type NavigationData = {
     imgUrl?: string;
   };
   items: NavItem[];
+  auth: {
+    loginLabel: string;
+    loginHref: string;
+    registerLabel: string;
+    registerHref: string;
+    profileLabel: string;
+    logoutLabel: string;
+  };
   cta: {
     label: string;
     href: string;

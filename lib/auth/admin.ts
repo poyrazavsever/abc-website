@@ -1,6 +1,11 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/auth/server";
+import {
+  getLoginHref,
+  getOnboardingHref,
+  isOnboardingComplete,
+} from "@/lib/auth/shared";
 
 function parseAllowlist(value: string | undefined) {
   return new Set(
@@ -11,7 +16,17 @@ function parseAllowlist(value: string | undefined) {
   );
 }
 
-export async function requireAdminAccess() {
+export async function requireAdminAccess(nextPath = "/admin") {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect(getLoginHref(nextPath));
+  }
+
+  if (!isOnboardingComplete(user)) {
+    redirect(getOnboardingHref());
+  }
+
   const allowlist = parseAllowlist(process.env.ADMIN_EMAIL_ALLOWLIST);
 
   if (allowlist.size === 0 && process.env.NODE_ENV !== "production") {
@@ -22,15 +37,6 @@ export async function requireAdminAccess() {
     notFound();
   }
 
-  const supabase = await createSupabaseServerClient();
-
-  if (!supabase) {
-    notFound();
-  }
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
   const email = user?.email?.toLocaleLowerCase("en");
 
   if (!email || !allowlist.has(email)) {

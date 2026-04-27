@@ -6,6 +6,8 @@ type OnboardingLayoutProps = {
   children: ReactNode;
 };
 
-export default function OnboardingLayout({ children }: OnboardingLayoutProps) {
+export default function OnboardingLayout({
+  children,
+}: OnboardingLayoutProps) {
   return <OnboardingLayoutShell>{children}</OnboardingLayoutShell>;
 }
