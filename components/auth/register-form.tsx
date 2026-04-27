@@ -15,10 +15,10 @@ import {
   Input,
 } from "@/components/ui";
 import {
+  getAuthContinueHref,
   buildAuthCallbackUrl,
   getAuthErrorMessage,
   getLoginHref,
-  getPostAuthRedirectTarget,
   getSafeNextPath,
 } from "@/lib/auth/shared";
 import { registerSchema, type RegisterFormValues } from "@/lib/schemas/auth";
@@ -86,7 +86,7 @@ export function RegisterForm() {
     }
 
     if (data.session && data.user) {
-      router.replace(getPostAuthRedirectTarget(data.user, nextPath));
+      router.replace(getAuthContinueHref(nextPath));
       router.refresh();
       return;
     }

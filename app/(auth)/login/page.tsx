@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 import { AuthFormFallback } from "@/components/auth/auth-form-fallback";
 import { AuthFormShell } from "@/components/auth/auth-form-shell";
 import { LoginForm } from "@/components/auth/login-form";
+import { resolveAuthenticatedRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
   title: "Giris Yap",
@@ -11,7 +13,24 @@ export const metadata: Metadata = {
     "Ankara Build Club hesabinizla giris yapin ve platform alanina erisin.",
 };
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams: Promise<{ next?: string | string[] | undefined }>;
+};
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const query = await searchParams;
+  const next =
+    typeof query.next === "string"
+      ? query.next
+      : Array.isArray(query.next)
+        ? query.next[0]
+        : null;
+  const target = await resolveAuthenticatedRedirect(next);
+
+  if (!target.startsWith("/login")) {
+    redirect(target);
+  }
+
   return (
     <AuthFormShell
       eyebrow="Auth"
