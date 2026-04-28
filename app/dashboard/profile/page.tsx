@@ -35,6 +35,9 @@ export default async function DashboardProfilePage() {
           description="Profil bilgilerinizi, projelerinizi ve topluluk durumunuzu buradan yönetebilirsiniz."
           actions={
             <div className="flex items-center gap-3">
+              <LinkButton href="/dashboard/linkedin-card" variant="outline">
+                LinkedIn'de Paylaş
+              </LinkButton>
               <LinkButton href={`/builders/${profile.id}`} variant="outline">
                 Public Profili Gör
               </LinkButton>
