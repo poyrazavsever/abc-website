@@ -2,7 +2,7 @@ import { createClient, type SupabaseClient, type User } from "@supabase/supabase
 
 import { getAuthUserMetadata } from "@/lib/auth/shared";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import type { BuilderRole } from "@/lib/types/admin";
+import type { BuilderRole, BuilderTag } from "@/lib/types/admin";
 import type {
   OnboardingProjectInput,
   OnboardingStep,
@@ -65,6 +65,18 @@ function asBuilderRole(value: unknown): BuilderRole {
       return value;
     default:
       return "other";
+  }
+}
+
+function asNullableBuilderTag(value: unknown): BuilderTag | null {
+  switch (value) {
+    case "cofounder_looking":
+    case "idea_looking":
+    case "team_complete":
+    case "just_building":
+      return value;
+    default:
+      return null;
   }
 }
 
@@ -131,6 +143,7 @@ function mapProfileRow(row: unknown): ProfileRecord {
     bio: asString(record.bio),
     linkedinUrl: asNullableString(record.linkedin_url),
     publicEmail: asNullableString(record.public_email),
+    activeTag: asNullableBuilderTag(record.active_tag),
     onboardingCompleted: asBoolean(record.onboarding_completed),
     createdAt: asString(record.created_at),
     updatedAt: asString(record.updated_at),
@@ -224,6 +237,7 @@ export async function ensureProfileForUser(
       bio: "",
       linkedin_url: null,
       public_email: null,
+      active_tag: null,
       onboarding_completed: false,
     })
     .select("*")
@@ -356,6 +370,31 @@ export async function saveProfileDetails(
   if (error) {
     throw new Error(
       getSupabaseErrorMessage(error.message, "Profil detaylari kaydedilemedi."),
+    );
+  }
+
+  return mapProfileRow(data);
+}
+
+export async function saveProfileTag(
+  user: Pick<User, "id" | "user_metadata">,
+  activeTag: BuilderTag | null,
+) {
+  await ensureProfileForUser(user);
+
+  const supabase = await getSupabaseClientOrThrow();
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({
+      active_tag: activeTag,
+    })
+    .eq("id", user.id)
+    .select("*")
+    .single();
+
+  if (error) {
+    throw new Error(
+      getSupabaseErrorMessage(error.message, "Etiket kaydedilemedi."),
     );
   }
 

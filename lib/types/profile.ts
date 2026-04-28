@@ -1,6 +1,6 @@
 import type { User } from "@supabase/supabase-js";
 
-import type { BuilderRole } from "@/lib/types/admin";
+import type { BuilderRole, BuilderTag } from "@/lib/types/admin";
 
 export type ProjectCategory =
   | "ai"
@@ -23,6 +23,7 @@ export type ProfileRecord = {
   bio: string;
   linkedinUrl: string | null;
   publicEmail: string | null;
+  activeTag: BuilderTag | null;
   onboardingCompleted: boolean;
   createdAt: string;
   updatedAt: string;
