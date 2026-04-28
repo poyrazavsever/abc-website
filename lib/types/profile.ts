@@ -41,6 +41,13 @@ export type ProjectRecord = {
   updatedAt: string;
 };
 
+export type ProjectWithOwner = ProjectRecord & {
+  owner: {
+    fullName: string;
+    role: BuilderRole;
+  };
+};
+
 export type OnboardingProjectInput = {
   name: string;
   description: string;
