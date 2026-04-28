@@ -23,6 +23,7 @@ import {
 } from "@/lib/auth/shared";
 import { registerSchema, type RegisterFormValues } from "@/lib/schemas/auth";
 import { createSupabaseClient } from "@/lib/supabase/client";
+import { trackClientEvent } from "@/lib/integrations/analytics/client";
 
 const authUnavailableMessage =
   "Kayit servisi su anda kullanilamiyor. Lutfen kisa bir sure sonra tekrar deneyin.";
@@ -84,6 +85,8 @@ export function RegisterForm() {
       setSubmitError(getAuthErrorMessage(error.message));
       return;
     }
+
+    await trackClientEvent("user_registered");
 
     if (data.session && data.user) {
       router.replace(getAuthContinueHref(nextPath));
