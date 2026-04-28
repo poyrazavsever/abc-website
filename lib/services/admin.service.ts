@@ -179,7 +179,7 @@ export async function getAdminDataset(): Promise<AdminDataset> {
   ] = await Promise.all([
     selectRows("admin_content_items"),
     selectRows("admin_builders"),
-    selectRows("admin_badges"),
+    selectRows("badges"), // Use new badges table
     selectRows("serious_builder_applications"),
     selectRows("admin_operations"),
     selectRows("builder_matches"),

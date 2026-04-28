@@ -6,7 +6,7 @@ import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Sele
 import { CardRenderer, type CardTemplate } from "./card-renderer";
 import type { ProfileRecord } from "@/lib/types/profile";
 import { roleLabels, tagLabels } from "@/components/admin/admin-shell";
-import { toast } from "@/lib/utils/toast";
+import { appToast as toast } from "@/lib/utils/toast";
 
 type CardGeneratorProps = {
   profile: ProfileRecord;

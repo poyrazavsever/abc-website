@@ -6,7 +6,7 @@ import { Button, Input, Label, Select, Textarea } from "@/components/ui";
 import { addProjectAction, editProjectAction, deleteProjectAction } from "@/app/dashboard/my-projects/actions";
 import { categoryLabels, statusLabels } from "./project-card";
 import type { ProjectRecord, ProjectCategory, ProjectStatus } from "@/lib/types/profile";
-import { toast } from "@/lib/utils/toast";
+import { appToast as toast } from "@/lib/utils/toast";
 
 type ProjectFormProps = {
   project?: ProjectRecord;

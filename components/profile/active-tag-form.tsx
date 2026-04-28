@@ -7,7 +7,7 @@ import { updateActiveTagAction } from "@/app/dashboard/profile/actions";
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Label, Select } from "@/components/ui";
 import { tagLabels } from "@/components/admin/admin-shell";
 import type { BuilderTag } from "@/lib/types/admin";
-import { toast } from "@/lib/utils/toast";
+import { appToast as toast } from "@/lib/utils/toast";
 
 type ActiveTagFormProps = {
   currentTag: BuilderTag | null;
