@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import type { User } from "@supabase/supabase-js";
 
 import { LogoutButton } from "@/components/auth/logout-button";
@@ -30,6 +30,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
   const [isAuthReady, setIsAuthReady] = useState(!hasSupabaseAuthEnv);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const activeMenuItem = useMemo(
     () => navigationData.items.find((item) => item.id === activeMenuId) ?? null,
@@ -217,31 +218,48 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
               <div className="flex shrink-0 items-center gap-2">
                 {isAuthenticated ? (
-                  <>
-                    <Link
-                      href={profileHref}
-                      className={cn(
-                        "hidden rounded-md px-3 py-2 text-sm font-semibold transition lg:inline-flex",
-                        desktopTextClass,
-                        hasSurface
-                          ? "hover:bg-surface-muted"
-                          : "hover:bg-white/15",
+                  <div 
+                    className="relative hidden lg:block" 
+                    onMouseEnter={() => setIsProfileMenuOpen(true)} 
+                    onMouseLeave={() => setIsProfileMenuOpen(false)}
+                  >
+                    <button className="flex items-center gap-2 rounded-full focus:outline-none transition hover:opacity-80">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary border border-primary/20">
+                        {authUser?.email ? authUser.email[0].toUpperCase() : "U"}
+                      </div>
+                    </button>
+                    <AnimatePresence>
+                      {isProfileMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute right-0 mt-2 w-48 rounded-xl border border-border bg-surface/95 p-2 shadow-lg backdrop-blur-xl z-50"
+                        >
+                          <Link 
+                            href={profileHref} 
+                            className="block w-full rounded-lg px-4 py-2 text-left text-sm font-medium text-text hover:bg-surface-muted transition"
+                          >
+                            {navigationData.auth.profileLabel}
+                          </Link>
+                          <Link 
+                            href="/dashboard/my-projects" 
+                            className="block w-full rounded-lg px-4 py-2 text-left text-sm font-medium text-text hover:bg-surface-muted transition"
+                          >
+                            Projelerim
+                          </Link>
+                          <div className="my-1 border-t border-border" />
+                          <LogoutButton 
+                            variant="ghost" 
+                            className="w-full justify-start rounded-lg px-4 py-2 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition"
+                          >
+                            {navigationData.auth.logoutLabel}
+                          </LogoutButton>
+                        </motion.div>
                       )}
-                    >
-                      {navigationData.auth.profileLabel}
-                    </Link>
-                    <LogoutButton
-                      variant="ghost"
-                      className={cn(
-                        "hidden lg:inline-flex",
-                        hasSurface
-                          ? ""
-                          : "text-text-inverse hover:bg-white/15 hover:text-text-inverse",
-                      )}
-                    >
-                      {navigationData.auth.logoutLabel}
-                    </LogoutButton>
-                  </>
+                    </AnimatePresence>
+                  </div>
                 ) : (
                   <>
                     <Link

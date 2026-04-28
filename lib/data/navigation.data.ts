@@ -4,12 +4,12 @@ export const navigationData: NavigationData = {
   brand: {
     label: "Ankara Build Club",
     href: "/",
-    imgUrl: "",
+    imgUrl: "/brand/logo.png",
   },
   items: [
     {
       id: "about",
-      label: "Hakkinda",
+      label: "Hakkımızda",
       href: "/",
     },
     {
@@ -17,12 +17,12 @@ export const navigationData: NavigationData = {
       label: "Topluluk",
       groups: [
         {
-          title: "Kesfet",
+          title: "Keşfet",
           links: [
             {
               label: "Etkinlikler",
               href: "/events",
-              description: "Deep Work ve Build Sprint akisini takip et.",
+              description: "Deep Work ve Build Sprint akışını takip et.",
               icon: "lucide:calendar-days",
             },
             {
@@ -35,7 +35,7 @@ export const navigationData: NavigationData = {
               label: "Projeler",
               href: "/projects",
               description:
-                "Toplulugun urunlerini ve build hikayelerini kesfet.",
+                "Topluluğun ürünlerini ve build hikayelerini keşfet.",
               icon: "lucide:rocket",
             },
           ],
@@ -47,19 +47,19 @@ export const navigationData: NavigationData = {
               label: "Profilim",
               href: "/dashboard/profile",
               description:
-                "Rozetlerini, etiketlerini ve katilim gecmisini yonet.",
+                "Rozetlerini, etiketlerini ve katılım geçmişini yönet.",
               icon: "lucide:id-card",
             },
             {
-              label: "Ciddi Builder Eslesmesi",
+              label: "Ciddi Builder Eşleşmesi",
               href: "/dashboard/matching",
-              description: "Basvuru yap, onay surecini ve eslesmelerini gor.",
+              description: "Başvuru yap, onay sürecini ve eşleşmelerini gör.",
               icon: "lucide:handshake",
             },
             {
-              label: "LinkedIn Karti",
+              label: "LinkedIn Kartı",
               href: "/dashboard/linkedin-card",
-              description: "Tek tikla paylasima hazir kart ve post uret.",
+              description: "Tek tıkla paylaşıma hazır kart ve post üret.",
               icon: "lucide:image",
             },
           ],
@@ -68,7 +68,7 @@ export const navigationData: NavigationData = {
       featured: {
         title: "Build with us",
         description:
-          "Ankara Build Club yolculuguna katil. Etkinliklere dahil ol, builder agini genislet.",
+          "Ankara Build Club yolculuğuna katıl. Etkinliklere dahil ol, builder ağını genişlet.",
         href: "/register",
         icon: "lucide:sparkles",
       },
@@ -80,15 +80,15 @@ export const navigationData: NavigationData = {
     },
   ],
   auth: {
-    loginLabel: "Giris Yap",
+    loginLabel: "Giriş Yap",
     loginHref: "/login",
-    registerLabel: "Kayit Ol",
+    registerLabel: "Kayıt Ol",
     registerHref: "/register",
     profileLabel: "Profilim",
-    logoutLabel: "Cikis Yap",
+    logoutLabel: "Çıkış Yap",
   },
   cta: {
-    label: "Topluluga Katil",
+    label: "Topluluğa Katıl",
     href: "/register",
   },
 };

@@ -40,60 +40,65 @@ export function NavbarMegaMenu({
             exit={{ opacity: 0, scale: 0.995 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
-              "w-screen border-y shadow-md backdrop-blur-xl",
+              "w-screen border-y shadow-xl backdrop-blur-2xl",
               hasSurface
-                ? "border-border bg-surface/85"
-                : "border-white/20 bg-surface/65",
+                ? "border-border/60 bg-surface/90"
+                : "border-white/15 bg-surface/80",
             )}
           >
-            <Container className="py-8">
+            <Container className="py-10">
               <div
                 className={cn(
-                  "grid gap-10",
+                  "grid gap-12",
                   item.featured
-                    ? "grid-cols-1 xl:grid-cols-[minmax(0,2fr)_20rem]"
+                    ? "grid-cols-1 xl:grid-cols-[minmax(0,2fr)_22rem]"
                     : "grid-cols-1",
                 )}
               >
                 <div
                   className={cn(
-                    "grid gap-8",
+                    "grid gap-10",
                     groups.length > 1
                       ? "md:grid-cols-2 xl:grid-cols-3"
                       : "grid-cols-1",
                   )}
                 >
                   {groups.map((group) => (
-                    <div key={group.title} className="space-y-4">
-                      <h3 className="text-sm font-semibold uppercase tracking-wide text-text-soft">
+                    <div key={group.title} className="space-y-5">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-text-soft/80">
                         {group.title}
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {group.links.map((link) => (
                           <li key={link.href}>
                             <Link
                               href={link.href}
                               className={cn(
-                                "flex items-start gap-3 rounded-md border border-transparent p-3 transition",
+                                "flex items-start gap-4 rounded-xl border border-transparent p-3.5 transition-all duration-200",
                                 hasSurface
-                                  ? "hover:border-border hover:bg-surface-muted"
-                                  : "hover:border-white/30 hover:bg-white/10",
+                                  ? "hover:border-border/50 hover:bg-surface-muted/80 hover:shadow-sm"
+                                  : "hover:border-white/20 hover:bg-white/10",
                               )}
                               target={link.external ? "_blank" : undefined}
                               rel={link.external ? "noreferrer" : undefined}
                             >
                               {link.icon ? (
-                                <Icon
-                                  icon={link.icon}
-                                  className="mt-0.5 h-4 w-4 shrink-0 text-secondary"
-                                />
+                                <div className={cn(
+                                  "flex h-9 w-9 items-center justify-center rounded-lg",
+                                  hasSurface ? "bg-primary/5 text-primary" : "bg-white/10 text-white"
+                                )}>
+                                  <Icon
+                                    icon={link.icon}
+                                    className="h-5 w-5 shrink-0"
+                                  />
+                                </div>
                               ) : null}
                               <span className="space-y-1">
                                 <span className="block text-sm font-semibold text-text">
                                   {link.label}
                                 </span>
                                 {link.description ? (
-                                  <span className="block text-sm text-text-muted">
+                                  <span className="block text-xs text-text-muted/90 leading-relaxed">
                                     {link.description}
                                   </span>
                                 ) : null}
@@ -110,28 +115,35 @@ export function NavbarMegaMenu({
                   <Link
                     href={item.featured.href}
                     className={cn(
-                      "rounded-xl border p-6 transition",
+                      "relative overflow-hidden rounded-2xl border p-6 transition-all duration-300 group shadow-sm",
                       hasSurface
-                        ? "border-border bg-surface-soft hover:bg-surface"
-                        : "border-white/25 bg-white/10 hover:bg-white/15",
+                        ? "border-border/60 bg-gradient-to-br from-surface-soft to-surface hover:bg-surface hover:shadow-md"
+                        : "border-white/15 bg-gradient-to-br from-white/5 to-white/10 hover:bg-white/15",
                     )}
                   >
-                    <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
+                    <div className="absolute right-0 bottom-0 transform translate-x-1/4 translate-y-1/4 opacity-5 text-primary pointer-events-none group-hover:scale-110 transition-transform duration-500">
                       {item.featured.icon ? (
-                        <Icon icon={item.featured.icon} className="h-4 w-4" />
+                        <Icon icon={item.featured.icon} className="h-40 w-40" />
                       ) : null}
-                      <span>On Plana Cikan</span>
                     </div>
-                    <h3 className="text-lg font-semibold text-text">
-                      {item.featured.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                      {item.featured.description}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                      Incele
-                      <Icon icon="lucide:arrow-right" className="h-4 w-4" />
-                    </span>
+                    <div className="relative z-10">
+                      <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
+                        {item.featured.icon ? (
+                          <Icon icon={item.featured.icon} className="h-4 w-4" />
+                        ) : null}
+                        <span>Öne Çıkan</span>
+                      </div>
+                      <h3 className="text-lg font-bold tracking-tight text-text group-hover:text-primary transition-colors">
+                        {item.featured.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-text-muted/90">
+                        {item.featured.description}
+                      </p>
+                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                        İncele
+                        <Icon icon="lucide:arrow-right" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
                   </Link>
                 ) : null}
               </div>
