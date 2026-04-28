@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ProjectForm } from "./project-form";
-import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui";
+import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 import type { ProjectRecord } from "@/lib/types/profile";
 import { categoryLabels, statusLabels } from "./project-card";
 import Link from "next/link";
@@ -54,7 +54,7 @@ export function ProjectManager({ initialProjects }: { initialProjects: ProjectRe
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0 ml-4">
                     <Badge variant="secondary" className="text-[10px]">{statusLabels[project.status] ?? project.status}</Badge>
-                    <Badge variant="outline" className="text-[10px]">{categoryLabels[project.category] ?? project.category}</Badge>
+                    <Badge variant="secondary" className="text-[10px]">{categoryLabels[project.category] ?? project.category}</Badge>
                   </div>
                 </div>
               </CardHeader>

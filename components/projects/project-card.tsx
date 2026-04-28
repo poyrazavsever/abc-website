@@ -32,7 +32,7 @@ export function ProjectCard({ project }: { project: ProjectWithOwner }) {
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
             <Badge variant="secondary" className="text-xs">{statusLabels[project.status] ?? project.status}</Badge>
-            <Badge variant="outline" className="text-[10px]">{categoryLabels[project.category] ?? project.category}</Badge>
+            <Badge variant="secondary" className="text-[10px]">{categoryLabels[project.category] ?? project.category}</Badge>
           </div>
         </div>
       </CardHeader>

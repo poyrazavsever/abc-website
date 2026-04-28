@@ -19,6 +19,7 @@ import {
   Textarea,
 } from "@/components/ui";
 import { getAdminDataset } from "@/lib/services/admin.service";
+import { assignBadgeAction, addAttendanceAction } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -56,44 +57,69 @@ export default async function AdminBadgesPage() {
           ))}
         </AdminTable>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Manuel rozet ata</CardTitle>
-            <CardDescription>
-              Ciddi builder veya Core Builder gibi admin kontrollü etiketler için.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form className="space-y-5">
-              <Field label="Builder" required>
-                <Select name="builderId" required>
-                  {eligibleBuilders.map((builder) => (
-                    <option key={builder.id} value={builder.id}>
-                      {builder.fullName}
-                    </option>
-                  ))}
-                </Select>
-              </Field>
-              <Field label="Rozet" required>
-                <Select name="badgeId" required>
-                  {badges.map((badge) => (
-                    <option key={badge.id} value={badge.id}>
-                      {badge.name}
-                    </option>
-                  ))}
-                </Select>
-              </Field>
-              <Field label="Operasyon notu">
-                <Textarea
-                  name="note"
-                  rows={4}
-                  placeholder="Atama sebebini kısa not olarak yaz"
-                />
-              </Field>
-              <Button type="submit">Rozeti ata</Button>
-            </form>
-          </CardContent>
-        </Card>
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Manuel rozet ata</CardTitle>
+              <CardDescription>
+                Ciddi builder veya Core Builder gibi admin kontrollü etiketler için.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form action={assignBadgeAction} className="space-y-5">
+                <Field label="Builder" required>
+                  <Select name="builderId" required>
+                    {eligibleBuilders.map((builder) => (
+                      <option key={builder.id} value={builder.id}>
+                        {builder.fullName}
+                      </option>
+                    ))}
+                  </Select>
+                </Field>
+                <Field label="Rozet" required>
+                  <Select name="badgeId" required>
+                    {badges.map((badge) => (
+                      <option key={badge.id} value={badge.id}>
+                        {badge.name}
+                      </option>
+                    ))}
+                  </Select>
+                </Field>
+                <Field label="Operasyon notu">
+                  <Textarea
+                    name="note"
+                    rows={4}
+                    placeholder="Atama sebebini kısa not olarak yaz"
+                  />
+                </Field>
+                <Button type="submit">Rozeti ata</Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Katılım Ekle (Yoklama)</CardTitle>
+              <CardDescription>
+                Seçilen builder'ın etkinlik katılım sayısını 1 artırır. Eğer eşik aşılırsa otomatik rozetleri hesaplayıp atar.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form action={addAttendanceAction} className="space-y-5">
+                <Field label="Builder" required>
+                  <Select name="builderId" required>
+                    {eligibleBuilders.map((builder) => (
+                      <option key={builder.id} value={builder.id}>
+                        {builder.fullName}
+                      </option>
+                    ))}
+                  </Select>
+                </Field>
+                <Button type="submit" variant="secondary" className="w-full">Katılımı +1 Artır</Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       <Card>
