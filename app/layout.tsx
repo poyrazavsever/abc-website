@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Providers } from "@/components/shared/providers";
+import { AnalyticsTracker } from "@/components/shared/analytics-tracker";
 
 import "./globals.css";
 
@@ -20,7 +21,10 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <AnalyticsTracker />
+          {children}
+        </Providers>
       </body>
     </html>
   );

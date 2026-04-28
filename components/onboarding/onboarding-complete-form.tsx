@@ -11,6 +11,7 @@ import {
 } from "@/components/ui";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { getAuthErrorMessage } from "@/lib/auth/shared";
+import { trackClientEvent } from "@/lib/integrations/analytics/client";
 
 export function OnboardingCompleteForm() {
   const router = useRouter();
@@ -40,6 +41,8 @@ export function OnboardingCompleteForm() {
       setSubmitError(getAuthErrorMessage(error.message));
       return;
     }
+
+    await trackClientEvent("onboarding_completed");
 
     router.replace("/dashboard/profile");
     router.refresh();

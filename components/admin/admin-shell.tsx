@@ -16,6 +16,7 @@ import type {
 
 export const adminNavItems = [
   { href: "/admin", label: "Genel" },
+  { href: "/admin/analytics", label: "Analitik" },
   { href: "/admin/content", label: "Rapor" },
   { href: "/admin/builders", label: "Builder" },
   { href: "/admin/badges", label: "Rozet" },
