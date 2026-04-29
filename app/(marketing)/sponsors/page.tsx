@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Grainient } from "@/components/marketing/grainient";
+import { SponsorsHero } from "@/components/marketing/sponsors-hero";
 import { Container } from "@/components/shared/container";
 import {
   Alert,
@@ -33,104 +33,11 @@ export default function SponsorsPage() {
 
   return (
     <div className="bg-background">
-      <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
-        <div className="absolute inset-0 -z-20">
-          <Grainient
-            color1="var(--color-accent-500)"
-            color2="var(--color-secondary-500)"
-            color3="var(--color-primary-950)"
-            timeSpeed={0.22}
-            colorBalance={-0.18}
-            warpStrength={1.1}
-            warpFrequency={4.6}
-            warpSpeed={1.8}
-            warpAmplitude={56}
-            blendAngle={0}
-            blendSoftness={0.06}
-            rotationAmount={420}
-            noiseScale={1.8}
-            grainAmount={0.08}
-            grainScale={2}
-            grainAnimated={false}
-            contrast={1.45}
-            gamma={1}
-            saturation={1}
-            centerX={0}
-            centerY={0}
-            zoom={0.92}
-          />
-        </div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/60 via-primary-800/45 to-primary-950/70" />
-
-        <Container className="py-24 sm:py-28 lg:py-32">
-          <div className="grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_23rem] xl:items-start">
-            <div className="space-y-8">
-              <div className="space-y-5">
-                <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white">
-                  {hero.eyebrow}
-                </p>
-                <div className="max-w-4xl space-y-4">
-                  <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
-                    {hero.title}
-                  </h1>
-                  <p className="max-w-3xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
-                    {hero.description}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2.5">
-                {hero.highlights.map((highlight) => (
-                  <Badge
-                    key={highlight}
-                    className="border-white/20 bg-white/10 text-white"
-                  >
-                    {highlight}
-                  </Badge>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <LinkButton
-                  href={partnerContactHref}
-                  variant="outline"
-                  className="h-10 border-white/20 bg-surface text-primary hover:bg-surface-soft"
-                >
-                  {hero.primaryCtaLabel}
-                </LinkButton>
-                <LinkButton
-                  href="/events"
-                  variant="ghost"
-                  className="h-10 border border-white/30 text-primary-foreground hover:bg-white/10"
-                >
-                  {hero.secondaryCtaLabel}
-                </LinkButton>
-              </div>
-            </div>
-
-            <Card className="border-white/15 bg-white/10 text-primary-foreground shadow-md backdrop-blur">
-              <CardHeader>
-                <CardTitle className="text-primary-foreground">
-                  {hero.asideTitle}
-                </CardTitle>
-                <CardDescription className="text-white/80">
-                  {hero.asideDescription}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {hero.asideItems.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-lg border border-white/15 bg-white/10 p-4 text-sm leading-6 text-white/90"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-        </Container>
-      </section>
+      <SponsorsHero
+        hero={hero}
+        primaryHref={partnerContactHref}
+        secondaryHref="/events"
+      />
 
       <Container className="space-y-16 py-14 sm:space-y-20 sm:py-16 lg:py-20">
         <section className="space-y-8">
