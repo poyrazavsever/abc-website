@@ -6,45 +6,45 @@ import type { FooterData } from "@/lib/types/footer";
 
 export const footerData: FooterData = {
   brand: {
-    title: "Ankara Build Club",
+    title: "Shipin",
     description:
-      "Ankara merkezli urun ve teknoloji toplulugu. Builderlari, operatorleri ve partnerleri ayni ekosistemde bulusturur; etkinlik, is birligi ve urun gelistirme programlari sunar.",
+      "A product and technology community based in Ankara. It brings builders, operators, and partners into the same ecosystem through events, collaboration, and product-building programs.",
   },
   sections: [
     {
-      title: "Topluluk",
+      title: "Community",
       links: [
-        { label: "Etkinlikler", href: "/events" },
-        { label: "Builder Dizini", href: "/builders" },
-        { label: "Projeler", href: "/projects" },
-        { label: "Topluluk Rehberi", href: "/" },
+        { label: "Events", href: "/events" },
+        { label: "Builder directory", href: "/builders" },
+        { label: "Projects", href: "/projects" },
+        { label: "Community guide", href: "/" },
       ],
     },
     {
-      title: "Programlar",
+      title: "Programs",
       links: [
         { label: "Build Sprint", href: "/events" },
-        { label: "Mentorluk", href: "/" },
-        { label: "Builder Eslesmeleri", href: "/dashboard/matching" },
-        { label: "Rozet Programi", href: "/dashboard/profile" },
+        { label: "Mentorship", href: "/" },
+        { label: "Builder matching", href: "/dashboard/matching" },
+        { label: "Badge program", href: "/dashboard/profile" },
       ],
     },
     {
       title: "Platform",
       links: [
-        { label: "Profil", href: "/dashboard/profile" },
-        { label: "Rozetler", href: "/dashboard/profile" },
-        { label: "LinkedIn Karti", href: "/dashboard/linkedin-card" },
+        { label: "Profile", href: "/dashboard/profile" },
+        { label: "Badges", href: "/dashboard/profile" },
+        { label: "LinkedIn card", href: "/dashboard/linkedin-card" },
         { label: "Onboarding", href: "/onboarding/profile" },
       ],
     },
     {
-      title: "Kurumsal",
+      title: "Company",
       links: [
-        { label: "Hakkimizda", href: "/" },
-        { label: "Sponsor Ol", href: "/sponsors" },
-        { label: "Iletisim", href: partnerContactHref },
-        { label: "Basin Kiti", href: "/" },
+        { label: "About", href: "/" },
+        { label: "Become a sponsor", href: "/sponsors" },
+        { label: "Contact", href: partnerContactHref },
+        { label: "Press kit", href: "/" },
       ],
     },
   ],
@@ -63,21 +63,21 @@ export const footerData: FooterData = {
     { label: "Luma", href: "https://lu.ma/ankarabuildclub", external: true },
   ],
   contact: {
-    title: "Is Birligi ve Partnerlik",
+    title: "Partnerships and collaborations",
     email: partnerContactEmail,
     location: "Ankara, Turkiye",
-    responseWindow: "Hafta ici 24 saat icinde geri donus",
+    responseWindow: "Weekdays, within 24 hours",
     cta: {
-      label: "Partnerlik maili gonder",
+      label: "Email the partnerships team",
       href: partnerContactHref,
     },
   },
   bottomLinks: [
-    { label: "Iletisim", href: partnerContactHref },
-    { label: "Kariyer", href: "/" },
-    { label: "Topluluk Kurallari", href: "/" },
-    { label: "Gizlilik", href: "/privacy" },
-    { label: "Kullanim Kosullari", href: "/terms" },
+    { label: "Contact", href: partnerContactHref },
+    { label: "Careers", href: "/" },
+    { label: "Community rules", href: "/" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
   ],
-  copyright: "2026 Ankara Build Club. Tum haklari saklidir.",
+  copyright: "2026 Shipin. All rights reserved.",
 };

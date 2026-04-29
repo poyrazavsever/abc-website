@@ -6,6 +6,7 @@ const cardSurfaceClasses = {
   default: "bg-surface",
   muted: "bg-surface-muted",
   soft: "bg-surface-soft",
+  transparent: "bg-transparent",
 } as const;
 
 export type CardSurface = keyof typeof cardSurfaceClasses;

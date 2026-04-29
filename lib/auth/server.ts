@@ -89,6 +89,22 @@ export async function resolveAuthenticatedRedirect(
   return getSafeNextPath(nextPath) ?? getDefaultAuthedHref();
 }
 
+export async function resolveAuthEntryRedirect(
+  nextPath: string | null | undefined,
+) {
+  const onboardingState = await getCurrentOnboardingState();
+
+  if (!onboardingState) {
+    return null;
+  }
+
+  if (!onboardingState.isComplete) {
+    return getOnboardingHref(onboardingState.nextStep ?? "profile");
+  }
+
+  return getSafeNextPath(nextPath) ?? getDefaultAuthedHref();
+}
+
 export async function requireCompletedOnboarding(nextPath: string) {
   const onboardingState = await requireCurrentOnboardingState(nextPath);
 

@@ -1,0 +1,128 @@
+.list {
+  position: relative;
+  width: 100%;
+}
+
+.itemWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  padding: 6px;
+  will-change: transform, width, height, opacity;
+  text-decoration: none;
+  transform-origin: center center;
+  outline: none;
+}
+
+.itemImg {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 24px 64px -28px rgb(0 0 0 / 0.5);
+}
+
+.itemImg::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.15rem;
+  color: white;
+}
+
+.eyebrow {
+  align-self: flex-start;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(255 181 222 / 0.95);
+  backdrop-filter: blur(12px);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: auto;
+}
+
+.title {
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 28ch;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: rgb(255 255 255 / 0.74);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.meta {
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  padding: 0.45rem 0.78rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(12px);
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  color: rgb(255 255 255 / 0.88);
+  font-size: 1rem;
+  backdrop-filter: blur(12px);
+}
+
+.colorOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(145deg, rgb(255 112 191 / 0.28), rgb(131 28 145 / 0.2), rgb(70 44 125 / 0.16));
+  opacity: 0;
+  pointer-events: none;
+}
