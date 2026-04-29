@@ -14,6 +14,7 @@ export {
 export {
   Button,
   buttonClassName,
+  type ButtonMotion,
   type ButtonProps,
   type ButtonSize,
   type ButtonVariant,

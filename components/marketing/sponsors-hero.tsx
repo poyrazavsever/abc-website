@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DarkVeil } from "@/components/marketing/dark-veil";
 import { Grainient } from "@/components/marketing/grainient";
 import { Container } from "@/components/shared/container";
+import { SecondaryWordmark } from "@/components/shared/secondary-wordmark";
 import { LinkButton } from "@/components/ui";
 
 type SponsorsHeroProps = {
@@ -20,6 +21,53 @@ type SponsorsHeroProps = {
 };
 
 const easing = [0.16, 1, 0.3, 1] as const;
+const accentPhrases = ["İş Birlikleri", "iÅŸ birlikleri", "iÃ…Å¸ birlikleri"] as const;
+
+function MailPlusIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="h-[0.95rem] w-[0.95rem]"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+      aria-hidden="true"
+    >
+      <path d="M3.5 5.5h9a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2Z" />
+      <path d="m3 6 5.8 4.5a2 2 0 0 0 2.4 0L17 6" />
+      <path d="M15.75 4v3.5" />
+      <path d="M14 5.75h3.5" />
+    </svg>
+  );
+}
+
+function CalendarGridIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="h-[0.95rem] w-[0.95rem]"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+      aria-hidden="true"
+    >
+      <path d="M4 4.75h12a1.75 1.75 0 0 1 1.75 1.75v8.75A1.75 1.75 0 0 1 16 17H4A1.75 1.75 0 0 1 2.25 15.25V6.5A1.75 1.75 0 0 1 4 4.75Z" />
+      <path d="M6.25 3v3.5" />
+      <path d="M13.75 3v3.5" />
+      <path d="M2.5 8.25h15" />
+      <path d="M6.5 11.25h.01" />
+      <path d="M10 11.25h.01" />
+      <path d="M13.5 11.25h.01" />
+      <path d="M6.5 14.25h.01" />
+      <path d="M10 14.25h.01" />
+      <path d="M13.5 14.25h.01" />
+    </svg>
+  );
+}
 
 export function SponsorsHero({
   hero,
@@ -27,6 +75,10 @@ export function SponsorsHero({
   secondaryHref,
 }: SponsorsHeroProps) {
   const prefersReducedMotion = useReducedMotion();
+  const accentPhrase =
+    accentPhrases.find((phrase) => hero.title.includes(phrase)) ?? accentPhrases[0];
+  const [beforeAccent, afterAccent] = hero.title.split(accentPhrase);
+  const hasAccentPhrase = hero.title.includes(accentPhrase);
 
   const containerVariants = {
     hidden: {},
@@ -54,8 +106,8 @@ export function SponsorsHero({
   };
 
   return (
-    <section className="relative h-screen overflow-hidden bg-brand-black text-brand-white">
-      <div className="absolute inset-0 -z-20">
+    <section className="relative isolate h-screen overflow-hidden bg-brand-black text-brand-white">
+      <div className="pointer-events-none absolute inset-0 -z-20">
         <Grainient
           color1="var(--color-primary-700)"
           color2="var(--color-secondary-800)"
@@ -82,7 +134,7 @@ export function SponsorsHero({
         />
       </div>
 
-      <div className="absolute inset-0 -z-10 opacity-75">
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-85 mix-blend-screen">
         <DarkVeil
           hueShift={-22}
           noiseIntensity={0.04}
@@ -94,8 +146,8 @@ export function SponsorsHero({
         />
       </div>
 
-      <div className="absolute inset-0 -z-0 bg-gradient-to-b from-brand-black/40 via-brand-black/55 to-brand-black/80" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-brand-black via-brand-black/70 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-brand-black/40 via-brand-black/55 to-brand-black/80" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-48 bg-linear-to-t from-brand-black via-brand-black/70 to-transparent" />
 
       <Container className="relative z-10 flex h-screen flex-col items-center justify-center overflow-hidden text-center">
         <motion.div
@@ -113,14 +165,24 @@ export function SponsorsHero({
 
           <motion.h1
             variants={itemVariants}
-            className="mt-8 max-w-5xl text-6xl font-medium tracking-tight text-brand-white md:text-8xl"
+            className="mt-8 max-w-3xl text-4xl font-semibold leading-[0.94] tracking-tight text-brand-white md:text-5xl"
           >
-            {hero.title}
+            {hasAccentPhrase ? (
+              <>
+                {beforeAccent}
+                <SecondaryWordmark className="px-[0.03em] text-[1.02em]">
+                  {accentPhrase}
+                </SecondaryWordmark>
+                {afterAccent}
+              </>
+            ) : (
+              hero.title
+            )}
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="mt-6 max-w-2xl text-lg leading-8 text-ink-200"
+            className="mt-6 max-w-2xl text-sm leading-8 text-ink-200 md:text-base"
           >
             {hero.description}
           </motion.p>
@@ -133,7 +195,8 @@ export function SponsorsHero({
               <LinkButton
                 href={primaryHref}
                 size="lg"
-                className="h-auto rounded-full border-primary-600 bg-primary-600 px-8 py-3 text-base text-brand-white transition-all hover:bg-primary-500"
+                leadingIcon={<MailPlusIcon />}
+                className="h-auto px-8 py-3 text-base text-brand-white shadow-[0_18px_48px_rgba(93,56,255,0.34)] hover:shadow-[0_24px_56px_rgba(93,56,255,0.42)]"
               >
                 {hero.primaryCtaLabel}
               </LinkButton>
@@ -144,7 +207,8 @@ export function SponsorsHero({
                 href={secondaryHref}
                 size="lg"
                 variant="ghost"
-                className="h-auto rounded-full border border-white/20 bg-white/10 px-8 py-3 text-base text-brand-white backdrop-blur-md transition-all hover:bg-white/20"
+                leadingIcon={<CalendarGridIcon />}
+                className="h-auto border-white/14 bg-white/[0.08] px-8 py-3 text-base text-brand-white hover:bg-white/[0.12]"
               >
                 {hero.secondaryCtaLabel}
               </LinkButton>

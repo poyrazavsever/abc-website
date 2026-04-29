@@ -1,6 +1,6 @@
 export const partnerContactEmail = "hello@ankarabuildclub.com";
 export const partnerContactHref =
-  "mailto:hello@ankarabuildclub.com?subject=Ankara%20Build%20Club%20partnerlik%20gorusmesi";
+  "mailto:hello@ankarabuildclub.com?subject=Ankara%20Build%20Club%20partnerlik%20g%C3%B6r%C3%BC%C5%9Fmesi";
 
 type SponsorHero = {
   eyebrow: string;
@@ -82,188 +82,191 @@ type SponsorsPageData = {
 export const sponsorsPageData: SponsorsPageData = {
   hero: {
     eyebrow: "Sponsor ve Partnerlik",
-    title: "Ankara'daki builder ritmine dogrudan temas eden is birlikleri kurun.",
+    title: "Builder Ritmine Doğrudan Temas Eden İş Birlikleri Kurun.",
     description:
-      "Ankara Build Club; builder'lari, operatorleri ve urun odakli ekipleri ayni ritimde bulusturan bir topluluk alani kurar. Sponsor ve partnerlik gorusmelerinde paylasilabilecek bu sayfa, toplulugun nasil calistigini ve nasil deger urettigini hizlica anlatir.",
+      "Shipin, topluluğun üretim karakterini ve ritmini anlamaya dayalı, tek seferlik değil sürekli temas eden iş birlikleri kurmayı tercih ediyoruz. .",
     highlights: [
       "Ankara merkezli fiziksel topluluk",
-      "Etkinlik ve build ritmi odakli",
-      "Uretim ve gorunurluk eksenli ortakliklar",
+      "Etkinlik ve build ritmi odaklı",
+      "Üretim ve görünürlük eksenli ortaklıklar",
     ],
-    primaryCtaLabel: "Partnerlik maili baslat",
-    secondaryCtaLabel: "Etkinlik yapisini incele",
-    asideTitle: "Bu sayfa kimler icin uygun",
+    primaryCtaLabel: "Partnerlik Maili Başlat",
+    secondaryCtaLabel: "Etkinlik Yapısını İncele",
+    asideTitle: "Bu sayfa kimler için uygun",
     asideDescription:
-      "Dis paydasin toplulugu anlamasini ve hizli aksiyon alabilmesini kolaylastiran net bir ozet.",
+      "Dış paydaşın topluluğu anlamasını ve hızlı aksiyon alabilmesini kolaylaştıran net bir özet.",
     asideItems: [
-      "Etkinlik partnerligi degerlendiren markalar",
-      "Builder'lara arac, kredi veya altyapi destegi sunan ekipler",
-      "Toplulukla ortak icerik, rapor veya program kurgulamak isteyen kurumlar",
+      "Etkinlik partnerliği değerlendiren markalar",
+      "Builder'lara araç, kredi veya altyapı desteği sunan ekipler",
+      "Toplulukla ortak içerik, rapor veya program kurgulamak isteyen kurumlar",
     ],
   },
   community: {
-    eyebrow: "Topluluk Ozeti",
-    heading: "ABC, bir networking vitrini degil; birlikte uretmeye dayali bir calisma zemini.",
+    eyebrow: "Topluluk Özeti",
+    heading:
+      "ABC, bir networking vitrini değil; birlikte üretmeye dayalı bir çalışma zemini.",
     description:
-      "Toplulugun temel degeri; insanlari yalnizca bir araya getirmek degil, birlikte bir sey cikarmaya zorlayan ritimler kurmaktir. Bu ritim sponsor icin daha anlamli temas, daha gercek geri bildirim ve daha dogal gorunurluk saglar.",
+      "Topluluğun temel değeri; insanları yalnızca bir araya getirmek değil, birlikte bir şey çıkarmaya zorlayan ritimler kurmaktır. Bu ritim sponsor için daha anlamlı temas, daha gerçek geri bildirim ve daha doğal görünürlük sağlar.",
     proofItems: [
       {
-        title: "Builder odagi",
+        title: "Builder odağı",
         description:
-          "Toplulukta urun, kod, tasarim, growth ve operasyon tarafinda aktif ureten insanlar bir araya gelir.",
+          "Toplulukta ürün, kod, tasarım, growth ve operasyon tarafında aktif üreten insanlar bir araya gelir.",
       },
       {
         title: "Ankara'da fiziksel ritim",
         description:
-          "Yerel bulusmalar, duzenli geri donus ve tekrar eden etkinlikler sayesinde iliski tek seferlik kalmaz.",
+          "Yerel buluşmalar, düzenli geri dönüş ve tekrar eden etkinlikler sayesinde ilişki tek seferlik kalmaz.",
       },
       {
-        title: "Uretim gorunurlugu",
+        title: "Üretim görünürlüğü",
         description:
-          "Etkinlikler yalnizca bulusma degil; demo, ship, feedback ve build-in-public anlari uretir.",
+          "Etkinlikler yalnızca buluşma değil; demo, ship, feedback ve build-in-public anları üretir.",
       },
       {
-        title: "Partner icin net temas alani",
+        title: "Partner için net temas alanı",
         description:
-          "Arac destegi, etkinlik partnerligi veya ortak icerik gibi modeller toplulugun dogal akisina gomulebilir.",
+          "Araç desteği, etkinlik partnerliği veya ortak içerik gibi modeller topluluğun doğal akışına gömülebilir.",
       },
     ],
   },
   programs: {
-    eyebrow: "Etkinlik Yapisi",
-    heading: "Toplulugun ritmi farkli formatlarin birlikte calismasiyla kurulur.",
+    eyebrow: "Etkinlik Yapısı",
+    heading: "Topluluğun ritmi farklı formatların birlikte çalışmasıyla kurulur.",
     description:
-      "Her format farkli bir ihtiyaca hizmet eder: odaklanma, hizli uretim, cikti paylasimi ve topluluk ici geri bildirim. Partnerlik modelleri bu yapilarin her birine farkli sekilde yerlestirilebilir.",
+      "Her format farklı bir ihtiyaca hizmet eder: odaklanma, hızlı üretim, çıktı paylaşımı ve topluluk içi geri bildirim. Partnerlik modelleri bu yapıların her birine farklı şekilde yerleştirilebilir.",
     items: [
       {
         name: "Deep Work",
-        rhythm: "Duzenli tekrar eden odak seansi",
+        rhythm: "Düzenli tekrar eden odak seansı",
         format:
-          "Katilimcilar gun icin hedefini netlestirir, ardindan kesintisiz uretim ve sonrasinda kisa networking akisi gelir.",
+          "Katılımcılar gün için hedefini netleştirir, ardından kesintisiz üretim ve sonrasında kısa networking akışı gelir.",
         outcome:
-          "Odakli calisma, birbirinin isine tanik olma ve topluluk ici sureklilik.",
+          "Odaklı çalışma, birbirinin işine tanık olma ve topluluk içi süreklilik.",
         partnerValue:
-          "Arac denemesi, kredi destegi veya builder enablement mesajlari icin dogal bir temas zemini sunar.",
+          "Araç denemesi, kredi desteği veya builder enablement mesajları için doğal bir temas zemini sunar.",
       },
       {
         name: "Build Sprint",
-        rhythm: "Daha yuksek enerji ve ekipli uretim formati",
+        rhythm: "Daha yüksek enerji ve ekipli üretim formatı",
         format:
-          "Builder'lar bir araya gelir, hizli iterasyonlar yapar, gun icinde egitim ve paylasimlarla ciktiya yaklasir.",
+          "Builder'lar bir araya gelir, hızlı iterasyonlar yapar, gün içinde eğitim ve paylaşımlarla çıktıya yaklaşır.",
         outcome:
-          "Prototipler, MVP ilerlemesi, demo anlari ve daha guclu ekip ici baglar.",
+          "Prototipler, MVP ilerlemesi, demo anları ve daha güçlü ekip içi bağlar.",
         partnerValue:
-          "Etkinlik partnerligi, teknik altyapi destegi ve urun deneyimini gorunur kilan entegrasyonlar icin uygundur.",
+          "Etkinlik partnerliği, teknik altyapı desteği ve ürün deneyimini görünür kılan entegrasyonlar için uygundur.",
       },
       {
         name: "Ship Day",
-        rhythm: "Tek gunluk cikti odakli teslim ritmi",
+        rhythm: "Tek günlük çıktı odaklı teslim ritmi",
         format:
-          "Katilimci ne ship edecegini bastan ilan eder ve gun sonunda ciktisini yayinlar ya da demo eder.",
+          "Katılımcı ne ship edeceğini baştan ilan eder ve gün sonunda çıktısını yayınlar ya da demo eder.",
         outcome:
-          "Net teslim tarihi, somut cikti ve paylasilabilir build hikayeleri.",
+          "Net teslim tarihi, somut çıktı ve paylaşılabilir build hikayeleri.",
         partnerValue:
-          "Demo gunu, icerik ortakligi ve partner markanin build anina temas ettigi gorunurluk noktasi olusturur.",
+          "Demo günü, içerik ortaklığı ve partner markanın build anına temas ettiği görünürlük noktası oluşturur.",
       },
     ],
   },
   showcase: {
     eyebrow: "Proje Vitrini",
-    heading: "Toplulukta gorunen deger, tek tip bir urunden degil; farkli cikti turlerinin birikiminden gelir.",
+    heading:
+      "Toplulukta görünen değer, tek tip bir üründen değil; farklı çıktı türlerinin birikiminden gelir.",
     description:
-      "Bu alan gercek proje verisi ya da sponsor logosu yerine, Ankara Build Club icinde sikca ureen build kategorilerini anlatir. Amac sahte bir portfolio gostermek degil, toplulugun uretim karakterini anlatmaktir.",
+      "Bu alan gerçek proje verisi ya da sponsor logosu yerine, Ankara Build Club içinde sıkça üretilen build kategorilerini anlatır. Amaç sahte bir portfolyo göstermek değil, topluluğun üretim karakterini anlatmaktır.",
     noteTitle: "Not",
     noteDescription:
-      "Buradaki basliklar dogrudan referans proje listesi degil; toplulukta ureen is tiplerini ve paylasilabilir build alanlarini anlatan kuratorlu orneklerdir.",
+      "Buradaki başlıklar doğrudan referans proje listesi değil; toplulukta üretilen iş tiplerini ve paylaşılabilir build alanlarını anlatan küratörlü örneklerdir.",
     items: [
       {
-        title: "AI araclari ve otomasyon akislari",
+        title: "AI araçları ve otomasyon akışları",
         description:
-          "Kucuk ekiplerin daha hizli calismasini saglayan otomasyonlar, workflow yardimcilari ve deneysel AI urunleri.",
-        outputs: ["MVP akislari", "ic araclar", "deneysel entegrasyonlar"],
+          "Küçük ekiplerin daha hızlı çalışmasını sağlayan otomasyonlar, workflow yardımcıları ve deneysel AI ürünleri.",
+        outputs: ["MVP akışları", "iç araçlar", "deneysel entegrasyonlar"],
       },
       {
-        title: "SaaS ve operator urunleri",
+        title: "SaaS ve operatör ürünleri",
         description:
-          "Gercek bir problemi dar kapsamda cozmeye odakli dashboard, panel, workflow ve operasyon urunleri.",
-        outputs: ["yonetim panelleri", "niche SaaS fikirleri", "servis katmanlari"],
+          "Gerçek bir problemi dar kapsamda çözmeye odaklı dashboard, panel, workflow ve operasyon ürünleri.",
+        outputs: ["yönetim panelleri", "niş SaaS fikirleri", "servis katmanları"],
       },
       {
         title: "Launch ve growth deneyleri",
         description:
-          "Landing page, positioning, onboarding ve ilk kullanici geri bildirimi eksenli testler.",
+          "Landing page, positioning, onboarding ve ilk kullanıcı geri bildirimi eksenli testler.",
         outputs: [
-          "landing iterasyonlari",
+          "landing iterasyonları",
           "go-to-market denemeleri",
           "copy testleri",
         ],
       },
       {
-        title: "Topluluk ici build ciktilari",
+        title: "Topluluk içi build çıktıları",
         description:
-          "Etkinliklerde paylasilan demo'lar, ship edilen kucuk feature'lar ve birlikte yapilan geri bildirim turlari.",
-        outputs: ["demo anlari", "feedback turlari", "build-in-public paylasimlari"],
+          "Etkinliklerde paylaşılan demo'lar, ship edilen küçük feature'lar ve birlikte yapılan geri bildirim turları.",
+        outputs: ["demo anları", "feedback turları", "build-in-public paylaşımları"],
       },
     ],
   },
   partnership: {
-    eyebrow: "Is Birligi Modelleri",
-    heading: "Partnerlik, toplulugun akisina uydugunda daha anlamli hale gelir.",
+    eyebrow: "İş Birliği Modelleri",
+    heading: "Partnerlik, topluluğun akışına uyduğunda daha anlamlı hale gelir.",
     description:
-      "Ankara Build Club icinde en iyi sonuc veren modeller, toplulugun ritmine eklemlenen ve builder'a dogrudan fayda sunan modellerdir. Yuzeysel branding yerine, gercek temas ve kullanim ureten ortakliklari tercih ediyoruz.",
+      "Ankara Build Club içinde en iyi sonuç veren modeller, topluluğun ritmine eklemlenen ve builder'a doğrudan fayda sunan modellerdir. Yüzeysel branding yerine, gerçek temas ve kullanım üreten ortaklıkları tercih ediyoruz.",
     models: [
       {
-        title: "Etkinlik partnerligi",
+        title: "Etkinlik partnerliği",
         summary:
-          "Belirli bir Deep Work, Build Sprint veya Ship Day formatini destekleyen gorunur ortaklik modeli.",
+          "Belirli bir Deep Work, Build Sprint veya Ship Day formatını destekleyen görünür ortaklık modeli.",
         fit:
-          "Etkinlikte varlik gostermek, dogrudan topluluga temas etmek ve ilgili bir baglamda konumlanmak isteyen ekipler icin.",
+          "Etkinlikte varlık göstermek, doğrudan topluluğa temas etmek ve ilgili bir bağlamda konumlanmak isteyen ekipler için.",
       },
       {
-        title: "Builder enablement destegi",
+        title: "Builder enablement desteği",
         summary:
-          "Toplulugun daha iyi build etmesini saglayan egitim, mentorluk, office hour veya kaynak destegi modeli.",
+          "Topluluğun daha iyi build etmesini sağlayan eğitim, mentorluk, office hour veya kaynak desteği modeli.",
         fit:
-          "Topluluga yalnizca logo degil, calismayi hizlandiran uzmanlik veya surec destegi sunmak isteyen partnerler icin.",
+          "Topluluğa yalnızca logo değil, çalışmayı hızlandıran uzmanlık veya süreç desteği sunmak isteyen partnerler için.",
       },
       {
-        title: "Tool / kredi / altyapi destegi",
+        title: "Tool / kredi / altyapı desteği",
         summary:
-          "Builder'larin gercekten kullanabilecegi yazilim, API kredisi, altyapi, dataset veya araca erisim modeli.",
+          "Builder'ların gerçekten kullanabileceği yazılım, API kredisi, altyapı, dataset veya araca erişim modeli.",
         fit:
-          "Urunun dogrudan builder workflow'una girdigi, deneme ve kullanima dayali daha derin temas arayan partnerler icin.",
+          "Ürünün doğrudan builder workflow'una girdiği, deneme ve kullanıma dayalı daha derin temas arayan partnerler için.",
       },
       {
-        title: "Icerik / rapor / topluluk is birligi",
+        title: "İçerik / rapor / topluluk iş birliği",
         summary:
-          "Topluluktan dogan gozlem ve uretim anlatilarini birlikte paketleyen rapor, icerik ya da ozel program modeli.",
+          "Topluluktan doğan gözlem ve üretim anlatılarını birlikte paketleyen rapor, içerik ya da özel program modeli.",
         fit:
-          "Ankara'daki build kulturunu daha iyi anlamak, anlatmak veya ozel bir topluluk hikayesi uretmek isteyen kurumlar icin.",
+          "Ankara'daki build kültürünü daha iyi anlamak, anlatmak veya özel bir topluluk hikayesi üretmek isteyen kurumlar için.",
       },
     ],
     contactFlow: [
       {
         step: "01",
-        title: "Kisa tanitim maili",
+        title: "Kısa tanıtım maili",
         description:
-          "Ne yapmak istediginizi, hangi formatla ilgilendiginizi ve topluluga ne tur bir fayda sunabileceginizi kisa bir mail ile iletin.",
+          "Ne yapmak istediğinizi, hangi formatla ilgilendiğinizi ve topluluğa ne tür bir fayda sunabileceğinizi kısa bir mail ile iletin.",
       },
       {
         step: "02",
-        title: "Ihtiyac uyumu gorusmesi",
+        title: "İhtiyaç uyumu görüşmesi",
         description:
-          "Toplulugun ritmi, etkinlik yapisi ve sizin beklentiniz arasinda gercek bir uyum var mi diye birlikte bakilir.",
+          "Topluluğun ritmi, etkinlik yapısı ve sizin beklentiniz arasında gerçek bir uyum var mı diye birlikte bakılır.",
       },
       {
         step: "03",
-        title: "Ozel partnerlik plani ve geri donus",
+        title: "Özel partnerlik planı ve geri dönüş",
         description:
-          "Uygun format netlesirse kapsam, zamanlama, gorunurluk ve sorumluluklar iceren net bir partnerlik plani olusturulur.",
+          "Uygun format netleşirse kapsam, zamanlama, görünürlük ve sorumluluklar içeren net bir partnerlik planı oluşturulur.",
       },
     ],
-    closingTitle: "Ankara Build Club ile anlamli bir partnerlik baslatmak istiyorsaniz bize yazin.",
+    closingTitle:
+      "Ankara Build Club ile anlamlı bir partnerlik başlatmak istiyorsanız bize yazın.",
     closingDescription:
-      "Icerikten etkinlige, altyapidan builder enablement'a kadar farkli modelleri birlikte kurgulayabiliriz. Ilk adim icin kisa bir tanitim maili yeterli.",
-    responseWindow: "Hafta ici 24 saat icinde geri donus",
+      "İçerikten etkinliğe, altyapıdan builder enablement'a kadar farklı modelleri birlikte kurgulayabiliriz. İlk adım için kısa bir tanıtım maili yeterli.",
+    responseWindow: "Hafta içi 24 saat içinde geri dönüş",
   },
 };
