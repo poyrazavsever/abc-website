@@ -5,6 +5,8 @@ export const navigationData: NavigationData = {
     label: "Ankara Build Club",
     href: "/",
     imgUrl: "/brand/logo.png",
+    scrolledImgUrl: "/brand/logoblack.png",
+    footerImgUrl: "/brand/logoblack.png",
   },
   items: [
     {
@@ -13,65 +15,53 @@ export const navigationData: NavigationData = {
       href: "/",
     },
     {
+      id: "events",
+      label: "Etkinlikler",
+      href: "/events",
+    },
+    {
       id: "community",
       label: "Topluluk",
       groups: [
         {
-          title: "Keşfet",
+          title: "Genel Bakış",
           links: [
             {
-              label: "Etkinlikler",
-              href: "/events",
-              description: "Deep Work ve Build Sprint akışını takip et.",
-              icon: "lucide:calendar-days",
-            },
-            {
-              label: "Builder Dizini",
-              href: "/builders",
-              description: "Ankara'daki builder profillerini incele.",
-              icon: "lucide:users",
-            },
-            {
-              label: "Projeler",
-              href: "/projects",
+              label: "Topluluk Yaklaşımı",
+              href: "/",
               description:
-                "Topluluğun ürünlerini ve build hikayelerini keşfet.",
-              icon: "lucide:rocket",
+                "Ankara Build Club'ın üretim ritmini, çalışma biçimini ve topluluk çerçevesini inceleyin.",
+              icon: "lucide:building-2",
+            },
+            {
+              label: "Katılım ve Üyelik",
+              href: "/register",
+              description:
+                "Topluluğa katılım sürecini başlatın ve builder profilinizi oluşturun.",
+              icon: "lucide:user-plus",
             },
           ],
         },
         {
-          title: "Platform",
+          title: "Programlar",
           links: [
             {
-              label: "Profilim",
-              href: "/dashboard/profile",
+              label: "Etkinlik Takvimi",
+              href: "/events",
               description:
-                "Rozetlerini, etiketlerini ve katılım geçmişini yönet.",
-              icon: "lucide:id-card",
+                "Deep Work, Sprint ve diğer topluluk buluşmalarının takvimini takip edin.",
+              icon: "lucide:calendar-days",
             },
             {
-              label: "Ciddi Builder Eşleşmesi",
-              href: "/dashboard/matching",
-              description: "Başvuru yap, onay sürecini ve eşleşmelerini gör.",
-              icon: "lucide:handshake",
-            },
-            {
-              label: "LinkedIn Kartı",
-              href: "/dashboard/linkedin-card",
-              description: "Tek tıkla paylaşıma hazır kart ve post üret.",
-              icon: "lucide:image",
+              label: "Partnerlik ve Sponsorlar",
+              href: "/sponsors",
+              description:
+                "Kurumsal iş birliği modeli, sponsor görünürlüğü ve iletişim akışını inceleyin.",
+              icon: "lucide:briefcase-business",
             },
           ],
         },
       ],
-      featured: {
-        title: "Build with us",
-        description:
-          "Ankara Build Club yolculuğuna katıl. Etkinliklere dahil ol, builder ağını genişlet.",
-        href: "/register",
-        icon: "lucide:sparkles",
-      },
     },
     {
       id: "sponsors",

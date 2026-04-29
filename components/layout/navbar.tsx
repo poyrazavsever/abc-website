@@ -109,7 +109,12 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
   const hasSurface = !overlay || isScrolled;
   const desktopTextClass = hasSurface ? "text-text" : "text-text-inverse";
-  const brandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
+  const defaultBrandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
+  const scrolledBrandImageUrl =
+    navigationData.brand.scrolledImgUrl?.trim() || defaultBrandImageUrl;
+  const brandImageUrl = hasSurface
+    ? scrolledBrandImageUrl
+    : defaultBrandImageUrl;
   const hasBrandImage = brandImageUrl.length > 0;
   const isAuthenticated = isAuthReady && Boolean(authUser);
   const profileHref = getProfileHref(authUser);
@@ -133,8 +138,8 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
         <div className="relative z-10">
           <Container>
-            <div className="flex h-20 items-center justify-between gap-6">
-              <div className="flex min-w-0 items-center gap-6 xl:gap-8">
+            <div className="flex h-20 pb-4 items-end justify-between gap-6">
+              <div className="flex min-w-0 items-end gap-8 xl:gap-10">
                 <Link
                   href={navigationData.brand.href}
                   className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90"
@@ -143,9 +148,9 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     <Image
                       src={brandImageUrl}
                       alt={navigationData.brand.label}
-                      width={168}
-                      height={40}
-                      className="h-8 w-auto"
+                      width={192}
+                      height={48}
+                      className="h-12 w-auto"
                       priority
                     />
                   ) : (
@@ -161,7 +166,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                 </Link>
 
                 <nav className="hidden lg:block" aria-label="Ana navigasyon">
-                  <ul className="flex items-center gap-1">
+                  <ul className="flex items-center gap-2">
                     {navigationData.items.map((item) => {
                       const hasDropdown = Boolean(item.groups?.length);
 
@@ -171,7 +176,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                             <Link
                               href={item.href ?? "#"}
                               className={cn(
-                                "rounded-md px-3 py-2 text-sm font-medium transition",
+                                "rounded-full px-4 py-2 text-sm font-semibold transition",
                                 desktopTextClass,
                                 hasSurface
                                   ? "hover:bg-surface-muted"
@@ -190,7 +195,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                           <button
                             type="button"
                             className={cn(
-                              "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition",
+                              "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition",
                               desktopTextClass,
                               hasSurface
                                 ? "hover:bg-surface-muted"
@@ -265,7 +270,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     <Link
                       href={navigationData.auth.loginHref}
                       className={cn(
-                        "hidden rounded-md px-3 py-2 text-sm font-semibold transition lg:inline-flex",
+                        "hidden rounded-full px-4 py-2 text-sm font-semibold transition lg:inline-flex",
                         desktopTextClass,
                         hasSurface
                           ? "hover:bg-surface-muted"
@@ -277,7 +282,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     <Link
                       href={navigationData.cta.href}
                       className={cn(
-                        "hidden rounded-md px-4 py-2 text-sm font-semibold transition lg:inline-flex",
+                        "hidden rounded-full px-5 py-2.5 text-sm font-semibold transition lg:inline-flex",
                         hasSurface
                           ? "bg-primary text-primary-foreground hover:bg-primary-700"
                           : "bg-surface/95 text-primary hover:bg-surface",

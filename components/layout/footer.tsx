@@ -25,7 +25,11 @@ function getLinkTarget(isExternal?: boolean) {
 }
 
 export function Footer() {
-  const brandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
+  const brandImageUrl =
+    navigationData.brand.footerImgUrl?.trim() ??
+    navigationData.brand.scrolledImgUrl?.trim() ??
+    navigationData.brand.imgUrl?.trim() ??
+    "";
   const hasBrandImage = brandImageUrl.length > 0;
 
   return (
@@ -47,9 +51,9 @@ export function Footer() {
                   <Image
                     src={brandImageUrl}
                     alt={footerData.brand.title}
-                    width={180}
-                    height={42}
-                    className="h-9 w-auto"
+                    width={192}
+                    height={48}
+                    className="h-10 w-auto"
                   />
                 ) : (
                   <span className="text-2xl font-semibold tracking-tight text-text">

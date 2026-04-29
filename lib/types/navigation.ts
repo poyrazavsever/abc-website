@@ -31,6 +31,8 @@ export type NavigationData = {
     label: string;
     href: string;
     imgUrl?: string;
+    scrolledImgUrl?: string;
+    footerImgUrl?: string;
   };
   items: NavItem[];
   auth: {
