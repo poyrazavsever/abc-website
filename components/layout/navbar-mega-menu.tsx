@@ -43,7 +43,7 @@ export function NavbarMegaMenu({
               "w-screen border-y shadow-xl backdrop-blur-2xl",
               hasSurface
                 ? "border-border/60 bg-surface/90"
-                : "border-white/15 bg-surface/80",
+                : "border-white/10 bg-[#0f0f10]/94 text-text-inverse",
             )}
           >
             <Container className="py-10">
@@ -65,7 +65,12 @@ export function NavbarMegaMenu({
                 >
                   {groups.map((group) => (
                     <div key={group.title} className="space-y-5">
-                      <h3 className="text-xs font-bold uppercase tracking-wider text-text-soft/80">
+                      <h3
+                        className={cn(
+                          "text-xs font-bold uppercase tracking-wider",
+                          hasSurface ? "text-text-soft/80" : "text-white/55",
+                        )}
+                      >
                         {group.title}
                       </h3>
                       <ul className="space-y-3">
@@ -94,11 +99,23 @@ export function NavbarMegaMenu({
                                 </div>
                               ) : null}
                               <span className="space-y-1">
-                                <span className="block text-sm font-semibold text-text">
+                                <span
+                                  className={cn(
+                                    "block text-sm font-semibold",
+                                    hasSurface ? "text-text" : "text-white",
+                                  )}
+                                >
                                   {link.label}
                                 </span>
                                 {link.description ? (
-                                  <span className="block text-xs text-text-muted/90 leading-relaxed">
+                                  <span
+                                    className={cn(
+                                      "block text-xs leading-relaxed",
+                                      hasSurface
+                                        ? "text-text-muted/90"
+                                        : "text-white/62",
+                                    )}
+                                  >
                                     {link.description}
                                   </span>
                                 ) : null}
@@ -133,10 +150,20 @@ export function NavbarMegaMenu({
                         ) : null}
                         <span>Öne Çıkan</span>
                       </div>
-                      <h3 className="text-lg font-bold tracking-tight text-text group-hover:text-primary transition-colors">
+                      <h3
+                        className={cn(
+                          "text-lg font-bold tracking-tight transition-colors group-hover:text-primary",
+                          hasSurface ? "text-text" : "text-white",
+                        )}
+                      >
                         {item.featured.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-text-muted/90">
+                      <p
+                        className={cn(
+                          "mt-2 text-sm leading-relaxed",
+                          hasSurface ? "text-text-muted/90" : "text-white/68",
+                        )}
+                      >
                         {item.featured.description}
                       </p>
                       <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">

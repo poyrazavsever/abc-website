@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { AuthFormFallback } from "@/components/auth/auth-form-fallback";
 import { AuthFormShell } from "@/components/auth/auth-form-shell";
 import { RegisterForm } from "@/components/auth/register-form";
-import { resolveAuthenticatedRedirect } from "@/lib/auth/server";
+import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
   title: "Kayit Ol",
@@ -27,9 +27,9 @@ export default async function RegisterPage({
       : Array.isArray(query.next)
         ? query.next[0]
         : null;
-  const target = await resolveAuthenticatedRedirect(next);
+  const target = await resolveAuthEntryRedirect(next);
 
-  if (!target.startsWith("/register")) {
+  if (target) {
     redirect(target);
   }
 

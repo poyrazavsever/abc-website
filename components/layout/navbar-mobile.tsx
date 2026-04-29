@@ -91,7 +91,7 @@ export function NavbarMobile({
   const headerTitle = activeItem?.label ?? "Menu";
   const panelClass = hasSurface
     ? "border-border bg-surface/88"
-    : "border-white/20 bg-surface/68";
+    : "border-white/10 bg-[#0f0f10]/96 text-text-inverse";
   const overlayClass = hasSurface ? "bg-text/22" : "bg-text/14";
   const panelHoverClass = hasSurface
     ? "hover:bg-surface-muted"
@@ -135,7 +135,12 @@ export function NavbarMobile({
                 hasSurface ? "border-border" : "border-white/20",
               )}
             >
-              <p className="text-sm font-semibold text-text-soft">
+              <p
+                className={cn(
+                  "text-sm font-semibold",
+                  hasSurface ? "text-text-soft" : "text-white/60",
+                )}
+              >
                 {headerTitle}
               </p>
 
@@ -144,7 +149,8 @@ export function NavbarMobile({
                   type="button"
                   aria-label="Geri gel"
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-text transition",
+                    "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition",
+                    hasSurface ? "text-text" : "text-white",
                     panelHoverClass,
                   )}
                   onClick={handleBack}
@@ -157,7 +163,8 @@ export function NavbarMobile({
                   type="button"
                   aria-label="Mobil menuyu kapat"
                   className={cn(
-                    "rounded-md p-2 text-text transition",
+                    "rounded-md p-2 transition",
+                    hasSurface ? "text-text" : "text-white",
                     panelHoverClass,
                   )}
                   onClick={closeMenu}
@@ -196,7 +203,10 @@ export function NavbarMobile({
                                 key={`${group.title}-${link.href}-${index}`}
                                 href={link.href}
                                 className={cn(
-                                  "block rounded-md border border-transparent px-3 py-2 text-sm font-medium text-text-muted transition hover:text-text",
+                                  "block rounded-md border border-transparent px-3 py-2 text-sm font-medium transition",
+                                  hasSurface
+                                    ? "text-text-muted hover:text-text"
+                                    : "text-white/78 hover:text-white",
                                   hasSurface
                                     ? "hover:border-border hover:bg-surface-muted"
                                     : "hover:border-white/25 hover:bg-white/10",
@@ -232,7 +242,8 @@ export function NavbarMobile({
                               key={item.id}
                               href={item.href ?? "#"}
                               className={cn(
-                                "block rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition",
+                                "block rounded-md border border-transparent px-3 py-2 text-base font-semibold transition",
+                                hasSurface ? "text-text" : "text-white",
                                 hasSurface
                                   ? "hover:border-border hover:bg-surface-muted"
                                   : "hover:border-white/25 hover:bg-white/10",
@@ -249,7 +260,8 @@ export function NavbarMobile({
                             key={item.id}
                             type="button"
                             className={cn(
-                              "flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-base font-semibold text-text transition",
+                              "flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-base font-semibold transition",
+                              hasSurface ? "text-text" : "text-white",
                               hasSurface
                                 ? "hover:border-border hover:bg-surface-muted"
                                 : "hover:border-white/25 hover:bg-white/10",
@@ -271,14 +283,23 @@ export function NavbarMobile({
                             <>
                               <Link
                                 href={profileHref}
-                                className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
+                                className={cn(
+                                  "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
+                                  hasSurface
+                                    ? "bg-primary text-primary-foreground hover:bg-primary-700"
+                                    : "bg-white text-brand-black hover:bg-white/90",
+                                )}
                                 onClick={closeMenu}
                               >
                                 {auth.profileLabel}
                               </Link>
                               <LogoutButton
                                 block
-                                variant="outline"
+                                variant={hasSurface ? "outline" : "ghost"}
+                                className={cn(
+                                  !hasSurface &&
+                                    "border border-white/12 text-white hover:bg-white/10",
+                                )}
                                 onComplete={closeMenu}
                               >
                                 {auth.logoutLabel}
@@ -288,14 +309,24 @@ export function NavbarMobile({
                             <>
                               <Link
                                 href={auth.loginHref}
-                                className="inline-flex w-full items-center justify-center rounded-md border border-border bg-surface px-4 py-3 text-sm font-semibold text-text transition hover:border-primary-200 hover:text-primary"
+                                className={cn(
+                                  "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
+                                  hasSurface
+                                    ? "border border-border bg-surface text-text hover:border-primary-200 hover:text-primary"
+                                    : "border border-white/12 bg-white text-brand-black hover:bg-white/90",
+                                )}
                                 onClick={closeMenu}
                               >
                                 {auth.loginLabel}
                               </Link>
                               <Link
                                 href={cta.href}
-                                className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-700"
+                                className={cn(
+                                  "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
+                                  hasSurface
+                                    ? "bg-primary text-primary-foreground hover:bg-primary-700"
+                                    : "border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary text-primary-foreground shadow-[0_10px_24px_rgb(131_28_145_/_0.28)] hover:brightness-110",
+                                )}
                                 onClick={closeMenu}
                               >
                                 {cta.label}
