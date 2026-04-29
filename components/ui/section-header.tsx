@@ -25,7 +25,8 @@ export function SectionHeader({
     <div
       className={cn(
         "flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between",
-        isCentered && "items-center text-center sm:items-center",
+        isCentered &&
+          "items-center text-center sm:flex-col sm:items-center sm:justify-center",
         className,
       )}
       {...props}

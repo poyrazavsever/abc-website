@@ -1,6 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-import { adminMockDataset } from "@/lib/mocks/admin.mock";
 import type {
   AdminBadge,
   AdminBuilder,
@@ -37,10 +36,6 @@ function getAdminSupabaseClient() {
   });
 
   return adminSupabaseClient;
-}
-
-function canUseAdminMockData() {
-  return process.env.NODE_ENV !== "production" || process.env.ADMIN_DEMO_MODE === "true";
 }
 
 function asString(value: unknown, fallback = "") {
@@ -193,10 +188,6 @@ export async function getAdminDataset(): Promise<AdminDataset> {
     !operationRows ||
     !matchRows
   ) {
-    if (canUseAdminMockData()) {
-      return adminMockDataset;
-    }
-
     throw new Error("Admin dataset is unavailable.");
   }
 
@@ -262,7 +253,11 @@ export async function setBuilderBanStatus(input: {
   const client = getAdminSupabaseClient();
 
   if (!client) {
-    return { ok: canUseAdminMockData(), mode: "demo" as const };
+    return {
+      ok: false,
+      mode: "supabase" as const,
+      error: "Admin Supabase client is unavailable.",
+    };
   }
 
   const { error } = await client
@@ -283,7 +278,11 @@ export async function setSeriousBuilderStatus(input: {
   const client = getAdminSupabaseClient();
 
   if (!client) {
-    return { ok: canUseAdminMockData(), mode: "demo" as const };
+    return {
+      ok: false,
+      mode: "supabase" as const,
+      error: "Admin Supabase client is unavailable.",
+    };
   }
 
   const { error } = await client
@@ -304,7 +303,11 @@ export async function decideSeriousBuilderApplication(input: {
   const client = getAdminSupabaseClient();
 
   if (!client) {
-    return { ok: canUseAdminMockData(), mode: "demo" as const };
+    return {
+      ok: false,
+      mode: "supabase" as const,
+      error: "Admin Supabase client is unavailable.",
+    };
   }
 
   const { error: applicationError } = await client
@@ -349,7 +352,11 @@ export async function createManualBuilderMatch(input: {
   const client = getAdminSupabaseClient();
 
   if (!client) {
-    return { ok: canUseAdminMockData(), mode: "demo" as const };
+    return {
+      ok: false,
+      mode: "supabase" as const,
+      error: "Admin Supabase client is unavailable.",
+    };
   }
 
   const { error } = await client.from("builder_matches").insert({

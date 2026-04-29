@@ -36,7 +36,6 @@ export function IconButton({
   return (
     <Button
       variant={variant}
-      motion="icon-swap"
       leadingIcon={icon}
       className={cn("px-0", iconButtonSizeClasses[size], className)}
       aria-label={label}

@@ -20,6 +20,11 @@ export const navigationData: NavigationData = {
       href: "/events",
     },
     {
+      id: "builders",
+      label: "Builders",
+      href: "/builders",
+    },
+    {
       id: "community",
       label: "Community",
       groups: [
@@ -39,6 +44,13 @@ export const navigationData: NavigationData = {
               description:
                 "Start your application and create your builder profile.",
               icon: "lucide:user-plus",
+            },
+            {
+              label: "Builder directory",
+              href: "/builders",
+              description:
+                "Browse registered builders, roles, and collaboration intent across the community.",
+              icon: "lucide:users",
             },
           ],
         },

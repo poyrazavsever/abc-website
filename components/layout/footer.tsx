@@ -86,35 +86,6 @@ export function Footer() {
             <p className="max-w-3xl text-sm leading-relaxed text-white/68 sm:text-base">
               {footerData.brand.description}
             </p>
-
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {footerData.sections.map((section) => (
-                <div key={section.title} className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
-                    {section.title}
-                  </p>
-                  <ul className="space-y-2.5">
-                    {section.links.map((link, index) => (
-                      <li
-                        key={`${section.title}-${link.label}-${link.href}-${index}`}
-                      >
-                        <Link
-                          href={link.href}
-                          className="group inline-flex items-center gap-2 text-sm text-white/68 transition hover:text-white"
-                          {...getLinkTarget(link.external)}
-                        >
-                          <span
-                            className="h-1.5 w-1.5 rounded-full bg-white/18 transition group-hover:bg-accent"
-                            aria-hidden="true"
-                          />
-                          <span>{link.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
           </div>
 
           <aside className="space-y-5 xl:border-l xl:border-white/10 xl:pl-10">

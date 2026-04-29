@@ -1,6 +1,5 @@
-import { Grainient } from "@/components/marketing/grainient";
+import { LandingHero } from "@/components/marketing/landing-hero";
 import Masonry from "@/components/marketing/masonry";
-import { RotatingText } from "@/components/marketing/rotating-text";
 import { Container } from "@/components/shared/container";
 import { Card, CardContent } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/link-button";
@@ -58,7 +57,7 @@ const eventFormats = [
     description:
       "Two uninterrupted hours of building. You declare your goal first, then stay locked in.",
     meta: "Weekly rhythm",
-    img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-pano.jpg",
     url: "/events",
     height: 640,
   },
@@ -69,7 +68,7 @@ const eventFormats = [
     description:
       "One day, one decision, one delivery. Not perfect, but you leave with something shipped.",
     meta: "Demo + feedback",
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-1.jpg",
     url: "/events",
     height: 500,
   },
@@ -80,7 +79,7 @@ const eventFormats = [
     description:
       "A fast, high-energy build marathon where teams form quickly and turn ideas into products.",
     meta: "Builder teams",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-2.jpg",
     url: "/events",
     height: 760,
   },
@@ -91,7 +90,7 @@ const eventFormats = [
     description:
       "Builders bring a page, a prototype, or a launch problem and leave with sharp outside perspective.",
     meta: "Critique session",
-    img: "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-3.jpg",
     url: "/events",
     height: 560,
   },
@@ -101,7 +100,7 @@ const eventFormats = [
     eyebrow: "Showcase",
     description: "Builders presenting what shipped that week.",
     meta: "Community demos",
-    img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-4.jpg",
     url: "/events",
     height: 680,
   },
@@ -111,7 +110,7 @@ const eventFormats = [
     eyebrow: "Build",
     description: "Focused laptop session with the room in flow.",
     meta: "Open tables",
-    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-pano.jpg",
     url: "/events",
     height: 540,
   },
@@ -121,7 +120,7 @@ const eventFormats = [
     eyebrow: "Collab",
     description: "Quick alignment before a fast sprint starts.",
     meta: "Builder teams",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-2.jpg",
     url: "/events",
     height: 620,
   },
@@ -131,7 +130,7 @@ const eventFormats = [
     eyebrow: "Talk",
     description: "Small group discussion around product decisions.",
     meta: "Office hours",
-    img: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-3.jpg",
     url: "/events",
     height: 500,
   },
@@ -141,7 +140,7 @@ const eventFormats = [
     eyebrow: "Energy",
     description: "Evening session with screens, notes, and momentum.",
     meta: "After hours",
-    img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-1.jpg",
     url: "/events",
     height: 760,
   },
@@ -151,7 +150,7 @@ const eventFormats = [
     eyebrow: "People",
     description: "The social layer between sessions and shipping.",
     meta: "Meetups",
-    img: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80",
+    img: "/events/events-session-4.jpg",
     url: "/events",
     height: 580,
   },
@@ -177,79 +176,7 @@ export default function MarketingHomePage() {
 
   return (
     <div className="bg-brand-black text-white">
-      <section className="relative isolate min-h-screen overflow-hidden bg-brand-black text-primary-foreground">
-        <div className="absolute inset-0 -z-30">
-          <Grainient
-            color1="var(--color-accent-500)"
-            color2="var(--color-secondary-500)"
-            color3="var(--color-primary-950)"
-            timeSpeed={0.25}
-            colorBalance={-0.16}
-            warpStrength={1.15}
-            warpFrequency={5.0}
-            warpSpeed={2.0}
-            warpAmplitude={59}
-            blendAngle={0.0}
-            blendSoftness={0.05}
-            rotationAmount={500.0}
-            noiseScale={2.0}
-            grainAmount={0.1}
-            grainScale={2.0}
-            grainAnimated={false}
-            contrast={1.5}
-            gamma={1.0}
-            saturation={1.0}
-            centerX={0.0}
-            centerY={0.0}
-            zoom={0.9}
-          />
-        </div>
-        <div className="absolute inset-0 -z-20 bg-gradient-to-br from-primary/55 via-primary-800/40 to-primary-950/65" />
-        <div className="absolute left-1/2 top-1/2 -z-10 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/12 blur-3xl" />
-
-        <Container className="flex min-h-screen items-center justify-center py-24">
-          <div className="flex w-full max-w-5xl flex-col items-center gap-8 text-center">
-            <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.36em] text-white/80">
-                SHIPIN
-              </p>
-              <h1 className="mx-auto max-w-3xl text-4xl font-semibold tracking-[-0.04em] text-balance text-white sm:text-5xl md:text-6xl">
-                Ideas Don&apos;t Matter Shipping Does
-              </h1>
-              <p className="mx-auto max-w-2xl text-sm leading-7 text-white/82 sm:text-base">
-                Shipin is where builders turn ideas into shipped products, real
-                users, and actual traction.
-              </p>
-            </div>
-
-            <div className="w-full max-w-2xl rounded-[1.6rem] border border-white/20 bg-white/8 p-2 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:p-2.5">
-              <div className="flex flex-col gap-2 rounded-[1.3rem] border border-white/10 bg-white/6 p-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:p-3">
-                <div className="flex min-w-0 flex-1 flex-col items-center justify-center rounded-[1rem] px-2 py-1.5 text-center sm:max-w-[10rem] sm:items-start sm:px-3 sm:text-left">
-                  <div className="flex items-baseline justify-center text-[0.9rem] font-semibold tracking-[-0.04em] text-white/88 sm:justify-start sm:text-lg">
-                    <span className="shrink-0">shipin.city/</span>
-                    <RotatingText
-                      items={featuredNames}
-                      intervalMs={3200}
-                      className="ml-0.5 inline-block min-w-[4.5ch] text-left text-accent-300 transition-all duration-500"
-                    />
-                  </div>
-                </div>
-
-                <LinkButton
-                  href="/register"
-                  className="h-11 shrink-0 rounded-[1.1rem] border-0 bg-[linear-gradient(90deg,var(--color-highlight-400),var(--color-accent-500),var(--color-info-400))] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(213,82,163,0.28)] transition-transform duration-200 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(131,28,145,0.26)] sm:px-6"
-                >
-                  Join the community
-                </LinkButton>
-              </div>
-            </div>
-
-            <p className="max-w-xl text-xs uppercase tracking-[0.22em] text-white/60 sm:text-sm">
-              Community, events, builders, collaboration.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <LandingHero featuredNames={featuredNames} />
 
       <section className="border-t border-b border-white/10 bg-brand-black py-5">
         <Container width="full" className="overflow-hidden px-0">

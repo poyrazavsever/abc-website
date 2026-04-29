@@ -10,7 +10,7 @@ type CommunityLayoutProps = {
 
 export default function CommunityLayout({ children }: CommunityLayoutProps) {
   return (
-    <div className="min-h-screen bg-background text-text">
+    <div className="min-h-screen bg-brand-black text-text-inverse">
       <Navbar />
       <main className="min-h-[60vh] py-10">
         <Container>{children}</Container>
