@@ -28,63 +28,63 @@ const sponsorNames = [
 const analyticsHighlights = [
   {
     value: "1.2K+",
-    label: "topluluk uyesi",
+    label: "community members",
     detail:
-      "Ankara cikisli ama internet hizinda birbirine baglanan builder agi.",
+      "A builder network born in Ankara and connected at internet speed.",
   },
   {
     value: "64",
-    label: "ship edilen proje",
-    detail: "Landing page, MVP, side project ve ortak build sprint ciktisi.",
+    label: "shipped projects",
+    detail: "Landing pages, MVPs, side projects, and collaborative sprint outputs.",
   },
   {
     value: "18",
-    label: "aktif etkinlik dongusu",
-    detail: "Deep Work, Ship Day ve Sprint formatlariyla duzenli ritim.",
+    label: "active event cycles",
+    detail: "A steady rhythm powered by Deep Work, Ship Day, and Sprint formats.",
   },
   {
     value: "92%",
-    label: "geri donus orani",
-    detail: "Bir etkinlige gelenlerin yeniden topluluga dokunma ihtimali.",
+    label: "return rate",
+    detail: "The likelihood that someone who joins once comes back into the community.",
   },
 ];
 
 const eventFormats = [
   {
     title: "Deep Work",
-    eyebrow: "Odak",
+    eyebrow: "Focus",
     description:
-      "Iki saatlik kesintisiz build zamani. Once hedefini soylersin, sonra laptop kapanmaz.",
-    meta: "Haftalik ritim",
+      "Two uninterrupted hours of building. You declare your goal first, then stay locked in.",
+    meta: "Weekly rhythm",
   },
   {
     title: "Ship Day",
-    eyebrow: "Cikti",
+    eyebrow: "Output",
     description:
-      "Bir gun, bir karar, bir teslim. Mukemmel degil ama cikmis bir is ile eve donersin.",
+      "One day, one decision, one delivery. Not perfect, but you leave with something shipped.",
     meta: "Demo + feedback",
   },
   {
     title: "Sprint",
-    eyebrow: "Hiz",
+    eyebrow: "Speed",
     description:
-      "Kisa surede ekip kurup fikirleri urune ceviren, yogun ama keyifli build maratonu.",
-    meta: "Builder ekipleri",
+      "A fast, high-energy build marathon where teams form quickly and turn ideas into products.",
+    meta: "Builder teams",
   },
 ];
 
 const missionPillars = [
   {
-    title: "Builder ritmi kurmak",
-    text: "Ilham toplamak degil, duzenli sekilde ortaya bir sey koymak icin ortak tempo yaratiriz.",
+    title: "Build a shipping rhythm",
+    text: "We create a shared pace for consistently putting real work into the world, not just collecting inspiration.",
   },
   {
-    title: "Kaliteli baglantilar",
-    text: "Dogru insanlarin ayni masada bulusmasi sans degil, tasarlanmis bir topluluk deneyimi olur.",
+    title: "Create high-quality connections",
+    text: "Getting the right people around the same table should not be luck. It should be designed into the community experience.",
   },
   {
-    title: "Gorunur uretim",
-    text: "Projeler, profiller ve shipping kulturu sayesinde uretilen is sakli kalmaz.",
+    title: "Make the work visible",
+    text: "Projects, profiles, and a strong shipping culture make sure meaningful work does not stay hidden.",
   },
 ];
 
@@ -155,7 +155,7 @@ export default function MarketingHomePage() {
                   href="/register"
                   className="h-11 shrink-0 rounded-[1.1rem] border-0 bg-[linear-gradient(90deg,var(--color-highlight-400),var(--color-accent-500),var(--color-info-400))] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(213,82,163,0.28)] transition-transform duration-200 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(131,28,145,0.26)] sm:px-6"
                 >
-                  Toplulugumuza Katil
+                  Join the community
                 </LinkButton>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function MarketingHomePage() {
         <Container width="full" className="overflow-hidden px-0">
           <div className="mx-auto max-w-[110rem]">
             <p className="mb-4 text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-white/45">
-              Destekleyenler ve sponsorlar
+              Supporters and sponsors
             </p>
 
             <div className="relative overflow-hidden border-y border-white/8 bg-white/3 py-5">
@@ -205,9 +205,9 @@ export default function MarketingHomePage() {
       <section className="relative border-t border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent_26%)] py-20 sm:py-24">
         <Container className="space-y-10">
           <SectionHeader
-            eyebrow="Analitik"
-            heading="Toplulugun ritmini sayilarla gor."
-            description="Builder yogunlugu, shipping kulturu ve geri donus aliskanliklari ABC'nin neden calistigini gosteriyor."
+            eyebrow="Analytics"
+            heading="See the community rhythm in numbers."
+            description="Builder density, shipping culture, and return behavior show why Shipin works."
             align="center"
             className="mx-auto max-w-3xl [&_h2]:text-white [&_p]:text-white/70"
           />
@@ -239,16 +239,16 @@ export default function MarketingHomePage() {
       <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
         <Container className="space-y-10">
           <SectionHeader
-            eyebrow="Etkinliklerimiz"
-            heading="Her format farkli bir builder ihtiyacini cozer."
-            description="Bazen odak lazim, bazen cikti, bazen de ayni gun ekip kurup bir seyi bitirmek."
+            eyebrow="Our events"
+            heading="Each format solves a different builder need."
+            description="Sometimes you need focus, sometimes output, and sometimes a team to finish something in a single day."
             actions={
               <LinkButton
                 href="/events"
                 variant="outline"
                 className="border-white/12 bg-white/5 text-white hover:bg-white/10"
               >
-                Tum etkinlikler
+                All events
               </LinkButton>
             }
             className="[&_h2]:text-white [&_p]:text-white/70"
@@ -287,22 +287,22 @@ export default function MarketingHomePage() {
         <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
           <div className="space-y-6 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(17,17,17,0.98),rgba(70,44,125,0.82),rgba(131,28,145,0.72))] p-8 text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/52">
-              Misyonumuz
+              Our mission
             </p>
             <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.05em] text-balance sm:text-4xl">
-              Ankara&apos;da build etmeyi yalniz bir caba olmaktan cikarmak.
+              Make building in Ankara feel less like a solo effort.
             </h2>
             <p className="max-w-xl text-sm leading-7 text-white/78 sm:text-base">
-              Ankara Build Club; urun cikaran, ekip kuran, fikir deneyen ve
-              duzenli ureten insanlarin ayni ritimde bulusmasi icin tasarlanan
-              bir topluluk alani. Hedefimiz sadece tanistirmak degil,
-              insanlari birlikte uretir hale getirmek.
+              Shipin is a community designed for people who launch products,
+              form teams, test ideas, and build consistently to move in the
+              same rhythm. The goal is not just to introduce people, but to
+              help them create together.
             </p>
             <LinkButton
               href="/register"
               className="w-fit rounded-full bg-white px-5 text-primary hover:bg-white/92"
             >
-              Ritme dahil ol
+              Join the rhythm
             </LinkButton>
           </div>
 

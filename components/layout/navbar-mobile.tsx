@@ -110,7 +110,7 @@ export function NavbarMobile({
         >
           <motion.button
             type="button"
-            aria-label="Mobil menuyu kapat"
+            aria-label="Close mobile menu"
             className={cn("absolute inset-0", overlayClass)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -147,7 +147,7 @@ export function NavbarMobile({
               {isSubPanel ? (
                 <button
                   type="button"
-                  aria-label="Geri gel"
+                  aria-label="Go back"
                   className={cn(
                     "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition",
                     hasSurface ? "text-text" : "text-white",
@@ -156,12 +156,12 @@ export function NavbarMobile({
                   onClick={handleBack}
                 >
                   <Icon icon="lucide:arrow-left" className="h-4 w-4" />
-                  <span>Geri gel</span>
+                  <span>Go back</span>
                 </button>
               ) : (
                 <button
                   type="button"
-                  aria-label="Mobil menuyu kapat"
+                  aria-label="Close mobile menu"
                   className={cn(
                     "rounded-md p-2 transition",
                     hasSurface ? "text-text" : "text-white",

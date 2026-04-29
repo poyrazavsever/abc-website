@@ -122,13 +122,13 @@ export function Footer() {
             </p>
 
             <p className="text-sm leading-relaxed text-white/68">
-              Marka is birlikleri, etkinlik partnerlikleri ve topluluk destek
-              paketleri icin bizimle dogrudan iletisime gecin.
+              Reach out directly for brand collaborations, event partnerships,
+              and community support packages.
             </p>
 
             <div className="space-y-2 text-sm text-white/68">
               <p>
-                <span className="font-semibold text-white">E-posta: </span>
+                <span className="font-semibold text-white">Email: </span>
                 <a
                   href={`mailto:${footerData.contact.email}`}
                   className="transition hover:text-white"
@@ -137,11 +137,11 @@ export function Footer() {
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-white">Konum: </span>
+                <span className="font-semibold text-white">Location: </span>
                 {footerData.contact.location}
               </p>
               <p>
-                <span className="font-semibold text-white">Geri donus: </span>
+                <span className="font-semibold text-white">Response time: </span>
                 {footerData.contact.responseWindow}
               </p>
             </div>

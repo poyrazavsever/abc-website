@@ -170,7 +170,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                   )}
                 </Link>
 
-                <nav className="hidden lg:block" aria-label="Ana navigasyon">
+                <nav className="hidden lg:block" aria-label="Main navigation">
                   <ul className="flex items-center gap-1.5">
                     {navigationData.items.map((item) => {
                       const hasDropdown = Boolean(item.groups?.length);
@@ -253,7 +253,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                             href="/dashboard/my-projects" 
                             className="block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-text-inverse transition hover:bg-white/8"
                           >
-                            Projelerim
+                            My projects
                           </Link>
                           <div className="my-1 border-t border-white/10" />
                           <LogoutButton 
@@ -291,7 +291,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
                 <button
                   type="button"
-                  aria-label="Mobil menuyu ac"
+                  aria-label="Open mobile menu"
                   aria-expanded={isMobileMenuOpen}
                   className={cn(
                     "inline-flex rounded-full p-2.5 text-text-inverse transition hover:bg-white/10 lg:hidden",
