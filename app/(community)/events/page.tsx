@@ -13,19 +13,19 @@ const eventSignals = [
     value: "2h",
     label: "Deep focus block",
     detail:
-      "Plan yapmayı uzatmadan flow'a girmek ve bir işi gerçekten ilerletmek için yeterli pencere.",
+      "A big enough window to enter flow quickly and make meaningful progress without hiding behind planning.",
   },
   {
     value: "1 day",
     label: "Shipping window",
     detail:
-      "Niyetin karara, kararın çıktıya dönüşmesi için kısa ama ciddi bir zaman kutusu.",
+      "A short but serious timebox that turns intention into a decision and a visible result.",
   },
   {
     value: "Live",
     label: "Builder room",
     detail:
-      "Gerçek ürün, prototip ve yarım kalmış işlerle gelen insanlarla aynı odada çalışma ritmi.",
+      "A room full of people bringing real products, prototypes, and unfinished work into the same space.",
   },
 ] as const;
 
@@ -33,37 +33,37 @@ const eventFormats = [
   {
     step: "01",
     title: "Deep Work",
-    rhythm: "Sessiz odak + sonrasında doğal bağlantı",
+    rhythm: "Quiet focus + natural connection after",
     description:
-      "Önce neyi bitireceğini ilan edersin, sonra dikkatini gerçekten koruyabildiğin uzun bir blok açılır. Günün görünür kazanımı, yalnızca masada oturmak değil, işi ilerletmektir.",
+      "You begin by naming what you intend to finish, then move into a long block where your attention is actually protected. The visible win is not showing up, but moving the work forward.",
     bullets: [
-      "Kısa hedef deklarasyonu ile başlar.",
-      "Kesintisiz çalışma bloğu boyunca oda üretime döner.",
-      "Son bölüm konuşma, feedback ve proje eşleşmeleri için açılır.",
+      "Starts with a short goal declaration.",
+      "The room turns into a true production block with minimal interruption.",
+      "The final stretch opens up for conversation, feedback, and project matching.",
     ],
   },
   {
     step: "02",
     title: "Build Sprint",
-    rhythm: "Enerji yüksek, iterasyon hızlı",
+    rhythm: "High energy, fast iteration",
     description:
-      "Daha kolektif ve daha yoğun format. Amaç fikir konuşmak değil, gün içinde daha fazla deneme yapmak ve somut bir ara çıktı üretmektir.",
+      "A more collective and more intense format. The goal is not to keep talking about ideas, but to run more experiments and end the day with a tangible intermediate result.",
     bullets: [
-      "Küçük ekipler hızla organize olur.",
-      "Feedback döngüsü üretimin içine gömülür.",
-      "Günün sonunda demo verilebilecek kadar yaklaşılır.",
+      "Small teams organize quickly.",
+      "The feedback loop is embedded directly into the build process.",
+      "By the end of the day, the work is close enough to demo.",
     ],
   },
   {
     step: "03",
     title: "Ship Day",
-    rhythm: "Teslim tarihi belli, bahane alanı dar",
+    rhythm: "The deadline is real, the excuse space is small",
     description:
-      "Mükemmel olması gerekmez ama gün bitmeden laptop dışına çıkmış olması gerekir. Formatın amacı baskı yaratmak değil, görünür ilerlemeyi zorlamaktır.",
+      "It does not need to be perfect, but it does need to exist outside your laptop before the day ends. The format is not about pressure for its own sake, but about forcing visible progress.",
     bullets: [
-      "Ne ship edeceğin baştan netleşir.",
-      "Zaman baskısı kararları hızlandırır.",
-      "Kapanış demoları görünür bir ilerleme kanıtı üretir.",
+      "What you will ship becomes clear from the start.",
+      "Time pressure speeds up decision-making.",
+      "Closing demos create visible proof of progress.",
     ],
   },
 ] as const;
@@ -71,29 +71,29 @@ const eventFormats = [
 const eventFlow = [
   {
     label: "Before you join",
-    text: "Laptopunu, net bir hedefini ve çalışmanı görünür kılma isteğini getir.",
+    text: "Bring your laptop, a clear goal, and a willingness to make your work visible.",
   },
   {
     label: "In the room",
-    text: "Bazı günler sessiz odak, bazı günler demo, bazı günler hızlı ekipli üretim öne çıkar.",
+    text: "Some days are built around quiet focus, some around demos, and some around fast team-based production.",
   },
   {
     label: "What stays constant",
-    text: "Ortak kural değişmez: gün bittiğinde elle tutulur bir ilerleme gösterebilmek.",
+    text: "The shared rule stays the same: leave the day able to point to real progress.",
   },
 ] as const;
 
 const roomPrinciples = [
-  "Yarım kalmış bir feature, prototip, landing page veya ürün problemiyle gel.",
-  "Sonsuz seçenek tartışmak yerine zaman kutusunu net karar almak için kullan.",
-  "Çıktı hâlâ pürüzlü olsa bile gün sonunda neyin değiştiğini paylaş.",
-  "Asıl sosyal katmanı, iş görünür olduktan sonra gelen feedback ve tanışıklıkta bul.",
+  "Show up with a half-finished feature, a prototype, a landing page, or a real product problem.",
+  "Use the timebox to make clear decisions instead of endlessly discussing options.",
+  "Even if the output is still rough, share what changed by the end of the session.",
+  "The strongest social layer happens after the work becomes visible through feedback and conversation.",
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Etkinlikler",
+  title: "Events",
   description:
-    "Ankara Build Club etkinlik ritmi, formatları ve güncel Luma takvimi.",
+    "Ankara Build Club event rhythm, formats, and live Luma calendar.",
 };
 
 export default function EventsPage() {
@@ -113,16 +113,16 @@ export default function EventsPage() {
 
               <div className="space-y-5">
                 <h1 className="max-w-4xl text-4xl font-semibold leading-[0.94] tracking-tight text-brand-white md:text-5xl lg:text-6xl">
-                  Ankara Build Club etkinlikleri, yalnızca buluşmak için değil{" "}
+                  Ankara Build Club events are designed not just to gather, but to{" "}
                   <SecondaryWordmark className="px-[0.03em] text-[1.02em]">
-                    ship etmek
+                    ship
                   </SecondaryWordmark>{" "}
-                  için tasarlanır.
+                  for real.
                 </h1>
                 <p className="max-w-2xl text-sm leading-8 text-ink-200 md:text-base">
-                  Bu sayfa pasif bir meetup takvimi değil. Her oturum daha derin
-                  odaklanmak, daha hızlı iterasyon yapmak ya da doğru insanlarla
-                  aynı masada gerçek bir ilerleme üretmek için kurgulanır.
+                  This is not a passive meetup calendar. Every session is shaped
+                  to help people focus harder, iterate faster, or make real
+                  progress around the same table with the right collaborators.
                 </p>
               </div>
 
@@ -153,7 +153,7 @@ export default function EventsPage() {
                   size="lg"
                   className="h-auto px-8 py-3 text-base text-brand-white shadow-[0_18px_48px_rgba(93,56,255,0.34)] hover:shadow-[0_24px_56px_rgba(93,56,255,0.42)]"
                 >
-                  Luma Takvimini Aç
+                  Open Luma Calendar
                 </LinkButton>
                 <LinkButton
                   href="#calendar"
@@ -161,7 +161,7 @@ export default function EventsPage() {
                   variant="ghost"
                   className="h-auto border-white/14 bg-white/[0.08] px-8 py-3 text-base text-brand-white hover:bg-white/[0.12]"
                 >
-                  Takvime Git
+                  Jump to Calendar
                 </LinkButton>
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function EventsPage() {
                     Before you join
                   </p>
                   <h2 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                    Odaya yalnızca vakit doldurmaya değil, görünür ilerlemeye gel.
+                    Come to the room for visible progress, not passive attendance.
                   </h2>
                 </div>
 
@@ -208,15 +208,15 @@ export default function EventsPage() {
           <div className="space-y-10">
             <div className="max-w-3xl space-y-3">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-300">
-                Etkinlik Yapısı
+                Event Structure
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-brand-white sm:text-4xl">
-                Topluluğun ritmi, farklı formatların birlikte çalışmasıyla kurulur.
+                The community rhythm is built by multiple formats working together.
               </h2>
               <p className="text-sm leading-7 text-ink-300 sm:text-base">
-                Her format başka bir ihtiyaca hizmet eder: odak, hız, teslim ve
-                ortak görünürlük. Sponsor sayfasındaki ritim dili burada doğrudan
-                etkinliğin kendisine dönüyor.
+                Each format serves a different need: focus, speed, delivery, and
+                shared visibility. The same rhythm language from the sponsor page
+                now maps directly onto the events themselves.
               </p>
             </div>
 
@@ -281,12 +281,12 @@ export default function EventsPage() {
                   Room energy
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-white">
-                  Günün hissi genelde küçük konuşmadan çok gerçek çalışmaya döner.
+                  The day usually shifts away from small talk and toward real work.
                 </h2>
                 <p className="text-sm leading-7 text-white/70 sm:text-base">
-                  Amaç insanları bir araya getirmekten fazlası. İş görünür hale
-                  geldikçe konuşmalar güçlenir, feedback daha faydalı olur ve
-                  topluluk daha doğal kurulur.
+                  The goal is more than putting people in the same room. As the
+                  work becomes visible, conversations get sharper, feedback gets
+                  better, and the community forms more naturally.
                 </p>
               </div>
             </div>
@@ -296,8 +296,9 @@ export default function EventsPage() {
                 Quick note
               </p>
               <p className="mt-3 text-sm leading-6 text-white/78">
-                Uzun süredir tek başına çalışıyorsan, bu sayfa büyük ihtimalle işi
-                saklamayı bırakıp odaya getirmen gerektiğini söylüyor.
+                If you have been building alone for too long, this page is
+                probably your signal to stop hiding the work and bring it into
+                the room.
               </p>
             </div>
           </div>
@@ -327,11 +328,11 @@ export default function EventsPage() {
                   Live calendar
                 </p>
                 <h2 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
-                  Güncel oturumları doğrudan Luma üzerinden takip et.
+                  Track upcoming sessions directly in Luma.
                 </h2>
                 <p className="text-sm leading-6 text-white/70 sm:text-base">
-                  Kayıt akışı, tarih değişiklikleri ve etkinlik detayları burada
-                  senkron kalır; en güncel takvim için en kısa yol bu embed.
+                  Registration, schedule changes, and event details stay in sync
+                  here, so this embed is the fastest path to the current calendar.
                 </p>
               </div>
 
@@ -341,7 +342,7 @@ export default function EventsPage() {
                 rel="noreferrer"
                 variant="outline"
               >
-                Luma sayfasını aç
+                Open Luma page
               </LinkButton>
             </div>
 
@@ -349,7 +350,7 @@ export default function EventsPage() {
               <div className="overflow-hidden rounded-[1.4rem] border border-white/8 bg-white">
                 <iframe
                   src={LUMA_CALENDAR_URL}
-                  title="Ankara Build Club etkinlik takvimi"
+                  title="Ankara Build Club events calendar"
                   width="100%"
                   height="980"
                   frameBorder="0"
