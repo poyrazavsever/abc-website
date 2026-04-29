@@ -105,13 +105,17 @@ export default function ComponentsShowcasePage() {
       >
         <div className="flex flex-wrap gap-3">
           <Button>Primary</Button>
+          <Button leadingIcon={<DemoIcon />}>Builder Flow</Button>
+          <Button href="/events" variant="outline">
+            Href CTA
+          </Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
           <Button variant="danger">Danger</Button>
           <Button loading>Loading</Button>
           <IconButton icon={<DemoIcon />} label="Favori" />
-          <LinkButton href="/events" variant="outline">
+          <LinkButton href="/events" variant="ghost">
             Etkinlikler
           </LinkButton>
         </div>

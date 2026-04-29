@@ -8,9 +8,9 @@ import {
 import { cn } from "@/lib/utils/cn";
 
 const iconButtonSizeClasses = {
-  sm: "h-9 w-9",
-  md: "h-10 w-10",
-  lg: "h-11 w-11",
+  sm: "h-10 w-10",
+  md: "h-11 w-11",
+  lg: "h-12 w-12",
 } as const;
 
 type IconButtonSize = keyof typeof iconButtonSizeClasses;
@@ -36,12 +36,12 @@ export function IconButton({
   return (
     <Button
       variant={variant}
+      motion="icon-swap"
+      leadingIcon={icon}
       className={cn("px-0", iconButtonSizeClasses[size], className)}
       aria-label={label}
       title={label}
       {...props}
-    >
-      {icon}
-    </Button>
+    />
   );
 }
