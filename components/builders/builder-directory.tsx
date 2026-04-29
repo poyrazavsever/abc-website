@@ -110,15 +110,15 @@ export function BuilderDirectory({ initialBuilders }: BuilderDirectoryProps) {
               Builders
             </h1>
             <p className="mx-auto max-w-2xl text-base leading-7 text-white/62 sm:text-lg">
-              Ankara Build Club icindeki kayitli builder&apos;lari kesfet, kim ne
-              uzerinde calisiyor hizlica gor ve dogru kisilere ulas.
+              Discover registered builders inside Ankara Build Club, see what
+              people are working on, and reach the right collaborators faster.
             </p>
           </div>
         </div>
 
         <div className="mx-auto max-w-4xl space-y-6">
           <label className="relative block">
-            <span className="sr-only">Builder ara</span>
+            <span className="sr-only">Search builders</span>
             <span className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2">
               <SearchIcon />
             </span>
@@ -131,7 +131,7 @@ export function BuilderDirectory({ initialBuilders }: BuilderDirectoryProps) {
                   setQuery(nextValue);
                 });
               }}
-              placeholder="Isim, sehir veya bio ile ara..."
+              placeholder="Search by name, city, or bio..."
               className="h-14 rounded-full border-white/10 bg-white/6 pl-14 pr-5 text-base text-white shadow-none placeholder:text-white/38 hover:border-white/20 focus-visible:ring-white/20"
             />
           </label>
@@ -161,7 +161,7 @@ export function BuilderDirectory({ initialBuilders }: BuilderDirectoryProps) {
           </div>
 
           <p className="text-center text-sm text-white/48">
-            {filteredBuilders.length} builder bulundu
+            {filteredBuilders.length} builders found
           </p>
         </div>
 
@@ -173,9 +173,9 @@ export function BuilderDirectory({ initialBuilders }: BuilderDirectoryProps) {
           </div>
         ) : (
           <div className="mx-auto max-w-2xl rounded-[1.5rem] border border-dashed border-white/12 bg-white/4 px-6 py-16 text-center shadow-xs">
-            <p className="text-lg font-semibold text-white">Eslestigin builder bulunamadi</p>
+            <p className="text-lg font-semibold text-white">No builders matched your filters</p>
             <p className="mt-3 text-sm leading-6 text-white/58">
-              Arama kelimesini veya filtreleri degistirip tekrar deneyebilirsin.
+              Try adjusting the search term or changing the selected filters.
             </p>
           </div>
         )}

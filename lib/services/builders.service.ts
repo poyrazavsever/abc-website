@@ -1,4 +1,3 @@
-import { publicBuilderMocks } from "@/lib/mocks/builders.mock";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { BuilderRole, BuilderTag } from "@/lib/types/admin";
 import type { ProjectCategory, ProjectRecord, ProjectStatus } from "@/lib/types/profile";
@@ -133,26 +132,10 @@ function mapProjectRow(row: unknown): ProjectRecord {
   };
 }
 
-function mapMockBuilders(): PublicBuilderDirectoryProfile[] {
-  return publicBuilderMocks.map((builder) => ({
-    id: builder.id,
-    fullName: builder.fullName,
-    city: builder.city,
-    role: builder.role,
-    bio: builder.bio,
-    linkedinUrl: builder.linkedinUrl,
-    publicEmail: builder.publicEmail,
-    activeTag: builder.activeTag,
-    badgeCount: builder.badgeCount,
-    projectCount: builder.projectCount,
-    createdAt: builder.createdAt,
-  }));
-}
-
 export async function getPublicBuilders(): Promise<PublicBuilderDirectoryProfile[]> {
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
-    return mapMockBuilders();
+    return [];
   }
 
   const [profilesResult, projectsResult, userBadgesResult] = await Promise.all([
@@ -172,7 +155,7 @@ export async function getPublicBuilders(): Promise<PublicBuilderDirectoryProfile
       projects: projectsResult.error,
       userBadges: userBadgesResult.error,
     });
-    return mapMockBuilders();
+    return [];
   }
 
   const projectCountByOwner = new Map<string, number>();

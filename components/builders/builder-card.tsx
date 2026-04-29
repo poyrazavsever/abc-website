@@ -29,7 +29,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
               >
                 {builder.fullName}
               </Link>
-              <p className="text-sm text-white/50">{builder.city || "Konum paylasilmadi"}</p>
+              <p className="text-sm text-white/50">{builder.city || "Location not shared"}</p>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -38,10 +38,10 @@ export function BuilderCard({ builder }: BuilderCardProps) {
                 <Badge variant="success">{builderTagLabels[builder.activeTag]}</Badge>
               ) : null}
               {builder.projectCount > 0 ? (
-                <Badge variant="secondary">{builder.projectCount} proje</Badge>
+                <Badge variant="secondary">{builder.projectCount} projects</Badge>
               ) : null}
               {builder.badgeCount > 0 ? (
-                <Badge variant="info">{builder.badgeCount} rozet</Badge>
+                <Badge variant="info">{builder.badgeCount} badges</Badge>
               ) : null}
             </div>
           </div>
@@ -50,7 +50,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
         <p className="line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-white/68">
           {builder.bio.trim().length > 0
             ? builder.bio
-            : "Bu builder henuz kisa tanimini eklememis, ama topluluk dizininde yerini aldi."}
+            : "This builder has not added a short bio yet, but is already part of the community directory."}
         </p>
 
         <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4">
@@ -71,7 +71,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
               href={`/builders/${builder.id}`}
               className="text-sm font-medium text-accent-300 transition hover:text-accent-200"
             >
-              Profili ac
+              Open profile
             </Link>
           </div>
         </div>

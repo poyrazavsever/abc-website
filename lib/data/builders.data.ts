@@ -9,10 +9,10 @@ type TagOption<T extends string> = {
 export { builderRoleLabels, builderRoleOptions };
 
 export const builderTagOptions: ReadonlyArray<TagOption<BuilderTag>> = [
-  { value: "cofounder_looking", label: "Co-founder ariyor" },
-  { value: "idea_looking", label: "Fikir ariyor" },
-  { value: "team_complete", label: "Takim tamamlandi" },
-  { value: "just_building", label: "Sadece build ediyor" },
+  { value: "cofounder_looking", label: "Looking for Co-founder" },
+  { value: "idea_looking", label: "Looking for Ideas" },
+  { value: "team_complete", label: "Team Complete" },
+  { value: "just_building", label: "Just Building" },
 ] as const;
 
 export const builderTagLabels = Object.fromEntries(
