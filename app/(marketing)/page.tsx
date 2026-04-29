@@ -1,7 +1,8 @@
 import { Grainient } from "@/components/marketing/grainient";
+import Masonry from "@/components/marketing/masonry";
 import { RotatingText } from "@/components/marketing/rotating-text";
 import { Container } from "@/components/shared/container";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/link-button";
 import { SectionHeader } from "@/components/ui/section-header";
 
@@ -51,25 +52,108 @@ const analyticsHighlights = [
 
 const eventFormats = [
   {
+    id: "deep-work",
     title: "Deep Work",
     eyebrow: "Focus",
     description:
       "Two uninterrupted hours of building. You declare your goal first, then stay locked in.",
     meta: "Weekly rhythm",
+    img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 640,
   },
   {
+    id: "ship-day",
     title: "Ship Day",
     eyebrow: "Output",
     description:
       "One day, one decision, one delivery. Not perfect, but you leave with something shipped.",
     meta: "Demo + feedback",
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 500,
   },
   {
+    id: "sprint",
     title: "Sprint",
     eyebrow: "Speed",
     description:
       "A fast, high-energy build marathon where teams form quickly and turn ideas into products.",
     meta: "Builder teams",
+    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 760,
+  },
+  {
+    id: "feedback-circle",
+    title: "Feedback Circle",
+    eyebrow: "Clarity",
+    description:
+      "Builders bring a page, a prototype, or a launch problem and leave with sharp outside perspective.",
+    meta: "Critique session",
+    img: "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 560,
+  },
+  {
+    id: "demo-night",
+    title: "Demo Night",
+    eyebrow: "Showcase",
+    description: "Builders presenting what shipped that week.",
+    meta: "Community demos",
+    img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 680,
+  },
+  {
+    id: "work-session",
+    title: "Work Session",
+    eyebrow: "Build",
+    description: "Focused laptop session with the room in flow.",
+    meta: "Open tables",
+    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 540,
+  },
+  {
+    id: "team-sync",
+    title: "Team Sync",
+    eyebrow: "Collab",
+    description: "Quick alignment before a fast sprint starts.",
+    meta: "Builder teams",
+    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 620,
+  },
+  {
+    id: "founder-corner",
+    title: "Founder Corner",
+    eyebrow: "Talk",
+    description: "Small group discussion around product decisions.",
+    meta: "Office hours",
+    img: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 500,
+  },
+  {
+    id: "late-night-build",
+    title: "Late Night Build",
+    eyebrow: "Energy",
+    description: "Evening session with screens, notes, and momentum.",
+    meta: "After hours",
+    img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 760,
+  },
+  {
+    id: "community-moment",
+    title: "Community Moment",
+    eyebrow: "People",
+    description: "The social layer between sessions and shipping.",
+    meta: "Meetups",
+    img: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80",
+    url: "/events",
+    height: 580,
   },
 ];
 
@@ -237,54 +321,6 @@ export default function MarketingHomePage() {
         </Container>
       </section>
 
-      <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
-        <Container className="space-y-10">
-          <SectionHeader
-            eyebrow="Our events"
-            heading="Each format solves a different builder need."
-            description="Sometimes you need focus, sometimes output, and sometimes a team to finish something in a single day."
-            actions={
-              <LinkButton
-                href="/events"
-                variant="outline"
-                className="border-white/12 bg-white/5 text-white hover:bg-white/10"
-              >
-                All events
-              </LinkButton>
-            }
-            className="[&_h2]:text-white [&_p]:text-white/70"
-          />
-
-          <div className="grid gap-5 lg:grid-cols-3">
-            {eventFormats.map((event) => (
-              <Card
-                key={event.title}
-                surface="transparent"
-                elevated={false}
-                className="rounded-[1.75rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] shadow-[0_18px_42px_rgba(0,0,0,0.18)]"
-              >
-                <CardHeader className="space-y-3 p-6 pb-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-300">
-                    {event.eyebrow}
-                  </p>
-                  <CardTitle className="text-2xl tracking-[-0.04em] text-white">
-                    {event.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-5 p-6 pt-0">
-                  <p className="text-sm leading-7 text-white/70 sm:text-base">
-                    {event.description}
-                  </p>
-                  <div className="inline-flex rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
-                    {event.meta}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
       <section className="border-t border-white/6 bg-brand-black pb-24 pt-4 sm:pb-28">
         <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
           <div className="space-y-6 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(17,17,17,0.98),rgba(70,44,125,0.82),rgba(131,28,145,0.72))] p-8 text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:p-10">
@@ -331,6 +367,43 @@ export default function MarketingHomePage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
+        <Container className="space-y-10">
+          <SectionHeader
+            eyebrow="Our events"
+            heading="Each format solves a different builder need."
+            description="Sometimes you need focus, sometimes output, and sometimes a team to finish something in a single day."
+            actions={
+              <LinkButton
+                href="/events"
+                variant="outline"
+                className="border-white/12 bg-white/5 text-white hover:bg-white/10"
+              >
+                All events
+              </LinkButton>
+            }
+            className="[&_h2]:text-white [&_p]:text-white/70"
+          />
+
+          <div className="space-y-5">
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,112,191,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_28px_72px_rgba(0,0,0,0.24)] sm:p-4">
+              <Masonry
+                items={eventFormats}
+                ease="power3.out"
+                duration={0.7}
+                stagger={0.08}
+                animateFrom="bottom"
+                scaleOnHover
+                hoverScale={0.97}
+                blurToFocus
+                colorShiftOnHover
+                showItemOverlay={false}
+              />
+            </div>
           </div>
         </Container>
       </section>

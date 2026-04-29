@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 
+import { ScrollSmoother } from "@/components/shared/scroll-smoother";
 import { AppToaster } from "@/components/shared/toaster";
 
 type ProvidersProps = {
@@ -11,6 +12,7 @@ type ProvidersProps = {
 export function Providers({ children }: ProvidersProps) {
   return (
     <>
+      <ScrollSmoother />
       {children}
       <AppToaster />
     </>
