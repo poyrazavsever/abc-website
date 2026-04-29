@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
 
-import { SponsorsHero } from "@/components/marketing/sponsors-hero";
-import { Container } from "@/components/shared/container";
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Badge,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  Divider,
-  LinkButton,
-  SectionHeader,
-} from "@/components/ui";
+  SponsorsCollaborationPanel,
+  type CollaborationPill,
+} from "@/components/marketing/sponsors-collaboration-panel";
+import { SponsorsCommunitySummary } from "@/components/marketing/sponsors-community-summary";
+import { SponsorsHero } from "@/components/marketing/sponsors-hero";
+import { SponsorsProgramsSection } from "@/components/marketing/sponsors-programs-section";
 import {
   partnerContactEmail,
   partnerContactHref,
@@ -25,11 +16,112 @@ import {
 export const metadata: Metadata = {
   title: "Sponsorlar ve Partnerlik",
   description:
-    "Ankara Build Club sponsor ve partner sayfasi. Toplulugun yapisini, etkinlik ritmini ve is birligi modellerini hizlica inceleyin.",
+    "Ankara Build Club sponsor ve partner sayfası. Topluluğun yapısını, etkinlik ritmini ve iş birliği yüzeylerini hızlıca inceleyin.",
 };
 
 export default function SponsorsPage() {
-  const { community, hero, partnership, programs, showcase } = sponsorsPageData;
+  const { hero, programs } = sponsorsPageData;
+
+  const collaborationSection: {
+    eyebrow: string;
+    heading: string;
+    highlightPhrase: string;
+    description: string;
+    ctaLabel: string;
+    pills: CollaborationPill[];
+  } = {
+    eyebrow: "İş birliği alanları",
+    heading: "Birlikte daha güçlü partnerlikler kuruyoruz.",
+    highlightPhrase: "daha güçlü",
+    description:
+      "Ankara Build Club ile anlamlı bir partnerlik başlatmak istiyorsanız bize yazın.",
+    ctaLabel: "İletişime Geç",
+    pills: [
+      {
+        label: "Teknoloji & API Partneri",
+        icon: "cube",
+        accent: "violet",
+        offsetClassName: "md:-translate-y-7 md:rotate-[-6deg]",
+      },
+      {
+        label: "Hackathon Destekçisi",
+        icon: "calendar",
+        accent: "pink",
+        offsetClassName: "md:translate-x-12 md:translate-y-1 md:rotate-[4deg]",
+      },
+      {
+        label: "Mentorluk",
+        icon: "users",
+        accent: "violet",
+        offsetClassName: "md:translate-x-24 md:-translate-y-1 md:rotate-[5deg]",
+      },
+      {
+        label: "Mekan Sponsoru",
+        icon: "pin",
+        accent: "pink",
+        offsetClassName: "md:-translate-x-3 md:translate-y-4 md:rotate-[-4deg]",
+      },
+      {
+        label: "Topluluk Kredileri",
+        icon: "spark",
+        accent: "violet",
+        offsetClassName: "md:translate-x-16 md:translate-y-8 md:rotate-[3deg]",
+      },
+      {
+        label: "İçerik & Lansman İş Birliği",
+        icon: "launch",
+        accent: "pink",
+        offsetClassName: "md:translate-x-6 md:translate-y-10 md:rotate-[-5deg]",
+      },
+    ],
+  };
+
+  const communitySummary = {
+    eyebrow: "Topluluk Özeti",
+    heading: "Sayıların arkasında görünür bir build ritmi var.",
+    description:
+      "Networking değil, tekrar eden üretim anları. ABC sponsor için daha net temas, daha gerçek geri bildirim ve daha doğal görünürlük üretir.",
+    proofTitles: [
+      "Builder odağı",
+      "Fiziksel tekrar",
+      "Görünür üretim",
+      "Doğal partner teması",
+    ],
+    stats: [
+      {
+        value: 5,
+        suffix: "+",
+        label: "Üretim disiplini",
+        detail:
+          "Kod, ürün, tasarım, growth ve operasyon aynı build zemininde buluşuyor.",
+      },
+      {
+        value: programs.items.length,
+        label: "Çekirdek format",
+        detail:
+          "Deep Work, Build Sprint ve Ship Day ritmi düzenli olarak taşınıyor.",
+      },
+      {
+        value: collaborationSection.pills.length,
+        label: "Partnerlik alanı",
+        detail:
+          "API, mekan, mentorluk ve içerik tarafında doğrudan topluluğa temas eden net iş birliği yüzeyleri var.",
+      },
+      {
+        value: 4,
+        label: "Topluluk katmanı",
+        detail:
+          "Odak, tekrar, görünürlük ve partner teması aynı akışta birlikte çalışıyor.",
+      },
+    ],
+  };
+
+  const programsSection = {
+    heading: "Topluluğun ritmi, üretim formatlarıyla kurulur.",
+    highlightPhrase: "üretim formatlarıyla",
+    description:
+      "Deep Work, Build Sprint ve Ship Day aynı topluluğu üç farklı enerji modunda sürekli çalıştırır.",
+  };
 
   return (
     <div className="bg-background">
@@ -39,196 +131,31 @@ export default function SponsorsPage() {
         secondaryHref="/events"
       />
 
-      <Container className="space-y-16 py-14 sm:space-y-20 sm:py-16 lg:py-20">
-        <section className="space-y-8">
-          <SectionHeader
-            eyebrow={community.eyebrow}
-            heading={community.heading}
-            description={community.description}
-          />
+      <SponsorsCommunitySummary
+        eyebrow={communitySummary.eyebrow}
+        heading={communitySummary.heading}
+        description={communitySummary.description}
+        proofTitles={communitySummary.proofTitles}
+        stats={communitySummary.stats}
+      />
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {community.proofItems.map((item) => (
-              <Card key={item.title} elevated={false}>
-                <CardHeader>
-                  <CardTitle>{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-4 text-sm leading-6 text-text-muted">
-                  {item.description}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+      <SponsorsProgramsSection
+        heading={programsSection.heading}
+        highlightPhrase={programsSection.highlightPhrase}
+        description={programsSection.description}
+        items={programs.items}
+      />
 
-        <Divider />
-
-        <section className="space-y-8">
-          <SectionHeader
-            eyebrow={programs.eyebrow}
-            heading={programs.heading}
-            description={programs.description}
-          />
-
-          <div className="grid gap-5 xl:grid-cols-3">
-            {programs.items.map((item) => (
-              <Card key={item.name}>
-                <CardHeader className="space-y-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="primary">{item.name}</Badge>
-                    <Badge variant="secondary">{item.rhythm}</Badge>
-                  </div>
-                  <CardTitle>{item.name}</CardTitle>
-                  <CardDescription>{item.format}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-1.5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.11em] text-text-soft">
-                      Beklenen cikti
-                    </p>
-                    <p className="text-sm leading-6 text-text-muted">
-                      {item.outcome}
-                    </p>
-                  </div>
-                  <Divider />
-                  <div className="space-y-1.5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.11em] text-text-soft">
-                      Partner icin alan
-                    </p>
-                    <p className="text-sm leading-6 text-text-muted">
-                      {item.partnerValue}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <Divider />
-
-        <section className="space-y-8">
-          <SectionHeader
-            eyebrow={showcase.eyebrow}
-            heading={showcase.heading}
-            description={showcase.description}
-          />
-
-          <Alert variant="info">
-            <AlertTitle>{showcase.noteTitle}</AlertTitle>
-            <AlertDescription>{showcase.noteDescription}</AlertDescription>
-          </Alert>
-
-          <div className="grid gap-5 lg:grid-cols-2">
-            {showcase.items.map((item) => (
-              <Card key={item.title} surface="muted">
-                <CardHeader>
-                  <CardTitle>{item.title}</CardTitle>
-                  <CardDescription>{item.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {item.outputs.map((output) => (
-                      <Badge key={output} variant="info">
-                        {output}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <Divider />
-
-        <section className="space-y-8">
-          <SectionHeader
-            eyebrow={partnership.eyebrow}
-            heading={partnership.heading}
-            description={partnership.description}
-          />
-
-          <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-            <div className="grid gap-5 md:grid-cols-2">
-              {partnership.models.map((model) => (
-                <Card key={model.title}>
-                  <CardHeader>
-                    <CardTitle>{model.title}</CardTitle>
-                    <CardDescription>{model.summary}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="text-sm leading-6 text-text-muted">
-                    {model.fit}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <Card surface="soft">
-              <CardHeader>
-                <CardTitle>Iletisim akisi</CardTitle>
-                <CardDescription>
-                  Ilk temas dogrudan mail ile baslar. Sonrasinda kapsam ve
-                  format birlikte netlestirilir.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {partnership.contactFlow.map((step, index) => (
-                  <div key={step.step} className="space-y-4">
-                    <div className="flex gap-3">
-                      <Badge
-                        variant="primary"
-                        className="mt-0.5 min-w-10 justify-center"
-                      >
-                        {step.step}
-                      </Badge>
-                      <div className="space-y-1">
-                        <p className="font-semibold text-text">{step.title}</p>
-                        <p className="text-sm leading-6 text-text-muted">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                    {index < partnership.contactFlow.length - 1 ? (
-                      <Divider />
-                    ) : null}
-                  </div>
-                ))}
-
-                <Alert variant="success" className="mt-2">
-                  <AlertTitle>Iletisim</AlertTitle>
-                  <AlertDescription>
-                    {partnerContactEmail} adresine ulasin. Beklenen geri donus
-                    suresi: {partnership.responseWindow}.
-                  </AlertDescription>
-                </Alert>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <Card className="overflow-hidden border-primary-100 bg-surface-strong">
-          <CardContent className="flex flex-col gap-6 py-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl space-y-3">
-              <Badge variant="primary">Sonraki adim</Badge>
-              <h2 className="text-2xl font-semibold text-text sm:text-3xl">
-                {partnership.closingTitle}
-              </h2>
-              <p className="text-base leading-7 text-text-muted">
-                {partnership.closingDescription}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <LinkButton href={partnerContactHref}>
-                {hero.primaryCtaLabel}
-              </LinkButton>
-              <LinkButton href="/events" variant="outline">
-                {hero.secondaryCtaLabel}
-              </LinkButton>
-            </div>
-          </CardContent>
-        </Card>
-      </Container>
+      <SponsorsCollaborationPanel
+        eyebrow={collaborationSection.eyebrow}
+        heading={collaborationSection.heading}
+        highlightPhrase={collaborationSection.highlightPhrase}
+        description={collaborationSection.description}
+        email={partnerContactEmail}
+        ctaLabel={collaborationSection.ctaLabel}
+        ctaHref={partnerContactHref}
+        pills={collaborationSection.pills}
+      />
     </div>
   );
 }
