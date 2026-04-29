@@ -216,6 +216,7 @@ export default function MarketingHomePage() {
             {analyticsHighlights.map((item) => (
               <Card
                 key={item.label}
+                surface="transparent"
                 elevated={false}
                 className="rounded-[1.5rem] border-white/10 bg-white/5 shadow-[0_18px_40px_rgba(0,0,0,0.2)] backdrop-blur-sm"
               >
@@ -258,6 +259,7 @@ export default function MarketingHomePage() {
             {eventFormats.map((event) => (
               <Card
                 key={event.title}
+                surface="transparent"
                 elevated={false}
                 className="rounded-[1.75rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] shadow-[0_18px_42px_rgba(0,0,0,0.18)]"
               >
@@ -310,6 +312,7 @@ export default function MarketingHomePage() {
             {missionPillars.map((pillar, index) => (
               <Card
                 key={pillar.title}
+                surface="transparent"
                 elevated={false}
                 className="rounded-[1.5rem] border-white/10 bg-white/5 shadow-[0_16px_44px_rgba(0,0,0,0.2)]"
               >
