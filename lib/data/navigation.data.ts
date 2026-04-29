@@ -2,7 +2,7 @@ import type { NavigationData } from "@/lib/types/navigation";
 
 export const navigationData: NavigationData = {
   brand: {
-    label: "Ankara Build Club",
+    label: "Shipin",
     href: "/",
     imgUrl: "/brand/logo.png",
     scrolledImgUrl: "/brand/logoblack.png",
@@ -11,52 +11,52 @@ export const navigationData: NavigationData = {
   items: [
     {
       id: "about",
-      label: "Hakkımızda",
+      label: "About",
       href: "/",
     },
     {
       id: "events",
-      label: "Etkinlikler",
+      label: "Events",
       href: "/events",
     },
     {
       id: "community",
-      label: "Topluluk",
+      label: "Community",
       groups: [
         {
-          title: "Genel Bakış",
+          title: "Overview",
           links: [
             {
-              label: "Topluluk Yaklaşımı",
+              label: "Community approach",
               href: "/",
               description:
-                "Ankara Build Club'ın üretim ritmini, çalışma biçimini ve topluluk çerçevesini inceleyin.",
+                "Explore Shipin's shipping rhythm, operating model, and community framework.",
               icon: "lucide:building-2",
             },
             {
-              label: "Katılım ve Üyelik",
+              label: "Join and membership",
               href: "/register",
               description:
-                "Topluluğa katılım sürecini başlatın ve builder profilinizi oluşturun.",
+                "Start your application and create your builder profile.",
               icon: "lucide:user-plus",
             },
           ],
         },
         {
-          title: "Programlar",
+          title: "Programs",
           links: [
             {
-              label: "Etkinlik Takvimi",
+              label: "Event calendar",
               href: "/events",
               description:
-                "Deep Work, Sprint ve diğer topluluk buluşmalarının takvimini takip edin.",
+                "Track Deep Work, Sprint, and other community sessions.",
               icon: "lucide:calendar-days",
             },
             {
-              label: "Partnerlik ve Sponsorlar",
+              label: "Partners and sponsors",
               href: "/sponsors",
               description:
-                "Kurumsal iş birliği modeli, sponsor görünürlüğü ve iletişim akışını inceleyin.",
+                "Review the partnership model, sponsor visibility, and contact flow.",
               icon: "lucide:briefcase-business",
             },
           ],
@@ -65,20 +65,20 @@ export const navigationData: NavigationData = {
     },
     {
       id: "sponsors",
-      label: "Sponsorlar",
+      label: "Sponsors",
       href: "/sponsors",
     },
   ],
   auth: {
-    loginLabel: "Giriş Yap",
+    loginLabel: "Sign in",
     loginHref: "/login",
-    registerLabel: "Kayıt Ol",
+    registerLabel: "Sign up",
     registerHref: "/register",
-    profileLabel: "Profilim",
-    logoutLabel: "Çıkış Yap",
+    profileLabel: "My profile",
+    logoutLabel: "Sign out",
   },
   cta: {
-    label: "Topluluğa Katıl",
+    label: "Join the community",
     href: "/register",
   },
 };

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { AuthFormFallback } from "@/components/auth/auth-form-fallback";
 import { AuthFormShell } from "@/components/auth/auth-form-shell";
 import { LoginForm } from "@/components/auth/login-form";
-import { resolveAuthenticatedRedirect } from "@/lib/auth/server";
+import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
   title: "Giris Yap",
@@ -25,9 +25,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       : Array.isArray(query.next)
         ? query.next[0]
         : null;
-  const target = await resolveAuthenticatedRedirect(next);
+  const target = await resolveAuthEntryRedirect(next);
 
-  if (!target.startsWith("/login")) {
+  if (target) {
     redirect(target);
   }
 

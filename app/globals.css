@@ -181,3 +181,24 @@
 body {
   @apply bg-background text-text antialiased;
 }
+
+.abc-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.abc-marquee-track {
+  display: inline-flex;
+  min-width: max-content;
+  animation: abc-marquee-scroll 28s linear infinite;
+}
+
+@keyframes abc-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

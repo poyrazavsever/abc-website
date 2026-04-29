@@ -107,14 +107,9 @@ export function Navbar({ overlay = false }: NavbarProps) {
     };
   }, [hasSupabaseAuthEnv]);
 
-  const hasSurface = !overlay || isScrolled;
-  const desktopTextClass = hasSurface ? "text-text" : "text-text-inverse";
+  const desktopTextClass = "text-text-inverse";
   const defaultBrandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
-  const scrolledBrandImageUrl =
-    navigationData.brand.scrolledImgUrl?.trim() || defaultBrandImageUrl;
-  const brandImageUrl = hasSurface
-    ? scrolledBrandImageUrl
-    : defaultBrandImageUrl;
+  const brandImageUrl = defaultBrandImageUrl;
   const hasBrandImage = brandImageUrl.length > 0;
   const isAuthenticated = isAuthReady && Boolean(authUser);
   const profileHref = getProfileHref(authUser);
@@ -124,22 +119,29 @@ export function Navbar({ overlay = false }: NavbarProps) {
       initial={{ y: -22, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className={cn("sticky inset-x-0 top-0 z-40", overlay && "-mb-20")}
+      className={cn("sticky inset-x-0 top-0 z-40", overlay && "-mb-10")}
       onMouseLeave={() => setActiveMenuId(null)}
     >
       <div className="relative">
-        <motion.div
-          initial={false}
-          animate={{ opacity: hasSurface ? 1 : 0 }}
-          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none absolute inset-0 border-b border-border bg-surface/85 shadow-xs backdrop-blur-xl"
-          aria-hidden="true"
-        />
+        <div
+          className={cn(
+            "relative z-10 rounded-b-[1.8rem] border-b border-white/8 bg-brand-black text-text-inverse shadow-[0_24px_60px_rgb(0_0_0_/_0.3)] transition-all duration-300 sm:rounded-b-[2rem]",
+            isScrolled && "shadow-[0_18px_46px_rgb(0_0_0_/_0.38)]",
+          )}
+        >
+          <div
+            className="pointer-events-none absolute inset-x-6 top-0 h-px bg-white/12"
+            aria-hidden="true"
+          />
 
-        <div className="relative z-10">
-          <Container>
-            <div className="flex h-20 pb-4 items-end justify-between gap-6">
-              <div className="flex min-w-0 items-end gap-8 xl:gap-10">
+          <Container className="relative z-10">
+            <div
+              className={cn(
+                "flex items-center justify-between gap-6 transition-[height,padding] duration-300",
+                isScrolled ? "h-18 py-3.5" : "h-22 py-4",
+              )}
+            >
+              <div className="flex min-w-0 items-center gap-6 xl:gap-8">
                 <Link
                   href={navigationData.brand.href}
                   className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90"
@@ -150,7 +152,10 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       alt={navigationData.brand.label}
                       width={192}
                       height={48}
-                      className="h-12 w-auto"
+                      className={cn(
+                        "w-auto transition-[height] duration-300",
+                        isScrolled ? "h-8 sm:h-9" : "h-9 sm:h-11",
+                      )}
                       priority
                     />
                   ) : (
@@ -165,8 +170,8 @@ export function Navbar({ overlay = false }: NavbarProps) {
                   )}
                 </Link>
 
-                <nav className="hidden lg:block" aria-label="Ana navigasyon">
-                  <ul className="flex items-center gap-2">
+                <nav className="hidden lg:block" aria-label="Main navigation">
+                  <ul className="flex items-center gap-1.5">
                     {navigationData.items.map((item) => {
                       const hasDropdown = Boolean(item.groups?.length);
 
@@ -178,9 +183,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                               className={cn(
                                 "rounded-full px-4 py-2 text-sm font-semibold transition",
                                 desktopTextClass,
-                                hasSurface
-                                  ? "hover:bg-surface-muted"
-                                  : "hover:bg-white/15",
+                                "hover:bg-white/10 hover:text-white",
                               )}
                               onMouseEnter={() => setActiveMenuId(null)}
                             >
@@ -197,9 +200,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                             className={cn(
                               "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition",
                               desktopTextClass,
-                              hasSurface
-                                ? "hover:bg-surface-muted"
-                                : "hover:bg-white/15",
+                              "hover:bg-white/10 hover:text-white",
                             )}
                             aria-expanded={activeMenuId === item.id}
                             onMouseEnter={() => setActiveMenuId(item.id)}
@@ -229,7 +230,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     onMouseLeave={() => setIsProfileMenuOpen(false)}
                   >
                     <button className="flex items-center gap-2 rounded-full focus:outline-none transition hover:opacity-80">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary border border-primary/20">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-sm font-semibold text-text-inverse">
                         {authUser?.email ? authUser.email[0].toUpperCase() : "U"}
                       </div>
                     </button>
@@ -240,24 +241,24 @@ export function Navbar({ overlay = false }: NavbarProps) {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute right-0 mt-2 w-48 rounded-xl border border-border bg-surface/95 p-2 shadow-lg backdrop-blur-xl z-50"
+                          className="absolute right-0 mt-2 w-48 rounded-2xl border border-white/10 bg-[#121212]/96 p-2 text-text-inverse shadow-lg backdrop-blur-xl z-50"
                         >
                           <Link 
                             href={profileHref} 
-                            className="block w-full rounded-lg px-4 py-2 text-left text-sm font-medium text-text hover:bg-surface-muted transition"
+                            className="block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-text-inverse transition hover:bg-white/8"
                           >
                             {navigationData.auth.profileLabel}
                           </Link>
                           <Link 
                             href="/dashboard/my-projects" 
-                            className="block w-full rounded-lg px-4 py-2 text-left text-sm font-medium text-text hover:bg-surface-muted transition"
+                            className="block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-text-inverse transition hover:bg-white/8"
                           >
-                            Projelerim
+                            My projects
                           </Link>
-                          <div className="my-1 border-t border-border" />
+                          <div className="my-1 border-t border-white/10" />
                           <LogoutButton 
                             variant="ghost" 
-                            className="w-full justify-start rounded-lg px-4 py-2 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition"
+                            className="w-full justify-start rounded-xl px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-400/10 hover:text-red-200"
                           >
                             {navigationData.auth.logoutLabel}
                           </LogoutButton>
@@ -270,11 +271,9 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     <Link
                       href={navigationData.auth.loginHref}
                       className={cn(
-                        "hidden rounded-full px-4 py-2 text-sm font-semibold transition lg:inline-flex",
+                        "hidden rounded-full border border-white/12 px-4 py-2.5 text-sm font-semibold transition lg:inline-flex",
                         desktopTextClass,
-                        hasSurface
-                          ? "hover:bg-surface-muted"
-                          : "hover:bg-white/15",
+                        "bg-white text-brand-black hover:bg-white/90",
                       )}
                     >
                       {navigationData.auth.loginLabel}
@@ -282,10 +281,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     <Link
                       href={navigationData.cta.href}
                       className={cn(
-                        "hidden rounded-full px-5 py-2.5 text-sm font-semibold transition lg:inline-flex",
-                        hasSurface
-                          ? "bg-primary text-primary-foreground hover:bg-primary-700"
-                          : "bg-surface/95 text-primary hover:bg-surface",
+                        "hidden rounded-full border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_24px_rgb(131_28_145_/_0.28)] transition lg:inline-flex hover:brightness-110",
                       )}
                     >
                       {navigationData.cta.label}
@@ -295,13 +291,10 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
                 <button
                   type="button"
-                  aria-label="Mobil menuyu ac"
+                  aria-label="Open mobile menu"
                   aria-expanded={isMobileMenuOpen}
                   className={cn(
-                    "inline-flex rounded-md p-2 transition lg:hidden",
-                    hasSurface
-                      ? "text-text hover:bg-surface-muted"
-                      : "text-text-inverse hover:bg-white/15",
+                    "inline-flex rounded-full p-2.5 text-text-inverse transition hover:bg-white/10 lg:hidden",
                   )}
                   onClick={() => setIsMobileMenuOpen(true)}
                 >
@@ -312,8 +305,8 @@ export function Navbar({ overlay = false }: NavbarProps) {
           </Container>
         </div>
 
-        <NavbarMegaMenu
-          hasSurface={hasSurface}
+          <NavbarMegaMenu
+          hasSurface={false}
           item={activeMenuItem}
           isOpen={Boolean(activeMenuItem)}
           onClose={() => setActiveMenuId(null)}
@@ -323,7 +316,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
       <NavbarMobile
         auth={navigationData.auth}
         cta={navigationData.cta}
-        hasSurface={hasSurface}
+        hasSurface={false}
         isAuthenticated={isAuthenticated}
         isOpen={isMobileMenuOpen}
         items={navigationData.items}
