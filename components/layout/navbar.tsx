@@ -4,12 +4,15 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { User } from "@supabase/supabase-js";
 
-import { LogoutButton } from "@/components/auth/logout-button";
 import { NavbarMegaMenu } from "@/components/layout/navbar-mega-menu";
 import { NavbarMobile } from "@/components/layout/navbar-mobile";
+import {
+  NavbarUserMenu,
+  type NavbarProfileSummary,
+} from "@/components/layout/navbar-user-menu";
 import { Container } from "@/components/shared/container";
 import { getProfileHref } from "@/lib/auth/shared";
 import { navigationData } from "@/lib/data/navigation.data";
@@ -27,10 +30,10 @@ export function Navbar({ overlay = false }: NavbarProps) {
   );
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [authUser, setAuthUser] = useState<User | null>(null);
+  const [authProfile, setAuthProfile] = useState<NavbarProfileSummary | null>(null);
   const [isAuthReady, setIsAuthReady] = useState(!hasSupabaseAuthEnv);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const activeMenuItem = useMemo(
     () => navigationData.items.find((item) => item.id === activeMenuId) ?? null,
@@ -85,6 +88,24 @@ export function Navbar({ overlay = false }: NavbarProps) {
       }
 
       setAuthUser(user);
+      if (user) {
+        const { data } = await supabase
+          .from("profiles")
+          .select("avatar_url, full_name")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        if (isMounted) {
+          setAuthProfile({
+            avatarUrl:
+              typeof data?.avatar_url === "string" ? data.avatar_url : null,
+            fullName:
+              typeof data?.full_name === "string" ? data.full_name : null,
+          });
+        }
+      } else {
+        setAuthProfile(null);
+      }
       setIsAuthReady(true);
     };
 
@@ -98,6 +119,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
       }
 
       setAuthUser(session?.user ?? null);
+      setAuthProfile(null);
       setIsAuthReady(true);
     });
 
@@ -125,8 +147,8 @@ export function Navbar({ overlay = false }: NavbarProps) {
       <div className="relative">
         <div
           className={cn(
-            "relative z-10 rounded-b-[1.8rem] border-b border-white/8 bg-brand-black text-text-inverse shadow-[0_24px_60px_rgb(0_0_0_/_0.3)] transition-all duration-300 sm:rounded-b-[2rem]",
-            isScrolled && "shadow-[0_18px_46px_rgb(0_0_0_/_0.38)]",
+            "relative z-10 rounded-b-[1.8rem] border-b border-white/8 bg-brand-black text-text-inverse transition-all duration-300 sm:rounded-b-[2rem]",
+            isScrolled && "bg-brand-black/96",
           )}
         >
           <div
@@ -224,48 +246,13 @@ export function Navbar({ overlay = false }: NavbarProps) {
 
               <div className="flex shrink-0 items-center gap-2">
                 {isAuthenticated ? (
-                  <div 
-                    className="relative hidden lg:block" 
-                    onMouseEnter={() => setIsProfileMenuOpen(true)} 
-                    onMouseLeave={() => setIsProfileMenuOpen(false)}
-                  >
-                    <button className="flex items-center gap-2 rounded-full focus:outline-none transition hover:opacity-80">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-sm font-semibold text-text-inverse">
-                        {authUser?.email ? authUser.email[0].toUpperCase() : "U"}
-                      </div>
-                    </button>
-                    <AnimatePresence>
-                      {isProfileMenuOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute right-0 mt-2 w-48 rounded-2xl border border-white/10 bg-[#121212]/96 p-2 text-text-inverse shadow-lg backdrop-blur-xl z-50"
-                        >
-                          <Link 
-                            href={profileHref} 
-                            className="block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-text-inverse transition hover:bg-white/8"
-                          >
-                            {navigationData.auth.profileLabel}
-                          </Link>
-                          <Link 
-                            href="/dashboard/my-projects" 
-                            className="block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-text-inverse transition hover:bg-white/8"
-                          >
-                            My projects
-                          </Link>
-                          <div className="my-1 border-t border-white/10" />
-                          <LogoutButton 
-                            variant="ghost" 
-                            className="w-full justify-start rounded-xl px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-400/10 hover:text-red-200"
-                          >
-                            {navigationData.auth.logoutLabel}
-                          </LogoutButton>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  authUser ? (
+                    <NavbarUserMenu
+                      user={authUser}
+                      profile={authProfile}
+                      profileHref={profileHref}
+                    />
+                  ) : null
                 ) : (
                   <>
                     <Link
@@ -281,7 +268,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                     <Link
                       href={navigationData.cta.href}
                       className={cn(
-                        "hidden rounded-full border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_24px_rgb(131_28_145_/_0.28)] transition lg:inline-flex hover:brightness-110",
+                        "hidden rounded-full border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition lg:inline-flex hover:brightness-110",
                       )}
                     >
                       {navigationData.cta.label}

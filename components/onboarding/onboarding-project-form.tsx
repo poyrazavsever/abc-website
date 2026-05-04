@@ -77,6 +77,9 @@ export function OnboardingProjectForm({
           name: values.project.name.trim(),
           owner_id: profile.id,
           status: "idea",
+          technologies: null,
+          image_path: null,
+          image_url: null,
           url: values.project.url.trim() || null,
         };
 

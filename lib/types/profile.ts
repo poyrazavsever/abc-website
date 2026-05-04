@@ -47,6 +47,9 @@ export type ProjectRecord = {
   description: string;
   category: ProjectCategory;
   url: string | null;
+  technologies: string | null;
+  imagePath: string | null;
+  imageUrl: string | null;
   status: ProjectStatus;
   createdAt: string;
   updatedAt: string;
@@ -64,6 +67,7 @@ export type OnboardingProjectInput = {
   description: string;
   category: ProjectCategory;
   url: string;
+  technologies?: string;
 };
 
 export type OnboardingState = {

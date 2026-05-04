@@ -125,7 +125,7 @@ export function NavbarMobile({
             exit={{ x: "100%" }}
             transition={{ duration: 0.26, ease: "easeOut" }}
             className={cn(
-              "absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l shadow-lg backdrop-blur-xl",
+              "absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l backdrop-blur-xl",
               panelClass,
             )}
           >
@@ -325,7 +325,7 @@ export function NavbarMobile({
                                   "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
                                   hasSurface
                                     ? "bg-primary text-primary-foreground hover:bg-primary-700"
-                                    : "border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary text-primary-foreground shadow-[0_10px_24px_rgb(131_28_145_/_0.28)] hover:brightness-110",
+                                    : "border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary text-primary-foreground hover:brightness-110",
                                 )}
                                 onClick={closeMenu}
                               >

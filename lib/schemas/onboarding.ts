@@ -107,6 +107,42 @@ export const onboardingProjectItemSchema = z.object({
         return false;
       }
     }, "Geçerli bir bağlantı girin."),
+  technologies: z
+    .string()
+    .trim()
+    .max(160, "Kullanılan teknolojiler 160 karakterden uzun olamaz.")
+    .optional(),
+});
+
+export const quickProjectSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Proje adı en az 2 karakter olmalı.")
+    .max(80, "Proje adı 80 karakterden uzun olamaz."),
+  url: z
+    .string()
+    .trim()
+    .min(1, "Proje URL'i zorunlu.")
+    .max(200, "Proje URL'i 200 karakterden uzun olamaz.")
+    .refine((value) => {
+      try {
+        const url = new URL(value);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    }, "Geçerli bir web adresi girin."),
+  technologies: z
+    .string()
+    .trim()
+    .max(160, "Kullanılan teknolojiler 160 karakterden uzun olamaz.")
+    .optional(),
+  description: z
+    .string()
+    .trim()
+    .min(10, "Kısa açıklama en az 10 karakter olmalı.")
+    .max(150, "Kısa açıklama 150 karakterden uzun olamaz."),
 });
 
 export const onboardingProjectsSchema = z
@@ -153,3 +189,4 @@ export type OnboardingProjectsFormValues = z.infer<
   typeof onboardingProjectsSchema
 >;
 export type ProfileEditFormValues = z.infer<typeof profileEditSchema>;
+export type QuickProjectFormValues = z.infer<typeof quickProjectSchema>;

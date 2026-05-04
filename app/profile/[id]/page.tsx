@@ -159,11 +159,17 @@ function ProjectTile({ project }: { project: ProjectRecord }) {
     <article className="group overflow-hidden rounded-md border border-white/10 bg-white/[0.04] transition hover:border-accent-300/35 hover:bg-white/[0.07]">
       <div
         className={cn(
-          "aspect-square bg-linear-to-br p-4",
-          getCoverClassName(project.id),
+          "aspect-square bg-cover bg-center p-4",
+          !project.imageUrl && "bg-linear-to-br",
+          !project.imageUrl && getCoverClassName(project.id),
         )}
+        style={
+          project.imageUrl
+            ? { backgroundImage: `url(${project.imageUrl})` }
+            : undefined
+        }
       >
-        <div className="flex h-full flex-col justify-between rounded-md bg-black/18 p-4 backdrop-blur-[1px]">
+        <div className="flex h-full flex-col justify-between rounded-md bg-black/24 p-4 backdrop-blur-[1px]">
           <Badge variant="secondary" className="w-fit bg-white/12 text-white">
             {project.status}
           </Badge>
@@ -181,6 +187,11 @@ function ProjectTile({ project }: { project: ProjectRecord }) {
         <p className="line-clamp-3 text-sm leading-6 text-ink-300">
           {project.description}
         </p>
+        {project.technologies ? (
+          <p className="line-clamp-1 text-xs text-ink-400">
+            {project.technologies}
+          </p>
+        ) : null}
         {project.url ? (
           <Link
             href={project.url}

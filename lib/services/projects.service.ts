@@ -57,6 +57,9 @@ function mapProjectRow(row: unknown): ProjectRecord {
     description: asString(record.description),
     category: asProjectCategory(record.category),
     url: asNullableString(record.url),
+    technologies: asNullableString(record.technologies),
+    imagePath: asNullableString(record.image_path),
+    imageUrl: asNullableString(record.image_url),
     status: asProjectStatus(record.status),
     createdAt: asString(record.created_at),
     updatedAt: asString(record.updated_at),
@@ -119,6 +122,9 @@ export async function createProject(user: Pick<User, "id">, input: OnboardingPro
       description: input.description.trim(),
       category: input.category,
       url: asNullableString(input.url),
+      technologies: asNullableString(input.technologies),
+      image_path: null,
+      image_url: null,
       status: input.status ?? "idea",
     })
     .select("*")
@@ -143,6 +149,9 @@ export async function updateProject(
   if (input.description !== undefined) updates.description = input.description.trim();
   if (input.category !== undefined) updates.category = input.category;
   if (input.url !== undefined) updates.url = asNullableString(input.url);
+  if (input.technologies !== undefined) {
+    updates.technologies = asNullableString(input.technologies);
+  }
   if (input.status !== undefined) updates.status = input.status;
 
   const { data, error } = await supabase
