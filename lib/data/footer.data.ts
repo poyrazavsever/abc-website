@@ -41,7 +41,7 @@ export const footerData: FooterData = {
     {
       title: "Company",
       links: [
-        { label: "About", href: "/" },
+        { label: "About", href: "/about" },
         { label: "Become a sponsor", href: "/sponsors" },
         { label: "Contact", href: partnerContactHref },
         { label: "Press kit", href: "/" },

@@ -12,7 +12,7 @@ export const navigationData: NavigationData = {
     {
       id: "about",
       label: "About",
-      href: "/",
+      href: "/about",
     },
     {
       id: "events",
