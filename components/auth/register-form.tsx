@@ -10,20 +10,15 @@ import { AuthDivider } from "@/components/auth/auth-divider";
 import { AuthHeading } from "@/components/auth/auth-heading";
 import { GoogleAuthButton } from "@/components/auth/google-auth-button";
 import {
-  buildAuthCallbackUrl,
   getAuthContinueHref,
-  getAuthErrorMessage,
   getLoginHref,
   getSafeNextPath,
 } from "@/lib/auth/shared";
+import { registerWithPassword } from "@/lib/auth/client";
 import { trackClientEvent } from "@/lib/integrations/analytics/client";
 import { registerSchema, type RegisterFormValues } from "@/lib/schemas/auth";
-import { createSupabaseClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/cn";
 import { appToast } from "@/lib/utils/toast";
-
-const authUnavailableMessage =
-  "Kayıt servisi şu anda kullanılamıyor. Lütfen kısa bir süre sonra tekrar deneyin.";
 
 const inputClassName =
   "h-12 w-full rounded-xl border border-white/12 bg-white/[0.06] px-4 text-sm text-brand-white outline-none transition placeholder:text-white/38 focus:border-accent focus:ring-2 focus:ring-accent/25";
@@ -52,29 +47,19 @@ export function RegisterForm() {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    const supabase = createSupabaseClient();
+    let data;
 
-    if (!supabase) {
-      appToast.error(authUnavailableMessage);
-      return;
-    }
-
-    const appUrl =
-      process.env.NEXT_PUBLIC_APP_URL?.trim() || window.location.origin;
-    const { data, error } = await supabase.auth.signUp({
-      email: values.email.trim(),
-      password: values.password,
-      options: {
-        emailRedirectTo: buildAuthCallbackUrl(appUrl, nextPath),
-        data: {
-          full_name: values.fullName.trim(),
-          onboarding_completed: false,
-        },
-      },
-    });
-
-    if (error) {
-      appToast.error(getAuthErrorMessage(error.message));
+    try {
+      data = await registerWithPassword({
+        email: values.email,
+        fullName: values.fullName,
+        nextPath,
+        password: values.password,
+      });
+    } catch (error) {
+      appToast.error(
+        error instanceof Error ? error.message : "Kayıt işlemi tamamlanamadı.",
+      );
       return;
     }
 

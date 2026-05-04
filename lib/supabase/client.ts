@@ -1,11 +1,9 @@
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-import { getOptionalEnv } from "@/lib/utils/env";
-
 let supabaseClient: SupabaseClient | null | undefined;
-const supabaseUrl = getOptionalEnv("NEXT_PUBLIC_SUPABASE_URL");
-const supabaseAnonKey = getOptionalEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
 export function createSupabaseClient(): SupabaseClient | null {
   if (supabaseClient !== undefined) {

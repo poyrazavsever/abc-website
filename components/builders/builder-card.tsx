@@ -24,7 +24,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
           <div className="min-w-0 flex-1 space-y-2">
             <div className="space-y-1">
               <Link
-                href={`/builders/${builder.id}`}
+                href={`/profile/${builder.id}`}
                 className="inline-block text-lg font-semibold text-white transition hover:text-accent-300"
               >
                 {builder.fullName}
@@ -68,7 +68,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
               </Link>
             ) : null}
             <Link
-              href={`/builders/${builder.id}`}
+              href={`/profile/${builder.id}`}
               className="text-sm font-medium text-accent-300 transition hover:text-accent-200"
             >
               Open profile

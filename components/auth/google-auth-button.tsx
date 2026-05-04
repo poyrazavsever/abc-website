@@ -3,16 +3,9 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import {
-  buildAuthCallbackUrl,
-  getAuthErrorMessage,
-  getSafeNextPath,
-} from "@/lib/auth/shared";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { loginWithGoogle } from "@/lib/auth/client";
+import { getSafeNextPath } from "@/lib/auth/shared";
 import { appToast } from "@/lib/utils/toast";
-
-const authUnavailableMessage =
-  "Google ile giriş şu anda kullanılamıyor. Supabase ayarlarını kontrol edin.";
 
 function GoogleIcon() {
   return (
@@ -48,29 +41,14 @@ export function GoogleAuthButton() {
   async function handleGoogleAuth() {
     setIsSubmitting(true);
 
-    const supabase = createSupabaseClient();
-
-    if (!supabase) {
-      appToast.error(authUnavailableMessage);
-      setIsSubmitting(false);
-      return;
-    }
-
-    const appUrl =
-      process.env.NEXT_PUBLIC_APP_URL?.trim() || window.location.origin;
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: buildAuthCallbackUrl(appUrl, nextPath),
-        queryParams: {
-          access_type: "offline",
-          prompt: "select_account",
-        },
-      },
-    });
-
-    if (error) {
-      appToast.error(getAuthErrorMessage(error.message));
+    try {
+      await loginWithGoogle(nextPath);
+    } catch (error) {
+      appToast.error(
+        error instanceof Error
+          ? error.message
+          : "Google ile giriş işlemi başlatılamadı.",
+      );
       setIsSubmitting(false);
     }
   }

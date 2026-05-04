@@ -19,14 +19,10 @@ const projectCategoryValues = projectCategoryOptions.map(
 
 const cityValues = turkiyeCityOptions.map((option) => option.value);
 
-function isLinkedInUrl(value: string) {
-  try {
-    const url = new URL(value);
-    return /^([a-z0-9-]+\.)?linkedin\.com$/i.test(url.hostname);
-  } catch {
-    return false;
-  }
-}
+const githubUsernameRegex =
+  /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$/u;
+const linkedinUsernameRegex = /^[A-Za-z0-9][A-Za-z0-9-]{1,98}[A-Za-z0-9]$/u;
+const instagramUsernameRegex = /^[A-Za-z0-9._]{1,30}$/u;
 
 export const onboardingProfileSchema = z.object({
   fullName: z
@@ -41,7 +37,7 @@ export const onboardingProfileSchema = z.object({
       message: "Türkiye içindeki bir şehir seçin.",
     }),
   role: z.enum(builderRoleValues, {
-    message: "Genel unvanınızı seçin.",
+    message: "Genel ünvanınızı seçin.",
   }),
 });
 
@@ -51,28 +47,35 @@ export const onboardingDetailsSchema = z.object({
     .trim()
     .min(20, "Bio en az 20 karakter olmalı.")
     .max(500, "Bio 500 karakterden uzun olamaz."),
-  linkedinUrl: z
+  githubUsername: z
     .string()
     .trim()
-    .max(200, "LinkedIn bağlantısı 200 karakterden uzun olamaz.")
-    .refine((value) => value.length === 0 || isLinkedInUrl(value), {
-      message: "Geçerli bir LinkedIn profili bağlantısı girin.",
-    }),
-  publicEmail: z
-    .string()
-    .trim()
-    .max(120, "Görünür e-posta 120 karakterden uzun olamaz.")
+    .max(39, "GitHub kullanıcı adı 39 karakterden uzun olamaz.")
     .refine(
-      (value) =>
-        value.length === 0 ||
-        z.email({ message: "Geçerli bir e-posta adresi girin." }).safeParse(
-          value,
-        ).success,
-      {
-        message: "Geçerli bir e-posta adresi girin.",
-      },
+      (value) => value.length === 0 || githubUsernameRegex.test(value),
+      "Geçerli bir GitHub kullanıcı adı girin.",
+    ),
+  linkedinUsername: z
+    .string()
+    .trim()
+    .max(100, "LinkedIn kullanıcı adı 100 karakterden uzun olamaz.")
+    .refine(
+      (value) => value.length === 0 || linkedinUsernameRegex.test(value),
+      "Geçerli bir LinkedIn kullanıcı adı girin.",
+    ),
+  instagramUsername: z
+    .string()
+    .trim()
+    .max(30, "Instagram kullanıcı adı 30 karakterden uzun olamaz.")
+    .refine(
+      (value) => value.length === 0 || instagramUsernameRegex.test(value),
+      "Geçerli bir Instagram kullanıcı adı girin.",
     ),
 });
+
+export const profileEditSchema = onboardingProfileSchema.merge(
+  onboardingDetailsSchema,
+);
 
 export const onboardingProjectItemSchema = z.object({
   name: z
@@ -111,15 +114,29 @@ export const onboardingProjectsSchema = z
     hasProjects: z.enum(["yes", "no"], {
       message: "Lütfen proje durumunuzu seçin.",
     }),
-    projects: z.array(onboardingProjectItemSchema),
+    project: z.object({
+      name: z.string().trim(),
+      description: z.string().trim(),
+      category: z.enum(projectCategoryValues, {
+        message: "Proje kategorisini seçin.",
+      }),
+      url: z.string().trim(),
+    }),
   })
   .superRefine((values, context) => {
-    if (values.hasProjects === "yes" && values.projects.length === 0) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["projects"],
-        message: "En az bir proje ekleyin ya da proje seçimini değiştirin.",
-      });
+    if (values.hasProjects === "no") {
+      return;
+    }
+
+    const parsedProject = onboardingProjectItemSchema.safeParse(values.project);
+
+    if (!parsedProject.success) {
+      for (const issue of parsedProject.error.issues) {
+        context.addIssue({
+          ...issue,
+          path: ["project", ...issue.path],
+        });
+      }
     }
   });
 
@@ -135,3 +152,4 @@ export type OnboardingProjectItemFormValues = z.infer<
 export type OnboardingProjectsFormValues = z.infer<
   typeof onboardingProjectsSchema
 >;
+export type ProfileEditFormValues = z.infer<typeof profileEditSchema>;

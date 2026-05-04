@@ -11,17 +11,13 @@ import { AuthHeading } from "@/components/auth/auth-heading";
 import { GoogleAuthButton } from "@/components/auth/google-auth-button";
 import {
   getAuthContinueHref,
-  getAuthErrorMessage,
   getRegisterHref,
   getSafeNextPath,
 } from "@/lib/auth/shared";
+import { loginWithPassword } from "@/lib/auth/client";
 import { loginSchema, type LoginFormValues } from "@/lib/schemas/auth";
-import { createSupabaseClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils/cn";
 import { appToast } from "@/lib/utils/toast";
-
-const authUnavailableMessage =
-  "Giriş servisi şu anda kullanılamıyor. Lütfen kısa bir süre sonra tekrar deneyin.";
 
 function getQueryMessage(message: string | null) {
   const trimmedMessage = message?.trim();
@@ -71,31 +67,17 @@ export function LoginForm() {
   }, [queryMessage]);
 
   const onSubmit = handleSubmit(async (values) => {
-    const supabase = createSupabaseClient();
-
-    if (!supabase) {
-      appToast.error(authUnavailableMessage);
+    try {
+      await loginWithPassword(values);
+      appToast.success("Giriş başarılı.");
+      router.replace(getAuthContinueHref(nextPath));
+      router.refresh();
+    } catch (error) {
+      appToast.error(
+        error instanceof Error ? error.message : "Giriş işlemi tamamlanamadı.",
+      );
       return;
     }
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: values.email.trim(),
-      password: values.password,
-    });
-
-    if (error) {
-      appToast.error(getAuthErrorMessage(error.message));
-      return;
-    }
-
-    if (!data.user) {
-      appToast.error("Oturum oluşturulamadı. Lütfen yeniden deneyin.");
-      return;
-    }
-
-    appToast.success("Giriş başarılı.");
-    router.replace(getAuthContinueHref(nextPath));
-    router.refresh();
   });
 
   return (
