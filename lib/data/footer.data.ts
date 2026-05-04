@@ -25,16 +25,16 @@ export const footerData: FooterData = {
       links: [
         { label: "Build Sprint", href: "/events" },
         { label: "Mentorship", href: "/" },
-        { label: "Builder matching", href: "/dashboard/matching" },
-        { label: "Badge program", href: "/dashboard/profile" },
+        { label: "Builder matching", href: "/builders" },
+        { label: "Badge program", href: "/settings" },
       ],
     },
     {
       title: "Platform",
       links: [
-        { label: "Profile", href: "/dashboard/profile" },
-        { label: "Badges", href: "/dashboard/profile" },
-        { label: "LinkedIn card", href: "/dashboard/linkedin-card" },
+        { label: "Profile", href: "/settings" },
+        { label: "Badges", href: "/settings" },
+        { label: "LinkedIn card", href: "/settings" },
         { label: "Onboarding", href: "/onboarding/profile" },
       ],
     },

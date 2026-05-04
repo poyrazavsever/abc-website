@@ -1,40 +1,57 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import { useCallback, useRef, useState } from "react";
 import { toPng } from "html-to-image";
-import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Select, Label, Badge } from "@/components/ui";
-import { CardRenderer, type CardTemplate } from "./card-renderer";
-import type { ProfileRecord } from "@/lib/types/profile";
+
+import { CardRenderer, type CardTemplate } from "@/components/linkedin-card/card-renderer";
 import { roleLabels, tagLabels } from "@/components/admin/admin-shell";
+import type { ProfileRecord } from "@/lib/types/profile";
 import { appToast as toast } from "@/lib/utils/toast";
 
 type CardGeneratorProps = {
   profile: ProfileRecord;
 };
 
+const templateOptions: Array<{ label: string; value: CardTemplate }> = [
+  { label: "Dark", value: "dark" },
+  { label: "Minimal", value: "minimal" },
+  { label: "Accent", value: "vibrant" },
+];
+
 export function CardGenerator({ profile }: CardGeneratorProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [template, setTemplate] = useState<CardTemplate>("vibrant");
+  const [template, setTemplate] = useState<CardTemplate>("dark");
   const [isDownloading, setIsDownloading] = useState(false);
 
   const role = roleLabels[profile.role] || "Builder";
   const tag = profile.activeTag ? tagLabels[profile.activeTag] : "Build ediyorum";
-
-  const suggestedText = `Selamlar! 👋\n\nAnkara Build Club (ABC) topluluğuna katıldım. Şu anda ${role} olarak yer alıyorum ve "${tag}" durumundayım. \n\nToplulukta harika işler başarmayı ve yeni insanlarla tanışmayı sabırsızlıkla bekliyorum!\n\n#AnkaraBuildClub #Builder`;
+  const suggestedText = [
+    "Ankara Build Club topluluğuna katıldım.",
+    "",
+    `${role} olarak üretmeye devam ediyorum. Durumum: ${tag}.`,
+    "",
+    "#AnkaraBuildClub #Builder",
+  ].join("\n");
 
   const handleDownload = useCallback(async () => {
-    if (!cardRef.current) return;
-    
+    if (!cardRef.current) {
+      return;
+    }
+
     try {
       setIsDownloading(true);
-      const dataUrl = await toPng(cardRef.current, { cacheBust: true, pixelRatio: 2 });
+      const dataUrl = await toPng(cardRef.current, {
+        cacheBust: true,
+        pixelRatio: 2,
+      });
       const link = document.createElement("a");
-      link.download = `abc-linkedin-${profile.fullName.replace(/\s+/g, '-').toLowerCase()}.png`;
+      link.download = `abc-linkedin-${profile.fullName
+        .replace(/\s+/g, "-")
+        .toLocaleLowerCase("tr")}.png`;
       link.href = dataUrl;
       link.click();
-      toast.success("Görsel başarıyla indirildi.");
-    } catch (err) {
-      console.error(err);
+      toast.success("Görsel indirildi.");
+    } catch {
       toast.error("Görsel indirilirken bir hata oluştu.");
     } finally {
       setIsDownloading(false);
@@ -45,101 +62,90 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
     try {
       await navigator.clipboard.writeText(suggestedText);
       toast.success("Metin panoya kopyalandı.");
-    } catch (err) {
+    } catch {
       toast.error("Metin kopyalanamadı.");
     }
   };
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_400px]">
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Canlı Önizleme</CardTitle>
-            <CardDescription>
-              LinkedIn için üretilen görseliniz. Görsel boyutları 1200x630 (LinkedIn standardı) olarak ayarlanmıştır.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {/* Önizleme Konteyneri - Görüntüde küçültülmüş, ama DOM'da gerçek boyutunda gizli rendering yapmayacağız. CSS scale kullanarak gerçek boyutta render edip UI'a sığdıracağız. */}
-            <div className="relative w-full overflow-hidden rounded-lg border border-border bg-surface-muted" style={{ aspectRatio: "1200/630" }}>
-              <div 
-                className="absolute origin-top-left" 
-                style={{ 
-                  transform: `scale(var(--scale-factor))`,
-                  width: '1200px',
-                  height: '630px',
-                }}
-                ref={(node) => {
-                  if (node && node.parentElement) {
-                    const scale = node.parentElement.clientWidth / 1200;
-                    node.style.setProperty('--scale-factor', scale.toString());
-                  }
-                }}
-              >
-                <CardRenderer ref={cardRef} profile={profile} template={template} />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+    <div className="grid gap-5 lg:grid-cols-[1fr_17rem]">
+      <div className="min-w-0">
+        <div className="relative aspect-[1200/630] w-full overflow-hidden rounded-md border border-white/10 bg-black">
+          <div
+            className="absolute left-0 top-0 h-[630px] w-[1200px] origin-top-left"
+            style={{
+              transform: "scale(var(--card-scale, 0.4))",
+            }}
+            ref={(node) => {
+              if (!node?.parentElement) {
+                return;
+              }
+
+              const scale = node.parentElement.clientWidth / 1200;
+              node.style.setProperty("--card-scale", scale.toString());
+            }}
+          >
+            <CardRenderer ref={cardRef} profile={profile} template={template} />
+          </div>
+        </div>
       </div>
 
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Ayarlar</CardTitle>
-            <CardDescription>Kartınızın görünümünü özelleştirin.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="template">Şablon Seçimi</Label>
-              <Select 
-                id="template"
-                value={template} 
-                onChange={(e) => setTemplate(e.target.value as CardTemplate)}
-                className="w-full"
+      <aside className="space-y-5">
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-white/56">Şablon</p>
+          <div className="grid gap-2">
+            {templateOptions.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className="flex h-10 items-center justify-between rounded-md border border-white/10 px-3 text-sm text-white/72 transition hover:border-white/24 hover:text-white data-[active=true]:border-white/40 data-[active=true]:text-white"
+                data-active={template === option.value}
+                onClick={() => setTemplate(option.value)}
               >
-                <option value="vibrant">Canlı (Vibrant)</option>
-                <option value="minimal">Minimal (Açık Tema)</option>
-                <option value="dark">Koyu (Dark Tema)</option>
-              </Select>
-            </div>
+                {option.label}
+                {template === option.value ? <span className="text-white/42">Seçili</span> : null}
+              </button>
+            ))}
+          </div>
+        </div>
 
-            <div className="space-y-2">
-              <Label>Profil Bilgileriniz</Label>
-              <div className="flex flex-wrap gap-2 pt-1">
-                <Badge variant="info">{role}</Badge>
-                <Badge variant="primary">{tag}</Badge>
-                <Badge variant="secondary">{profile.city}</Badge>
-              </div>
-              <p className="text-xs text-text-soft pt-2">
-                Bilgilerinizi Profil sayfasından güncelleyebilirsiniz.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="rounded-md border border-white/10 p-3">
+          <p className="text-xs font-medium text-white/56">Profil</p>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            <span className="rounded-full border border-white/10 px-2 py-1 text-white/72">
+              {role}
+            </span>
+            <span className="rounded-full border border-white/10 px-2 py-1 text-white/72">
+              {profile.city}
+            </span>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Paylaşım Metni</CardTitle>
-            <CardDescription>Bu metni kopyalayıp gönderinize yapıştırabilirsiniz.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="rounded-md border border-border bg-surface-muted p-4 text-sm text-text-soft whitespace-pre-wrap">
-              {suggestedText}
-            </div>
-            
-            <div className="flex flex-col gap-3">
-              <Button onClick={handleCopyText} variant="outline" className="w-full">
-                Metni Kopyala
-              </Button>
-              <Button onClick={handleDownload} loading={isDownloading} className="w-full">
-                Görseli İndir (PNG)
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-white/56">Paylaşım metni</p>
+          <div className="max-h-40 overflow-y-auto rounded-md border border-white/10 p-3 text-xs leading-5 text-white/62 whitespace-pre-wrap">
+            {suggestedText}
+          </div>
+        </div>
+
+        <div className="grid gap-2">
+          <button
+            type="button"
+            className="h-10 rounded-md border border-white/12 px-4 text-sm font-medium text-white/78 transition hover:border-white/28 hover:text-white"
+            onClick={handleCopyText}
+          >
+            Metni Kopyala
+          </button>
+          <button
+            type="button"
+            className="h-10 rounded-md border border-white bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/88 disabled:pointer-events-none disabled:opacity-60"
+            disabled={isDownloading}
+            onClick={handleDownload}
+          >
+            {isDownloading ? "İndiriliyor..." : "PNG İndir"}
+          </button>
+        </div>
+      </aside>
     </div>
   );
 }

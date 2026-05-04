@@ -118,7 +118,7 @@ export function OnboardingProjectForm({
       await trackClientEvent("onboarding_completed");
 
       appToast.success("Onboarding tamamlandı.");
-      router.replace("/dashboard/profile");
+      router.replace("/settings");
       router.refresh();
     } catch (error) {
       appToast.error(
@@ -134,7 +134,7 @@ export function OnboardingProjectForm({
           Projeni ekle
         </h1>
         <p className="text-sm text-white/66">
-          İlk projeni şimdi ekleyebilir ya da dashboard üzerinden daha sonra
+          İlk projeni şimdi ekleyebilir ya da profil menüsünden daha sonra
           tamamlayabilirsin.
         </p>
       </div>

@@ -90,7 +90,7 @@ export function getOnboardingHref(step: OnboardingStep = "profile") {
 }
 
 export function getDefaultAuthedHref() {
-  return "/dashboard/profile";
+  return "/settings";
 }
 
 export function getAuthContinueHref(next: string | null | undefined) {

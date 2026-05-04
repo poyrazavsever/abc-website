@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { User } from "@supabase/supabase-js";
 
 import { LogoutButton } from "@/components/auth/logout-button";
+import { LinkedInCardModal } from "@/components/linkedin-card/linkedin-card-modal";
 import { AddProjectModal } from "@/components/projects/add-project-modal";
 import { getAuthUserMetadata } from "@/lib/auth/shared";
 import { navigationData } from "@/lib/data/navigation.data";
@@ -58,6 +59,16 @@ function PlusIcon() {
     <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" aria-hidden="true">
       <path d="M10 4.5v11" />
       <path d="M4.5 10h11" />
+    </svg>
+  );
+}
+
+function CardIcon() {
+  return (
+    <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" aria-hidden="true">
+      <path d="M4.5 5.5h11A1.5 1.5 0 0 1 17 7v6a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 13V7a1.5 1.5 0 0 1 1.5-1.5Z" />
+      <path d="M6.5 8.25h4" />
+      <path d="M6.5 11.75h7" />
     </svg>
   );
 }
@@ -130,6 +141,7 @@ export function NavbarUserMenu({
 }: NavbarUserMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+  const [isLinkedInModalOpen, setIsLinkedInModalOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const metadata = getAuthUserMetadata(user);
   const fullName = profile?.fullName || metadata.full_name || "Kullanıcı";
@@ -208,6 +220,15 @@ export function NavbarUserMenu({
             >
               Proje Ekle
             </MenuItem>
+            <MenuItem
+              icon={<CardIcon />}
+              onClick={() => {
+                setIsOpen(false);
+                setIsLinkedInModalOpen(true);
+              }}
+            >
+              LinkedIn Kartı Oluştur
+            </MenuItem>
 
             <div className="my-1.5 border-t border-white/10" />
 
@@ -225,6 +246,11 @@ export function NavbarUserMenu({
       <AddProjectModal
         isOpen={isProjectModalOpen}
         onClose={() => setIsProjectModalOpen(false)}
+      />
+      <LinkedInCardModal
+        isOpen={isLinkedInModalOpen}
+        onClose={() => setIsLinkedInModalOpen(false)}
+        user={user}
       />
     </div>
   );

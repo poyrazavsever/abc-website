@@ -134,7 +134,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
   const brandImageUrl = defaultBrandImageUrl;
   const hasBrandImage = brandImageUrl.length > 0;
   const isAuthenticated = isAuthReady && Boolean(authUser);
-  const profileHref = getProfileHref(authUser);
+  const profileHref = authUser ? `/profile/${authUser.id}` : getProfileHref(authUser);
 
   return (
     <motion.header

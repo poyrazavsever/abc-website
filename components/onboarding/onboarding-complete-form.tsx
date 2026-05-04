@@ -44,7 +44,7 @@ export function OnboardingCompleteForm() {
 
     await trackClientEvent("onboarding_completed");
 
-    router.replace("/dashboard/profile");
+    router.replace("/settings");
     router.refresh();
   };
 
