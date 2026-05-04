@@ -8,6 +8,7 @@ type BuilderProfileRecord = {
   city: string;
   role: BuilderRole;
   bio: string;
+  avatarUrl: string | null;
   linkedinUrl: string | null;
   publicEmail: string | null;
   activeTag: BuilderTag | null;
@@ -22,6 +23,7 @@ export type PublicBuilderDirectoryProfile = {
   city: string;
   role: BuilderRole;
   bio: string;
+  avatarUrl: string | null;
   linkedinUrl: string | null;
   publicEmail: string | null;
   activeTag: BuilderTag | null;
@@ -107,6 +109,7 @@ function mapProfileRow(row: unknown): BuilderProfileRecord {
     city: asString(record.city),
     role: asBuilderRole(record.role),
     bio: asString(record.bio),
+    avatarUrl: asNullableString(record.avatar_url),
     linkedinUrl: asNullableString(record.linkedin_url),
     publicEmail: asNullableString(record.public_email),
     activeTag: asNullableBuilderTag(record.active_tag),
@@ -145,7 +148,7 @@ export async function getPublicBuilders(): Promise<PublicBuilderDirectoryProfile
     supabase
       .from("profiles")
       .select(
-        "id, full_name, city, role, bio, linkedin_url, public_email, active_tag, onboarding_completed, created_at, updated_at",
+        "id, full_name, city, role, bio, avatar_url, linkedin_url, public_email, active_tag, onboarding_completed, created_at, updated_at",
       )
       .order("created_at", { ascending: false }),
     supabase.from("projects").select("id, owner_id"),
@@ -189,6 +192,7 @@ export async function getPublicBuilders(): Promise<PublicBuilderDirectoryProfile
       city: profile.city,
       role: profile.role,
       bio: profile.bio,
+      avatarUrl: profile.avatarUrl,
       linkedinUrl: profile.linkedinUrl,
       publicEmail: profile.publicEmail,
       activeTag: profile.activeTag,

@@ -17,6 +17,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
       <CardContent className="space-y-5 p-6">
         <div className="flex items-start gap-4">
           <Avatar
+            src={builder.avatarUrl ?? undefined}
             alt={builder.fullName}
             size="xl"
             className="border-2 border-white/14 bg-white/6 text-white"
@@ -55,7 +56,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
 
         <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4">
           <div className="text-xs uppercase tracking-[0.18em] text-white/40">
-            Ankara Build Club
+            Ship In
           </div>
           <div className="flex items-center gap-3">
             {builder.linkedinUrl ? (

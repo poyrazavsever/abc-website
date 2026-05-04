@@ -5,7 +5,7 @@ import { getPublicBuilders } from "@/lib/services/builders.service";
 
 export const metadata: Metadata = {
   title: "Builders",
-  description: "Ankara Build Club topluluğundaki kayıtlı builder dizini.",
+  description: "Ship In topluluğundaki kayıtlı builder dizini.",
 };
 
 export default async function BuildersPage() {
