@@ -222,7 +222,7 @@ export function LinkedInCardModal({
                 LinkedIn Kartı Oluştur
               </h2>
               <p className="mt-1 text-sm leading-6 text-white/52">
-                Profil bilgilerinle paylaşılabilir minimal bir ABC kartı üret.
+                Profil bilgilerinle paylaşılabilir bir Ship In kartı oluştur.
               </p>
             </div>
 
