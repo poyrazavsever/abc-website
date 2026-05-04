@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { AuthFormFallback } from "@/components/auth/auth-form-fallback";
-import { AuthFormShell } from "@/components/auth/auth-form-shell";
+import { PremiumRegisterShell } from "@/components/auth/premium-register-shell";
 import { RegisterForm } from "@/components/auth/register-form";
 import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
@@ -34,14 +34,10 @@ export default async function RegisterPage({
   }
 
   return (
-    <AuthFormShell
-      eyebrow="Topluluga Katil"
-      heading="Yeni hesap olusturun"
-      description="Ad soyad, e-posta ve sifre ile kaydolun. Hesabiniz acildiginda onboarding adimina yonlendirileceksiniz."
-    >
+    <PremiumRegisterShell>
       <Suspense fallback={<AuthFormFallback />}>
         <RegisterForm />
       </Suspense>
-    </AuthFormShell>
+    </PremiumRegisterShell>
   );
 }
