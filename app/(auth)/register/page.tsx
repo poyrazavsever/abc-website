@@ -2,15 +2,15 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { AuthShell } from "@/components/auth/auth-shell";
 import { AuthFormFallback } from "@/components/auth/auth-form-fallback";
-import { PremiumRegisterShell } from "@/components/auth/premium-register-shell";
 import { RegisterForm } from "@/components/auth/register-form";
 import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Kayit Ol",
+  title: "Kayıt Ol",
   description:
-    "Ankara Build Club topluluguna kaydolun ve onboarding akisina baslayin.",
+    "Ankara Build Club topluluğuna kaydolun ve onboarding akışına başlayın.",
 };
 
 type RegisterPageProps = {
@@ -34,10 +34,10 @@ export default async function RegisterPage({
   }
 
   return (
-    <PremiumRegisterShell>
+    <AuthShell>
       <Suspense fallback={<AuthFormFallback />}>
         <RegisterForm />
       </Suspense>
-    </PremiumRegisterShell>
+    </AuthShell>
   );
 }

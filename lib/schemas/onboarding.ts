@@ -32,16 +32,16 @@ export const onboardingProfileSchema = z.object({
   fullName: z
     .string()
     .trim()
-    .min(2, "Ad soyad en az 2 karakter olmali.")
+    .min(2, "Ad soyad en az 2 karakter olmalı.")
     .max(80, "Ad soyad 80 karakterden uzun olamaz."),
   city: z
     .string()
     .trim()
     .refine((value) => cityValues.includes(value), {
-      message: "Turkiye icindeki bir sehir secin.",
+      message: "Türkiye içindeki bir şehir seçin.",
     }),
   role: z.enum(builderRoleValues, {
-    message: "Genel unvaninizi secin.",
+    message: "Genel unvanınızı seçin.",
   }),
 });
 
@@ -49,27 +49,27 @@ export const onboardingDetailsSchema = z.object({
   bio: z
     .string()
     .trim()
-    .min(20, "Bio en az 20 karakter olmali.")
+    .min(20, "Bio en az 20 karakter olmalı.")
     .max(500, "Bio 500 karakterden uzun olamaz."),
   linkedinUrl: z
     .string()
     .trim()
-    .max(200, "LinkedIn baglantisi 200 karakterden uzun olamaz.")
+    .max(200, "LinkedIn bağlantısı 200 karakterden uzun olamaz.")
     .refine((value) => value.length === 0 || isLinkedInUrl(value), {
-      message: "Gecerli bir LinkedIn profili baglantisi girin.",
+      message: "Geçerli bir LinkedIn profili bağlantısı girin.",
     }),
   publicEmail: z
     .string()
     .trim()
-    .max(120, "Gorunur e-posta 120 karakterden uzun olamaz.")
+    .max(120, "Görünür e-posta 120 karakterden uzun olamaz.")
     .refine(
       (value) =>
         value.length === 0 ||
-        z.email({ message: "Gecerli bir e-posta adresi girin." }).safeParse(
+        z.email({ message: "Geçerli bir e-posta adresi girin." }).safeParse(
           value,
         ).success,
       {
-        message: "Gecerli bir e-posta adresi girin.",
+        message: "Geçerli bir e-posta adresi girin.",
       },
     ),
 });
@@ -78,20 +78,20 @@ export const onboardingProjectItemSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Proje adi en az 2 karakter olmali.")
-    .max(80, "Proje adi 80 karakterden uzun olamaz."),
+    .min(2, "Proje adı en az 2 karakter olmalı.")
+    .max(80, "Proje adı 80 karakterden uzun olamaz."),
   description: z
     .string()
     .trim()
-    .min(10, "Proje aciklamasi en az 10 karakter olmali.")
-    .max(500, "Proje aciklamasi 500 karakterden uzun olamaz."),
+    .min(10, "Proje açıklaması en az 10 karakter olmalı.")
+    .max(500, "Proje açıklaması 500 karakterden uzun olamaz."),
   category: z.enum(projectCategoryValues, {
-    message: "Proje kategorisini secin.",
+    message: "Proje kategorisini seçin.",
   }),
   url: z
     .string()
     .trim()
-    .max(200, "Proje baglantisi 200 karakterden uzun olamaz.")
+    .max(200, "Proje bağlantısı 200 karakterden uzun olamaz.")
     .refine((value) => {
       if (value.length === 0) {
         return true;
@@ -103,13 +103,13 @@ export const onboardingProjectItemSchema = z.object({
       } catch {
         return false;
       }
-    }, "Gecerli bir baglanti girin."),
+    }, "Geçerli bir bağlantı girin."),
 });
 
 export const onboardingProjectsSchema = z
   .object({
     hasProjects: z.enum(["yes", "no"], {
-      message: "Lutfen proje durumunuzu secin.",
+      message: "Lütfen proje durumunuzu seçin.",
     }),
     projects: z.array(onboardingProjectItemSchema),
   })
@@ -118,7 +118,7 @@ export const onboardingProjectsSchema = z
       context.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["projects"],
-        message: "En az bir proje ekleyin ya da proje secimini degistirin.",
+        message: "En az bir proje ekleyin ya da proje seçimini değiştirin.",
       });
     }
   });

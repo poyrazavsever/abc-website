@@ -5,8 +5,8 @@ export const loginSchema = z.object({
     .string()
     .trim()
     .min(1, "E-posta adresinizi girin.")
-    .email("Gecerli bir e-posta adresi girin."),
-  password: z.string().min(1, "Sifrenizi girin."),
+    .email("Geçerli bir e-posta adresi girin."),
+  password: z.string().min(1, "Şifrenizi girin."),
 });
 
 export const registerSchema = z
@@ -14,22 +14,22 @@ export const registerSchema = z
     fullName: z
       .string()
       .trim()
-      .min(2, "Ad soyad en az 2 karakter olmali.")
+      .min(2, "Ad soyad en az 2 karakter olmalı.")
       .max(80, "Ad soyad 80 karakterden uzun olamaz."),
     email: z
       .string()
       .trim()
       .min(1, "E-posta adresinizi girin.")
-      .email("Gecerli bir e-posta adresi girin."),
+      .email("Geçerli bir e-posta adresi girin."),
     password: z
       .string()
-      .min(8, "Sifre en az 8 karakter olmali.")
-      .max(72, "Sifre 72 karakterden uzun olamaz."),
-    confirmPassword: z.string().min(1, "Sifre tekrarini girin."),
+      .min(8, "Şifre en az 8 karakter olmalı.")
+      .max(72, "Şifre 72 karakterden uzun olamaz."),
+    confirmPassword: z.string().min(1, "Şifre tekrarını girin."),
   })
   .refine((values) => values.password === values.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Sifreler birbiriyle eslesmiyor.",
+    message: "Şifreler birbiriyle eşleşmiyor.",
   });
 
 export type LoginFormValues = z.infer<typeof loginSchema>;

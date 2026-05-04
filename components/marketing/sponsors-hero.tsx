@@ -21,7 +21,7 @@ type SponsorsHeroProps = {
 };
 
 const easing = [0.16, 1, 0.3, 1] as const;
-const accentPhrases = ["İş Birlikleri", "iÅŸ birlikleri", "iÃ…Å¸ birlikleri"] as const;
+const accentPhrases = ["İş Birlikleri"] as const;
 
 function MailPlusIcon() {
   return (

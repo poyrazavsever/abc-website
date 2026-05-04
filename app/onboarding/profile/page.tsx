@@ -20,7 +20,7 @@ import { requireAuthenticatedUser } from "@/lib/auth/server";
 export const metadata: Metadata = {
   title: "Onboarding",
   description:
-    "Ankara Build Club onboarding adimi. Hesabinizi tamamlayip dashboard alanina gecin.",
+    "Ankara Build Club onboarding adımı. Hesabınızı tamamlayıp dashboard alanına geçin.",
 };
 
 export default async function OnboardingProfilePage() {
@@ -31,24 +31,24 @@ export default async function OnboardingProfilePage() {
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Onboarding"
-        heading="Hesabinizi aktive edin"
-        description="Platforma gecmeden once temel auth profilinizi kontrol edin. Bu adim tamamlandiginda dashboard alanina yonlendirileceksiniz."
+        heading="Hesabınızı aktive edin"
+        description="Platforma geçmeden önce temel auth profilinizi kontrol edin. Bu adım tamamlandığında dashboard alanına yönlendirileceksiniz."
         className="sm:flex-col sm:items-start sm:justify-start"
       />
 
       <Card>
         <CardHeader>
-          <CardTitle>Hesap ozeti</CardTitle>
+          <CardTitle>Hesap özeti</CardTitle>
           <CardDescription>
-            Bu gorevde ayri bir profil tablosu acilmiyor. Ilk auth metadata
-            degerleri dogrudan Supabase kullanici kaydi uzerinde tutuluyor.
+            Bu görevde ayrı bir profil tablosu açılmıyor. İlk auth metadata
+            değerleri doğrudan Supabase kullanıcı kaydı üzerinde tutuluyor.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-2">
             <Badge variant="primary">Email auth</Badge>
             <Badge variant="secondary">SSR session</Badge>
-            <Badge>{isOnboardingComplete(user) ? "Tamamlandi" : "Bekliyor"}</Badge>
+            <Badge>{isOnboardingComplete(user) ? "Tamamlandı" : "Bekliyor"}</Badge>
           </div>
 
           <Divider />
@@ -72,10 +72,10 @@ export default async function OnboardingProfilePage() {
 
       <Card surface="soft">
         <CardHeader>
-          <CardTitle>Sonraki adim</CardTitle>
+          <CardTitle>Sonraki adım</CardTitle>
           <CardDescription>
-            Devam ettiginizde `onboarding_completed` metadata alani isaretlenir
-            ve dashboard profil sayfasina gecersiniz.
+            Devam ettiğinizde `onboarding_completed` metadata alanı işaretlenir
+            ve dashboard profil sayfasına geçersiniz.
           </CardDescription>
         </CardHeader>
         <CardContent>

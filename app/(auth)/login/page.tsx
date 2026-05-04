@@ -2,15 +2,15 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { AuthShell } from "@/components/auth/auth-shell";
 import { AuthFormFallback } from "@/components/auth/auth-form-fallback";
 import { LoginForm } from "@/components/auth/login-form";
-import { PremiumLoginShell } from "@/components/auth/premium-login-shell";
 import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Giris Yap",
+  title: "Giriş Yap",
   description:
-    "Ankara Build Club hesabinizla giris yapin ve platform alanina erisin.",
+    "Ankara Build Club hesabınızla giriş yapın ve platform alanına erişin.",
 };
 
 type LoginPageProps = {
@@ -32,10 +32,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }
 
   return (
-    <PremiumLoginShell>
+    <AuthShell>
       <Suspense fallback={<AuthFormFallback />}>
         <LoginForm />
       </Suspense>
-    </PremiumLoginShell>
+    </AuthShell>
   );
 }

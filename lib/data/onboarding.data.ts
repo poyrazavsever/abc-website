@@ -19,23 +19,23 @@ export const onboardingSteps: ReadonlyArray<{
   {
     id: "profile",
     label: "Profil",
-    heading: "Temel profilinizi olusturun",
+    heading: "Temel profilinizi oluşturun",
     description:
-      "Ad soyad, sehir ve genel unvan bilgileri topluluk icindeki temel kimliginizi belirler.",
+      "Ad soyad, şehir ve genel unvan bilgileri topluluk içindeki temel kimliğinizi belirler.",
   },
   {
     id: "details",
     label: "Detaylar",
-    heading: "Kendinizi kisaca anlatin",
+    heading: "Kendinizi kısaca anlatın",
     description:
-      "Bio, LinkedIn ve gorunur e-posta alanlari topluluk eslesmelerini daha anlamli hale getirir.",
+      "Bio, LinkedIn ve görünür e-posta alanları topluluk eşleşmelerini daha anlamlı hale getirir.",
   },
   {
     id: "project",
     label: "Projeler",
-    heading: "Urettiginiz isleri ekleyin",
+    heading: "Ürettiğiniz işleri ekleyin",
     description:
-      "Projeler opsiyoneldir; eklerseniz topluluk sizin ne urettiginizi daha hizli anlar.",
+      "Projeler opsiyoneldir; eklerseniz topluluk sizin ne ürettiğinizi daha hızlı anlar.",
   },
 ] as const;
 
@@ -70,13 +70,13 @@ export const projectIntentOptions: ReadonlyArray<
   {
     value: "no",
     label: "Su anda ekleyecek projem yok",
-    description: "Profili tamamlayip daha sonra proje ekleyebilirsiniz.",
+    description: "Profili tamamlayıp daha sonra proje ekleyebilirsiniz.",
   },
   {
     value: "yes",
     label: "Projelerimi eklemek istiyorum",
     description:
-      "Bir veya birden fazla proje ekleyerek topluluga ne urettiginizi gosterebilirsiniz.",
+      "Bir veya birden fazla proje ekleyerek topluluğa ne ürettiğinizi gösterebilirsiniz.",
   },
 ] as const;
 
@@ -112,7 +112,7 @@ export const turkiyeCityOptions: ReadonlyArray<Option<string>> = [
   { value: "Elazig", label: "Elazig" },
   { value: "Erzincan", label: "Erzincan" },
   { value: "Erzurum", label: "Erzurum" },
-  { value: "Eskisehir", label: "Eskisehir" },
+  { value: "Eskişehir", label: "Eskişehir" },
   { value: "Gaziantep", label: "Gaziantep" },
   { value: "Giresun", label: "Giresun" },
   { value: "Gumushane", label: "Gumushane" },
@@ -130,7 +130,7 @@ export const turkiyeCityOptions: ReadonlyArray<Option<string>> = [
   { value: "Kayseri", label: "Kayseri" },
   { value: "Kirikkale", label: "Kirikkale" },
   { value: "Kirklareli", label: "Kirklareli" },
-  { value: "Kirsehir", label: "Kirsehir" },
+  { value: "Kirşehir", label: "Kirşehir" },
   { value: "Kilis", label: "Kilis" },
   { value: "Kocaeli", label: "Kocaeli" },
   { value: "Konya", label: "Konya" },
@@ -141,7 +141,7 @@ export const turkiyeCityOptions: ReadonlyArray<Option<string>> = [
   { value: "Mersin", label: "Mersin" },
   { value: "Mugla", label: "Mugla" },
   { value: "Mus", label: "Mus" },
-  { value: "Nevsehir", label: "Nevsehir" },
+  { value: "Nevşehir", label: "Nevşehir" },
   { value: "Nigde", label: "Nigde" },
   { value: "Ordu", label: "Ordu" },
   { value: "Osmaniye", label: "Osmaniye" },

@@ -71,7 +71,7 @@ function getSupabaseErrorMessage(message: string | null | undefined, fallback: s
 async function getSupabaseClientOrThrow() {
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
-    throw new Error("Supabase baglantisi su anda kullanilamiyor.");
+    throw new Error("Supabase bağlantısı şu anda kullanılamıyor.");
   }
   return supabase;
 }

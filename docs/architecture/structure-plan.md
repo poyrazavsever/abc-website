@@ -14,14 +14,14 @@ Bu dokuman PRD kapsamini Next.js tabanli bir klasor mimarisine ve uygulama siras
 | Modul              | Ozellikler               | Not                                    |
 | ------------------ | ------------------------ | -------------------------------------- |
 | Marketing          | F-01, F-02               | Landing + easter egg girdileri         |
-| Auth & Onboarding  | F-03                     | Kayit, profil tamamlama                |
+| Auth & Onboarding  | F-03                     | Kayıt, profil tamamlama                |
 | Profiles           | F-04                     | Public profil, etiketler, gecmis       |
 | Badges             | F-05                     | Luma attendance tetiklemeli rozetler   |
 | Events             | F-06, F-07, F-08, F-08-1 | Luma source of truth                   |
 | Projects           | F-09                     | Filtreli proje dizini                  |
-| Builders           | F-10                     | Filtreli uye dizini                    |
+| Builders           | F-10                     | Filtreli üye dizini                    |
 | Matching           | F-11, F-12, F-13         | Basvuru, onay, eslestirme              |
-| Chatbot            | F-14, F-17               | RAG ve dokuman yonetimi                |
+| Chatbot            | F-14, F-17               | RAG ve dokuman yönetimi                |
 | Admin              | F-15, F-16, F-18, F-19   | Operasyon, analitik, manuel kontroller |
 | LinkedIn Generator | F-20                     | Kart + metin uretimi                   |
 
@@ -177,7 +177,7 @@ public/
 5. Projeler ve builder dizinleri
 6. Admin temel operasyonlar
 7. Faz 2: matching, LinkedIn generator, analytics
-8. Faz 3: chatbot, easter egg gelismis yonetim
+8. Faz 3: chatbot, easter egg gelismis yönetim
 
 ## Domain Varliklari
 
@@ -205,5 +205,5 @@ public/
 
 ## Dokuman Bakimi
 
-- Klasor yapisi degisirse bu dosya ve README birlikte guncellenir.
-- Faz onceligi degisirse Faz bazli uygulama sirasi revize edilir.
+- Klasor yapisi degisirse bu dosya ve README birlikte güncellenir.
+- Faz önceligi degisirse Faz bazli uygulama sirasi revize edilir.

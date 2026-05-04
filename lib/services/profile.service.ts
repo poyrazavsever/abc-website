@@ -178,7 +178,7 @@ async function getSupabaseClientOrThrow() {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
-    throw new Error("Supabase baglantisi su anda kullanilamiyor.");
+    throw new Error("Supabase bağlantısı şu anda kullanılamıyor.");
   }
 
   return supabase;
@@ -193,7 +193,7 @@ async function selectProfileById(userId: string) {
     .maybeSingle();
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Profil okunamadi."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Profil okunamadı."));
   }
 
   return data ? mapProfileRow(data) : null;
@@ -209,7 +209,7 @@ export async function listProjectsForUser(userId: string) {
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Projeler okunamadi."),
+      getSupabaseErrorMessage(error.message, "Projeler okunamadı."),
     );
   }
 
@@ -251,7 +251,7 @@ export async function ensureProfileForUser(
       return concurrentProfile;
     }
 
-    throw new Error(getSupabaseErrorMessage(error.message, "Profil olusturulamadi."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Profil oluşturulamadı."));
   }
 
   return mapProfileRow(data);
@@ -414,7 +414,7 @@ export async function replaceProjectsForUser(
 
   if (deleteError) {
     throw new Error(
-      getSupabaseErrorMessage(deleteError.message, "Projeler guncellenemedi."),
+      getSupabaseErrorMessage(deleteError.message, "Projeler güncellenemedi."),
     );
   }
 
@@ -464,7 +464,7 @@ export async function markProfileOnboardingComplete(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Onboarding tamamlanamadi."),
+      getSupabaseErrorMessage(error.message, "Onboarding tamamlanamadı."),
     );
   }
 

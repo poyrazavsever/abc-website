@@ -45,7 +45,7 @@ const analyticsHighlights = [
   {
     value: "92%",
     label: "return rate",
-    detail: "The likelihood that someone who joins once comes back into the community.",
+    detail: "The likelihood that someone who joins önce comes back into the community.",
   },
 ];
 

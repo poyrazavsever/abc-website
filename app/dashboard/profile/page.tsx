@@ -20,7 +20,7 @@ import { requireAuthenticatedUser } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
   title: "Profilim",
-  description: "Ankara Build Club dashboard profil alani.",
+  description: "Ankara Build Club dashboard profil alanı.",
 };
 
 export default async function DashboardProfilePage() {
@@ -148,7 +148,7 @@ export default async function DashboardProfilePage() {
                 </div>
               ) : (
                 <div className="rounded-md border border-dashed border-border bg-surface-muted p-8 text-center">
-                  <p className="text-sm text-text-soft">Henüz bir rozet kazanmadınız. Etkinliklere katılarak ilk rozetinizi alabilirsiniz!</p>
+                  <p className="text-sm text-text-soft">Henüz bir rozet kazanmadınız. Etkinliklere katılarak ilk rözetinizi alabilirsiniz!</p>
                 </div>
               )}
             </CardContent>

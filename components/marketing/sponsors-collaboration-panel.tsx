@@ -277,7 +277,7 @@ export function SponsorsCollaborationPanel({
   ctaHref,
   pills,
 }: SponsorsCollaborationPanelProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
   const { ref: sectionRef, hasEntered } = useOnceInView(
     "sponsors-collaboration-panel",
     {
