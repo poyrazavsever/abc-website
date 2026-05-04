@@ -44,7 +44,12 @@ export function OnboardingCompleteForm() {
 
     await trackClientEvent("onboarding_completed");
 
-    router.replace("/settings");
+    const { data: userData } = await supabase.auth.getUser();
+    if (userData.user) {
+      router.replace(`/profile/${userData.user.id}`);
+    } else {
+      router.replace("/builders");
+    }
     router.refresh();
   };
 

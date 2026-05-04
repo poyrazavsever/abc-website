@@ -204,7 +204,7 @@ export function NavbarUserMenu({
               <MenuItem href={profileHref} icon={<ProfileIcon />} onClick={() => setIsOpen(false)}>
                 Profil
               </MenuItem>
-              <MenuItem href="/settings" icon={<SettingsIcon />} onClick={() => setIsOpen(false)}>
+              <MenuItem href={`${profileHref}?edit=true`} icon={<SettingsIcon />} onClick={() => setIsOpen(false)}>
                 Ayarlar
               </MenuItem>
             </div>

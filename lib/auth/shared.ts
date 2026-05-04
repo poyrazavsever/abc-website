@@ -89,8 +89,13 @@ export function getOnboardingHref(step: OnboardingStep = "profile") {
   return `/onboarding/${step}`;
 }
 
-export function getDefaultAuthedHref() {
-  return "/settings";
+export function getDefaultAuthedHref(
+  user?: Pick<User, "id" | "user_metadata"> | null,
+) {
+  if (user?.id) {
+    return `/profile/${user.id}`;
+  }
+  return "/builders";
 }
 
 export function getAuthContinueHref(next: string | null | undefined) {
@@ -104,10 +109,10 @@ export function getAuthContinueHref(next: string | null | undefined) {
 }
 
 export function getProfileHref(
-  user: Pick<User, "user_metadata"> | null | undefined,
+  user: Pick<User, "id" | "user_metadata"> | null | undefined,
 ) {
   return isOnboardingComplete(user)
-    ? getDefaultAuthedHref()
+    ? getDefaultAuthedHref(user)
     : getOnboardingHref();
 }
 

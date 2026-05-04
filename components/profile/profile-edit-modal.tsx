@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import {
   Button,
@@ -108,6 +108,16 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
       role: profile.role,
     },
   });
+
+  const searchParams = useSearchParams();
+  const editParam = searchParams.get("edit");
+
+  useEffect(() => {
+    if (editParam === "true") {
+      setOpen(true);
+      router.replace(window.location.pathname, { scroll: false });
+    }
+  }, [editParam, router]);
 
   useEffect(() => {
     return () => {

@@ -118,7 +118,7 @@ export function OnboardingProjectForm({
       await trackClientEvent("onboarding_completed");
 
       appToast.success("Onboarding tamamlandı.");
-      router.replace("/settings");
+      router.replace(`/profile/${profile.id}`);
       router.refresh();
     } catch (error) {
       appToast.error(

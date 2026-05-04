@@ -99,7 +99,7 @@ export default async function AdminBuildersPage({
             <AdminTableCell>
               <div className="space-y-1">
                 <Link
-                  href={`/builders/${builder.id}`}
+                  href={`/profile/${builder.id}`}
                   className="font-semibold text-text transition hover:text-primary"
                 >
                   {builder.fullName}

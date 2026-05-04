@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 import { roleLabels, tagLabels } from "@/components/admin/admin-shell";
 import { ProfileEditModal } from "@/components/profile/profile-edit-modal";
@@ -262,7 +263,11 @@ export default async function PublicProfilePage({
           <div className="px-5 pb-6 sm:px-8 sm:pb-8">
             <div className="-mt-14 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <ProfileAvatar profile={profile} />
-              {isOwnProfile ? <ProfileEditModal profile={profile} /> : null}
+              {isOwnProfile ? (
+                <Suspense fallback={null}>
+                  <ProfileEditModal profile={profile} />
+                </Suspense>
+              ) : null}
             </div>
 
             <div className="mt-5 max-w-3xl space-y-4">

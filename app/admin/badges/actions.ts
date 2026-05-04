@@ -19,7 +19,7 @@ export async function addAttendanceAction(formData: FormData): Promise<void> {
 
   revalidatePath("/admin/badges");
   revalidatePath("/dashboard/profile");
-  revalidatePath(`/builders/${builderId}`);
+  revalidatePath(`/profile/${builderId}`);
   revalidatePath(`/profile/${builderId}`);
 }
 
@@ -42,6 +42,6 @@ export async function assignBadgeAction(formData: FormData): Promise<void> {
 
   revalidatePath("/admin/badges");
   revalidatePath("/dashboard/profile");
-  revalidatePath(`/builders/${builderId}`);
+  revalidatePath(`/profile/${builderId}`);
   revalidatePath(`/profile/${builderId}`);
 }
