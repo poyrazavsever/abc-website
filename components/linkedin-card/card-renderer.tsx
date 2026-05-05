@@ -20,10 +20,13 @@ export type CardContentTemplate =
   | "launch"
   | "sprint";
 
+export type CardDimension = "landscape" | "portrait" | "square";
+
 type CardRendererProps = {
   profile: ProfileRecord;
   colorTheme: CardColorTheme;
   contentTemplate: CardContentTemplate;
+  dimension?: CardDimension;
 };
 
 /* ------------------------------------------------------------------ */
@@ -130,8 +133,7 @@ const themeConfig: Record<
     tagText: "text-accent-300/85",
     accentLine: "bg-accent-400/20",
     useWhiteLogo: true,
-    gradient:
-      "linear-gradient(135deg, #462c7d 0%, #831c91 40%, #d552a3 100%)",
+    gradient: "linear-gradient(135deg, #462c7d 0%, #831c91 40%, #d552a3 100%)",
     dotColor: "rgba(255,255,255,0.05)",
     avatarRing: "ring-white/25",
   },
@@ -152,19 +154,100 @@ function getInitials(fullName: string) {
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
+export const dimensionConfig: Record<
+  CardDimension,
+  {
+    width: number;
+    height: number;
+    padding: string;
+    gapLayout: string;
+    logoSize: string;
+    logoText: string;
+    avatarSize: string;
+    avatarTextSize: string;
+    nameTextSize: string;
+    roleTextSize: string;
+    tagTextSize: string;
+    messageTextSize: string;
+    messageMaxWidth: string;
+    bottomLayout: string;
+    accentLineShow: boolean;
+    headerLayout: string;
+    mainLayout: string;
+  }
+> = {
+  landscape: {
+    width: 1200,
+    height: 630,
+    padding: "p-16",
+    gapLayout: "gap-8",
+    logoSize: "h-20 w-auto",
+    logoText: "text-[26px]",
+    avatarSize: "h-[130px] w-[130px]",
+    avatarTextSize: "text-5xl",
+    nameTextSize: "text-[72px]",
+    roleTextSize: "text-3xl",
+    tagTextSize: "text-xl px-5 py-2",
+    messageTextSize: "text-[38px] leading-[1.3]",
+    messageMaxWidth: "max-w-3xl",
+    bottomLayout: "flex-row items-end justify-between",
+    accentLineShow: true,
+    headerLayout: "flex-row justify-start items-center",
+    mainLayout: "flex-row items-center text-left",
+  },
+  square: {
+    width: 1080,
+    height: 1080,
+    padding: "p-20",
+    gapLayout: "gap-12",
+    logoSize: "h-24 w-auto",
+    logoText: "text-[32px]",
+    avatarSize: "h-[180px] w-[180px]",
+    avatarTextSize: "text-6xl",
+    nameTextSize: "text-[85px]",
+    roleTextSize: "text-[38px]",
+    tagTextSize: "text-2xl px-6 py-2.5",
+    messageTextSize: "text-[46px] leading-[1.4]",
+    messageMaxWidth: "max-w-4xl",
+    bottomLayout: "flex-col items-start gap-12",
+    accentLineShow: true,
+    headerLayout: "flex-row justify-start items-center",
+    mainLayout: "flex-col items-start text-left",
+  },
+  portrait: {
+    width: 1080,
+    height: 1920,
+    padding: "p-24 py-32",
+    gapLayout: "gap-16",
+    logoSize: "h-28 w-auto",
+    logoText: "text-[40px]",
+    avatarSize: "h-[240px] w-[240px]",
+    avatarTextSize: "text-[80px]",
+    nameTextSize: "text-[100px]",
+    roleTextSize: "text-[44px]",
+    tagTextSize: "text-3xl px-8 py-3",
+    messageTextSize: "text-[52px] leading-[1.4]",
+    messageMaxWidth: "max-w-full text-center",
+    bottomLayout: "flex-col items-center text-center gap-16 mt-auto",
+    accentLineShow: false,
+    headerLayout: "flex-col justify-center items-center text-center gap-6",
+    mainLayout: "flex-col items-center text-center mt-32",
+  },
+};
+
 export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
-  ({ profile, colorTheme, contentTemplate }, ref) => {
+  ({ profile, colorTheme, contentTemplate, dimension = "landscape" }, ref) => {
     const role = roleLabels[profile.role] || "Builder";
-    const tag = profile.activeTag
-      ? tagLabels[profile.activeTag]
-      : null;
+    const tag = profile.activeTag ? tagLabels[profile.activeTag] : null;
     const theme = themeConfig[colorTheme];
     const message = contentTemplateMessages[contentTemplate];
     const initials = getInitials(profile.fullName);
 
+    const dim = dimensionConfig[dimension];
+
     const logoSrc = theme.useWhiteLogo
-      ? "/brand/logo.png"
-      : "/brand/logoblack.png";
+      ? "/brand/logonew-w.png"
+      : "/brand/logonew-b.png";
 
     /* Dot pattern as CSS background */
     const dotPattern = `radial-gradient(circle, ${theme.dotColor} 1px, transparent 1px)`;
@@ -173,10 +256,14 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
       <div
         ref={ref}
         className={cn(
-          "relative flex h-[630px] w-[1200px] flex-col justify-between overflow-hidden font-sans",
+          "relative flex flex-col justify-between overflow-hidden font-sans",
           theme.card,
         )}
-        style={{ transformOrigin: "top left" }}
+        style={{
+          width: dim.width,
+          height: dim.height,
+          transformOrigin: "top left",
+        }}
       >
         {/* Gradient layer */}
         <div
@@ -194,49 +281,30 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
         />
 
         {/* Content */}
-        <div className="relative flex h-full flex-col justify-between p-16">
-          {/* Top bar: Logo + domain */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={logoSrc}
-                alt="Ship In"
-                className="h-12 w-12 object-contain"
-                crossOrigin="anonymous"
-              />
-              <div>
-                <p
-                  className={cn(
-                    "text-[22px] font-bold tracking-tight",
-                    theme.textPrimary,
-                  )}
-                >
-                  Ship In
-                </p>
-                <p
-                  className={cn("text-sm", theme.textTertiary)}
-                >
-                  Builder Community
-                </p>
-              </div>
-            </div>
-            <p
-              className={cn(
-                "text-lg font-medium",
-                theme.textTertiary,
-              )}
-            >
-              shipin.club
-            </p>
+        <div
+          className={cn(
+            "relative flex h-full flex-col justify-between",
+            dim.padding,
+          )}
+        >
+          {/* Top bar: Logo */}
+          <div className={cn("flex w-full", dim.headerLayout)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logoSrc}
+              alt="Shipin"
+              className={cn("object-contain", dim.logoSize)}
+              crossOrigin="anonymous"
+            />
           </div>
 
           {/* Middle: Avatar + Name + Role */}
-          <div className="flex items-center gap-8">
+          <div className={cn("flex w-full", dim.mainLayout, dim.gapLayout)}>
             {/* Avatar */}
             <div
               className={cn(
-                "flex h-[120px] w-[120px] shrink-0 items-center justify-center overflow-hidden rounded-full ring-4",
+                "flex shrink-0 items-center justify-center overflow-hidden rounded-full ring-4 shadow-2xl",
+                dim.avatarSize,
                 theme.avatarRing,
               )}
             >
@@ -251,7 +319,8 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
               ) : (
                 <div
                   className={cn(
-                    "flex h-full w-full items-center justify-center text-5xl font-bold",
+                    "flex h-full w-full items-center justify-center font-bold",
+                    dim.avatarTextSize,
                     colorTheme === "light"
                       ? "bg-neutral-100 text-neutral-700"
                       : "bg-white/[0.08] text-white/80",
@@ -263,11 +332,17 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
             </div>
 
             {/* Name block */}
-            <div className="min-w-0 space-y-3">
+            <div
+              className={cn(
+                "min-w-0 space-y-4",
+                dimension === "portrait" && "flex flex-col items-center mt-6",
+              )}
+            >
               {tag ? (
                 <span
                   className={cn(
-                    "inline-flex rounded-full border px-5 py-1.5 text-lg font-semibold",
+                    "inline-flex rounded-full border font-semibold",
+                    dim.tagTextSize,
                     theme.tagBorder,
                     theme.tagText,
                   )}
@@ -278,7 +353,8 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
 
               <h1
                 className={cn(
-                  "text-[72px] font-bold leading-[0.95] tracking-tight",
+                  "font-bold leading-[0.95] tracking-tight",
+                  dim.nameTextSize,
                   theme.textPrimary,
                 )}
               >
@@ -286,7 +362,8 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
               </h1>
               <p
                 className={cn(
-                  "text-3xl font-medium",
+                  "font-medium",
+                  dim.roleTextSize,
                   theme.textSecondary,
                 )}
               >
@@ -296,21 +373,24 @@ export const CardRenderer = forwardRef<HTMLDivElement, CardRendererProps>(
           </div>
 
           {/* Bottom: Message + accent line */}
-          <div className="flex items-end justify-between">
+          <div className={cn("flex w-full", dim.bottomLayout)}>
             <p
               className={cn(
-                "max-w-2xl text-xl leading-8",
+                dim.messageMaxWidth,
+                dim.messageTextSize,
                 theme.textTertiary,
               )}
             >
-              {message}
+              &quot;{message}&quot;
             </p>
-            <div
-              className={cn(
-                "ml-8 h-px w-44 shrink-0",
-                theme.accentLine,
-              )}
-            />
+            {dim.accentLineShow && (
+              <div
+                className={cn(
+                  "ml-8 h-1 w-44 shrink-0 rounded-full",
+                  theme.accentLine,
+                )}
+              />
+            )}
           </div>
         </div>
       </div>
