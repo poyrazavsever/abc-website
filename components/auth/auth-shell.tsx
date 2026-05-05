@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 import { LightRays } from "@/components/ui/light-rays";
 
@@ -25,7 +28,14 @@ export function AuthShell({ children }: AuthShellProps) {
         />
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0_/_0.1),rgb(0_0_0_/_0.84)_48%,rgb(0_0_0_/_1))]" />
-      <div className="relative z-10 w-full max-w-sm">{children}</div>
+      <motion.div
+        className="relative z-10 w-full max-w-sm"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        {children}
+      </motion.div>
     </main>
   );
 }
