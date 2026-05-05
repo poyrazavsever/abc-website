@@ -304,8 +304,10 @@ export function NavbarMobile({
                             )}
                             onComplete={closeMenu}
                           >
-                            {auth.logoutLabel}
-                            <Icon icon="lucide:log-out" className="h-4 w-4" />
+                            <span className="flex items-center gap-2">
+                              <Icon icon="lucide:log-out" className="h-4 w-4" />
+                              <span>{auth.logoutLabel}</span>
+                            </span>
                           </LogoutButton>
                         </div>
                       ) : (
