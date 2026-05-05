@@ -26,11 +26,13 @@ type NavbarProps = {
 export function Navbar({ overlay = false }: NavbarProps) {
   const hasSupabaseAuthEnv = Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   );
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [authUser, setAuthUser] = useState<User | null>(null);
-  const [authProfile, setAuthProfile] = useState<NavbarProfileSummary | null>(null);
+  const [authProfile, setAuthProfile] = useState<NavbarProfileSummary | null>(
+    null,
+  );
   const [isAuthReady, setIsAuthReady] = useState(!hasSupabaseAuthEnv);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -134,7 +136,9 @@ export function Navbar({ overlay = false }: NavbarProps) {
   const brandImageUrl = defaultBrandImageUrl;
   const hasBrandImage = brandImageUrl.length > 0;
   const isAuthenticated = isAuthReady && Boolean(authUser);
-  const profileHref = authUser ? `/profile/${authUser.id}` : getProfileHref(authUser);
+  const profileHref = authUser
+    ? `/profile/${authUser.id}`
+    : getProfileHref(authUser);
 
   return (
     <motion.header
@@ -174,10 +178,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       alt={navigationData.brand.label}
                       width={192}
                       height={48}
-                      className={cn(
-                        "w-auto transition-[height] duration-300",
-                        isScrolled ? "h-8 sm:h-9" : "h-9 sm:h-11",
-                      )}
+                      className="h-9 w-auto transition-[height] duration-300 sm:h-11"
                       priority
                     />
                   ) : (
@@ -292,7 +293,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
           </Container>
         </div>
 
-          <NavbarMegaMenu
+        <NavbarMegaMenu
           hasSurface={false}
           item={activeMenuItem}
           isOpen={Boolean(activeMenuItem)}
