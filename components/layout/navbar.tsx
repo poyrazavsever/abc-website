@@ -178,7 +178,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       alt={navigationData.brand.label}
                       width={192}
                       height={48}
-                      className="h-9 w-auto transition-[height] duration-300 sm:h-11"
+                      className="h-6 w-auto transition-[height] duration-300 sm:h-8"
                       priority
                     />
                   ) : (
