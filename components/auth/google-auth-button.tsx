@@ -62,7 +62,7 @@ export function GoogleAuthButton() {
     >
       <GoogleIcon />
       <span>
-        {isSubmitting ? "Google'a yönlendiriliyor..." : "Google ile giriş yap"}
+        {isSubmitting ? "Google'a yönlendiriliyor..." : "Google ile devam et"}
       </span>
     </button>
   );
