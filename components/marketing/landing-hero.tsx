@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Stack_Sans_Headline } from "next/font/google";
 
 import { Grainient } from "@/components/marketing/grainient";
 import { HeroBirds } from "@/components/marketing/hero-birds";
@@ -9,6 +10,10 @@ import { Container } from "@/components/shared/container";
 import { LinkButton } from "@/components/ui/link-button";
 
 const easing = [0.16, 1, 0.3, 1] as const;
+const heroHeadlineFont = Stack_Sans_Headline({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
 
 type LandingHeroProps = {
   featuredNames: string[];
@@ -132,7 +137,7 @@ export function LandingHero({ featuredNames }: LandingHeroProps) {
             </motion.p>
             <motion.h1
               variants={itemVariants}
-              className="relative z-10 mx-auto max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-balance text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+              className={`${heroHeadlineFont.className} relative z-10 mx-auto max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]`}
             >
               Ideas Don&apos;t Matter Shipping Does
             </motion.h1>

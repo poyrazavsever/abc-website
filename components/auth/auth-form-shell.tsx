@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Divider, SectionHeader } from "@/components/ui";
+import { Divider } from "@/components/ui";
 
 type AuthFormShellProps = {
   eyebrow: string;
@@ -17,14 +17,19 @@ export function AuthFormShell({
 }: AuthFormShellProps) {
   return (
     <div className="space-y-6">
-      <SectionHeader
-        eyebrow={eyebrow}
-        heading={heading}
-        description={description}
-        className="sm:flex-col sm:items-start sm:justify-start"
-      />
+      <div className="space-y-2.5">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">
+          {eyebrow}
+        </p>
+        <h2 className="text-xl font-semibold text-white sm:text-2xl">
+          {heading}
+        </h2>
+        <p className="text-sm leading-relaxed text-white/68 sm:text-base">
+          {description}
+        </p>
+      </div>
 
-      <Divider />
+      <Divider className="bg-white/10" />
 
       {children}
     </div>
