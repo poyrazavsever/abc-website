@@ -7,11 +7,16 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { LogoutButton } from "@/components/auth/logout-button";
 import { cn } from "@/lib/utils/cn";
-import type { NavItem, NavigationData } from "@/lib/types/navigation";
+import type {
+  NavItem,
+  NavigationChapter,
+  NavigationData,
+} from "@/lib/types/navigation";
 
 type NavbarMobileProps = {
   auth: NavigationData["auth"];
   cta: NavigationData["cta"];
+  chapters: NavigationChapter[];
   hasSurface: boolean;
   isAuthenticated: boolean;
   isOpen: boolean;
@@ -23,6 +28,7 @@ type NavbarMobileProps = {
 export function NavbarMobile({
   auth,
   cta,
+  chapters,
   hasSurface,
   isAuthenticated,
   isOpen,
@@ -234,48 +240,116 @@ export function NavbarMobile({
                     transition={{ duration: 0.22, ease: "easeOut" }}
                     className="absolute inset-0 flex flex-col justify-between overflow-y-auto px-5 py-6"
                   >
-                    <div className="space-y-2">
-                      {items.map((item) => {
-                        if (!item.groups?.length) {
+                    <div className="space-y-6">
+                      <div className="space-y-3">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-text-soft">
+                          Network
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {chapters.map((chapter) => {
+                            const chapterClass = hasSurface
+                              ? "text-text"
+                              : "text-white/72";
+
+                            if (chapter.href) {
+                              return (
+                                <Link
+                                  key={chapter.label}
+                                  href={chapter.href}
+                                  className={cn(
+                                    "inline-flex items-center gap-2 px-0 py-1 text-xs font-medium transition",
+                                    chapterClass,
+                                  )}
+                                  onClick={closeMenu}
+                                  target={
+                                    chapter.external ? "_blank" : undefined
+                                  }
+                                  rel={
+                                    chapter.external ? "noreferrer" : undefined
+                                  }
+                                >
+                                  <span>{chapter.label}</span>
+                                  {chapter.badge ? (
+                                    <span
+                                      className={cn(
+                                        "text-[10px] font-medium uppercase tracking-[0.14em]",
+                                        hasSurface
+                                          ? "text-text-soft"
+                                          : "text-white/55",
+                                      )}
+                                    >
+                                      {chapter.badge}
+                                    </span>
+                                  ) : null}
+                                </Link>
+                              );
+                            }
+
+                            return (
+                              <span
+                                key={chapter.label}
+                                className={cn(
+                                  "inline-flex items-center gap-2 px-0 py-1 text-xs font-medium",
+                                  hasSurface
+                                    ? "text-text-soft"
+                                    : "text-white/60",
+                                )}
+                              >
+                                <span>{chapter.label}</span>
+                                {chapter.badge ? (
+                                  <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/50">
+                                    {chapter.badge}
+                                  </span>
+                                ) : null}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        {items.map((item) => {
+                          if (!item.groups?.length) {
+                            return (
+                              <Link
+                                key={item.id}
+                                href={item.href ?? "#"}
+                                className={cn(
+                                  "block rounded-lg px-4 py-3.5 text-[17px] font-semibold tracking-tight transition-all",
+                                  hasSurface ? "text-text" : "text-white",
+                                  hasSurface
+                                    ? "hover:bg-surface-muted active:bg-surface-muted/70"
+                                    : "hover:bg-white/10 active:bg-white/15",
+                                )}
+                                onClick={closeMenu}
+                              >
+                                {item.label}
+                              </Link>
+                            );
+                          }
+
                           return (
-                            <Link
+                            <button
                               key={item.id}
-                              href={item.href ?? "#"}
+                              type="button"
                               className={cn(
-                                "block rounded-lg px-4 py-3.5 text-[17px] font-semibold tracking-tight transition-all",
+                                "flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-[17px] font-semibold tracking-tight transition-all",
                                 hasSurface ? "text-text" : "text-white",
                                 hasSurface
                                   ? "hover:bg-surface-muted active:bg-surface-muted/70"
                                   : "hover:bg-white/10 active:bg-white/15",
                               )}
-                              onClick={closeMenu}
+                              onClick={() => openItemPanel(item.id)}
                             >
-                              {item.label}
-                            </Link>
+                              <span>{item.label}</span>
+                              <Icon
+                                icon="lucide:chevron-right"
+                                className="h-5 w-5 text-white/50"
+                              />
+                            </button>
                           );
-                        }
-
-                        return (
-                          <button
-                            key={item.id}
-                            type="button"
-                            className={cn(
-                              "flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-[17px] font-semibold tracking-tight transition-all",
-                              hasSurface ? "text-text" : "text-white",
-                              hasSurface
-                                ? "hover:bg-surface-muted active:bg-surface-muted/70"
-                                : "hover:bg-white/10 active:bg-white/15",
-                            )}
-                            onClick={() => openItemPanel(item.id)}
-                          >
-                            <span>{item.label}</span>
-                            <Icon
-                              icon="lucide:chevron-right"
-                              className="h-5 w-5 text-white/50"
-                            />
-                          </button>
-                        );
-                      })}
+                        })}
+                      </div>
                     </div>
 
                     <div className="mt-8 border-t border-white/10 pt-8 pb-4">

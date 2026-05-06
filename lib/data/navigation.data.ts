@@ -8,6 +8,19 @@ export const navigationData: NavigationData = {
     scrolledImgUrl: "/brand/logoblack.png",
     footerImgUrl: "/brand/logonew-w.png",
   },
+  chapters: [
+    {
+      label: "Shipin",
+      href: "/",
+    },
+    {
+      label: "Ankara",
+    },
+    {
+      label: "Tashkent",
+      badge: "Next",
+    },
+  ],
   items: [
     {
       id: "about",

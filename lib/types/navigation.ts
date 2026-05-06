@@ -6,6 +6,13 @@ export type NavLink = {
   external?: boolean;
 };
 
+export type NavigationChapter = {
+  label: string;
+  href?: string;
+  badge?: string;
+  external?: boolean;
+};
+
 export type NavGroup = {
   title: string;
   links: NavLink[];
@@ -34,6 +41,7 @@ export type NavigationData = {
     scrolledImgUrl?: string;
     footerImgUrl?: string;
   };
+  chapters: NavigationChapter[];
   items: NavItem[];
   auth: {
     loginLabel: string;

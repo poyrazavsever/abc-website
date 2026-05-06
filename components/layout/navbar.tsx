@@ -149,6 +149,65 @@ export function Navbar({ overlay = false }: NavbarProps) {
       onMouseLeave={() => setActiveMenuId(null)}
     >
       <div className="relative">
+        <motion.div
+          initial={false}
+          animate={{
+            height: isScrolled ? 0 : 40,
+            opacity: isScrolled ? 0 : 1,
+            y: isScrolled ? -8 : 0,
+          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className={cn(
+            "overflow-hidden bg-brand-black/96 text-text-inverse",
+            isScrolled ? "border-transparent" : "border-b border-white/8",
+          )}
+        >
+          <Container className="relative z-10">
+            <div className="flex h-10 items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                {navigationData.chapters.map((chapter) => {
+                  if (chapter.href) {
+                    return (
+                      <Link
+                        key={chapter.label}
+                        href={chapter.href}
+                        className="inline-flex items-center gap-2 px-0 py-0.5 text-[11px] font-medium uppercase tracking-[0.18em] text-white/62 transition hover:text-white/62"
+                        target={chapter.external ? "_blank" : undefined}
+                        rel={chapter.external ? "noreferrer" : undefined}
+                      >
+                        <span>{chapter.label}</span>
+                        {chapter.badge ? (
+                          <span className="text-[9px] tracking-[0.16em] text-white/45">
+                            {chapter.badge}
+                          </span>
+                        ) : null}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <span
+                      key={chapter.label}
+                      className="inline-flex items-center gap-2 px-0 py-0.5 text-[11px] font-medium uppercase tracking-[0.18em] text-white/48"
+                    >
+                      <span>{chapter.label}</span>
+                      {chapter.badge ? (
+                        <span className="text-[9px] tracking-[0.16em] text-white/38">
+                          {chapter.badge}
+                        </span>
+                      ) : null}
+                    </span>
+                  );
+                })}
+              </div>
+
+              <p className="hidden text-[10px] font-medium tracking-[0.16em] text-white/35 md:block">
+                GLOBAL NETWORK
+              </p>
+            </div>
+          </Container>
+        </motion.div>
+
         <div
           className={cn(
             "relative z-10 rounded-b-[1.8rem] border-b border-white/8 bg-brand-black text-text-inverse transition-all duration-300 sm:rounded-b-[2rem]",
@@ -304,6 +363,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
       <NavbarMobile
         auth={navigationData.auth}
         cta={navigationData.cta}
+        chapters={navigationData.chapters}
         hasSurface={false}
         isAuthenticated={isAuthenticated}
         isOpen={isMobileMenuOpen}

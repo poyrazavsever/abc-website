@@ -195,7 +195,7 @@ export function Footer() {
 
         <Container
           width="full"
-          className="flex min-h-[10rem] items-end px-4 pt-6 sm:px-6 lg:px-8"
+          className="flex min-h-[12rem] items-end px-4 pt-6 sm:px-6 lg:min-h-[13rem] lg:px-8"
         >
           <p className="w-full select-none text-center text-[clamp(4.5rem,18vw,15rem)] leading-[0.82] font-semibold tracking-[-0.075em] text-white/96">
             shipin
