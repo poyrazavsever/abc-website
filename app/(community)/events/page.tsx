@@ -104,8 +104,7 @@ const roomPrinciples = [
 
 export const metadata: Metadata = {
   title: "Events",
-  description:
-    "Ankara Build Club event rhythm, formats, and live Luma calendar.",
+  description: "Shipin event formats and live Luma calendar.",
 };
 
 export default function EventsPage() {
@@ -128,14 +127,14 @@ export default function EventsPage() {
 
                 <div className="space-y-5">
                   <h1 className="max-w-4xl text-4xl font-semibold leading-[0.94] tracking-tight text-brand-white md:text-5xl lg:text-6xl">
-                    Ankara Build Club events are designed not just to gather, but to{" "}
+                    Shipin events are built to{" "}
                     <SecondaryWordmark className="px-[0.03em] text-[1.02em]">
                       ship
                     </SecondaryWordmark>{" "}
                     for real.
                   </h1>
                   <p className="max-w-2xl text-sm leading-8 text-ink-200 md:text-base">
-                    Sessions are built for focus, speed, and visible progress.
+                    Focused sessions for builders.
                   </p>
                 </div>
 
@@ -231,7 +230,7 @@ export default function EventsPage() {
                   Event Structure
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-brand-white sm:text-4xl">
-                  The community rhythm is built by multiple formats working together.
+                  Different formats, same momentum.
                 </h2>
                 <p className="text-sm leading-7 text-ink-300 sm:text-base">
                   Different formats for focus, speed, and shipping.

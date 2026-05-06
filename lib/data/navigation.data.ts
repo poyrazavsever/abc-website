@@ -25,6 +25,11 @@ export const navigationData: NavigationData = {
       href: "/builders",
     },
     {
+      id: "projects",
+      label: "Projects",
+      href: "/projects",
+    },
+    {
       id: "sponsors",
       label: "Sponsors",
       href: "/sponsors",
