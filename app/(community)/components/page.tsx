@@ -91,7 +91,7 @@ export default function ComponentsShowcasePage() {
       <SectionHeader
         eyebrow="UI Kit"
         heading="Components Showcase"
-        description="Tum temel UI-kit parcalarini tek sayfada gormek icin sade bir demo alani."
+        description="Tüm temel UI-kit parçalarını tek sayfada görmek için sade bir demo alanı."
         actions={
           <Button onClick={() => appToast.success("Toast helper aktif")}>
             Toast Goster
@@ -144,7 +144,7 @@ export default function ComponentsShowcasePage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            Bu kart, ortak UI-kit yuzey kurallarini gostermek icin kullaniliyor.
+            Bu kart, ortak UI-kit yuzey kurallarini göstermek icin kullaniliyor.
           </CardContent>
           <CardFooter>
             <Button size="sm">Aksiyon</Button>
@@ -180,13 +180,13 @@ export default function ComponentsShowcasePage() {
             label="Bio"
             description="Cok satirli alan."
           >
-            <Textarea placeholder="Ne urettigini kisaca anlat..." />
+            <Textarea placeholder="Ne ürettiğini kısaca anlat..." />
           </Field>
 
           <Field
             label="LinkedIn"
             description="Error state ornegi."
-            error="Gecerli bir profil URL'si gir."
+            error="Geçerli bir profil URL'si gir."
             invalid
           >
             <Input
@@ -232,12 +232,12 @@ export default function ComponentsShowcasePage() {
 
       <ShowcaseSection
         title="Feedback"
-        description="Durum mesajlari, bos ekranlar ve yuklenme gostergeleri."
+        description="Durum mesajlari, bos ekranlar ve yuklenme göstergeleri."
       >
         <Alert variant="info" icon={<DemoIcon />}>
           <AlertTitle>Bilgilendirme</AlertTitle>
           <AlertDescription>
-            Event sync tamamlandiginda burada kullanilabilecek bir alert yapisi.
+            Event sync tamamlandığında burada kullanılabilecek bir alert yapısı.
           </AlertDescription>
         </Alert>
 
@@ -275,13 +275,13 @@ export default function ComponentsShowcasePage() {
             <TabsTrigger value="tabs">Tabs</TabsTrigger>
           </TabsList>
           <TabsContent value="dialog">
-            Dialog modali, odak yonetimi ve overlay kapama davranisini gosterir.
+            Dialog modali, odak yönetimi ve overlay kapama davranisini gösterir.
           </TabsContent>
           <TabsContent value="sheet">
             Sheet paneli, sagdan acilan drawer ihtiyaclari icin kullanilir.
           </TabsContent>
           <TabsContent value="tabs">
-            Tabs trigger ve content parcaciklari controlled veya uncontrolled calisir.
+            Tabs trigger ve content parcaciklari controlled veya uncontrolled çalışir.
           </TabsContent>
         </Tabs>
 
@@ -289,7 +289,7 @@ export default function ComponentsShowcasePage() {
           <DialogHeader>
             <DialogTitle>Dialog Showcase</DialogTitle>
             <DialogDescription>
-              Bu alan, modal ic yapisini ve close davranisini gostermek icin var.
+              Bu alan, modal ic yapisini ve close davranisini göstermek icin var.
             </DialogDescription>
           </DialogHeader>
           <DialogBody>

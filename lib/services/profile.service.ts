@@ -54,6 +54,10 @@ function asBoolean(value: unknown, fallback = false) {
   return typeof value === "boolean" ? value : fallback;
 }
 
+function asNumber(value: unknown, fallback = 0) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+
 function asBuilderRole(value: unknown): BuilderRole {
   switch (value) {
     case "developer":
@@ -132,6 +136,30 @@ function isValidLinkedInUrl(value: string | null | undefined) {
   }
 }
 
+function isValidGithubUsername(value: string | null | undefined) {
+  if (!value) {
+    return true;
+  }
+
+  return /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$/u.test(value);
+}
+
+function isValidLinkedinUsername(value: string | null | undefined) {
+  if (!value) {
+    return true;
+  }
+
+  return /^[A-Za-z0-9][A-Za-z0-9-]{1,98}[A-Za-z0-9]$/u.test(value);
+}
+
+function isValidInstagramUsername(value: string | null | undefined) {
+  if (!value) {
+    return true;
+  }
+
+  return /^[A-Za-z0-9._]{1,30}$/u.test(value);
+}
+
 function mapProfileRow(row: unknown): ProfileRecord {
   const record = asRecord(row);
 
@@ -141,10 +169,21 @@ function mapProfileRow(row: unknown): ProfileRecord {
     city: asString(record.city),
     role: asBuilderRole(record.role),
     bio: asString(record.bio),
+    avatarPath: asNullableString(record.avatar_path),
+    avatarUrl: asNullableString(record.avatar_url),
+    githubUsername: asNullableString(record.github_username),
+    githubUrl: asNullableString(record.github_url),
+    linkedinUsername: asNullableString(record.linkedin_username),
     linkedinUrl: asNullableString(record.linkedin_url),
+    instagramUsername: asNullableString(record.instagram_username),
+    instagramUrl: asNullableString(record.instagram_url),
     publicEmail: asNullableString(record.public_email),
     activeTag: asNullableBuilderTag(record.active_tag),
+    onboardingStep: asString(record.onboarding_step, "profile"),
     onboardingCompleted: asBoolean(record.onboarding_completed),
+    onboardingCompletedAt: asNullableString(record.onboarding_completed_at),
+    projectOnboardingSkipped: asBoolean(record.project_onboarding_skipped),
+    eventAttendanceCount: asNumber(record.event_attendance_count),
     createdAt: asString(record.created_at),
     updatedAt: asString(record.updated_at),
   };
@@ -160,6 +199,9 @@ function mapProjectRow(row: unknown): ProjectRecord {
     description: asString(record.description),
     category: asProjectCategory(record.category),
     url: asNullableString(record.url),
+    technologies: asNullableString(record.technologies),
+    imagePath: asNullableString(record.image_path),
+    imageUrl: asNullableString(record.image_url),
     status: asProjectStatus(record.status),
     createdAt: asString(record.created_at),
     updatedAt: asString(record.updated_at),
@@ -178,7 +220,7 @@ async function getSupabaseClientOrThrow() {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
-    throw new Error("Supabase baglantisi su anda kullanilamiyor.");
+    throw new Error("Supabase bağlantısı şu anda kullanılamıyor.");
   }
 
   return supabase;
@@ -193,7 +235,7 @@ async function selectProfileById(userId: string) {
     .maybeSingle();
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Profil okunamadi."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Profil okunamadı."));
   }
 
   return data ? mapProfileRow(data) : null;
@@ -209,7 +251,7 @@ export async function listProjectsForUser(userId: string) {
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Projeler okunamadi."),
+      getSupabaseErrorMessage(error.message, "Projeler okunamadı."),
     );
   }
 
@@ -235,10 +277,20 @@ export async function ensureProfileForUser(
       city: "",
       role: "other",
       bio: "",
+      avatar_path: null,
+      avatar_url: null,
+      github_username: null,
+      github_url: null,
+      linkedin_username: null,
       linkedin_url: null,
+      instagram_username: null,
+      instagram_url: null,
       public_email: null,
       active_tag: null,
+      onboarding_step: "profile",
       onboarding_completed: false,
+      onboarding_completed_at: null,
+      project_onboarding_skipped: false,
     })
     .select("*")
     .single();
@@ -251,7 +303,7 @@ export async function ensureProfileForUser(
       return concurrentProfile;
     }
 
-    throw new Error(getSupabaseErrorMessage(error.message, "Profil olusturulamadi."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Profil oluşturulamadı."));
   }
 
   return mapProfileRow(data);
@@ -264,6 +316,19 @@ export async function getProfileSnapshotForUser(
     ensureProfileForUser(user),
     listProjectsForUser(user.id),
   ]);
+
+  return { profile, projects };
+}
+
+export async function getPublicProfileSnapshotById(userId: string) {
+  const [profile, projects] = await Promise.all([
+    selectProfileById(userId),
+    listProjectsForUser(userId),
+  ]);
+
+  if (!profile) {
+    return null;
+  }
 
   return { profile, projects };
 }
@@ -285,6 +350,9 @@ export function isProfileDetailsComplete(
     profile &&
       profile.bio.trim().length >= 20 &&
       profile.bio.trim().length <= 500 &&
+      isValidGithubUsername(profile.githubUsername) &&
+      isValidLinkedinUsername(profile.linkedinUsername) &&
+      isValidInstagramUsername(profile.instagramUsername) &&
       isValidLinkedInUrl(profile.linkedinUrl) &&
       isValidEmail(profile.publicEmail),
   );
@@ -331,6 +399,7 @@ export async function saveProfileBasics(
       full_name: input.fullName.trim(),
       city: input.city.trim(),
       role: input.role,
+      onboarding_step: "details",
     })
     .eq("id", user.id)
     .select("*")
@@ -349,8 +418,11 @@ export async function saveProfileDetails(
   user: Pick<User, "id" | "user_metadata">,
   input: {
     bio: string;
-    linkedinUrl: string;
-    publicEmail: string;
+    githubUsername?: string;
+    instagramUsername?: string;
+    linkedinUsername?: string;
+    linkedinUrl?: string;
+    publicEmail?: string;
   },
 ) {
   await ensureProfileForUser(user);
@@ -360,8 +432,12 @@ export async function saveProfileDetails(
     .from("profiles")
     .update({
       bio: input.bio.trim(),
+      github_username: toNullableText(input.githubUsername),
+      linkedin_username: toNullableText(input.linkedinUsername),
+      instagram_username: toNullableText(input.instagramUsername),
       linkedin_url: toNullableText(input.linkedinUrl),
       public_email: toNullableText(input.publicEmail),
+      onboarding_step: "project",
     })
     .eq("id", user.id)
     .select("*")
@@ -414,7 +490,7 @@ export async function replaceProjectsForUser(
 
   if (deleteError) {
     throw new Error(
-      getSupabaseErrorMessage(deleteError.message, "Projeler guncellenemedi."),
+      getSupabaseErrorMessage(deleteError.message, "Projeler güncellenemedi."),
     );
   }
 
@@ -431,6 +507,9 @@ export async function replaceProjectsForUser(
         description: project.description.trim(),
         category: project.category,
         url: toNullableText(project.url),
+        technologies: toNullableText(project.technologies),
+        image_path: null,
+        image_url: null,
         status: "idea",
       })),
     )
@@ -457,6 +536,8 @@ export async function markProfileOnboardingComplete(
     .from("profiles")
     .update({
       onboarding_completed: true,
+      onboarding_step: "complete",
+      onboarding_completed_at: new Date().toISOString(),
     })
     .eq("id", user.id)
     .select("*")
@@ -464,7 +545,7 @@ export async function markProfileOnboardingComplete(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Onboarding tamamlanamadi."),
+      getSupabaseErrorMessage(error.message, "Onboarding tamamlanamadı."),
     );
   }
 

@@ -1,11 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-function getOptionalEnv(name: string) {
-  const value = process.env[name];
-
-  return value && value.trim() !== "" ? value : undefined;
-}
+import { getOptionalEnv } from "@/lib/utils/env";
 
 export async function createSupabaseServerClient() {
   const supabaseUrl = getOptionalEnv("NEXT_PUBLIC_SUPABASE_URL");

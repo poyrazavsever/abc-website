@@ -20,7 +20,7 @@ export function Select({
       <select
         className={cn(
           controlClassName({ size, invalid }),
-          "appearance-none pr-10",
+          "appearance-none pr-10 [color-scheme:dark]",
           className,
         )}
         {...props}

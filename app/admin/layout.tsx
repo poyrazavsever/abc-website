@@ -27,7 +27,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             ))}
           </nav>
           <div className="flex justify-start lg:justify-end">
-            <AdminNavLink href="/dashboard/profile" label="Profil Sayfası" />
+            <AdminNavLink href="/profile" label="Profil Sayfası" />
           </div>
         </div>
       </header>

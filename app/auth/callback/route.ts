@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     return buildLoginRedirect(
       request,
       next,
-      "Supabase auth ayarlari eksik oldugu icin oturum kurulamadi.",
+      "Supabase auth ayarlari eksik oldugu icin oturum kurulamadı.",
     );
   }
 

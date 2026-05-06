@@ -26,7 +26,7 @@ export function OnboardingCompleteForm() {
 
     if (!supabase) {
       setIsSubmitting(false);
-      setSubmitError("Onboarding servisi su anda kullanilamiyor.");
+      setSubmitError("Onboarding servisi şu anda kullanılamıyor.");
       return;
     }
 
@@ -44,7 +44,12 @@ export function OnboardingCompleteForm() {
 
     await trackClientEvent("onboarding_completed");
 
-    router.replace("/dashboard/profile");
+    const { data: userData } = await supabase.auth.getUser();
+    if (userData.user) {
+      router.replace(`/profile/${userData.user.id}`);
+    } else {
+      router.replace("/builders");
+    }
     router.refresh();
   };
 
@@ -52,7 +57,7 @@ export function OnboardingCompleteForm() {
     <div className="space-y-4">
       {submitError ? (
         <Alert variant="danger">
-          <AlertTitle>Onboarding tamamlanamadi</AlertTitle>
+          <AlertTitle>Onboarding tamamlanamadı</AlertTitle>
           <AlertDescription>{submitError}</AlertDescription>
         </Alert>
       ) : null}

@@ -21,10 +21,21 @@ export type ProfileRecord = {
   city: string;
   role: BuilderRole;
   bio: string;
+  avatarPath: string | null;
+  avatarUrl: string | null;
+  githubUsername: string | null;
+  githubUrl: string | null;
+  linkedinUsername: string | null;
   linkedinUrl: string | null;
+  instagramUsername: string | null;
+  instagramUrl: string | null;
   publicEmail: string | null;
   activeTag: BuilderTag | null;
+  onboardingStep: string;
   onboardingCompleted: boolean;
+  onboardingCompletedAt: string | null;
+  projectOnboardingSkipped: boolean;
+  eventAttendanceCount: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -36,6 +47,9 @@ export type ProjectRecord = {
   description: string;
   category: ProjectCategory;
   url: string | null;
+  technologies: string | null;
+  imagePath: string | null;
+  imageUrl: string | null;
   status: ProjectStatus;
   createdAt: string;
   updatedAt: string;
@@ -53,6 +67,7 @@ export type OnboardingProjectInput = {
   description: string;
   category: ProjectCategory;
   url: string;
+  technologies?: string;
 };
 
 export type OnboardingState = {

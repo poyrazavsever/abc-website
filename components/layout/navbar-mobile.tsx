@@ -125,7 +125,7 @@ export function NavbarMobile({
             exit={{ x: "100%" }}
             transition={{ duration: 0.26, ease: "easeOut" }}
             className={cn(
-              "absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l shadow-lg backdrop-blur-xl",
+              "absolute right-0 top-0 flex h-full w-full max-w-md flex-col overflow-hidden border-l backdrop-blur-xl",
               panelClass,
             )}
           >
@@ -232,9 +232,9 @@ export function NavbarMobile({
                     animate="center"
                     exit="exit"
                     transition={{ duration: 0.22, ease: "easeOut" }}
-                    className="absolute inset-0 overflow-y-auto px-5 py-6"
+                    className="absolute inset-0 flex flex-col justify-between overflow-y-auto px-5 py-6"
                   >
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       {items.map((item) => {
                         if (!item.groups?.length) {
                           return (
@@ -242,11 +242,11 @@ export function NavbarMobile({
                               key={item.id}
                               href={item.href ?? "#"}
                               className={cn(
-                                "block rounded-md border border-transparent px-3 py-2 text-base font-semibold transition",
+                                "block rounded-lg px-4 py-3.5 text-[17px] font-semibold tracking-tight transition-all",
                                 hasSurface ? "text-text" : "text-white",
                                 hasSurface
-                                  ? "hover:border-border hover:bg-surface-muted"
-                                  : "hover:border-white/25 hover:bg-white/10",
+                                  ? "hover:bg-surface-muted active:bg-surface-muted/70"
+                                  : "hover:bg-white/10 active:bg-white/15",
                               )}
                               onClick={closeMenu}
                             >
@@ -260,81 +260,84 @@ export function NavbarMobile({
                             key={item.id}
                             type="button"
                             className={cn(
-                              "flex w-full items-center justify-between rounded-md border border-transparent px-3 py-2 text-base font-semibold transition",
+                              "flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-[17px] font-semibold tracking-tight transition-all",
                               hasSurface ? "text-text" : "text-white",
                               hasSurface
-                                ? "hover:border-border hover:bg-surface-muted"
-                                : "hover:border-white/25 hover:bg-white/10",
+                                ? "hover:bg-surface-muted active:bg-surface-muted/70"
+                                : "hover:bg-white/10 active:bg-white/15",
                             )}
                             onClick={() => openItemPanel(item.id)}
                           >
                             <span>{item.label}</span>
                             <Icon
                               icon="lucide:chevron-right"
-                              className="h-4 w-4"
+                              className="h-5 w-5 text-white/50"
                             />
                           </button>
                         );
                       })}
+                    </div>
 
-                      <div className="pt-2">
-                        <div className="space-y-2">
-                          {isAuthenticated ? (
-                            <>
-                              <Link
-                                href={profileHref}
-                                className={cn(
-                                  "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
-                                  hasSurface
-                                    ? "bg-primary text-primary-foreground hover:bg-primary-700"
-                                    : "bg-white/10 text-white hover:bg-white/16",
-                                )}
-                                onClick={closeMenu}
-                              >
-                                {auth.profileLabel}
-                              </Link>
-                              <LogoutButton
-                                block
-                                variant={hasSurface ? "outline" : "ghost"}
-                                className={cn(
-                                  !hasSurface &&
-                                    "border border-white/12 text-white hover:bg-white/10",
-                                )}
-                                onComplete={closeMenu}
-                              >
-                                {auth.logoutLabel}
-                              </LogoutButton>
-                            </>
-                          ) : (
-                            <>
-                              <Link
-                                href={auth.loginHref}
-                                className={cn(
-                                  "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
-                                  hasSurface
-                                    ? "border border-border bg-surface text-text hover:border-primary-200 hover:text-primary"
-                                    : "border border-white/12 bg-white/10 text-white hover:bg-white/16",
-                                )}
-                                onClick={closeMenu}
-                              >
-                                {auth.loginLabel}
-                              </Link>
-                              <Link
-                                href={cta.href}
-                                className={cn(
-                                  "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
-                                  hasSurface
-                                    ? "bg-primary text-primary-foreground hover:bg-primary-700"
-                                    : "border border-highlight/30 bg-linear-to-r from-highlight via-accent to-secondary text-primary-foreground shadow-[0_10px_24px_rgb(131_28_145_/_0.28)] hover:brightness-110",
-                                )}
-                                onClick={closeMenu}
-                              >
-                                {cta.label}
-                              </Link>
-                            </>
-                          )}
+                    <div className="mt-8 border-t border-white/10 pt-8 pb-4">
+                      {isAuthenticated ? (
+                        <div className="flex flex-col gap-3">
+                          <Link
+                            href={profileHref}
+                            className={cn(
+                              "flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold transition-all active:scale-[0.98]",
+                              hasSurface
+                                ? "bg-primary text-primary-foreground shadow-sm hover:brightness-110"
+                                : "bg-white text-brand-black shadow-[0_4px_14px_rgba(255,255,255,0.15)] hover:bg-white/95",
+                            )}
+                            onClick={closeMenu}
+                          >
+                            <Icon icon="lucide:user" className="h-4 w-4" />
+                            {auth.profileLabel}
+                          </Link>
+                          <LogoutButton
+                            block
+                            className={cn(
+                              "flex w-full items-center justify-center gap-2 rounded-xl border px-5 py-3.5 text-sm font-semibold transition-all active:scale-[0.98]",
+                              hasSurface
+                                ? "border-border text-text hover:bg-surface-muted"
+                                : "border-white/15 bg-white/5 text-white backdrop-blur-md hover:bg-white/10",
+                            )}
+                            onComplete={closeMenu}
+                          >
+                            <span className="flex items-center gap-2">
+                              <Icon icon="lucide:log-out" className="h-4 w-4" />
+                              <span>{auth.logoutLabel}</span>
+                            </span>
+                          </LogoutButton>
                         </div>
-                      </div>
+                      ) : (
+                        <div className="flex flex-col gap-3">
+                          <Link
+                            href={cta.href}
+                            className={cn(
+                              "flex w-full items-center justify-center rounded-xl px-5 py-3.5 text-sm font-bold shadow-lg transition-all active:scale-[0.98]",
+                              hasSurface
+                                ? "bg-primary text-primary-foreground hover:brightness-110"
+                                : "bg-linear-to-r from-highlight via-accent to-secondary text-primary-foreground hover:brightness-110 shadow-[0_8px_30px_rgb(213,82,163,0.3)]",
+                            )}
+                            onClick={closeMenu}
+                          >
+                            {cta.label}
+                          </Link>
+                          <Link
+                            href={auth.loginHref}
+                            className={cn(
+                              "flex w-full items-center justify-center rounded-xl border px-5 py-3.5 text-sm font-semibold transition-all active:scale-[0.98]",
+                              hasSurface
+                                ? "border-border bg-surface text-text hover:bg-surface-muted"
+                                : "border-white/10 bg-transparent text-white hover:bg-white/5",
+                            )}
+                            onClick={closeMenu}
+                          >
+                            {auth.loginLabel}
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )}

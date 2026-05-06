@@ -82,7 +82,7 @@ type SponsorsPageData = {
 export const sponsorsPageData: SponsorsPageData = {
   hero: {
     eyebrow: "Sponsor ve Partnerlik",
-    title: "Builder Ritmine Doğrudan Temas Eden İş Birlikleri Kurun.",
+    title: "Bizimle İş Birlikleri Kurmaya Ne Dersiniz?.",
     description:
       "Shipin, topluluğun üretim karakterini ve ritmini anlamaya dayalı, tek seferlik değil sürekli temas eden iş birlikleri kurmayı tercih ediyoruz. .",
     highlights: [

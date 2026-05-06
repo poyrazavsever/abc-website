@@ -4,11 +4,16 @@ export const navigationData: NavigationData = {
   brand: {
     label: "Shipin",
     href: "/",
-    imgUrl: "/brand/shipin-logo.png",
-    scrolledImgUrl: "/brand/shipin-logo.png",
-    footerImgUrl: "/brand/shipin-logo.png",
+    imgUrl: "/brand/logonew-w.png",
+    scrolledImgUrl: "/brand/logoblack.png",
+    footerImgUrl: "/brand/logonew-w.png",
   },
   items: [
+    {
+      id: "about",
+      label: "About",
+      href: "/about",
+    },
     {
       id: "events",
       label: "Events",
@@ -18,62 +23,6 @@ export const navigationData: NavigationData = {
       id: "builders",
       label: "Builders",
       href: "/builders",
-    },
-    {
-      id: "projects",
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      id: "community",
-      label: "Community",
-      groups: [
-        {
-          title: "Overview",
-          links: [
-            {
-              label: "Community approach",
-              href: "/",
-              description:
-                "Explore Shipin's shipping rhythm, operating model, and community framework.",
-              icon: "lucide:building-2",
-            },
-            {
-              label: "Join and membership",
-              href: "/register",
-              description:
-                "Start your application and create your builder profile.",
-              icon: "lucide:user-plus",
-            },
-            {
-              label: "Builder directory",
-              href: "/builders",
-              description:
-                "Browse registered builders, roles, and collaboration intent across the community.",
-              icon: "lucide:users",
-            },
-          ],
-        },
-        {
-          title: "Programs",
-          links: [
-            {
-              label: "Event calendar",
-              href: "/events",
-              description:
-                "Track Deep Work, Sprint, and other community sessions.",
-              icon: "lucide:calendar-days",
-            },
-            {
-              label: "Partners and sponsors",
-              href: "/sponsors",
-              description:
-                "Review the partnership model, sponsor visibility, and contact flow.",
-              icon: "lucide:briefcase-business",
-            },
-          ],
-        },
-      ],
     },
     {
       id: "sponsors",

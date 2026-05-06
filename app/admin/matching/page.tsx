@@ -108,13 +108,13 @@ export default async function AdminMatchingPage() {
                 <AdminTableCell>
                   <div className="space-y-1">
                     <Link
-                      href={`/builders/${match.firstBuilderId}`}
+                      href={`/profile/${match.firstBuilderId}`}
                       className="font-semibold text-text transition hover:text-primary"
                     >
                       {match.firstBuilderName}
                     </Link>
                     <Link
-                      href={`/builders/${match.secondBuilderId}`}
+                      href={`/profile/${match.secondBuilderId}`}
                       className="block text-sm text-text-muted transition hover:text-primary"
                     >
                       {match.secondBuilderName}

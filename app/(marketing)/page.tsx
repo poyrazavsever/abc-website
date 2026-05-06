@@ -45,7 +45,7 @@ const analyticsHighlights = [
   {
     value: "92%",
     label: "return rate",
-    detail: "The likelihood that someone who joins once comes back into the community.",
+    detail: "The likelihood that someone who joins önce comes back into the community.",
   },
 ];
 
@@ -178,9 +178,13 @@ export default function MarketingHomePage() {
     <div className="bg-brand-black text-white">
       <LandingHero featuredNames={featuredNames} />
 
-      <section className="border-t border-white/10 bg-brand-black py-5">
+      <section className="border-t border-b border-white/10 bg-brand-black py-5">
         <Container width="full" className="overflow-hidden px-0">
           <div className="mx-auto max-w-[110rem]">
+            <p className="mb-4 text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-white/45">
+              Supporters and sponsors
+            </p>
+
             <div className="relative overflow-hidden border-y border-white/8 bg-white/3 py-5">
               <div
                 className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent sm:w-40"
@@ -196,10 +200,10 @@ export default function MarketingHomePage() {
                   {sponsorLoop.map((sponsor, index) => (
                     <span
                       key={`${sponsor}-${index}`}
-                      className="inline-flex items-center gap-5 px-6 text-lg leading-none font-semibold tracking-[-0.03em] text-white/62 sm:px-8"
+                      className="inline-flex items-center gap-5 px-6 text-lg font-semibold tracking-[-0.03em] text-white/62 sm:px-8"
                     >
-                      <span className="inline-flex items-center">{sponsor}</span>
-                      <span className="h-1.5 w-1.5 shrink-0 self-center rounded-full bg-white/15" />
+                      <span>{sponsor}</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
                     </span>
                   ))}
                 </div>

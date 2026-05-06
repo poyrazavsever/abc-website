@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { Providers } from "@/components/shared/providers";
 import { AnalyticsTracker } from "@/components/shared/analytics-tracker";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     default: "ABC Site",
     template: "%s | ABC Site",
   },
-  description: "Ankara Build Club resmi web sitesi ve uye platformu.",
+  description: "Ankara Build Club resmi web sitesi ve üye platformu.",
 };
 
 export default function RootLayout({
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="tr">
       <body>
         <Providers>
-          <AnalyticsTracker />
+          <Suspense fallback={null}>
+            <AnalyticsTracker />
+          </Suspense>
           {children}
         </Providers>
       </body>

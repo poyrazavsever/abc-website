@@ -21,7 +21,7 @@ type SponsorsHeroProps = {
 };
 
 const easing = [0.16, 1, 0.3, 1] as const;
-const accentPhrases = ["İş Birlikleri", "iÅŸ birlikleri", "iÃ…Å¸ birlikleri"] as const;
+const accentPhrases = ["İş Birlikleri"] as const;
 
 function MailPlusIcon() {
   return (
@@ -76,7 +76,8 @@ export function SponsorsHero({
 }: SponsorsHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const accentPhrase =
-    accentPhrases.find((phrase) => hero.title.includes(phrase)) ?? accentPhrases[0];
+    accentPhrases.find((phrase) => hero.title.includes(phrase)) ??
+    accentPhrases[0];
   const [beforeAccent, afterAccent] = hero.title.split(accentPhrase);
   const hasAccentPhrase = hero.title.includes(accentPhrase);
 
@@ -165,7 +166,7 @@ export function SponsorsHero({
 
           <motion.h1
             variants={itemVariants}
-            className="mt-8 max-w-3xl text-4xl font-semibold leading-[0.94] tracking-tight text-brand-white md:text-5xl"
+            className="mt-8 max-w-3xl text-4xl font-semibold leading-[0.94] tracking-tight text-brand-white md:text-5xl lg:text-6xl"
           >
             {hasAccentPhrase ? (
               <>

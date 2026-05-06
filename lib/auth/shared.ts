@@ -89,8 +89,13 @@ export function getOnboardingHref(step: OnboardingStep = "profile") {
   return `/onboarding/${step}`;
 }
 
-export function getDefaultAuthedHref() {
-  return "/dashboard/profile";
+export function getDefaultAuthedHref(
+  user?: Pick<User, "id" | "user_metadata"> | null,
+) {
+  if (user?.id) {
+    return `/profile/${user.id}`;
+  }
+  return "/builders";
 }
 
 export function getAuthContinueHref(next: string | null | undefined) {
@@ -104,10 +109,10 @@ export function getAuthContinueHref(next: string | null | undefined) {
 }
 
 export function getProfileHref(
-  user: Pick<User, "user_metadata"> | null | undefined,
+  user: Pick<User, "id" | "user_metadata"> | null | undefined,
 ) {
   return isOnboardingComplete(user)
-    ? getDefaultAuthedHref()
+    ? getDefaultAuthedHref(user)
     : getOnboardingHref();
 }
 
@@ -136,31 +141,31 @@ export function getAuthErrorMessage(message: string | null | undefined) {
   const normalizedMessage = message?.trim().toLocaleLowerCase("en") ?? "";
 
   if (normalizedMessage.includes("invalid login credentials")) {
-    return "E-posta veya sifre hatali.";
+    return "E-posta veya şifre hatalı.";
   }
 
   if (normalizedMessage.includes("email not confirmed")) {
-    return "Devam etmek icin e-posta adresinizi dogrulayin.";
+    return "Devam etmek için e-posta adresinizi doğrulayın.";
   }
 
   if (normalizedMessage.includes("user already registered")) {
-    return "Bu e-posta adresi ile daha once hesap olusturulmus.";
+    return "Bu e-posta adresi ile daha önce hesap oluşturulmuş.";
   }
 
   if (normalizedMessage.includes("password should be at least")) {
-    return "Sifre minimum gereksinimi karsilamiyor.";
+    return "Şifre minimum gereksinimi karşılamıyor.";
   }
 
   if (normalizedMessage.includes("signup is disabled")) {
-    return "Kayit olma akisi su anda kapali.";
+    return "Kayıt olma akışı şu anda kapalı.";
   }
 
   if (normalizedMessage.includes("email link is invalid")) {
-    return "Dogrulama baglantisi gecersiz veya suresi dolmus.";
+    return "Doğrulama bağlantısı geçersiz veya süresi dolmuş.";
   }
 
   if (normalizedMessage.includes("code challenge does not match")) {
-    return "Dogrulama baglantisi gecersiz veya suresi dolmus.";
+    return "Doğrulama bağlantısı geçersiz veya süresi dolmuş.";
   }
 
   return message?.trim() || "Beklenmeyen bir auth hatasi olustu.";

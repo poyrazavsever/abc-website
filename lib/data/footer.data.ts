@@ -25,23 +25,23 @@ export const footerData: FooterData = {
       links: [
         { label: "Build Sprint", href: "/events" },
         { label: "Mentorship", href: "/" },
-        { label: "Builder matching", href: "/dashboard/matching" },
-        { label: "Badge program", href: "/dashboard/profile" },
+        { label: "Builder matching", href: "/builders" },
+        { label: "Badge program", href: "/profile" },
       ],
     },
     {
       title: "Platform",
       links: [
-        { label: "Profile", href: "/dashboard/profile" },
-        { label: "Badges", href: "/dashboard/profile" },
-        { label: "LinkedIn card", href: "/dashboard/linkedin-card" },
+        { label: "Profile", href: "/profile" },
+        { label: "Badges", href: "/profile" },
+        { label: "LinkedIn card", href: "/profile" },
         { label: "Onboarding", href: "/onboarding/profile" },
       ],
     },
     {
       title: "Company",
       links: [
-        { label: "About", href: "/" },
+        { label: "About", href: "/about" },
         { label: "Become a sponsor", href: "/sponsors" },
         { label: "Contact", href: partnerContactHref },
         { label: "Press kit", href: "/" },
@@ -65,7 +65,7 @@ export const footerData: FooterData = {
   contact: {
     title: "Partnerships and collaborations",
     email: partnerContactEmail,
-    location: "Ankara, Turkiye",
+    location: "Ankara, Türkiye",
     responseWindow: "Weekdays, within 24 hours",
     cta: {
       label: "Email the partnerships team",

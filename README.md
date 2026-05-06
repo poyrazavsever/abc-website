@@ -1,14 +1,14 @@
 # ABC Site
 
-Ankara Build Club resmi web sitesi ve uye platformu.
+Ankara Build Club resmi web sitesi ve üye platformu.
 
 Bu repo, PRD'de tanimlanan Faz 1 -> Faz 3 kapsamini destekleyecek sekilde Next.js tabanli bir mimari iskeletle baslatilmistir.
 
 ## Proje Kapsami
 
-- Marketing yuzu: landing, topluluk vitrini, etkinlik ve proje gorunurlugu
+- Marketing yuzu: landing, topluluk vitrini, etkinlik ve proje görünürlugu
 - Uye platformu: auth, onboarding, profil, rozet, dizinler
-- Admin paneli: icerik ve operasyon yonetimi
+- Admin paneli: içerik ve operasyon yönetimi
 - Entegrasyonlar: Luma, email, analytics, gelecekte RAG/LLM
 
 Detayli urun gereksinimleri icin `PRD.md` dosyasina bakiniz.
@@ -25,12 +25,12 @@ Detayli urun gereksinimleri icin `PRD.md` dosyasina bakiniz.
 
 Bu repo klasik Next.js varsayimlariyla ele alinmamalidir.
 
-- Kod degisikligi oncesi `AGENTS.md` okunmalidir.
+- Kod degisikligi öncesi `AGENTS.md` okunmalidir.
 - Next.js tarafinda ilgili konu icin `node_modules/next/dist/docs/` altindaki dokumanlar kontrol edilmelidir.
 
 ## Klasor Yapisi
 
-Asagidaki yapi, PRD modullerini ayrik ve olceklenebilir sekilde organize eder:
+Asagidaki yapi, PRD modullerini ayrık ve olceklenebilir sekilde organize eder:
 
 ```text
 app/
@@ -162,10 +162,10 @@ public/
 
 - `max-w-7xl` odakli container primitive aktif.
 - Global provider ve ozellestirilmis react-hot-toast mekanizmasi aktif.
-- Navbar ve footer data dosyalarindan yonetilir.
-- Mega dropdown paneli `w-screen` acilir; icerik container sinirinda kalir.
+- Navbar ve footer data dosyalarindan yönetilir.
+- Mega dropdown paneli `w-screen` acilir; içerik container sinirinda kalir.
 - Navbar/Footer sadece `(marketing)` ve `(community)` layoutlarinda render edilir.
-- `components/ui` altinda Faz 1 foundation primitive seti olusturuldu ve ilk ekranlara entegrasyon baslatildi.
+- `components/ui` altinda Faz 1 foundation primitive seti oluşturuldu ve ilk ekranlara entegrasyon baslatildi.
 
 Detayli plan icin `docs/architecture/structure-plan.md` dosyasina bakiniz.
 
@@ -178,17 +178,17 @@ Detayli plan icin `docs/architecture/structure-plan.md` dosyasina bakiniz.
    Konum bazli akillar, serious builder matching, LinkedIn generator, analytics
 
 3. Faz 3 (Intelligence)
-   RAG chatbot, easter egg gelismis yonetim, ileri admin panelleri
+   RAG chatbot, easter egg gelismis yönetim, ileri admin panelleri
 
 ## Agent Rule Seti
 
 Bu repoda AI coding agent yonergeleri git ile versiyonlanir.
 
 - `AGENTS.md`: global guardrails ve kritik uyarilar
-- `CLAUDE.md`: Claude giris dosyasi
+- `CLAUDE.md`: Claude giriş dosyasi
 - `.github/copilot-instructions.md`: Copilot ve coding agent repository kurallari
 
-Kural dosyalarini birlikte okuyup degisiklik yapiniz.
+Kural dosyalarini birlikte okuyup degisiklik yapıniz.
 
 ## Gelistirme Ortami
 
@@ -204,7 +204,7 @@ npm install
 npm run dev
 ```
 
-3. Lint calistirin:
+3. Lint çalıştırın:
 
 ```bash
 npm run lint
@@ -225,7 +225,7 @@ Supabase ve entegrasyonlar icin asagidaki degiskenler planlanmistir:
 - `ANALYTICS_WRITE_KEY`
 - `LLM_API_KEY`
 
-Not: `.env*` dosyalari `.gitignore` kapsamindadir. Secret degerler repoya commit edilmez.
+Not: `.env*` dosyalari `.gitignore` kapsamindadır. Secret değerler repoya commit edilmez.
 Production admin ekranlari icin `ADMIN_EMAIL_ALLOWLIST` zorunludur. Supabase
 tablolari hazir olmayan izole demolarda mock admin datasini acmak icin
 `ADMIN_DEMO_MODE=true` kullanilabilir.
@@ -234,7 +234,7 @@ tablolari hazir olmayan izole demolarda mock admin datasini acmak icin
 
 - `npm run dev`: local gelistirme
 - `npm run build`: production build
-- `npm run start`: production calistirma
+- `npm run start`: production çalıştırma
 - `npm run lint`: lint kontrolu
 
 ## Kaynak Dosyalar

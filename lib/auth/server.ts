@@ -86,7 +86,7 @@ export async function resolveAuthenticatedRedirect(
     return getOnboardingHref(onboardingState.nextStep ?? "profile");
   }
 
-  return getSafeNextPath(nextPath) ?? getDefaultAuthedHref();
+  return getSafeNextPath(nextPath) ?? getDefaultAuthedHref(onboardingState.user);
 }
 
 export async function resolveAuthEntryRedirect(
@@ -102,7 +102,7 @@ export async function resolveAuthEntryRedirect(
     return getOnboardingHref(onboardingState.nextStep ?? "profile");
   }
 
-  return getSafeNextPath(nextPath) ?? getDefaultAuthedHref();
+  return getSafeNextPath(nextPath) ?? getDefaultAuthedHref(onboardingState.user);
 }
 
 export async function requireCompletedOnboarding(nextPath: string) {
@@ -121,7 +121,7 @@ export async function requireOnboardingStep(step: OnboardingStep) {
   );
 
   if (onboardingState.isComplete) {
-    redirect(getDefaultAuthedHref());
+    redirect(getDefaultAuthedHref(onboardingState.user));
   }
 
   const nextStep = onboardingState.nextStep ?? step;

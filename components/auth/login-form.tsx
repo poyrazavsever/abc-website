@@ -1,30 +1,23 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useMemo } from "react";
+import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Button,
-  Field,
-  Input,
-} from "@/components/ui";
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { loginSchema, type LoginFormValues } from "@/lib/schemas/auth";
+import { AuthDivider } from "@/components/auth/auth-divider";
+import { AuthHeading } from "@/components/auth/auth-heading";
+import { GoogleAuthButton } from "@/components/auth/google-auth-button";
 import {
   getAuthContinueHref,
-  getAuthErrorMessage,
   getRegisterHref,
   getSafeNextPath,
 } from "@/lib/auth/shared";
-
-const authUnavailableMessage =
-  "Sign-in is currently unavailable. Please try again shortly.";
+import { loginWithPassword } from "@/lib/auth/client";
+import { loginSchema, type LoginFormValues } from "@/lib/schemas/auth";
+import { cn } from "@/lib/utils/cn";
+import { appToast } from "@/lib/utils/toast";
 
 function getQueryMessage(message: string | null) {
   const trimmedMessage = message?.trim();
@@ -34,17 +27,18 @@ function getQueryMessage(message: string | null) {
   }
 
   if (trimmedMessage === "callback") {
-    return "We could not complete session verification. Please try the link again.";
+    return "Oturum doğrulamasi tamamlanamadı. Google ile tekrar deneyin.";
   }
 
   return trimmedMessage;
 }
 
+const inputClassName =
+  "h-12 w-full rounded-xl border border-white/12 bg-white/[0.06] px-4 text-sm text-brand-white outline-none transition placeholder:text-white/38 focus:border-accent focus:ring-2 focus:ring-accent/25";
+
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
   const nextPath = useMemo(
     () => getSafeNextPath(searchParams.get("next")),
     [searchParams],
@@ -54,7 +48,11 @@ export function LoginForm() {
     [searchParams],
   );
 
-  const form = useForm<LoginFormValues>({
+  const {
+    formState: { errors, isSubmitting },
+    handleSubmit,
+    register,
+  } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -62,117 +60,93 @@ export function LoginForm() {
     },
   });
 
-  const {
-    formState: { errors, isSubmitting },
-    handleSubmit,
-    register,
-  } = form;
+  useEffect(() => {
+    if (queryMessage) {
+      appToast.error(queryMessage);
+    }
+  }, [queryMessage]);
 
   const onSubmit = handleSubmit(async (values) => {
-    setSubmitError(null);
-
-    const supabase = createSupabaseClient();
-
-    if (!supabase) {
-      setSubmitError(authUnavailableMessage);
+    try {
+      await loginWithPassword(values);
+      appToast.success("Giriş başarılı.");
+      router.replace(getAuthContinueHref(nextPath));
+      router.refresh();
+    } catch (error) {
+      appToast.error(
+        error instanceof Error ? error.message : "Giriş işlemi tamamlanamadı.",
+      );
       return;
     }
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: values.email.trim(),
-      password: values.password,
-    });
-
-    if (error) {
-      setSubmitError(getAuthErrorMessage(error.message));
-      return;
-    }
-
-    if (!data.user) {
-      setSubmitError("We could not create your session. Please try again.");
-      return;
-    }
-
-    router.replace(getAuthContinueHref(nextPath));
-    router.refresh();
   });
 
   return (
-    <form className="space-y-5" noValidate onSubmit={onSubmit}>
-      {queryMessage ? (
-        <Alert
-          variant="warning"
-          className="border-white/12 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
+    <div className="w-full">
+      <AuthHeading title="Giriş yap" />
+
+      <form className="space-y-4" noValidate onSubmit={onSubmit}>
+        <div>
+          <label htmlFor="login-email" className="sr-only">
+            E-posta
+          </label>
+          <input
+            id="login-email"
+            type="email"
+            autoComplete="email"
+            placeholder="E-posta"
+            className={cn(inputClassName, errors.email && "border-danger-400")}
+            {...register("email")}
+          />
+          {errors.email?.message ? (
+            <p className="mt-2 text-xs text-danger-300">
+              {errors.email.message}
+            </p>
+          ) : null}
+        </div>
+
+        <div>
+          <label htmlFor="login-password" className="sr-only">
+            Şifre
+          </label>
+          <input
+            id="login-password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="Şifre"
+            className={cn(
+              inputClassName,
+              errors.password && "border-danger-400",
+            )}
+            {...register("password")}
+          />
+          {errors.password?.message ? (
+            <p className="mt-2 text-xs text-danger-300">
+              {errors.password.message}
+            </p>
+          ) : null}
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_18px_44px_rgb(70_44_125_/_0.28)] transition hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black disabled:cursor-not-allowed disabled:opacity-65"
         >
-          <AlertTitle className="text-white">Please sign in again</AlertTitle>
-          <AlertDescription className="text-white/72">
-            {queryMessage}
-          </AlertDescription>
-        </Alert>
-      ) : null}
+          {isSubmitting ? "Giriş yapılıyor..." : "Giriş yap"}
+        </button>
+      </form>
 
-      {submitError ? (
-        <Alert
-          variant="danger"
-          className="border-danger/35 bg-danger/12 text-white shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
-        >
-          <AlertTitle className="text-white">Sign-in failed</AlertTitle>
-          <AlertDescription className="text-white/72">
-            {submitError}
-          </AlertDescription>
-        </Alert>
-      ) : null}
+      <AuthDivider />
+      <GoogleAuthButton />
 
-      <Field
-        label="Email"
-        error={errors.email?.message}
-        required
-        className="[&>label]:text-white [&_p]:text-white/58"
-      >
-        <Input
-          type="email"
-          autoComplete="email"
-          placeholder="hello@ankarabuildclub.com"
-          invalid={Boolean(errors.email)}
-          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
-          {...register("email")}
-        />
-      </Field>
-
-      <Field
-        label="Password"
-        error={errors.password?.message}
-        required
-        className="[&>label]:text-white [&_p]:text-white/58"
-      >
-        <Input
-          type="password"
-          autoComplete="current-password"
-          placeholder="Enter your password"
-          invalid={Boolean(errors.password)}
-          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
-          {...register("password")}
-        />
-      </Field>
-
-      <Button
-        type="submit"
-        block
-        loading={isSubmitting}
-        className="h-12 rounded-[1rem] border-0 bg-[linear-gradient(90deg,var(--color-highlight-400),var(--color-accent-500),var(--color-info-400))] text-white shadow-[0_18px_40px_rgba(213,82,163,0.24)] hover:brightness-110"
-      >
-        Sign in
-      </Button>
-
-      <p className="text-sm leading-6 text-white/60">
-        Don&apos;t have an account yet?{" "}
+      <p className="mt-6 text-center text-sm text-white/58">
+        Hesabın yok mu?{" "}
         <Link
           href={getRegisterHref(nextPath)}
-          className="font-semibold text-accent-300 transition hover:text-white"
+          className="font-semibold text-white transition hover:text-accent-300"
         >
-          Register
+          Kayıt ol
         </Link>
       </p>
-    </form>
+    </div>
   );
 }

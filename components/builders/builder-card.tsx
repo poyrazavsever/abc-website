@@ -17,6 +17,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
       <CardContent className="space-y-5 p-6">
         <div className="flex items-start gap-4">
           <Avatar
+            src={builder.avatarUrl ?? undefined}
             alt={builder.fullName}
             size="xl"
             className="border-2 border-white/14 bg-white/6 text-white"
@@ -24,7 +25,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
           <div className="min-w-0 flex-1 space-y-2">
             <div className="space-y-1">
               <Link
-                href={`/builders/${builder.id}`}
+                href={`/profile/${builder.id}`}
                 className="inline-block text-lg font-semibold text-white transition hover:text-accent-300"
               >
                 {builder.fullName}
@@ -54,8 +55,8 @@ export function BuilderCard({ builder }: BuilderCardProps) {
         </p>
 
         <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4">
-          <div className="text-xs tracking-[0.18em] text-white/40">
-            shipin
+          <div className="text-xs uppercase tracking-[0.18em] text-white/40">
+            Ship In
           </div>
           <div className="flex items-center gap-3">
             {builder.linkedinUrl ? (
@@ -68,7 +69,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
               </Link>
             ) : null}
             <Link
-              href={`/builders/${builder.id}`}
+              href={`/profile/${builder.id}`}
               className="text-sm font-medium text-accent-300 transition hover:text-accent-200"
             >
               Open profile

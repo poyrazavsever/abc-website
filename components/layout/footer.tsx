@@ -27,6 +27,7 @@ function getLinkTarget(isExternal?: boolean) {
 
 export function Footer() {
   const brandImageUrl =
+    navigationData.brand.imgUrl?.trim() ??
     navigationData.brand.footerImgUrl?.trim() ??
     navigationData.brand.scrolledImgUrl?.trim() ??
     navigationData.brand.imgUrl?.trim() ??
@@ -54,7 +55,7 @@ export function Footer() {
                     alt={footerData.brand.title}
                     width={192}
                     height={48}
-                    className="h-10 w-auto"
+                    className="h-7 w-auto"
                   />
                 ) : (
                   <span className="text-2xl font-semibold tracking-tight text-white">
@@ -112,7 +113,9 @@ export function Footer() {
                 {footerData.contact.location}
               </p>
               <p>
-                <span className="font-semibold text-white">Response time: </span>
+                <span className="font-semibold text-white">
+                  Response time:{" "}
+                </span>
                 {footerData.contact.responseWindow}
               </p>
             </div>

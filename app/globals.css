@@ -15,7 +15,7 @@
   --color-primary-50: #f0eef5;
   --color-primary-100: #e1ddea;
   --color-primary-200: #c4bbd5;
-  --color-primary-300: #9f91bb;
+  --color-primary-300: #462c7d;
   --color-primary-400: #725f9c;
   --color-primary-500: #462c7d;
   --color-primary-600: #3e276e;
@@ -122,23 +122,23 @@
   --color-info-900: var(--color-accent-900);
 
   /* Semantic aliases for direct usage */
-  --color-background: var(--color-brand-black);
-  --color-surface: #111111;
-  --color-surface-muted: #171717;
-  --color-surface-soft: #1d1528;
-  --color-surface-strong: #241b31;
+  --color-background: var(--color-accent-50);
+  --color-surface: var(--color-brand-white);
+  --color-surface-muted: var(--color-highlight-50);
+  --color-surface-soft: var(--color-secondary-50);
+  --color-surface-strong: var(--color-primary-100);
 
-  --color-text: var(--color-brand-white);
-  --color-text-muted: #b3acbb;
-  --color-text-soft: #8e8698;
+  --color-text: var(--color-brand-black);
+  --color-text-muted: var(--color-ink-500);
+  --color-text-soft: var(--color-ink-400);
   --color-text-inverse: var(--color-brand-white);
 
-  --color-border: #2a2235;
-  --color-border-soft: #221a2d;
-  --color-border-strong: #433256;
+  --color-border: var(--color-primary-100);
+  --color-border-soft: var(--color-accent-100);
+  --color-border-strong: var(--color-secondary-200);
 
   --color-link: var(--color-secondary-600);
-  --color-link-hover: var(--color-accent-400);
+  --color-link-hover: var(--color-primary-600);
   --color-focus-ring: var(--color-accent-500);
 
   --color-primary: var(--color-primary-500);
@@ -146,17 +146,17 @@
   --color-secondary: var(--color-secondary-500);
   --color-secondary-foreground: var(--color-brand-white);
   --color-accent: var(--color-accent-500);
-  --color-accent-foreground: var(--color-brand-white);
+  --color-accent-foreground: var(--color-brand-black);
   --color-highlight: var(--color-highlight-500);
-  --color-highlight-foreground: var(--color-brand-white);
+  --color-highlight-foreground: var(--color-brand-black);
   --color-success: var(--color-success-600);
   --color-success-foreground: var(--color-brand-white);
   --color-warning: var(--color-warning-500);
-  --color-warning-foreground: var(--color-brand-white);
+  --color-warning-foreground: var(--color-brand-black);
   --color-danger: var(--color-danger-600);
   --color-danger-foreground: var(--color-brand-white);
   --color-info: var(--color-info-500);
-  --color-info-foreground: var(--color-brand-white);
+  --color-info-foreground: var(--color-brand-black);
 
   /* Data-viz colors for charts and metric cards */
   --color-chart-1: var(--color-primary-500);

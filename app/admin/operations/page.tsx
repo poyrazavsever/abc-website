@@ -64,7 +64,7 @@ export default async function AdminOperationsPage({
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-1">
                     <Link
-                      href={`/builders/${application.builderId}`}
+                      href={`/profile/${application.builderId}`}
                       className="font-semibold text-text transition hover:text-primary"
                     >
                       {application.builderName}
@@ -106,7 +106,7 @@ export default async function AdminOperationsPage({
                 <div className="rounded-lg border border-border bg-surface-muted p-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <Link
-                      href={`/builders/${selectedApplication.builderId}`}
+                      href={`/profile/${selectedApplication.builderId}`}
                       className="text-xl font-semibold text-text transition hover:text-primary"
                     >
                       {selectedApplication.builderName}
