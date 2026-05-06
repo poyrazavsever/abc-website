@@ -19,7 +19,7 @@ export function HeroBirds({ className }: HeroBirdsProps) {
     const animation = lottie.loadAnimation({
       container: containerRef.current,
       renderer: "svg",
-      loop: 2,
+      loop: 1,
       autoplay: true,
       path: "/animations/birds.json",
     });

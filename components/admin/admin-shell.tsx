@@ -205,7 +205,7 @@ export function AdminNavLink({
       className={cn(
         "rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring",
         active
-          ? "bg-white text-neutral-900"
+          ? "bg-white/10 text-white"
           : "text-white/70 hover:bg-white/10 hover:text-white",
       )}
     >

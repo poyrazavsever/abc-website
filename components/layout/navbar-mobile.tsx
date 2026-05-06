@@ -287,7 +287,7 @@ export function NavbarMobile({
                                   "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
                                   hasSurface
                                     ? "bg-primary text-primary-foreground hover:bg-primary-700"
-                                    : "bg-white text-brand-black hover:bg-white/90",
+                                    : "bg-white/10 text-white hover:bg-white/16",
                                 )}
                                 onClick={closeMenu}
                               >
@@ -313,7 +313,7 @@ export function NavbarMobile({
                                   "inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-semibold transition",
                                   hasSurface
                                     ? "border border-border bg-surface text-text hover:border-primary-200 hover:text-primary"
-                                    : "border border-white/12 bg-white text-brand-black hover:bg-white/90",
+                                    : "border border-white/12 bg-white/10 text-white hover:bg-white/16",
                                 )}
                                 onClick={closeMenu}
                               >

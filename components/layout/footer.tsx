@@ -27,7 +27,6 @@ function getLinkTarget(isExternal?: boolean) {
 
 export function Footer() {
   const brandImageUrl =
-    navigationData.brand.imgUrl?.trim() ??
     navigationData.brand.footerImgUrl?.trim() ??
     navigationData.brand.scrolledImgUrl?.trim() ??
     navigationData.brand.imgUrl?.trim() ??

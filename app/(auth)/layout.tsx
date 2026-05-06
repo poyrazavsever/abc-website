@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-import { Container } from "@/components/shared/container";
-import { Card, CardContent } from "@/components/ui/card";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 
 type AuthLayoutProps = {
   children: ReactNode;
@@ -9,12 +9,10 @@ type AuthLayoutProps = {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <main className="min-h-screen bg-background py-14">
-      <Container width="narrow">
-        <Card className="rounded-xl">
-          <CardContent className="p-6 sm:p-8">{children}</CardContent>
-        </Card>
-      </Container>
-    </main>
+    <div className="min-h-screen bg-background text-text">
+      <Navbar overlay />
+      <main className="min-h-[60vh]">{children}</main>
+      <Footer />
+    </div>
   );
 }

@@ -4,16 +4,11 @@ export const navigationData: NavigationData = {
   brand: {
     label: "Shipin",
     href: "/",
-    imgUrl: "/brand/logo.png",
-    scrolledImgUrl: "/brand/logoblack.png",
-    footerImgUrl: "/brand/logoblack.png",
+    imgUrl: "/brand/shipin-logo.png",
+    scrolledImgUrl: "/brand/shipin-logo.png",
+    footerImgUrl: "/brand/shipin-logo.png",
   },
   items: [
-    {
-      id: "about",
-      label: "About",
-      href: "/",
-    },
     {
       id: "events",
       label: "Events",
@@ -23,6 +18,11 @@ export const navigationData: NavigationData = {
       id: "builders",
       label: "Builders",
       href: "/builders",
+    },
+    {
+      id: "projects",
+      label: "Projects",
+      href: "/projects",
     },
     {
       id: "community",

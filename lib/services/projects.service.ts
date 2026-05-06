@@ -81,28 +81,44 @@ export async function getPublicProjects(): Promise<ProjectWithOwner[]> {
 
   const { data, error } = await supabase
     .from("projects")
-    .select(`
-      *,
-      profiles:owner_id (
-        full_name,
-        role
-      )
-    `)
+    .select("*")
     .order("created_at", { ascending: false });
 
   if (error) {
     throw new Error(getSupabaseErrorMessage(error.message, "Projeler okunamadı."));
   }
 
-  return (data ?? []).map((row) => {
-    const project = mapProjectRow(row);
-    const ownerRecord = asRecord(row.profiles);
-    
-    return {
-      ...project,
-      owner: {
+  const projects = (data ?? []).map(mapProjectRow);
+  const ownerIds = Array.from(new Set(projects.map((project) => project.ownerId).filter(Boolean)));
+
+  const ownersById = new Map<string, { fullName: string; role: BuilderRole }>();
+
+  if (ownerIds.length > 0) {
+    const { data: owners, error: ownersError } = await supabase
+      .from("profiles")
+      .select("id, full_name, role")
+      .in("id", ownerIds);
+
+    if (ownersError) {
+      throw new Error(getSupabaseErrorMessage(ownersError.message, "Proje sahipleri okunamadı."));
+    }
+
+    for (const owner of owners ?? []) {
+      const ownerRecord = asRecord(owner);
+
+      ownersById.set(asString(ownerRecord.id), {
         fullName: asString(ownerRecord.full_name, "Bilinmeyen Kullanıcı"),
         role: asString(ownerRecord.role, "other") as BuilderRole,
+      });
+    }
+  }
+
+  return projects.map((project) => {
+    return {
+      ...project,
+      owner: ownersById.get(project.ownerId) ?? {
+        fullName: "Bilinmeyen Kullanıcı",
+        role: "other",
       },
     };
   });

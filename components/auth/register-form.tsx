@@ -26,7 +26,7 @@ import { createSupabaseClient } from "@/lib/supabase/client";
 import { trackClientEvent } from "@/lib/integrations/analytics/client";
 
 const authUnavailableMessage =
-  "Kayit servisi su anda kullanilamiyor. Lutfen kisa bir sure sonra tekrar deneyin.";
+  "Registration is currently unavailable. Please try again shortly.";
 
 export function RegisterForm() {
   const router = useRouter();
@@ -101,85 +101,116 @@ export function RegisterForm() {
       confirmPassword: "",
     });
     setSuccessMessage(
-      `${values.email.trim()} adresine dogrulama baglantisi gonderildi. E-postanizi onayladiktan sonra onboarding adimina yonlendirileceksiniz.`,
+      `A verification link was sent to ${values.email.trim()}. After confirming your email, you will be redirected to onboarding.`,
     );
   });
 
   return (
     <form className="space-y-5" noValidate onSubmit={onSubmit}>
       {successMessage ? (
-        <Alert variant="success">
-          <AlertTitle>Kayit tamamlandi</AlertTitle>
-          <AlertDescription>{successMessage}</AlertDescription>
+        <Alert
+          variant="success"
+          className="border-white/12 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
+        >
+          <AlertTitle className="text-white">Registration complete</AlertTitle>
+          <AlertDescription className="text-white/72">
+            {successMessage}
+          </AlertDescription>
         </Alert>
       ) : null}
 
       {submitError ? (
-        <Alert variant="danger">
-          <AlertTitle>Kayit basarisiz</AlertTitle>
-          <AlertDescription>{submitError}</AlertDescription>
+        <Alert
+          variant="danger"
+          className="border-danger/35 bg-danger/12 text-white shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
+        >
+          <AlertTitle className="text-white">Registration failed</AlertTitle>
+          <AlertDescription className="text-white/72">
+            {submitError}
+          </AlertDescription>
         </Alert>
       ) : null}
 
-      <Field label="Ad soyad" error={errors.fullName?.message} required>
+      <Field
+        label="Full name"
+        error={errors.fullName?.message}
+        required
+        className="[&>label]:text-white [&_p]:text-white/58"
+      >
         <Input
           autoComplete="name"
-          placeholder="Ad Soyad"
+          placeholder="Your full name"
           invalid={Boolean(errors.fullName)}
+          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
           {...register("fullName")}
         />
       </Field>
 
-      <Field label="E-posta" error={errors.email?.message} required>
+      <Field
+        label="Email"
+        error={errors.email?.message}
+        required
+        className="[&>label]:text-white [&_p]:text-white/58"
+      >
         <Input
           type="email"
           autoComplete="email"
           placeholder="hello@ankarabuildclub.com"
           invalid={Boolean(errors.email)}
+          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
           {...register("email")}
         />
       </Field>
 
       <Field
-        label="Sifre"
-        description="Minimum 8 karakter kullanin."
+        label="Password"
+        description="Use at least 8 characters."
         error={errors.password?.message}
         required
+        className="[&>label]:text-white [&_p]:text-white/58"
       >
         <Input
           type="password"
           autoComplete="new-password"
-          placeholder="Guclu bir sifre belirleyin"
+          placeholder="Create a strong password"
           invalid={Boolean(errors.password)}
+          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
           {...register("password")}
         />
       </Field>
 
       <Field
-        label="Sifre tekrari"
+        label="Confirm password"
         error={errors.confirmPassword?.message}
         required
+        className="[&>label]:text-white [&_p]:text-white/58"
       >
         <Input
           type="password"
           autoComplete="new-password"
-          placeholder="Sifrenizi tekrar girin"
+          placeholder="Enter your password again"
           invalid={Boolean(errors.confirmPassword)}
+          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
           {...register("confirmPassword")}
         />
       </Field>
 
-      <Button type="submit" block loading={isSubmitting}>
-        Kayit Ol
+      <Button
+        type="submit"
+        block
+        loading={isSubmitting}
+        className="h-12 rounded-[1rem] border-0 bg-[linear-gradient(90deg,var(--color-highlight-400),var(--color-accent-500),var(--color-info-400))] text-white shadow-[0_18px_40px_rgba(213,82,163,0.24)] hover:brightness-110"
+      >
+        Create account
       </Button>
 
-      <p className="text-sm leading-6 text-text-muted">
-        Zaten hesabiniz varsa giris akisina gecin:{" "}
+      <p className="text-sm leading-6 text-white/60">
+        Already have an account?{" "}
         <Link
           href={getLoginHref(nextPath)}
-          className="font-semibold text-primary transition hover:text-primary-700"
+          className="font-semibold text-accent-300 transition hover:text-white"
         >
-          Giris Yap
+          Sign in
         </Link>
       </p>
     </form>

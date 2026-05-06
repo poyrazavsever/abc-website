@@ -24,7 +24,7 @@ import {
 } from "@/lib/auth/shared";
 
 const authUnavailableMessage =
-  "Giris servisi su anda kullanilamiyor. Lutfen kisa bir sure sonra tekrar deneyin.";
+  "Sign-in is currently unavailable. Please try again shortly.";
 
 function getQueryMessage(message: string | null) {
   const trimmedMessage = message?.trim();
@@ -34,7 +34,7 @@ function getQueryMessage(message: string | null) {
   }
 
   if (trimmedMessage === "callback") {
-    return "Oturum dogrulamasi tamamlanamadi. Baglantiyi yeniden deneyin.";
+    return "We could not complete session verification. Please try the link again.";
   }
 
   return trimmedMessage;
@@ -89,7 +89,7 @@ export function LoginForm() {
     }
 
     if (!data.user) {
-      setSubmitError("Oturum olusturulamadi. Lutfen yeniden deneyin.");
+      setSubmitError("We could not create your session. Please try again.");
       return;
     }
 
@@ -100,50 +100,77 @@ export function LoginForm() {
   return (
     <form className="space-y-5" noValidate onSubmit={onSubmit}>
       {queryMessage ? (
-        <Alert variant="warning">
-          <AlertTitle>Devam etmek icin tekrar giris yapin</AlertTitle>
-          <AlertDescription>{queryMessage}</AlertDescription>
+        <Alert
+          variant="warning"
+          className="border-white/12 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
+        >
+          <AlertTitle className="text-white">Please sign in again</AlertTitle>
+          <AlertDescription className="text-white/72">
+            {queryMessage}
+          </AlertDescription>
         </Alert>
       ) : null}
 
       {submitError ? (
-        <Alert variant="danger">
-          <AlertTitle>Giris basarisiz</AlertTitle>
-          <AlertDescription>{submitError}</AlertDescription>
+        <Alert
+          variant="danger"
+          className="border-danger/35 bg-danger/12 text-white shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
+        >
+          <AlertTitle className="text-white">Sign-in failed</AlertTitle>
+          <AlertDescription className="text-white/72">
+            {submitError}
+          </AlertDescription>
         </Alert>
       ) : null}
 
-      <Field label="E-posta" error={errors.email?.message} required>
+      <Field
+        label="Email"
+        error={errors.email?.message}
+        required
+        className="[&>label]:text-white [&_p]:text-white/58"
+      >
         <Input
           type="email"
           autoComplete="email"
           placeholder="hello@ankarabuildclub.com"
           invalid={Boolean(errors.email)}
+          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
           {...register("email")}
         />
       </Field>
 
-      <Field label="Sifre" error={errors.password?.message} required>
+      <Field
+        label="Password"
+        error={errors.password?.message}
+        required
+        className="[&>label]:text-white [&_p]:text-white/58"
+      >
         <Input
           type="password"
           autoComplete="current-password"
-          placeholder="Sifrenizi girin"
+          placeholder="Enter your password"
           invalid={Boolean(errors.password)}
+          className="h-12 rounded-xl border-white/12 bg-white/7 text-white shadow-none placeholder:text-white/34 hover:border-white/18 focus-visible:ring-white/25 focus-visible:ring-offset-0"
           {...register("password")}
         />
       </Field>
 
-      <Button type="submit" block loading={isSubmitting}>
-        Giris Yap
+      <Button
+        type="submit"
+        block
+        loading={isSubmitting}
+        className="h-12 rounded-[1rem] border-0 bg-[linear-gradient(90deg,var(--color-highlight-400),var(--color-accent-500),var(--color-info-400))] text-white shadow-[0_18px_40px_rgba(213,82,163,0.24)] hover:brightness-110"
+      >
+        Sign in
       </Button>
 
-      <p className="text-sm leading-6 text-text-muted">
-        Henuz hesabiniz yoksa kayit akisini baslatin:{" "}
+      <p className="text-sm leading-6 text-white/60">
+        Don&apos;t have an account yet?{" "}
         <Link
           href={getRegisterHref(nextPath)}
-          className="font-semibold text-primary transition hover:text-primary-700"
+          className="font-semibold text-accent-300 transition hover:text-white"
         >
-          Kayit Ol
+          Register
         </Link>
       </p>
     </form>

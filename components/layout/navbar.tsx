@@ -108,7 +108,13 @@ export function Navbar({ overlay = false }: NavbarProps) {
   }, [hasSupabaseAuthEnv]);
 
   const desktopTextClass = "text-text-inverse";
-  const defaultBrandImageUrl = navigationData.brand.imgUrl?.trim() ?? "";
+  const defaultBrandImageUrl = isScrolled
+    ? navigationData.brand.scrolledImgUrl?.trim() ??
+      navigationData.brand.imgUrl?.trim() ??
+      ""
+    : navigationData.brand.imgUrl?.trim() ??
+      navigationData.brand.scrolledImgUrl?.trim() ??
+      "";
   const brandImageUrl = defaultBrandImageUrl;
   const hasBrandImage = brandImageUrl.length > 0;
   const isAuthenticated = isAuthReady && Boolean(authUser);
@@ -153,7 +159,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       width={192}
                       height={48}
                       className={cn(
-                        "w-auto transition-[height] duration-300",
+                        "relative top-[0.3rem] w-auto transition-[height,top] duration-300",
                         isScrolled ? "h-8 sm:h-9" : "h-9 sm:h-11",
                       )}
                       priority
@@ -273,7 +279,7 @@ export function Navbar({ overlay = false }: NavbarProps) {
                       className={cn(
                         "hidden rounded-full border border-white/12 px-4 py-2.5 text-sm font-semibold transition lg:inline-flex",
                         desktopTextClass,
-                        "bg-white text-brand-black hover:bg-white/90",
+                        "bg-white/10 text-white hover:bg-white/16",
                       )}
                     >
                       {navigationData.auth.loginLabel}
