@@ -12,67 +12,94 @@ const eventSignals = [
   {
     value: "2h",
     label: "Deep focus block",
-    detail:
-      "A big enough window to enter flow quickly and make meaningful progress without hiding behind planning.",
+    detail: "Protected time to get real work done.",
   },
   {
     value: "1 day",
     label: "Shipping window",
-    detail:
-      "A short but serious timebox that turns intention into a decision and a visible result.",
+    detail: "A short sprint that ends with visible output.",
   },
   {
     value: "Live",
     label: "Builder room",
-    detail:
-      "A room full of people bringing real products, prototypes, and unfinished work into the same space.",
+    detail: "Builders working on actual products together.",
   },
 ] as const;
 
 const eventFormats = [
   {
     step: "01",
-    title: "Deep Work",
-    rhythm: "Quiet focus + natural connection after",
-    description:
-      "You begin by naming what you intend to finish, then move into a long block where your attention is actually protected. The visible win is not showing up, but moving the work forward.",
+    title: "Sprints",
+    rhythm: "Fast execution",
+    description: "Short, intense work blocks built for momentum.",
     bullets: [
-      "Starts with a short goal declaration.",
-      "The room turns into a true production block with minimal interruption.",
-      "The final stretch opens up for conversation, feedback, and project matching.",
+      "Pick a clear target.",
+      "Move fast with a small team.",
+      "End with visible output.",
     ],
   },
   {
     step: "02",
-    title: "Build Sprint",
-    rhythm: "High energy, fast iteration",
-    description:
-      "A more collective and more intense format. The goal is not to keep talking about ideas, but to run more experiments and end the day with a tangible intermediate result.",
+    title: "Mini Sprints",
+    rhythm: "Smaller scope, faster loop",
+    description: "A lighter version of sprint mode for quick progress.",
     bullets: [
-      "Small teams organize quickly.",
-      "The feedback loop is embedded directly into the build process.",
-      "By the end of the day, the work is close enough to demo.",
+      "Keep scope tight.",
+      "Ship one small win.",
+      "Review what changed.",
     ],
   },
   {
     step: "03",
-    title: "Ship Day",
-    rhythm: "The deadline is real, the excuse space is small",
-    description:
-      "It does not need to be perfect, but it does need to exist outside your laptop before the day ends. The format is not about pressure for its own sake, but about forcing visible progress.",
+    title: "Roasting Day",
+    rhythm: "Direct feedback",
+    description: "Bring the work and get sharp, honest feedback.",
     bullets: [
-      "What you will ship becomes clear from the start.",
-      "Time pressure speeds up decision-making.",
-      "Closing demos create visible proof of progress.",
+      "Show the real version.",
+      "Get clear critique.",
+      "Leave with next steps.",
+    ],
+  },
+  {
+    step: "04",
+    title: "Fuckup Nights",
+    rhythm: "Stories from failure",
+    description: "A candid format about mistakes, lessons, and recovery.",
+    bullets: [
+      "Share what went wrong.",
+      "Talk about what changed after.",
+      "Turn failure into signal.",
+    ],
+  },
+  {
+    step: "05",
+    title: "Deep Work Session",
+    rhythm: "Quiet focus",
+    description: "Protected time for builders who need uninterrupted work.",
+    bullets: [
+      "Arrive with a task.",
+      "Work in silence.",
+      "Wrap with progress check-ins.",
+    ],
+  },
+  {
+    step: "06",
+    title: "Events",
+    rhythm: "Community rhythm",
+    description: "The broader flow of gatherings that keeps the club active.",
+    bullets: [
+      "Meet people building seriously.",
+      "Stay close to the calendar.",
+      "Find the right room for your pace.",
     ],
   },
 ] as const;
 
 const roomPrinciples = [
-  "Show up with a half-finished feature, a prototype, a landing page, or a real product problem.",
-  "Use the timebox to make clear decisions instead of endlessly discussing options.",
-  "Even if the output is still rough, share what changed by the end of the session.",
-  "The strongest social layer happens after the work becomes visible through feedback and conversation.",
+  "Bring a real task, not just an idea.",
+  "Use the timebox to make decisions.",
+  "Share what changed by the end.",
+  "Conversation gets better after the work is visible.",
 ] as const;
 
 export const metadata: Metadata = {
@@ -108,9 +135,7 @@ export default function EventsPage() {
                     for real.
                   </h1>
                   <p className="max-w-2xl text-sm leading-8 text-ink-200 md:text-base">
-                    This is not a passive meetup calendar. Every session is shaped
-                    to help people focus harder, iterate faster, or make real
-                    progress around the same table with the right collaborators.
+                    Sessions are built for focus, speed, and visible progress.
                   </p>
                 </div>
 
@@ -209,9 +234,7 @@ export default function EventsPage() {
                   The community rhythm is built by multiple formats working together.
                 </h2>
                 <p className="text-sm leading-7 text-ink-300 sm:text-base">
-                  Each format serves a different need: focus, speed, delivery, and
-                  shared visibility. The same rhythm language from the sponsor page
-                  now maps directly onto the events themselves.
+                  Different formats for focus, speed, and shipping.
                 </p>
               </div>
 
@@ -276,12 +299,10 @@ export default function EventsPage() {
                     Room energy
                   </p>
                   <h2 className="text-3xl font-semibold tracking-tight text-white">
-                    The day usually shifts away from small talk and toward real work.
+                    Less talk, more building.
                   </h2>
                   <p className="text-sm leading-7 text-white/70 sm:text-base">
-                    The goal is more than putting people in the same room. As the
-                    work becomes visible, conversations get sharper, feedback gets
-                    better, and the community forms more naturally.
+                    The room works best when progress is visible.
                   </p>
                 </div>
               </div>
@@ -291,9 +312,7 @@ export default function EventsPage() {
                   Quick note
                 </p>
                 <p className="mt-3 text-sm leading-6 text-white/78">
-                  If you have been building alone for too long, this page is
-                  probably your signal to stop hiding the work and bring it into
-                  the room.
+                  Bring the work into the room.
                 </p>
               </div>
             </div>
@@ -326,8 +345,7 @@ export default function EventsPage() {
                     Track upcoming sessions directly in Luma.
                   </h2>
                   <p className="text-sm leading-6 text-white/70 sm:text-base">
-                    Registration, schedule changes, and event details stay in sync
-                    here, so this embed is the fastest path to the current calendar.
+                    The fastest way to see the current calendar.
                   </p>
                 </div>
 
