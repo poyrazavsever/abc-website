@@ -19,14 +19,14 @@ const featuredNames = [
 ];
 
 const sponsorNames = [
-  "Builder Network",
-  "Campus Labs",
-  "GarajX",
-  "OUOD",
-  "Behumbo",
-  "Lovable",
-  "Supabase",
-  "Vercel",
+  "Deep Work",
+  "Ship Day",
+  "Build Sprint",
+  "Feedback Circle",
+  "Demo Night",
+  "Work Session",
+  "Team Sync",
+  "Founder Corner",
 ];
 
 const analyticsHighlights = [
@@ -45,11 +45,6 @@ const analyticsHighlights = [
     value: "18",
     label: "active event cycles",
     detail: "A steady rhythm powered by Deep Work, Ship Day, and Sprint formats.",
-  },
-  {
-    value: "92%",
-    label: "return rate",
-    detail: "The likelihood that someone who joins önce comes back into the community.",
   },
 ];
 
@@ -236,33 +231,33 @@ const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
   description:
-    "The milestones that shaped the community and where it is headed next.",
+    "From the first gathering on International Women's Day to the long-term vision ahead, this is how the community is taking shape.",
   ctaLabel: "Join the Community",
   ctaHref: "/register",
   milestones: [
     {
-      year: "2024",
-      title: "The Beginning",
+      year: "8 Mar 2026",
+      title: "First Gathering",
       description:
-        "The first Deep Work session brought together a small group of builders in Ankara.",
+        "Our first event took place on International Women's Day, bringing together the earliest members of the community around an inclusive builder spirit.",
     },
     {
-      year: "2025 Q1",
-      title: "Early Growth",
+      year: "Spring 2026",
+      title: "Building Momentum",
       description:
-        "Recurring events took shape, the first Build Sprint launched, and the community platform went live.",
-    },
-    {
-      year: "2025 Q2",
-      title: "Ship In",
-      description:
-        "A new name and a sharper vision marked the start of the community's next growth chapter.",
+        "The next phase is turning that first energy into recurring meetups, stronger member connections, and a steady rhythm of building together.",
     },
     {
       year: "2026",
-      title: "What's Next",
+      title: "Shared Output",
       description:
-        "The next step is a stronger builder network with new cities, new formats, and more room to build.",
+        "As the network grows, events, collaborations, and member-led projects will create visible outcomes that strengthen the community identity.",
+    },
+    {
+      year: "Future Vision",
+      title: "A Lasting Builder Network",
+      description:
+        "Our vision is to grow into a lasting builder network that opens more space for women to learn, ship, collaborate, and lead across new formats and new cities.",
     },
   ],
 };
@@ -319,7 +314,7 @@ export default function MarketingHomePage() {
             className="mx-auto max-w-3xl [&_h2]:text-white [&_p]:text-white/70"
           />
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 xl:grid-cols-3">
             {analyticsHighlights.map((item) => (
               <Card
                 key={item.label}
