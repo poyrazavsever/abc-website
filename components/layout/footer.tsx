@@ -53,12 +53,12 @@ export function Footer() {
                   <Image
                     src={brandImageUrl}
                     alt={footerData.brand.title}
-                    width={192}
-                    height={48}
-                    className="h-7 w-auto"
+                    width={576}
+                    height={144}
+                    className="h-21 w-auto"
                   />
                 ) : (
-                  <span className="text-2xl font-semibold tracking-tight text-white">
+                  <span className="text-6xl font-semibold tracking-tight text-white">
                     {footerData.brand.title}
                   </span>
                 )}

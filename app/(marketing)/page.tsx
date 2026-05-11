@@ -160,21 +160,6 @@ const eventFormats = [
   },
 ];
 
-const missionPillars = [
-  {
-    title: "Build a shipping rhythm",
-    text: "We create a shared pace for consistently putting real work into the world, not just collecting inspiration.",
-  },
-  {
-    title: "Create high-quality connections",
-    text: "Getting the right people around the same table should not be luck. It should be designed into the community experience.",
-  },
-  {
-    title: "Make the work visible",
-    text: "Projects, profiles, and a strong shipping culture make sure meaningful work does not stay hidden.",
-  },
-];
-
 const aboutMission = {
   eyebrow: "Our Mission",
   heading: "We believe in the power of building together.",
@@ -359,93 +344,6 @@ export default function MarketingHomePage() {
         </Container>
       </section>
 
-      <section className="border-t border-white/6 bg-brand-black pb-24 pt-4 sm:pb-28">
-        <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
-          <div className="space-y-6 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(17,17,17,0.98),rgba(70,44,125,0.82),rgba(131,28,145,0.72))] p-8 text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:p-10">
-            <p className="text-xs font-semibold tracking-[0.28em] text-white/52">
-              Our mission
-            </p>
-            <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.05em] text-balance sm:text-4xl">
-              Make building in Ankara feel less like a solo effort.
-            </h2>
-            <p className="max-w-xl text-sm leading-7 text-white/78 sm:text-base">
-              Shipin is a community designed for people who launch products,
-              form teams, test ideas, and build consistently to move in the
-              same rhythm. The goal is not just to introduce people, but to
-              help them create together.
-            </p>
-            <LinkButton
-              href="/register"
-              className="w-fit rounded-full bg-white px-5 text-primary hover:bg-white/92"
-            >
-              Join the rhythm
-            </LinkButton>
-          </div>
-
-          <div className="grid gap-4">
-            {missionPillars.map((pillar, index) => (
-              <Card
-                key={pillar.title}
-                surface="transparent"
-                elevated={false}
-                className="rounded-[1.5rem] border-white/10 bg-white/5 shadow-[0_16px_44px_rgba(0,0,0,0.2)]"
-              >
-                <CardContent className="flex gap-4 p-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-secondary-500),var(--color-accent-500))] text-sm font-semibold text-white">
-                    0{index + 1}
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-white">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-sm leading-6 text-white/70 sm:text-base">
-                      {pillar.text}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
-        <Container className="space-y-10">
-          <SectionHeader
-            eyebrow="Our events"
-            heading="Each format solves a different builder need."
-            description="Sometimes you need focus, sometimes output, and sometimes a team to finish something in a single day."
-            actions={
-              <LinkButton
-                href="/events"
-                variant="outline"
-                className="border-white/12 bg-white/5 text-white hover:bg-white/10"
-              >
-                All events
-              </LinkButton>
-            }
-            className="[&_h2]:text-white [&_p]:text-white/70"
-          />
-
-          <div className="space-y-5">
-            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,112,191,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_28px_72px_rgba(0,0,0,0.24)] sm:p-4">
-              <Masonry
-                items={eventFormats}
-                ease="power3.out"
-                duration={0.7}
-                stagger={0.08}
-                animateFrom="bottom"
-                scaleOnHover
-                hoverScale={0.97}
-                blurToFocus
-                colorShiftOnHover
-                showItemOverlay={false}
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
-
       <div id="about" className="scroll-mt-28">
         <AboutMission
           eyebrow={aboutMission.eyebrow}
@@ -485,6 +383,43 @@ export default function MarketingHomePage() {
           milestones={aboutTimeline.milestones}
         />
       </div>
+
+      <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
+        <Container className="space-y-10">
+          <SectionHeader
+            eyebrow="Our events"
+            heading="Each format solves a different builder need."
+            description="Sometimes you need focus, sometimes output, and sometimes a team to finish something in a single day."
+            actions={
+              <LinkButton
+                href="/events"
+                variant="outline"
+                className="border-white/12 bg-white/5 text-white hover:bg-white/10"
+              >
+                All events
+              </LinkButton>
+            }
+            className="[&_h2]:text-white [&_p]:text-white/70"
+          />
+
+          <div className="space-y-5">
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,112,191,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_28px_72px_rgba(0,0,0,0.24)] sm:p-4">
+              <Masonry
+                items={eventFormats}
+                ease="power3.out"
+                duration={0.7}
+                stagger={0.08}
+                animateFrom="bottom"
+                scaleOnHover
+                hoverScale={0.97}
+                blurToFocus
+                colorShiftOnHover
+                showItemOverlay={false}
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

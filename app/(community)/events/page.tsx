@@ -167,14 +167,6 @@ export default function EventsPage() {
                   >
                     Open Luma Calendar
                   </LinkButton>
-                  <LinkButton
-                    href="#calendar"
-                    size="lg"
-                    variant="ghost"
-                    className="h-auto border-white/14 bg-white/[0.08] px-8 py-3 text-base text-brand-white hover:bg-white/[0.12]"
-                  >
-                    Jump to Calendar
-                  </LinkButton>
                 </div>
               </div>
 
@@ -225,16 +217,10 @@ export default function EventsPage() {
 
           <Container width="wide" className="relative max-w-6xl">
             <div className="space-y-10">
-              <div className="max-w-3xl space-y-3">
-                <p className="text-xs font-semibold tracking-[0.22em] text-accent-300">
-                  Event Structure
-                </p>
-                <h2 className="text-3xl font-semibold tracking-tight text-brand-white sm:text-4xl">
-                  Different formats, same momentum.
+              <div className="flex justify-center">
+                <h2 className="text-center text-3xl font-semibold leading-[0.96] tracking-tight text-brand-white sm:text-4xl lg:text-5xl">
+                  photos
                 </h2>
-                <p className="text-sm leading-7 text-ink-300 sm:text-base">
-                  Different formats for focus, speed, and shipping.
-                </p>
               </div>
 
               <div className="grid gap-4 lg:grid-cols-3">
@@ -329,51 +315,6 @@ export default function EventsPage() {
           </Container>
         </section>
 
-        <section
-          id="calendar"
-          className="relative overflow-hidden py-16 sm:py-20"
-        >
-          <Container width="wide" className="max-w-6xl">
-            <div className="overflow-hidden rounded-[1.9rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025))] text-white shadow-[0_18px_44px_rgba(0,0,0,0.22)]">
-              <div className="flex flex-col gap-4 border-b border-white/8 bg-black/18 px-5 py-5 sm:px-6 lg:flex-row lg:items-end lg:justify-between">
-                <div className="max-w-2xl space-y-2">
-                  <p className="text-xs font-semibold tracking-[0.22em] text-accent-300">
-                    Live calendar
-                  </p>
-                  <h2 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
-                    Track upcoming sessions directly in Luma.
-                  </h2>
-                  <p className="text-sm leading-6 text-white/70 sm:text-base">
-                    The fastest way to see the current calendar.
-                  </p>
-                </div>
-
-                <LinkButton
-                  href={LUMA_PUBLIC_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant="outline"
-                >
-                  Open Luma page
-                </LinkButton>
-              </div>
-
-              <div className="bg-transparent p-2 sm:p-3">
-                <div className="overflow-hidden rounded-[1.4rem] border border-white/8 bg-white">
-                  <iframe
-                    src={LUMA_CALENDAR_URL}
-                    title="Ankara Build Club events calendar"
-                    width="100%"
-                    height="980"
-                    frameBorder="0"
-                    allowFullScreen
-                    className="block min-h-[980px] w-full bg-surface"
-                  />
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
       </div>
     </main>
   );
