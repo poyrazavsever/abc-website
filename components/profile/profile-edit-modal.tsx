@@ -262,7 +262,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
                 }
                 aria-label="Profil fotoğrafı önizlemesi"
               >
-                {profile.fullName.slice(0, 2).toLocaleUpperCase("tr")}
+                {profile.fullName.slice(0, 2).toUpperCase()}
               </div>
               <div>
                 <label

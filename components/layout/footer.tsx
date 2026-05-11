@@ -89,7 +89,7 @@ export function Footer() {
           </div>
 
           <aside className="space-y-5 xl:border-l xl:border-white/10 xl:pl-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/45">
+            <p className="text-xs font-semibold tracking-[0.12em] text-white/45">
               {footerData.contact.title}
             </p>
 

@@ -153,7 +153,7 @@ export function AboutValues({
           <div className="mx-auto max-w-2xl space-y-4 text-center">
             <p
               className={cn(
-                "transform-gpu text-xs font-semibold uppercase tracking-[0.26em] text-ink-200 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "transform-gpu text-xs font-semibold tracking-[0.26em] text-ink-200 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                 hasAnimatedIn
                   ? "translate-y-0 opacity-100"
                   : "translate-y-6 opacity-0",

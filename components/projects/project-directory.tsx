@@ -80,7 +80,7 @@ function StatsPill({ value, label }: { value: string; label: string }) {
   return (
     <div className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center">
       <p className="text-lg font-semibold text-white">{value}</p>
-      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/44">
+      <p className="text-[0.68rem] font-semibold tracking-[0.22em] text-white/44">
         {label}
       </p>
     </div>

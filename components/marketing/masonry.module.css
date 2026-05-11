@@ -56,7 +56,6 @@
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: rgb(255 181 222 / 0.95);
   backdrop-filter: blur(12px);
 }
@@ -98,7 +97,6 @@
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: rgb(255 255 255 / 0.7);
   backdrop-filter: blur(12px);
 }

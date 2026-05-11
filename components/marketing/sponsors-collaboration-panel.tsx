@@ -397,7 +397,7 @@ export function SponsorsCollaborationPanel({
               className="flex flex-1 flex-col justify-center"
             >
               <div className="max-w-xl">
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.38em] text-primary-200/80">
+                <p className="text-[0.72rem] font-semibold tracking-[0.38em] text-primary-200/80">
                   {eyebrow}
                 </p>
 

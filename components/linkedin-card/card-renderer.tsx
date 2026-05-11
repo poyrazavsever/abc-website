@@ -145,9 +145,7 @@ const themeConfig: Record<
 
 function getInitials(fullName: string) {
   const parts = fullName.trim().split(/\s+/u).filter(Boolean);
-  return `${parts[0]?.[0] ?? "S"}${parts[1]?.[0] ?? "I"}`.toLocaleUpperCase(
-    "tr",
-  );
+  return `${parts[0]?.[0] ?? "S"}${parts[1]?.[0] ?? "I"}`.toUpperCase();
 }
 
 /* ------------------------------------------------------------------ */

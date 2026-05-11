@@ -399,7 +399,7 @@ export function SponsorsCommunitySummary({
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-3">
                   <span className="h-2.5 w-2.5 rounded-full bg-accent-400 shadow-[0_0_14px_rgba(255,146,206,0.8)]" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.26em] text-ink-200">
+                  <p className="text-xs font-semibold tracking-[0.26em] text-ink-200">
                     {eyebrow}
                   </p>
                 </div>
@@ -457,7 +457,7 @@ export function SponsorsCommunitySummary({
                 >
                   <div className="flex items-start justify-between gap-4">
                     <GlassIconBadge>{decor?.icon ?? <SparkArrowIcon />}</GlassIconBadge>
-                    <span className="inline-flex items-center gap-1 rounded-full border border-white/8 bg-white/[0.04] px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-ink-300">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-white/8 bg-white/[0.04] px-2.5 py-1 text-[0.65rem] font-semibold tracking-[0.22em] text-ink-300">
                       <SparkArrowIcon className="text-accent-300" />
                       Build
                     </span>
@@ -474,7 +474,7 @@ export function SponsorsCommunitySummary({
                       />
                     </p>
                     <div className="space-y-2">
-                      <p className="text-sm tracking-[0.28em] uppercase text-ink-300">
+                      <p className="text-sm tracking-[0.28em] text-ink-300">
                         {stat.label}
                       </p>
                       <p className="max-w-[24ch] text-sm leading-6 text-ink-100/88">

@@ -33,7 +33,7 @@ export function SectionHeader({
     >
       <div className="space-y-1.5">
         {eyebrow ? (
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-text-soft">
+          <p className="text-xs font-semibold tracking-[0.12em] text-text-soft">
             {eyebrow}
           </p>
         ) : null}

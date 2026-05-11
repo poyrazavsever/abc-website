@@ -1,6 +1,6 @@
 export const partnerContactEmail = "hello@ankarabuildclub.com";
 export const partnerContactHref =
-  "mailto:hello@ankarabuildclub.com?subject=Ankara%20Build%20Club%20partnerlik%20g%C3%B6r%C3%BC%C5%9Fmesi";
+  "mailto:hello@ankarabuildclub.com?subject=Ankara%20Build%20Club%20partnership%20inquiry";
 
 type SponsorHero = {
   eyebrow: string;
@@ -81,192 +81,192 @@ type SponsorsPageData = {
 
 export const sponsorsPageData: SponsorsPageData = {
   hero: {
-    eyebrow: "Sponsor ve Partnerlik",
-    title: "Bizimle İş Birlikleri Kurmaya Ne Dersiniz?.",
+    eyebrow: "Sponsors & Partnerships",
+    title: "Build Partnerships With Ankara Build Club.",
     description:
-      "Shipin, topluluğun üretim karakterini ve ritmini anlamaya dayalı, tek seferlik değil sürekli temas eden iş birlikleri kurmayı tercih ediyoruz. .",
+      "We design sponsor relationships around real participation, not one-off logo placement. If you want to show up where builders gather, ship, and learn together, let's build a partnership that fits the rhythm of the community.",
     highlights: [
-      "Ankara merkezli fiziksel topluluk",
-      "Etkinlik ve build ritmi odaklı",
-      "Üretim ve görünürlük eksenli ortaklıklar",
+      "Ankara-based in-person community",
+      "Event-led builder rhythm",
+      "Partnerships built around visibility and real use",
     ],
-    primaryCtaLabel: "Partnerlik Maili Başlat",
-    secondaryCtaLabel: "Etkinlik Yapısını İncele",
-    asideTitle: "Bu sayfa kimler için uygun",
+    primaryCtaLabel: "Start a Partnership Conversation",
+    secondaryCtaLabel: "Explore Our Event Formats",
+    asideTitle: "Who this page is for",
     asideDescription:
-      "Dış paydaşın topluluğu anlamasını ve hızlı aksiyon alabilmesini kolaylaştıran net bir özet.",
+      "A quick overview for teams that want to understand the community, spot the right entry point, and move fast.",
     asideItems: [
-      "Etkinlik partnerliği değerlendiren markalar",
-      "Builder'lara araç, kredi veya altyapı desteği sunan ekipler",
-      "Toplulukla ortak içerik, rapor veya program kurgulamak isteyen kurumlar",
+      "Brands exploring event partnerships",
+      "Teams offering tools, credits, or infrastructure to builders",
+      "Organizations looking to co-create content, reports, or custom programs",
     ],
   },
   community: {
-    eyebrow: "Topluluk Özeti",
+    eyebrow: "Community Snapshot",
     heading:
-      "ABC, bir networking vitrini değil; birlikte üretmeye dayalı bir çalışma zemini.",
+      "ABC is not a networking showcase. It is a working environment built around making things together.",
     description:
-      "Topluluğun temel değeri; insanları yalnızca bir araya getirmek değil, birlikte bir şey çıkarmaya zorlayan ritimler kurmaktır. Bu ritim sponsor için daha anlamlı temas, daha gerçek geri bildirim ve daha doğal görünürlük sağlar.",
+      "The value of the community is not just bringing people into the same room. It is creating recurring formats that push people to build together. For partners, that means clearer touchpoints, more honest feedback, and visibility that feels earned.",
     proofItems: [
       {
-        title: "Builder odağı",
+        title: "Builder-first",
         description:
-          "Toplulukta ürün, kod, tasarım, growth ve operasyon tarafında aktif üreten insanlar bir araya gelir.",
+          "The room brings together people actively building across product, code, design, growth, and operations.",
       },
       {
-        title: "Ankara'da fiziksel ritim",
+        title: "In-person rhythm in Ankara",
         description:
-          "Yerel buluşmalar, düzenli geri dönüş ve tekrar eden etkinlikler sayesinde ilişki tek seferlik kalmaz.",
+          "Local meetups and repeat formats turn one-time attendance into an ongoing relationship with the community.",
       },
       {
-        title: "Üretim görünürlüğü",
+        title: "Visible output",
         description:
-          "Etkinlikler yalnızca buluşma değil; demo, ship, feedback ve build-in-public anları üretir.",
+          "The events create demos, launches, feedback loops, and build-in-public moments, not just attendance.",
       },
       {
-        title: "Partner için net temas alanı",
+        title: "Clear partner surface area",
         description:
-          "Araç desteği, etkinlik partnerliği veya ortak içerik gibi modeller topluluğun doğal akışına gömülebilir.",
+          "Tool access, event support, and shared content can be woven directly into the natural flow of the community.",
       },
     ],
   },
   programs: {
-    eyebrow: "Etkinlik Yapısı",
-    heading: "Topluluğun ritmi farklı formatların birlikte çalışmasıyla kurulur.",
+    eyebrow: "Event Formats",
+    heading: "The community moves through a stack of formats that keep builders in motion.",
     description:
-      "Her format farklı bir ihtiyaca hizmet eder: odaklanma, hızlı üretim, çıktı paylaşımı ve topluluk içi geri bildirim. Partnerlik modelleri bu yapıların her birine farklı şekilde yerleştirilebilir.",
+      "Each format serves a different need: focus, fast execution, public output, and peer feedback. Partnerships can plug into each format in a distinct way.",
     items: [
       {
         name: "Deep Work",
-        rhythm: "Düzenli tekrar eden odak seansı",
+        rhythm: "A recurring focus session",
         format:
-          "Katılımcılar gün için hedefini netleştirir, ardından kesintisiz üretim ve sonrasında kısa networking akışı gelir.",
+          "Participants set a clear goal for the day, work in uninterrupted blocks, and close with a short social wrap-up.",
         outcome:
-          "Odaklı çalışma, birbirinin işine tanık olma ve topluluk içi süreklilik.",
+          "Focused progress, shared accountability, and continuity across the community.",
         partnerValue:
-          "Araç denemesi, kredi desteği veya builder enablement mesajları için doğal bir temas zemini sunar.",
+          "A natural setting for product trials, credits, and lightweight builder enablement.",
       },
       {
         name: "Build Sprint",
-        rhythm: "Daha yüksek enerji ve ekipli üretim formatı",
+        rhythm: "A higher-energy collaborative build format",
         format:
-          "Builder'lar bir araya gelir, hızlı iterasyonlar yapar, gün içinde eğitim ve paylaşımlarla çıktıya yaklaşır.",
+          "Builders come together, iterate quickly, and move closer to a real output through sessions, support, and shared momentum.",
         outcome:
-          "Prototipler, MVP ilerlemesi, demo anları ve daha güçlü ekip içi bağlar.",
+          "Prototypes, MVP progress, demo moments, and stronger team bonds.",
         partnerValue:
-          "Etkinlik partnerliği, teknik altyapı desteği ve ürün deneyimini görünür kılan entegrasyonlar için uygundur.",
+          "A strong fit for event sponsorships, technical infrastructure, and integrations that make product usage visible.",
       },
       {
         name: "Ship Day",
-        rhythm: "Tek günlük çıktı odaklı teslim ritmi",
+        rhythm: "A one-day shipping cadence",
         format:
-          "Katılımcı ne ship edeceğini baştan ilan eder ve gün sonunda çıktısını yayınlar ya da demo eder.",
+          "Participants declare what they will ship at the start and publish or demo it by the end of the day.",
         outcome:
-          "Net teslim tarihi, somut çıktı ve paylaşılabilir build hikayeleri.",
+          "A clear deadline, concrete output, and highly shareable build stories.",
         partnerValue:
-          "Demo günü, içerik ortaklığı ve partner markanın build anına temas ettiği görünürlük noktası oluşturur.",
+          "Creates a visible moment for demo-day support, content collaborations, and brand presence around the act of shipping.",
       },
     ],
   },
   showcase: {
-    eyebrow: "Proje Vitrini",
+    eyebrow: "Project Landscape",
     heading:
-      "Toplulukta görünen değer, tek tip bir üründen değil; farklı çıktı türlerinin birikiminden gelir.",
+      "The value you see in the community comes from the range of things people build, not from one single product category.",
     description:
-      "Bu alan gerçek proje verisi ya da sponsor logosu yerine, Ankara Build Club içinde sıkça üretilen build kategorilerini anlatır. Amaç sahte bir portfolyo göstermek değil, topluluğun üretim karakterini anlatmaktır.",
-    noteTitle: "Not",
+      "Instead of a polished sponsor wall or a fake portfolio, this section reflects the kinds of work that repeatedly emerge inside Ankara Build Club. The goal is to show the character of the community, not stage-manage proof.",
+    noteTitle: "Note",
     noteDescription:
-      "Buradaki başlıklar doğrudan referans proje listesi değil; toplulukta üretilen iş tiplerini ve paylaşılabilir build alanlarını anlatan küratörlü örneklerdir.",
+      "These are curated examples of recurring output categories and shareable build surfaces, not a literal client list.",
     items: [
       {
-        title: "AI araçları ve otomasyon akışları",
+        title: "AI tools and automation workflows",
         description:
-          "Küçük ekiplerin daha hızlı çalışmasını sağlayan otomasyonlar, workflow yardımcıları ve deneysel AI ürünleri.",
-        outputs: ["MVP akışları", "iç araçlar", "deneysel entegrasyonlar"],
+          "Automations, workflow assistants, and experimental AI products that help small teams move faster.",
+        outputs: ["MVP workflows", "internal tools", "experimental integrations"],
       },
       {
-        title: "SaaS ve operatör ürünleri",
+        title: "SaaS and operator products",
         description:
-          "Gerçek bir problemi dar kapsamda çözmeye odaklı dashboard, panel, workflow ve operasyon ürünleri.",
-        outputs: ["yönetim panelleri", "niş SaaS fikirleri", "servis katmanları"],
+          "Dashboards, operational layers, and workflow products built to solve real problems in a narrow, practical way.",
+        outputs: ["operator dashboards", "niche SaaS concepts", "service layers"],
       },
       {
-        title: "Launch ve growth deneyleri",
+        title: "Launch and growth experiments",
         description:
-          "Landing page, positioning, onboarding ve ilk kullanıcı geri bildirimi eksenli testler.",
+          "Tests centered on landing pages, positioning, onboarding, and early user feedback.",
         outputs: [
-          "landing iterasyonları",
-          "go-to-market denemeleri",
-          "copy testleri",
+          "landing page iterations",
+          "go-to-market experiments",
+          "copy tests",
         ],
       },
       {
-        title: "Topluluk içi build çıktıları",
+        title: "Community build outputs",
         description:
-          "Etkinliklerde paylaşılan demo'lar, ship edilen küçük feature'lar ve birlikte yapılan geri bildirim turları.",
-        outputs: ["demo anları", "feedback turları", "build-in-public paylaşımları"],
+          "Demos shared at events, small features shipped in public, and collaborative feedback loops.",
+        outputs: ["demo moments", "feedback rounds", "build-in-public updates"],
       },
     ],
   },
   partnership: {
-    eyebrow: "İş Birliği Modelleri",
-    heading: "Partnerlik, topluluğun akışına uyduğunda daha anlamlı hale gelir.",
+    eyebrow: "Partnership Models",
+    heading: "Partnerships work best when they fit the flow of the community.",
     description:
-      "Ankara Build Club içinde en iyi sonuç veren modeller, topluluğun ritmine eklemlenen ve builder'a doğrudan fayda sunan modellerdir. Yüzeysel branding yerine, gerçek temas ve kullanım üreten ortaklıkları tercih ediyoruz.",
+      "The strongest partnerships at Ankara Build Club are the ones that plug into the community rhythm and create direct value for builders. We prioritize real interaction and product use over surface-level branding.",
     models: [
       {
-        title: "Etkinlik partnerliği",
+        title: "Event partnership",
         summary:
-          "Belirli bir Deep Work, Build Sprint veya Ship Day formatını destekleyen görünür ortaklık modeli.",
+          "A visible partnership model built around supporting a specific Deep Work, Build Sprint, or Ship Day format.",
         fit:
-          "Etkinlikte varlık göstermek, doğrudan topluluğa temas etmek ve ilgili bir bağlamda konumlanmak isteyen ekipler için.",
+          "Best for teams that want to show up in the room, engage the community directly, and be present in a relevant context.",
       },
       {
-        title: "Builder enablement desteği",
+        title: "Builder enablement",
         summary:
-          "Topluluğun daha iyi build etmesini sağlayan eğitim, mentorluk, office hour veya kaynak desteği modeli.",
+          "A support model built around mentorship, office hours, education, or resources that help the community build better.",
         fit:
-          "Topluluğa yalnızca logo değil, çalışmayı hızlandıran uzmanlık veya süreç desteği sunmak isteyen partnerler için.",
+          "Best for partners who want to contribute expertise or process support, not just brand presence.",
       },
       {
-        title: "Tool / kredi / altyapı desteği",
+        title: "Tools, credits, or infrastructure",
         summary:
-          "Builder'ların gerçekten kullanabileceği yazılım, API kredisi, altyapı, dataset veya araca erişim modeli.",
+          "A model focused on software, API credits, infrastructure, datasets, or tools builders can actually use.",
         fit:
-          "Ürünün doğrudan builder workflow'una girdiği, deneme ve kullanıma dayalı daha derin temas arayan partnerler için.",
+          "Best for partners looking for deeper product adoption where their tool becomes part of the builder workflow.",
       },
       {
-        title: "İçerik / rapor / topluluk iş birliği",
+        title: "Content, reports, or community programs",
         summary:
-          "Topluluktan doğan gözlem ve üretim anlatılarını birlikte paketleyen rapor, içerik ya da özel program modeli.",
+          "A collaboration model for packaging observations, build stories, and community insights into content, reports, or special programs.",
         fit:
-          "Ankara'daki build kültürünü daha iyi anlamak, anlatmak veya özel bir topluluk hikayesi üretmek isteyen kurumlar için.",
+          "Best for organizations that want to understand, document, or amplify the build culture emerging in Ankara.",
       },
     ],
     contactFlow: [
       {
         step: "01",
-        title: "Kısa tanıtım maili",
+        title: "Send a short intro",
         description:
-          "Ne yapmak istediğinizi, hangi formatla ilgilendiğinizi ve topluluğa ne tür bir fayda sunabileceğinizi kısa bir mail ile iletin.",
+          "Tell us what you want to support, which format interests you, and what kind of value you can bring to the community.",
       },
       {
         step: "02",
-        title: "İhtiyaç uyumu görüşmesi",
+        title: "Alignment call",
         description:
-          "Topluluğun ritmi, etkinlik yapısı ve sizin beklentiniz arasında gerçek bir uyum var mı diye birlikte bakılır.",
+          "We look together at whether there is a real fit between your goals, the event structure, and the pace of the community.",
       },
       {
         step: "03",
-        title: "Özel partnerlik planı ve geri dönüş",
+        title: "Custom partnership plan",
         description:
-          "Uygun format netleşirse kapsam, zamanlama, görünürlük ve sorumluluklar içeren net bir partnerlik planı oluşturulur.",
+          "If there is a strong fit, we shape a clear plan covering scope, timing, visibility, and responsibilities.",
       },
     ],
     closingTitle:
-      "Ankara Build Club ile anlamlı bir partnerlik başlatmak istiyorsanız bize yazın.",
+      "If you want to build a meaningful partnership with Ankara Build Club, reach out.",
     closingDescription:
-      "İçerikten etkinliğe, altyapıdan builder enablement'a kadar farklı modelleri birlikte kurgulayabiliriz. İlk adım için kısa bir tanıtım maili yeterli.",
-    responseWindow: "Hafta içi 24 saat içinde geri dönüş",
+      "From events and content to infrastructure and builder enablement, we can shape the right collaboration together. A short intro email is the best place to start.",
+    responseWindow: "We usually reply within 24 hours on weekdays",
   },
 };

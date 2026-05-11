@@ -1,3 +1,7 @@
+import { AboutCommunity } from "@/components/marketing/about-community";
+import { AboutMission } from "@/components/marketing/about-mission";
+import { AboutTimeline } from "@/components/marketing/about-timeline";
+import { AboutValues } from "@/components/marketing/about-values";
 import { LandingHero } from "@/components/marketing/landing-hero";
 import Masonry from "@/components/marketing/masonry";
 import { Container } from "@/components/shared/container";
@@ -171,6 +175,113 @@ const missionPillars = [
   },
 ];
 
+const aboutMission = {
+  eyebrow: "Our Mission",
+  heading: "We believe in the power of building together.",
+  accentPhrase: "building together",
+  description:
+    "Ship In is more than a community. It is an ecosystem where people build, learn, and grow together. Starting in Ankara, we create the environment builders need to turn ideas into real products.",
+  imageSrc: "/about/mission.png",
+  imageAlt: "Ship In community members working together",
+  stats: [
+    { value: "50+", label: "Active Builders" },
+    { value: "20+", label: "Events" },
+    { value: "3", label: "Core Formats" },
+  ],
+};
+
+const aboutValues = {
+  eyebrow: "Our Foundations",
+  heading: "What We Build Around",
+  description:
+    "The principles that shape every decision, event, and experience across the community.",
+  items: [
+    {
+      title: "Making",
+      description:
+        "We do not gather just to talk. Every session is designed to push toward a real output and strengthen a culture of building together.",
+    },
+    {
+      title: "Community",
+      description:
+        "Growth is collective. We move each other forward by sharing knowledge, experience, and momentum.",
+    },
+    {
+      title: "Transparency",
+      description:
+        "Our process, decisions, and feedback stay visible. Trust is built through openness.",
+    },
+    {
+      title: "Consistency",
+      description:
+        "We create a sustainable culture of execution through recurring rhythms, not one-off bursts of energy.",
+    },
+  ],
+};
+
+const aboutCommunity = {
+  eyebrow: "Community",
+  heading: "A community experience built around making.",
+  accentPhrase: "built around making",
+  description:
+    "Ship In events are more than networking. They create demo moments, shipping pressure, peer feedback, and build-in-public energy. Each format serves a different need.",
+  imageSrc: "/about/community.png",
+  imageAlt: "Ship In community event",
+  features: [
+    {
+      title: "Deep Work",
+      description: "Build side by side through uninterrupted focus sessions.",
+    },
+    {
+      title: "Build Sprint",
+      description:
+        "High-energy, team-based execution with fast iteration loops.",
+    },
+    {
+      title: "Ship Day",
+      description:
+        "A shipping cadence centered on ending the day with something real.",
+    },
+  ],
+  ctaLabel: "Explore Events",
+  ctaHref: "/events",
+};
+
+const aboutTimeline = {
+  eyebrow: "Our Journey",
+  heading: "Timeline",
+  description:
+    "The milestones that shaped the community and where it is headed next.",
+  ctaLabel: "Join the Community",
+  ctaHref: "/register",
+  milestones: [
+    {
+      year: "2024",
+      title: "The Beginning",
+      description:
+        "The first Deep Work session brought together a small group of builders in Ankara.",
+    },
+    {
+      year: "2025 Q1",
+      title: "Early Growth",
+      description:
+        "Recurring events took shape, the first Build Sprint launched, and the community platform went live.",
+    },
+    {
+      year: "2025 Q2",
+      title: "Ship In",
+      description:
+        "A new name and a sharper vision marked the start of the community's next growth chapter.",
+    },
+    {
+      year: "2026",
+      title: "What's Next",
+      description:
+        "The next step is a stronger builder network with new cities, new formats, and more room to build.",
+    },
+  ],
+};
+
 export default function MarketingHomePage() {
   const sponsorLoop = [...sponsorNames, ...sponsorNames];
 
@@ -181,7 +292,7 @@ export default function MarketingHomePage() {
       <section className="border-t border-b border-white/10 bg-brand-black py-5">
         <Container width="full" className="overflow-hidden px-0">
           <div className="mx-auto max-w-[110rem]">
-            <p className="mb-4 text-center text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-white/45">
+            <p className="mb-4 text-center text-[0.68rem] font-semibold tracking-[0.34em] text-white/45">
               Supporters and sponsors
             </p>
 
@@ -236,7 +347,7 @@ export default function MarketingHomePage() {
                     <p className="text-3xl font-semibold tracking-[-0.06em] text-accent-300 sm:text-4xl">
                       {item.value}
                     </p>
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/55">
+                    <p className="text-sm font-semibold tracking-[0.18em] text-white/55">
                       {item.label}
                     </p>
                   </div>
@@ -251,7 +362,7 @@ export default function MarketingHomePage() {
       <section className="border-t border-white/6 bg-brand-black pb-24 pt-4 sm:pb-28">
         <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
           <div className="space-y-6 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(17,17,17,0.98),rgba(70,44,125,0.82),rgba(131,28,145,0.72))] p-8 text-white shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/52">
+            <p className="text-xs font-semibold tracking-[0.28em] text-white/52">
               Our mission
             </p>
             <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.05em] text-balance sm:text-4xl">
@@ -334,6 +445,46 @@ export default function MarketingHomePage() {
           </div>
         </Container>
       </section>
+
+      <div id="about" className="scroll-mt-28">
+        <AboutMission
+          eyebrow={aboutMission.eyebrow}
+          heading={aboutMission.heading}
+          accentPhrase={aboutMission.accentPhrase}
+          description={aboutMission.description}
+          imageSrc={aboutMission.imageSrc}
+          imageAlt={aboutMission.imageAlt}
+          stats={aboutMission.stats}
+        />
+
+        <AboutValues
+          eyebrow={aboutValues.eyebrow}
+          heading={aboutValues.heading}
+          description={aboutValues.description}
+          values={aboutValues.items}
+        />
+
+        <AboutCommunity
+          eyebrow={aboutCommunity.eyebrow}
+          heading={aboutCommunity.heading}
+          accentPhrase={aboutCommunity.accentPhrase}
+          description={aboutCommunity.description}
+          imageSrc={aboutCommunity.imageSrc}
+          imageAlt={aboutCommunity.imageAlt}
+          features={aboutCommunity.features}
+          ctaLabel={aboutCommunity.ctaLabel}
+          ctaHref={aboutCommunity.ctaHref}
+        />
+
+        <AboutTimeline
+          eyebrow={aboutTimeline.eyebrow}
+          heading={aboutTimeline.heading}
+          description={aboutTimeline.description}
+          ctaLabel={aboutTimeline.ctaLabel}
+          ctaHref={aboutTimeline.ctaHref}
+          milestones={aboutTimeline.milestones}
+        />
+      </div>
     </div>
   );
 }

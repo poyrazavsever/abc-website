@@ -71,7 +71,7 @@ export function ProjectCard({ project }: { project: ProjectWithOwner }) {
               </div>
             </div>
 
-            <div className="shrink-0 rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/46">
+            <div className="shrink-0 rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.18em] text-white/46">
               ABC
             </div>
           </div>

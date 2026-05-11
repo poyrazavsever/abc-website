@@ -292,7 +292,7 @@ export function SponsorsProgramsSection({
                     <IconTile>{decor?.icon}</IconTile>
 
                     <div className="space-y-3">
-                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-ink-400 transition-all duration-500 group-hover:text-ink-200">
+                      <p className="text-[0.72rem] font-semibold tracking-[0.22em] text-ink-400 transition-all duration-500 group-hover:text-ink-200">
                         {item.rhythm}
                       </p>
                       <h3 className="text-2xl font-semibold tracking-tight text-brand-white">

@@ -131,7 +131,7 @@ export function LandingHero({ featuredNames }: LandingHeroProps) {
             </motion.div>
             <motion.p
               variants={itemVariants}
-              className="relative z-30 text-xs font-semibold uppercase tracking-[0.4em] text-white/80 sm:text-sm"
+              className="relative z-30 text-xs font-semibold tracking-[0.4em] text-white/80 sm:text-sm"
             >
               SHIPIN
             </motion.p>

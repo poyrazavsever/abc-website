@@ -197,7 +197,7 @@ export function OnboardingProfileForm({
           }
           aria-label="Profil fotoğrafı önizlemesi"
         >
-          {initials.toLocaleUpperCase("tr")}
+          {initials.toUpperCase()}
         </div>
         <div className="min-w-0 flex-1">
           <label

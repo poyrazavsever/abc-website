@@ -21,7 +21,7 @@ type SponsorsHeroProps = {
 };
 
 const easing = [0.16, 1, 0.3, 1] as const;
-const accentPhrases = ["İş Birlikleri"] as const;
+const accentPhrases = ["Partnerships"] as const;
 
 function MailPlusIcon() {
   return (
@@ -159,7 +159,7 @@ export function SponsorsHero({
         >
           <motion.p
             variants={itemVariants}
-            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-200 backdrop-blur-md"
+            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold tracking-[0.18em] text-ink-200 backdrop-blur-md"
           >
             {hero.eyebrow}
           </motion.p>

@@ -119,7 +119,7 @@ export function AdminPageHeader({
   return (
     <div className="flex flex-col gap-4 border-b border-border pb-6 lg:flex-row lg:items-end lg:justify-between">
       <div className="max-w-3xl space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+        <p className="text-xs font-semibold tracking-wide text-primary">
           {eyebrow}
         </p>
         <h1 className="text-3xl font-semibold text-text">{title}</h1>
@@ -156,7 +156,7 @@ export function AdminTable({
     <div className="overflow-hidden rounded-lg border border-border bg-surface shadow-xs">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-border-soft text-left text-sm">
-          <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-wide text-text-muted">
+          <thead className="bg-surface-muted text-xs font-semibold tracking-wide text-text-muted">
             <tr>
               {columns.map((column) => (
                 <th key={column} scope="col" className="px-4 py-3">

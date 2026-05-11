@@ -170,7 +170,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
                   .map((p) => p[0])
                   .join("")
                   .slice(0, 2)
-                  .toLocaleUpperCase("tr")}
+                  .toUpperCase()}
               </span>
             )}
             <div className="min-w-0">
@@ -186,7 +186,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
 
         {/* Dimension / Resolution Selection */}
         <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-white/56">
+          <p className="text-xs font-semibold tracking-wider text-white/56">
             Boyut / Format
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -206,7 +206,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
 
         {/* Color Theme */}
         <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-white/56">
+          <p className="text-xs font-semibold tracking-wider text-white/56">
             Renk Teması
           </p>
           <div className="grid grid-cols-2 gap-2">
@@ -226,7 +226,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
 
         {/* Content Template */}
         <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-wider text-white/56">
+          <p className="text-xs font-semibold tracking-wider text-white/56">
             Mesaj Şablonu
           </p>
           <div className="grid gap-1.5">

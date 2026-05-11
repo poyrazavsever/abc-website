@@ -102,7 +102,7 @@ export function BuilderDirectory({ initialBuilders }: BuilderDirectoryProps) {
 
       <div className="relative mx-auto max-w-6xl space-y-10">
         <div className="space-y-4 text-center">
-          <div className="inline-flex rounded-full border border-white/10 bg-white/6 px-4 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-white/68">
+          <div className="inline-flex rounded-full border border-white/10 bg-white/6 px-4 py-1 text-xs font-semibold tracking-[0.24em] text-white/68">
             Community Directory
           </div>
           <div className="space-y-3">

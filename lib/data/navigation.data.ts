@@ -10,11 +10,6 @@ export const navigationData: NavigationData = {
   },
   items: [
     {
-      id: "about",
-      label: "About",
-      href: "/about",
-    },
-    {
       id: "events",
       label: "Events",
       href: "/events",

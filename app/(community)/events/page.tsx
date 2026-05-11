@@ -121,7 +121,7 @@ export default function EventsPage() {
           <Container className="relative z-10 flex min-h-[calc(100vh-12rem)] max-w-6xl flex-col justify-center py-10 sm:py-12">
             <div className="grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] md:items-start lg:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">
               <div className="max-w-4xl space-y-8">
-                <p className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-200 backdrop-blur-md">
+                <p className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold tracking-[0.18em] text-ink-200 backdrop-blur-md">
                   Events Calendar
                 </p>
 
@@ -147,7 +147,7 @@ export default function EventsPage() {
                       <p className="text-2xl font-semibold tracking-[-0.05em] text-accent-300">
                         {signal.value}
                       </p>
-                      <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/48">
+                      <p className="mt-1 text-[0.68rem] font-semibold tracking-[0.18em] text-white/48">
                         {signal.label}
                       </p>
                       <p className="mt-3 text-sm leading-6 text-white/72">
@@ -185,7 +185,7 @@ export default function EventsPage() {
                 <div className="relative space-y-4">
                   <div className="flex items-end justify-between gap-4">
                     <div className="space-y-2">
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/44">
+                      <p className="text-xs font-semibold tracking-[0.22em] text-white/44">
                         Live calendar
                       </p>
                       <h2 className="text-2xl font-semibold tracking-[-0.04em] text-white">
@@ -226,7 +226,7 @@ export default function EventsPage() {
           <Container width="wide" className="relative max-w-6xl">
             <div className="space-y-10">
               <div className="max-w-3xl space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-300">
+                <p className="text-xs font-semibold tracking-[0.22em] text-accent-300">
                   Event Structure
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-brand-white sm:text-4xl">
@@ -253,7 +253,7 @@ export default function EventsPage() {
                             {format.step}
                           </span>
                           <div>
-                            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/45">
+                            <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/45">
                               {format.rhythm}
                             </p>
                             <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
@@ -262,7 +262,7 @@ export default function EventsPage() {
                           </div>
                         </div>
 
-                        <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent-300">
+                        <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.18em] text-accent-300">
                           Builder format
                         </span>
                       </div>
@@ -294,7 +294,7 @@ export default function EventsPage() {
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
               <div className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025))] p-6 text-white shadow-[0_18px_44px_rgba(0,0,0,0.22)] sm:p-7">
                 <div className="max-w-2xl space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-300">
+                  <p className="text-xs font-semibold tracking-[0.22em] text-accent-300">
                     Room energy
                   </p>
                   <h2 className="text-3xl font-semibold tracking-tight text-white">
@@ -307,7 +307,7 @@ export default function EventsPage() {
               </div>
 
               <div className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(17,17,17,0.98),rgba(70,44,125,0.92),rgba(131,28,145,0.86))] p-6 text-white shadow-[0_24px_64px_rgba(0,0,0,0.24)] sm:p-7">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/48">
+                <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/48">
                   Quick note
                 </p>
                 <p className="mt-3 text-sm leading-6 text-white/78">
@@ -337,7 +337,7 @@ export default function EventsPage() {
             <div className="overflow-hidden rounded-[1.9rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025))] text-white shadow-[0_18px_44px_rgba(0,0,0,0.22)]">
               <div className="flex flex-col gap-4 border-b border-white/8 bg-black/18 px-5 py-5 sm:px-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-2xl space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-300">
+                  <p className="text-xs font-semibold tracking-[0.22em] text-accent-300">
                     Live calendar
                   </p>
                   <h2 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">

@@ -14,9 +14,9 @@ import {
 } from "@/lib/data/sponsors.data";
 
 export const metadata: Metadata = {
-  title: "Sponsorlar ve Partnerlik",
+  title: "Sponsors & Partnerships",
   description:
-    "Ankara Build Club sponsor ve partner sayfası. Topluluğun yapısını, etkinlik ritmini ve iş birliği yüzeylerini hızlıca inceleyin.",
+    "Explore partnership opportunities with Ankara Build Club, from event sponsorships to builder enablement and community programs.",
 };
 
 export default function SponsorsPage() {
@@ -30,45 +30,45 @@ export default function SponsorsPage() {
     ctaLabel: string;
     pills: CollaborationPill[];
   } = {
-    eyebrow: "İş birliği alanları",
-    heading: "Birlikte daha güçlü partnerlikler kuruyoruz.",
-    highlightPhrase: "daha güçlü",
+    eyebrow: "Partnership opportunities",
+    heading: "Build stronger partnerships with the community.",
+    highlightPhrase: "stronger partnerships",
     description:
-      "Ankara Build Club ile anlamlı bir partnerlik başlatmak istiyorsanız bize yazın.",
-    ctaLabel: "İletişime Geç",
+      "If you want to support the Ankara Build Club ecosystem in a meaningful way, we'd love to hear from you.",
+    ctaLabel: "Get in Touch",
     pills: [
       {
-        label: "Teknoloji & API Partneri",
+        label: "Technology & API Partner",
         icon: "cube",
         accent: "violet",
         offsetClassName: "md:-translate-y-7 md:rotate-[-6deg]",
       },
       {
-        label: "Hackathon Destekçisi",
+        label: "Hackathon Supporter",
         icon: "calendar",
         accent: "pink",
         offsetClassName: "md:translate-x-12 md:translate-y-1 md:rotate-[4deg]",
       },
       {
-        label: "Mentorluk",
+        label: "Mentorship",
         icon: "users",
         accent: "violet",
         offsetClassName: "md:translate-x-24 md:-translate-y-1 md:rotate-[5deg]",
       },
       {
-        label: "Mekan Sponsoru",
+        label: "Venue Sponsor",
         icon: "pin",
         accent: "pink",
         offsetClassName: "md:-translate-x-3 md:translate-y-4 md:rotate-[-4deg]",
       },
       {
-        label: "Topluluk Kredileri",
+        label: "Community Credits",
         icon: "spark",
         accent: "violet",
         offsetClassName: "md:translate-x-16 md:translate-y-8 md:rotate-[3deg]",
       },
       {
-        label: "İçerik & Lansman İş Birliği",
+        label: "Content & Launch Collaboration",
         icon: "launch",
         accent: "pink",
         offsetClassName: "md:translate-x-6 md:translate-y-10 md:rotate-[-5deg]",
@@ -77,50 +77,50 @@ export default function SponsorsPage() {
   };
 
   const communitySummary = {
-    eyebrow: "Topluluk Özeti",
-    heading: "Sayıların arkasında görünür bir build ritmi var.",
+    eyebrow: "Community Snapshot",
+    heading: "Behind the numbers is a visible rhythm of building.",
     description:
-      "Networking değil, tekrar eden üretim anları. ABC sponsor için daha net temas, daha gerçek geri bildirim ve daha doğal görünürlük üretir.",
+      "This is not networking for its own sake. ABC creates recurring build moments that give partners clearer touchpoints, better feedback, and more organic visibility.",
     proofTitles: [
-      "Builder odağı",
-      "Fiziksel tekrar",
-      "Görünür üretim",
-      "Doğal partner teması",
+      "Builder-first",
+      "In-person rhythm",
+      "Visible output",
+      "Natural partner touchpoints",
     ],
     stats: [
       {
         value: 5,
         suffix: "+",
-        label: "Üretim disiplini",
+        label: "Building disciplines",
         detail:
-          "Kod, ürün, tasarım, growth ve operasyon aynı build zemininde buluşuyor.",
+          "Code, product, design, growth, and operations all meet on the same build floor.",
       },
       {
         value: programs.items.length,
-        label: "Çekirdek format",
+        label: "Core formats",
         detail:
-          "Deep Work, Build Sprint ve Ship Day ritmi düzenli olarak taşınıyor.",
+          "Deep Work, Build Sprint, and Ship Day keep the community moving on a repeatable cadence.",
       },
       {
         value: collaborationSection.pills.length,
-        label: "Partnerlik alanı",
+        label: "Partnership tracks",
         detail:
-          "API, mekan, mentorluk ve içerik tarafında doğrudan topluluğa temas eden net iş birliği yüzeyleri var.",
+          "From APIs and venues to mentorship and content, there are clear ways to engage the community directly.",
       },
       {
         value: 4,
-        label: "Topluluk katmanı",
+        label: "Community layers",
         detail:
-          "Odak, tekrar, görünürlük ve partner teması aynı akışta birlikte çalışıyor.",
+          "Focus, repetition, visibility, and partner interaction work together inside the same system.",
       },
     ],
   };
 
   const programsSection = {
-    heading: "Topluluğun ritmi, üretim formatlarıyla kurulur.",
-    highlightPhrase: "üretim formatlarıyla",
+    heading: "The community rhythm is shaped by event formats.",
+    highlightPhrase: "event formats",
     description:
-      "Deep Work, Build Sprint ve Ship Day aynı topluluğu üç farklı enerji modunda sürekli çalıştırır.",
+      "Deep Work, Build Sprint, and Ship Day keep the same community activated through three distinct energy levels.",
   };
 
   return (

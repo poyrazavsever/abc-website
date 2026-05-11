@@ -194,7 +194,7 @@ export function NavbarMobile({
                     <div className="space-y-6">
                       {activeItem.groups?.map((group) => (
                         <div key={group.title} className="space-y-3">
-                          <p className="text-xs font-semibold uppercase tracking-wide text-text-soft">
+                          <p className="text-xs font-semibold tracking-wide text-text-soft">
                             {group.title}
                           </p>
                           <div className="space-y-1">

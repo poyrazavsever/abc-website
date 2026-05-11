@@ -30,10 +30,10 @@ function getInitials(name: string | null | undefined, email: string | null | und
     return `${parts[0]?.[0] ?? ""}${parts[1]?.[0] ?? ""}`
       .trim()
       .slice(0, 2)
-      .toLocaleUpperCase("tr");
+      .toUpperCase();
   }
 
-  return (email?.[0] ?? "U").toLocaleUpperCase("tr");
+  return (email?.[0] ?? "U").toUpperCase();
 }
 
 function SettingsIcon() {

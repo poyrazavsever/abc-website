@@ -18,7 +18,7 @@ export function AuthFormShell({
   return (
     <div className="space-y-6">
       <div className="space-y-2.5">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">
+        <p className="text-xs font-semibold tracking-[0.14em] text-white/50">
           {eyebrow}
         </p>
         <h2 className="text-xl font-semibold text-white sm:text-2xl">

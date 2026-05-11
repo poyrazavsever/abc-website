@@ -106,9 +106,7 @@ function BadgeIcon() {
 
 function getInitials(profile: ProfileRecord) {
   const parts = profile.fullName.trim().split(/\s+/u).filter(Boolean);
-  return `${parts[0]?.[0] ?? "A"}${parts[1]?.[0] ?? "B"}`.toLocaleUpperCase(
-    "tr",
-  );
+  return `${parts[0]?.[0] ?? "A"}${parts[1]?.[0] ?? "B"}`.toUpperCase();
 }
 
 function ProfileAvatar({ profile }: { profile: ProfileRecord }) {
@@ -175,7 +173,7 @@ function ProjectTile({ project }: { project: ProjectRecord }) {
             {project.status}
           </Badge>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/66">
+            <p className="text-xs font-semibold tracking-[0.18em] text-white/66">
               {projectCategoryLabels[project.category]}
             </p>
             <h3 className="mt-2 line-clamp-2 text-xl font-semibold text-white">

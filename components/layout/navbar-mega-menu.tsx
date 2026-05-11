@@ -67,7 +67,7 @@ export function NavbarMegaMenu({
                     <div key={group.title} className="space-y-5">
                       <h3
                         className={cn(
-                          "text-xs font-bold uppercase tracking-wider",
+                          "text-xs font-bold tracking-wider",
                           hasSurface ? "text-text-soft/80" : "text-white/55",
                         )}
                       >
@@ -144,7 +144,7 @@ export function NavbarMegaMenu({
                       ) : null}
                     </div>
                     <div className="relative z-10">
-                      <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
+                      <div className="mb-4 flex items-center gap-2 text-xs font-bold tracking-wider text-primary">
                         {item.featured.icon ? (
                           <Icon icon={item.featured.icon} className="h-4 w-4" />
                         ) : null}
