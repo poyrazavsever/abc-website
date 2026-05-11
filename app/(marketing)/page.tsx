@@ -385,11 +385,11 @@ export default function MarketingHomePage() {
       </div>
 
       <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
-        <Container className="space-y-10">
+        <Container width="wide" className="space-y-10">
           <SectionHeader
-            eyebrow="Our events"
-            heading="Each format solves a different builder need."
-            description="Sometimes you need focus, sometimes output, and sometimes a team to finish something in a single day."
+            eyebrow="Our photos"
+            heading="Moments from the community."
+            description="A quick look at the rooms, sessions, and builder energy that shape Shipin."
             actions={
               <LinkButton
                 href="/events"
@@ -399,10 +399,10 @@ export default function MarketingHomePage() {
                 All events
               </LinkButton>
             }
-            className="[&_h2]:text-white [&_p]:text-white/70"
+            className="p-4 pt-0 [&_h2]:text-white [&_p]:text-white/70"
           />
 
-          <div className="space-y-5">
+          <div className="space-y-5 p-4 pt-0">
             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,112,191,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_28px_72px_rgba(0,0,0,0.24)] sm:p-4">
               <Masonry
                 items={eventFormats}
