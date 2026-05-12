@@ -24,6 +24,35 @@ const githubUsernameRegex =
 const linkedinUsernameRegex = /^[A-Za-z0-9][A-Za-z0-9-]{1,98}[A-Za-z0-9]$/u;
 const instagramUsernameRegex = /^[A-Za-z0-9._]{1,30}$/u;
 
+export function normalizeProjectUrl(value: string) {
+  const trimmedValue = value.trim();
+
+  if (trimmedValue.length === 0) {
+    return "";
+  }
+
+  if (/^https?:\/\//iu.test(trimmedValue)) {
+    return trimmedValue;
+  }
+
+  return `https://${trimmedValue}`;
+}
+
+function isValidProjectUrl(value: string) {
+  const normalizedUrl = normalizeProjectUrl(value);
+
+  if (normalizedUrl.length === 0) {
+    return true;
+  }
+
+  try {
+    const url = new URL(normalizedUrl);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export const onboardingProfileSchema = z.object({
   fullName: z
     .string()
