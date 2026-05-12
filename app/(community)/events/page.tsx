@@ -62,6 +62,28 @@ const eventFormats = [
   },
   {
     step: "04",
+    title: "Shipathon",
+    rhythm: "High-pressure shipping",
+    description: "A concentrated format built around momentum, deadlines, and showing something real by the end.",
+    bullets: [
+      "Start with a clear shipping goal.",
+      "Work against the clock.",
+      "Demo what made it out the door.",
+    ],
+  },
+  {
+    step: "05",
+    title: "Hackathon",
+    rhythm: "Collaborative build burst",
+    description: "Teams form fast, explore bold ideas, and push toward a prototype in a compressed window.",
+    bullets: [
+      "Form around an idea quickly.",
+      "Prototype with intensity.",
+      "Present the strongest version.",
+    ],
+  },
+  {
+    step: "06",
     title: "Fuckup Nights",
     rhythm: "Stories from failure",
     description: "A candid format about mistakes, lessons, and recovery.",
@@ -72,7 +94,7 @@ const eventFormats = [
     ],
   },
   {
-    step: "05",
+    step: "07",
     title: "Deep Work Session",
     rhythm: "Quiet focus",
     description: "Protected time for builders who need uninterrupted work.",
@@ -80,17 +102,6 @@ const eventFormats = [
       "Arrive with a task.",
       "Work in silence.",
       "Wrap with progress check-ins.",
-    ],
-  },
-  {
-    step: "06",
-    title: "Events",
-    rhythm: "Community rhythm",
-    description: "The broader flow of gatherings that keeps the club active.",
-    bullets: [
-      "Meet people building seriously.",
-      "Stay close to the calendar.",
-      "Find the right room for your pace.",
     ],
   },
 ] as const;
@@ -212,27 +223,76 @@ export default function EventsPage() {
           </Container>
         </section>
 
-        <section className="relative overflow-hidden py-16 sm:py-20">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,28,145,0.06),transparent_28%),radial-gradient(circle_at_82%_30%,rgba(59,130,246,0.04),transparent_26%),linear-gradient(180deg,rgba(10,10,11,0.94),rgba(11,11,12,0.98))]" />
+        <section className="relative overflow-hidden py-18 sm:py-22">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(131,28,145,0.12),transparent_24%),radial-gradient(circle_at_78%_26%,rgba(255,112,191,0.08),transparent_22%),linear-gradient(180deg,rgba(10,10,11,0.94),rgba(11,11,12,0.98))]" />
 
           <Container width="wide" className="relative max-w-6xl">
-            <div className="space-y-10">
-              <div className="flex justify-center">
-                <h2 className="text-center text-3xl font-semibold leading-[0.96] tracking-tight text-brand-white sm:text-4xl lg:text-5xl">
-                  photos
-                </h2>
+            <div className="space-y-8">
+              <div className="grid gap-5 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-end">
+                <div className="max-w-xl space-y-4">
+                  <p className="text-[0.72rem] font-semibold tracking-[0.32em] text-primary-200/78">
+                    Event Formats
+                  </p>
+                  <h2 className="text-3xl font-semibold leading-[0.96] tracking-tight text-brand-white sm:text-4xl lg:text-5xl">
+                    Not one event type. A full rhythm for builders.
+                  </h2>
+                  <p className="text-sm leading-7 text-ink-300 sm:text-base">
+                    Some formats are built for silence, some for pressure, some
+                    for direct critique. Together they create Shipin&apos;s
+                    cadence.
+                  </p>
+                </div>
+
+                <article className="relative overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:p-7">
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,112,191,0.14),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(131,28,145,0.18),transparent_30%)]" />
+                  <div className="relative grid gap-6 md:grid-cols-[auto_minmax(0,1fr)] md:items-start">
+                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-sm font-semibold tracking-[0.18em] text-accent-300">
+                      {eventFormats[0]?.step}
+                    </span>
+                    <div className="space-y-4">
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                          <p className="text-[0.72rem] font-semibold tracking-[0.2em] text-white/48">
+                            Featured format
+                          </p>
+                          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                            {eventFormats[0]?.title}
+                          </h3>
+                        </div>
+                        <span className="inline-flex rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.68rem] font-semibold tracking-[0.18em] text-secondary-300">
+                          {eventFormats[0]?.rhythm}
+                        </span>
+                      </div>
+
+                      <p className="max-w-2xl text-sm leading-7 text-ink-200 sm:text-base">
+                        {eventFormats[0]?.description}
+                      </p>
+
+                      <div className="grid gap-3 sm:grid-cols-3">
+                        {eventFormats[0]?.bullets.map((bullet) => (
+                          <div
+                            key={bullet}
+                            className="rounded-[1.1rem] border border-white/8 bg-brand-black/28 px-4 py-3 text-sm leading-6 text-white/74"
+                          >
+                            {bullet}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
               </div>
 
-              <div className="grid gap-4 lg:grid-cols-3">
-                {eventFormats.map((format) => (
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {eventFormats.slice(1).map((format, index) => (
                   <article
                     key={format.title}
-                    className="group relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-white/[0.03] p-6 shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
+                    className="group relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-white/[0.03] p-6 shadow-[0_18px_44px_rgba(0,0,0,0.22)] transition-transform duration-300 hover:-translate-y-1"
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))]" />
-                    <div className="pointer-events-none absolute right-5 top-5 h-20 w-20 rounded-full border border-secondary-500/20 bg-secondary-500/8 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="pointer-events-none absolute right-4 top-4 h-16 w-16 rounded-full border border-secondary-500/16 bg-secondary-500/8 blur-md transition-opacity duration-300 group-hover:opacity-100" />
 
-                    <div className="relative space-y-5">
+                    <div className="relative flex h-full flex-col gap-6">
                       <div className="flex items-start justify-between gap-4">
                         <div className="space-y-3">
                           <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-secondary-500),var(--color-accent-500))] text-xs font-semibold text-white">
@@ -248,8 +308,8 @@ export default function EventsPage() {
                           </div>
                         </div>
 
-                        <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.18em] text-accent-300">
-                          Builder format
+                        <span className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/28">
+                          0{index + 2}
                         </span>
                       </div>
 
@@ -257,11 +317,11 @@ export default function EventsPage() {
                         {format.description}
                       </p>
 
-                      <div className="grid gap-3">
+                      <div className="mt-auto space-y-2">
                         {format.bullets.map((bullet) => (
                           <div
                             key={bullet}
-                            className="rounded-[1.2rem] border border-white/8 bg-brand-black/24 p-4 text-sm leading-6 text-white/72"
+                            className="rounded-[1rem] border border-white/8 bg-brand-black/24 px-4 py-3 text-sm leading-6 text-white/70"
                           >
                             {bullet}
                           </div>

@@ -17,10 +17,9 @@ const sponsorNames = [
   "Ship Day",
   "Build Sprint",
   "Feedback Circle",
-  "Demo Night",
   "Work Session",
-  "Team Sync",
-  "Founder Corner",
+  "Shipathon",
+  "Roasting Day"
 ];
 
 const analyticsHighlights = [
@@ -36,9 +35,9 @@ const analyticsHighlights = [
     detail: "Landing pages, MVPs, side projects, and collaborative sprint outputs.",
   },
   {
-    value: "18",
+    value: "5+",
     label: "active event cycles",
-    detail: "A steady rhythm powered by Deep Work, Ship Day, and Sprint formats.",
+    detail: "A steady rhythm powered by Build Sprint, Shipathon, Roasting Day, and Feedback Circle formats.",
   },
 ];
 
@@ -55,8 +54,8 @@ const eventFormats = [
     height: 640,
   },
   {
-    id: "ship-day",
-    title: "Ship Day",
+    id: "build-sprint",
+    title: "Build Sprint",
     eyebrow: "Output",
     description:
       "One day, one decision, one delivery. Not perfect, but you leave with something shipped.",
@@ -66,76 +65,26 @@ const eventFormats = [
     height: 500,
   },
   {
-    id: "sprint",
-    title: "Sprint",
-    eyebrow: "Speed",
+    id: "Shipathon",
+    title: "Shipathon",
+    eyebrow: "Shipping",
     description:
-      "A fast, high-energy build marathon where teams form quickly and turn ideas into products.",
-    meta: "Builder teams",
+      "A shipping event centered on ending the day with something real.",
+    meta: "End of day shipping",
     img: "/events/events-session-2.jpg",
     url: "/events",
     height: 760,
   },
   {
-    id: "feedback-circle",
-    title: "Feedback Circle",
-    eyebrow: "Clarity",
+    id: "roasting-day",
+    title: "Roasting Day",
+    eyebrow: "Feedback",
     description:
-      "Builders bring a page, a prototype, or a launch problem and leave with sharp outside perspective.",
-    meta: "Critique session",
+      "A day where builders bring the work and get sharp, honest feedback from the community.",
+    meta: "Direct feedback",
     img: "/events/events-session-3.jpg",
     url: "/events",
     height: 560,
-  },
-  {
-    id: "demo-night",
-    title: "Demo Night",
-    eyebrow: "Showcase",
-    description: "Builders presenting what shipped that week.",
-    meta: "Community demos",
-    img: "/events/events-session-4.jpg",
-    url: "/events",
-    height: 680,
-  },
-  {
-    id: "work-session",
-    title: "Work Session",
-    eyebrow: "Build",
-    description: "Focused laptop session with the room in flow.",
-    meta: "Open tables",
-    img: "/events/events-pano.jpg",
-    url: "/events",
-    height: 540,
-  },
-  {
-    id: "team-sync",
-    title: "Team Sync",
-    eyebrow: "Collab",
-    description: "Quick alignment before a fast sprint starts.",
-    meta: "Builder teams",
-    img: "/events/events-session-2.jpg",
-    url: "/events",
-    height: 620,
-  },
-  {
-    id: "founder-corner",
-    title: "Founder Corner",
-    eyebrow: "Talk",
-    description: "Small group discussion around product decisions.",
-    meta: "Office hours",
-    img: "/events/events-session-3.jpg",
-    url: "/events",
-    height: 500,
-  },
-  {
-    id: "late-night-build",
-    title: "Late Night Build",
-    eyebrow: "Energy",
-    description: "Evening session with screens, notes, and momentum.",
-    meta: "After hours",
-    img: "/events/events-session-1.jpg",
-    url: "/events",
-    height: 760,
   },
   {
     id: "community-moment",
@@ -280,7 +229,7 @@ const teamMembers = [
     imageAlt: "Portrait of Defne Erkan",
     linkedinUrl: "https://www.linkedin.com/in/defneerkan/",
   },
-  {
+  {   
     name: "Berkem Peker",
     role: "Founding Member & Technical Lead",
     initials: "BP",
