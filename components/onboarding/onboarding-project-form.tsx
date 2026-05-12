@@ -1,20 +1,18 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { getOnboardingHref } from "@/lib/auth/shared";
-import {
-  projectCategoryOptions,
-  projectIntentOptions,
-} from "@/lib/data/onboarding.data";
+import { projectIntentOptions } from "@/lib/data/onboarding.data";
 import { trackClientEvent } from "@/lib/integrations/analytics/client";
 import {
+  normalizeProjectUrl,
   onboardingProjectsSchema,
   type OnboardingProjectsFormValues,
 } from "@/lib/schemas/onboarding";
@@ -30,10 +28,30 @@ type OnboardingProjectFormProps = {
 
 const inputClassName =
   "rounded-md border-white/18 bg-white/[0.04] text-sm text-white shadow-none placeholder:text-white/38 hover:border-white/28 focus-visible:ring-accent/30 focus-visible:ring-offset-brand-black";
-const selectOptionClassName = "bg-brand-black text-white";
-
 const labelClassName = "text-xs font-semibold text-white";
 const errorClassName = "mt-2 text-xs text-danger-300";
+
+function getImageExtension(file: File) {
+  const extension = file.name.split(".").pop()?.toLowerCase();
+
+  if (extension && ["jpg", "jpeg", "png", "webp", "gif"].includes(extension)) {
+    return extension;
+  }
+
+  if (file.type === "image/png") {
+    return "png";
+  }
+
+  if (file.type === "image/webp") {
+    return "webp";
+  }
+
+  if (file.type === "image/gif") {
+    return "gif";
+  }
+
+  return "jpg";
+}
 
 export function OnboardingProjectForm({
   profile,
@@ -41,6 +59,9 @@ export function OnboardingProjectForm({
 }: OnboardingProjectFormProps) {
   const router = useRouter();
   const firstProject = projects[0];
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
+  const imagePreviewUrlRef = useRef<string | null>(null);
   const {
     control,
     formState: { errors, isSubmitting },
@@ -54,12 +75,24 @@ export function OnboardingProjectForm({
         category: firstProject?.category ?? "other",
         description: firstProject?.description ?? "",
         name: firstProject?.name ?? "",
+        technologies: firstProject?.technologies ?? "",
         url: firstProject?.url ?? "",
       },
     },
   });
 
   const hasProjects = useWatch({ control, name: "hasProjects" });
+  const description = useWatch({ control, name: "project.description" });
+  const descriptionLength = description?.length ?? 0;
+  const projectImagePreview = imagePreviewUrl ?? firstProject?.imageUrl ?? null;
+
+  useEffect(() => {
+    return () => {
+      if (imagePreviewUrlRef.current) {
+        URL.revokeObjectURL(imagePreviewUrlRef.current);
+      }
+    };
+  }, []);
 
   const onSubmit = handleSubmit(async (values) => {
     const supabase = createSupabaseClient();
@@ -71,21 +104,56 @@ export function OnboardingProjectForm({
 
     try {
       if (values.hasProjects === "yes") {
+        const projectId = firstProject?.id ?? crypto.randomUUID();
+        let imagePath = firstProject?.imagePath ?? null;
+        let imageUrl = firstProject?.imageUrl ?? null;
+
+        if (imageFile) {
+          if (!imageFile.type.startsWith("image/")) {
+            appToast.error("Proje fotoğrafı bir görsel dosyası olmalı.");
+            return;
+          }
+
+          if (imageFile.size > 5 * 1024 * 1024) {
+            appToast.error("Proje fotoğrafı en fazla 5 MB olabilir.");
+            return;
+          }
+
+          imagePath = `${profile.id}/${projectId}.${getImageExtension(imageFile)}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from("project-images")
+            .upload(imagePath, imageFile, {
+              cacheControl: "3600",
+              contentType: imageFile.type,
+              upsert: true,
+            });
+
+          if (uploadError) {
+            throw uploadError;
+          }
+
+          const { data } = supabase.storage
+            .from("project-images")
+            .getPublicUrl(imagePath);
+          imageUrl = data.publicUrl;
+        }
+
         const payload = {
-          category: values.project.category,
+          category: "other",
           description: values.project.description.trim(),
+          image_path: imagePath,
+          image_url: imageUrl,
           name: values.project.name.trim(),
           owner_id: profile.id,
           status: "idea",
-          technologies: null,
-          image_path: null,
-          image_url: null,
-          url: values.project.url.trim() || null,
+          technologies: values.project.technologies?.trim() || null,
+          url: normalizeProjectUrl(values.project.url) || null,
         };
 
         const query = firstProject
           ? supabase.from("projects").update(payload).eq("id", firstProject.id)
-          : supabase.from("projects").insert(payload);
+          : supabase.from("projects").insert({ id: projectId, ...payload });
 
         const { error: projectError } = await query;
 
@@ -172,6 +240,58 @@ export function OnboardingProjectForm({
       {hasProjects === "yes" ? (
         <div className="space-y-4">
           <div>
+            <p className={labelClassName}>Proje fotoğrafı</p>
+            <div className="mt-2 grid gap-3 sm:grid-cols-[8rem_1fr] sm:items-center">
+              <div
+                className="aspect-square rounded-md border border-white/12 bg-white/[0.03] bg-cover bg-center"
+                style={
+                  projectImagePreview
+                    ? { backgroundImage: `url(${projectImagePreview})` }
+                    : undefined
+                }
+                aria-label="Proje fotoğrafı önizlemesi"
+              />
+              <div>
+                <label
+                  htmlFor="projectImage"
+                  className="inline-flex h-10 cursor-pointer items-center justify-center rounded-md border border-white/12 px-4 text-sm font-medium text-white/78 transition hover:border-white/24 hover:text-white"
+                >
+                  Fotoğraf seç
+                </label>
+                <input
+                  id="projectImage"
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif"
+                  className="sr-only"
+                  disabled={isSubmitting}
+                  onChange={(event) => {
+                    const file = event.target.files?.[0] ?? null;
+
+                    if (imagePreviewUrlRef.current) {
+                      URL.revokeObjectURL(imagePreviewUrlRef.current);
+                      imagePreviewUrlRef.current = null;
+                    }
+
+                    setImageFile(file);
+
+                    if (file) {
+                      const objectUrl = URL.createObjectURL(file);
+                      imagePreviewUrlRef.current = objectUrl;
+                      setImagePreviewUrl(objectUrl);
+                      return;
+                    }
+
+                    setImagePreviewUrl(null);
+                  }}
+                />
+                <p className="mt-2 text-xs text-white/38">
+                  PNG, JPG, WEBP veya GIF. Maksimum 5 MB.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
             <label htmlFor="projectName" className={labelClassName}>
               Proje adı
             </label>
@@ -190,11 +310,17 @@ export function OnboardingProjectForm({
           </div>
 
           <div>
-            <label htmlFor="projectDescription" className={labelClassName}>
-              Açıklama
-            </label>
+            <div className="flex items-center justify-between gap-3">
+              <label htmlFor="projectDescription" className={labelClassName}>
+                Kısa açıklama
+              </label>
+              <span className="text-xs text-white/38">
+                {descriptionLength}/150
+              </span>
+            </div>
             <Textarea
               id="projectDescription"
+              maxLength={150}
               className={cn(
                 inputClassName,
                 "min-h-28 resize-none",
@@ -210,53 +336,43 @@ export function OnboardingProjectForm({
             ) : null}
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="projectCategory" className={labelClassName}>
-                Kategori
-              </label>
-              <Select
-                id="projectCategory"
-                className={cn(
-                  inputClassName,
-                  errors.project?.category && "border-danger-400",
-                )}
-                {...register("project.category")}
-              >
-                {projectCategoryOptions.map((category) => (
-                  <option
-                    key={category.value}
-                    value={category.value}
-                    className={selectOptionClassName}
-                  >
-                    {category.label}
-                  </option>
-                ))}
-              </Select>
-              {errors.project?.category?.message ? (
-                <p className={errorClassName}>
-                  {errors.project.category.message}
-                </p>
-              ) : null}
-            </div>
+          <div>
+            <label htmlFor="projectUrl" className={labelClassName}>
+              Proje URL&apos;i
+            </label>
+            <Input
+              id="projectUrl"
+              type="text"
+              className={cn(
+                inputClassName,
+                errors.project?.url && "border-danger-400",
+              )}
+              placeholder="example.com"
+              {...register("project.url")}
+            />
+            {errors.project?.url?.message ? (
+              <p className={errorClassName}>{errors.project.url.message}</p>
+            ) : null}
+          </div>
 
-            <div>
-              <label htmlFor="projectUrl" className={labelClassName}>
-                Bağlantı
-              </label>
-              <Input
-                id="projectUrl"
-                className={cn(
-                  inputClassName,
-                  errors.project?.url && "border-danger-400",
-                )}
-                placeholder="https://..."
-                {...register("project.url")}
-              />
-              {errors.project?.url?.message ? (
-                <p className={errorClassName}>{errors.project.url.message}</p>
-              ) : null}
-            </div>
+          <div>
+            <label htmlFor="projectTechnologies" className={labelClassName}>
+              Kullanılan teknolojiler
+            </label>
+            <Input
+              id="projectTechnologies"
+              className={cn(
+                inputClassName,
+                errors.project?.technologies && "border-danger-400",
+              )}
+              placeholder="Next.js, Supabase, Tailwind"
+              {...register("project.technologies")}
+            />
+            {errors.project?.technologies?.message ? (
+              <p className={errorClassName}>
+                {errors.project.technologies.message}
+              </p>
+            ) : null}
           </div>
         </div>
       ) : null}

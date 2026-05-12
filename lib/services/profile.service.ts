@@ -365,10 +365,6 @@ export function getIncompleteOnboardingStep(
     return "profile";
   }
 
-  if (!isProfileDetailsComplete(profile)) {
-    return "details";
-  }
-
   if (!profile?.onboardingCompleted) {
     return "project";
   }
