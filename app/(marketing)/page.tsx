@@ -157,24 +157,22 @@ const eventFormats = [
 
 const aboutMission = {
   eyebrow: "Our Mission",
-  heading: "We believe in the power of building together.",
-  accentPhrase: "building together",
+  heading: "We believe in the power of building and shipping together.",
+  accentPhrase: "building and shipping together",
   description:
-    "Ship In is more than a community. It is an ecosystem where people build, learn, and grow together. Starting in Ankara, we create the environment builders need to turn ideas into real products.",
+    "Ship In is more than a community. It is a shipping-driven ecosystem where people build, test, and launch together. We create the momentum builders need to turn ideas into real products.",
   imageSrc: "/about/mission.png",
   imageAlt: "Ship In community members working together",
   stats: [
-    { value: "50+", label: "Active Builders" },
-    { value: "20+", label: "Events" },
-    { value: "3", label: "Core Formats" },
+    { value: "200+", label: "Active Builders" },
+    { value: "5+", label: "Events" },
+    { value: "5", label: "Core Formats" },
   ],
 };
 
 const aboutValues = {
   eyebrow: "Our Foundations",
   heading: "What We Build Around",
-  description:
-    "The principles that shape every decision, event, and experience across the community.",
   items: [
     {
       title: "Making",
@@ -309,7 +307,6 @@ export default function MarketingHomePage() {
           <SectionHeader
             eyebrow="Analytics"
             heading="See the community rhythm in numbers."
-            description="Builder density, shipping culture, and return behavior show why Shipin works."
             align="center"
             className="mx-auto max-w-3xl [&_h2]:text-white [&_p]:text-white/70"
           />
@@ -323,12 +320,9 @@ export default function MarketingHomePage() {
                 className="rounded-[1.5rem] border-white/10 bg-white/5 shadow-[0_18px_40px_rgba(0,0,0,0.2)] backdrop-blur-sm"
               >
                 <CardContent className="space-y-4 p-6">
-                  <div className="space-y-1">
+                  <div>
                     <p className="text-3xl font-semibold tracking-[-0.06em] text-accent-300 sm:text-4xl">
                       {item.value}
-                    </p>
-                    <p className="text-sm font-semibold tracking-[0.18em] text-white/55">
-                      {item.label}
                     </p>
                   </div>
                   <p className="text-sm leading-6 text-white/70">{item.detail}</p>
