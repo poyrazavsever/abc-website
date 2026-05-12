@@ -12,15 +12,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/link-button";
 import { SectionHeader } from "@/components/ui/section-header";
 
-const featuredNames = [
-  "ada",
-  "mustafa",
-  "berkem",
-  "poyraz",
-  "defne",
-  "ayfer",
-];
-
 const sponsorNames = [
   "Deep Work",
   "Ship Day",
@@ -325,7 +316,7 @@ export default function MarketingHomePage() {
 
   return (
     <div className="bg-brand-black text-white">
-      <LandingHero featuredNames={featuredNames} />
+      <LandingHero />
 
       <section className="border-t border-b border-white/10 bg-brand-black py-5">
         <Container width="full" className="overflow-hidden px-0">
