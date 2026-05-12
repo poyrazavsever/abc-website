@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
-import { Grainient } from "@/components/marketing/grainient";
 import { Container } from "@/components/shared/container";
 import { footerData } from "@/lib/data/footer.data";
 import { navigationData } from "@/lib/data/navigation.data";
@@ -158,50 +157,6 @@ export function Footer() {
           </div>
         </div>
       </Container>
-
-      <div className="relative isolate overflow-hidden border-t border-white/10 bg-brand-black">
-        <div className="absolute inset-0 -z-20">
-          <Grainient
-            color1="var(--color-accent-500)"
-            color2="var(--color-secondary-500)"
-            color3="var(--color-primary-950)"
-            timeSpeed={0.22}
-            colorBalance={-0.14}
-            warpStrength={1.08}
-            warpFrequency={4.8}
-            warpSpeed={1.9}
-            warpAmplitude={58}
-            blendAngle={8}
-            blendSoftness={0.06}
-            rotationAmount={420}
-            noiseScale={1.9}
-            grainAmount={0.08}
-            grainScale={1.8}
-            grainAnimated={false}
-            contrast={1.35}
-            gamma={1}
-            saturation={0.96}
-            centerX={0}
-            centerY={0.04}
-            zoom={0.92}
-          />
-        </div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary/18 via-primary-900/24 to-brand-black/88" />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-          aria-hidden="true"
-        />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-black to-transparent" />
-
-        <Container
-          width="full"
-          className="flex min-h-[10rem] items-end px-4 pt-6 sm:px-6 lg:px-8"
-        >
-          <p className="w-full select-none text-center text-[clamp(4.5rem,18vw,15rem)] leading-[0.82] font-semibold tracking-[-0.075em] text-white/96">
-            shipin
-          </p>
-        </Container>
-      </div>
     </footer>
   );
 }

@@ -7,6 +7,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import {
+  normalizeProjectUrl,
   quickProjectSchema,
   type QuickProjectFormValues,
 } from "@/lib/schemas/onboarding";
@@ -192,7 +193,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
       owner_id: user.id,
       status: "idea",
       technologies: values.technologies?.trim() || null,
-      url: values.url.trim(),
+      url: normalizeProjectUrl(values.url),
     });
 
     if (error) {
@@ -321,7 +322,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
                 </label>
                 <input
                   id="project-url"
-                  type="url"
+                  type="text"
                   className={cn(
                     fieldClassName,
                     errors.url && "border-red-400/70",

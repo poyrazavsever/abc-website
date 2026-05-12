@@ -1,25 +1,62 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Stack_Sans_Headline } from "next/font/google";
 
+import { DarkVeil } from "@/components/marketing/dark-veil";
 import { Grainient } from "@/components/marketing/grainient";
-import { HeroBirds } from "@/components/marketing/hero-birds";
-import { RotatingText } from "@/components/marketing/rotating-text";
 import { Container } from "@/components/shared/container";
+import { SecondaryWordmark } from "@/components/shared/secondary-wordmark";
 import { LinkButton } from "@/components/ui/link-button";
 
 const easing = [0.16, 1, 0.3, 1] as const;
-const heroHeadlineFont = Stack_Sans_Headline({
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-});
 
-type LandingHeroProps = {
-  featuredNames: string[];
-};
+function UserPlusIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="h-[0.95rem] w-[0.95rem]"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+      aria-hidden="true"
+    >
+      <path d="M8.25 10.25a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
+      <path d="M2.5 17a5.75 5.75 0 0 1 11.5 0" />
+      <path d="M15.75 8.5V13" />
+      <path d="M13.5 10.75H18" />
+    </svg>
+  );
+}
 
-export function LandingHero({ featuredNames }: LandingHeroProps) {
+function CalendarGridIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="h-[0.95rem] w-[0.95rem]"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+      aria-hidden="true"
+    >
+      <path d="M4 4.75h12a1.75 1.75 0 0 1 1.75 1.75v8.75A1.75 1.75 0 0 1 16 17H4A1.75 1.75 0 0 1 2.25 15.25V6.5A1.75 1.75 0 0 1 4 4.75Z" />
+      <path d="M6.25 3v3.5" />
+      <path d="M13.75 3v3.5" />
+      <path d="M2.5 8.25h15" />
+      <path d="M6.5 11.25h.01" />
+      <path d="M10 11.25h.01" />
+      <path d="M13.5 11.25h.01" />
+      <path d="M6.5 14.25h.01" />
+      <path d="M10 14.25h.01" />
+      <path d="M13.5 14.25h.01" />
+    </svg>
+  );
+}
+
+export function LandingHero() {
   const prefersReducedMotion = useReducedMotion();
 
   const containerVariants = {
@@ -35,154 +72,114 @@ export function LandingHero({ featuredNames }: LandingHeroProps) {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      y: prefersReducedMotion ? 0 : 26,
-      filter: prefersReducedMotion ? "blur(0px)" : "blur(10px)",
+      y: prefersReducedMotion ? 0 : 30,
     },
     show: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: {
-        duration: prefersReducedMotion ? 0.2 : 0.78,
+        duration: prefersReducedMotion ? 0.2 : 0.8,
         ease: easing,
       },
     },
   };
 
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-brand-black text-primary-foreground">
-      <motion.div
-        initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.08 }}
-        animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, ease: easing }}
-        className="absolute inset-0 -z-30"
-      >
+    <section className="relative isolate h-screen overflow-hidden bg-brand-black text-brand-white">
+      <div className="pointer-events-none absolute inset-0 -z-20">
         <Grainient
-          color1="var(--color-accent-500)"
-          color2="var(--color-secondary-500)"
-          color3="var(--color-primary-950)"
-          timeSpeed={0.25}
-          colorBalance={-0.16}
-          warpStrength={1.15}
-          warpFrequency={5.0}
-          warpSpeed={2.0}
-          warpAmplitude={59}
-          blendAngle={0.0}
-          blendSoftness={0.05}
-          rotationAmount={500.0}
-          noiseScale={2.0}
-          grainAmount={0.1}
-          grainScale={2.0}
+          color1="var(--color-primary-700)"
+          color2="var(--color-secondary-800)"
+          color3="var(--color-brand-black)"
+          timeSpeed={0.14}
+          colorBalance={-0.12}
+          warpStrength={0.9}
+          warpFrequency={3.8}
+          warpSpeed={1.2}
+          warpAmplitude={48}
+          blendAngle={24}
+          blendSoftness={0.12}
+          rotationAmount={180}
+          noiseScale={1.4}
+          grainAmount={0.04}
+          grainScale={1.8}
           grainAnimated={false}
-          contrast={1.5}
-          gamma={1.0}
-          saturation={1.0}
-          centerX={0.0}
-          centerY={0.0}
-          zoom={0.9}
+          contrast={1.2}
+          gamma={1}
+          saturation={0.78}
+          centerX={0.04}
+          centerY={-0.02}
+          zoom={0.96}
         />
-      </motion.div>
-      <div className="absolute inset-0 -z-20 bg-gradient-to-br from-primary/55 via-primary-800/40 to-primary-950/65" />
-      <motion.div
-        initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.8 }}
-        animate={
-          prefersReducedMotion
-            ? undefined
-            : {
-                opacity: 1,
-                scale: 1,
-                y: [0, -18, 0],
-              }
-        }
-        transition={
-          prefersReducedMotion
-            ? undefined
-            : {
-                opacity: { duration: 1, ease: easing },
-                scale: { duration: 1.1, ease: easing },
-                y: {
-                  duration: 8,
-                  ease: "easeInOut",
-                  repeat: Number.POSITIVE_INFINITY,
-                  repeatType: "mirror",
-                },
-              }
-        }
-        className="absolute left-1/2 top-1/2 -z-10 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/12 blur-3xl"
-      />
+      </div>
 
-      <Container className="flex min-h-screen items-center justify-center py-20 sm:py-24 md:py-28">
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-85 mix-blend-screen">
+        <DarkVeil
+          hueShift={-22}
+          noiseIntensity={0.04}
+          scanlineIntensity={0.08}
+          speed={0.28}
+          scanlineFrequency={0.65}
+          warpAmount={0.12}
+          resolutionScale={1}
+        />
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-brand-black/40 via-brand-black/55 to-brand-black/80" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-48 bg-linear-to-t from-brand-black via-brand-black/70 to-transparent" />
+
+      <Container className="relative z-10 flex h-screen flex-col items-center justify-center overflow-hidden text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="flex w-full max-w-6xl flex-col items-center gap-7 text-center md:gap-8"
+          className="flex max-w-5xl flex-col items-center justify-center"
         >
-          <motion.div
-            variants={containerVariants}
-            className="relative space-y-5 md:space-y-6"
-          >
-            <motion.div
-              variants={itemVariants}
-              className="pointer-events-none absolute left-1/2 top-10 z-20 flex h-44 w-[120%] -translate-x-1/2 items-center justify-center sm:top-8 sm:h-56 md:top-6 md:h-72"
-            >
-              <div className="absolute inset-x-[10%] top-1/2 h-24 -translate-y-1/2 rounded-full bg-white/10 blur-3xl sm:h-28 md:h-32" />
-              <HeroBirds className="relative h-full w-full max-w-[34rem] opacity-95 mix-blend-screen sm:max-w-[44rem] md:max-w-[56rem] lg:max-w-[68rem]" />
-            </motion.div>
-            <motion.p
-              variants={itemVariants}
-              className="relative z-30 text-xs font-semibold tracking-[0.4em] text-white/80 sm:text-sm"
-            >
-              SHIPIN
-            </motion.p>
-            <motion.h1
-              variants={itemVariants}
-              className={`${heroHeadlineFont.className} relative z-10 mx-auto max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]`}
-            >
-              Ideas Don&apos;t Matter Shipping Does
-            </motion.h1>
-            <motion.p
-              variants={itemVariants}
-              className="relative z-30 mx-auto max-w-3xl text-base leading-8 text-white/82 sm:text-lg"
-            >
-              Shipin is where builders turn ideas into shipped products, real
-              users, and actual traction.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
+          <motion.h1
             variants={itemVariants}
-            whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.01 }}
-            transition={{ duration: 0.28, ease: easing }}
-            className="w-full max-w-[28rem] rounded-[1.35rem] border border-white/20 bg-white/8 p-1.5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:max-w-[32rem] sm:p-2"
+            className="max-w-3xl text-4xl font-semibold leading-[0.94] tracking-tight text-brand-white md:text-5xl lg:text-6xl"
           >
-            <div className="flex flex-col gap-1.5 rounded-[1.1rem] border border-white/10 bg-white/6 p-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:p-2">
-              <div className="flex min-w-0 flex-1 flex-col items-center justify-center rounded-[0.9rem] px-2 py-1 text-center sm:max-w-[8.5rem] sm:items-start sm:px-2.5 sm:text-left">
-                <div className="flex items-baseline justify-center text-[0.78rem] font-semibold tracking-[-0.04em] text-white/88 sm:justify-start sm:text-base">
-                  <span className="shrink-0">shipin.city/</span>
-                  <RotatingText
-                    items={featuredNames}
-                    intervalMs={3200}
-                    className="ml-0.5 inline-block min-w-[4.5ch] text-left text-accent-300 transition-all duration-500"
-                  />
-                </div>
-              </div>
-
-              <LinkButton
-                href="/register"
-                className="h-9 shrink-0 rounded-[0.95rem] border-0 bg-[linear-gradient(90deg,var(--color-highlight-400),var(--color-accent-500),var(--color-info-400))] px-4 text-xs font-semibold text-white shadow-[0_12px_32px_rgba(213,82,163,0.28)] transition-transform duration-200 hover:scale-[1.02] hover:shadow-[0_18px_40px_rgba(131,28,145,0.26)] sm:h-10 sm:px-5 sm:text-sm"
-              >
-                Join the community
-              </LinkButton>
-            </div>
-          </motion.div>
+            Stop Building Start{" "}
+            <SecondaryWordmark className="px-[0.03em] text-[1.02em]">
+              Shiping
+            </SecondaryWordmark>
+          </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="-mt-1 max-w-xl text-xs tracking-[0.24em] text-white/60 sm:text-sm"
+            className="mt-6 max-w-2xl text-sm leading-8 text-ink-200 md:text-base"
           >
-            COMMUNITY, EVENTS, BUILDERS, COLLABORATION.
+            Stop waiting for perfect ideas. Shipin helps builders turn momentum
+            into real products, launch faster, and learn with the community.
           </motion.p>
+
+          <motion.div
+            variants={containerVariants}
+            className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
+          >
+            <motion.div variants={itemVariants}>
+              <LinkButton
+                href="/register"
+                size="lg"
+                leadingIcon={<UserPlusIcon />}
+                className="h-auto px-8 py-3 text-base text-brand-white shadow-[0_18px_48px_rgba(93,56,255,0.34)] hover:shadow-[0_24px_56px_rgba(93,56,255,0.42)]"
+              >
+                Join the community
+              </LinkButton>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <LinkButton
+                href="/events"
+                size="lg"
+                variant="ghost"
+                leadingIcon={<CalendarGridIcon />}
+                className="h-auto border-white/14 bg-white/[0.08] px-8 py-3 text-base text-brand-white hover:bg-white/[0.12]"
+              >
+                Explore events
+              </LinkButton>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </Container>
     </section>

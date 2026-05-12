@@ -79,6 +79,33 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
     }
   });
 
+  async function handleSkip() {
+    const supabase = createSupabaseClient();
+
+    if (!supabase) {
+      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ onboarding_step: "project" })
+        .eq("id", profile.id);
+
+      if (error) {
+        throw error;
+      }
+
+      router.push(getOnboardingHref("project"));
+      router.refresh();
+    } catch (error) {
+      appToast.error(
+        error instanceof Error ? error.message : "Bu adım atlanamadı.",
+      );
+    }
+  }
+
   return (
     <form className="space-y-6" noValidate onSubmit={onSubmit}>
       <div className="space-y-2">
@@ -185,6 +212,15 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
           className="h-11 min-w-28 rounded-md border-white bg-white px-6 text-brand-black shadow-none hover:border-white hover:bg-white/90"
         >
           İleri
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          disabled={isSubmitting}
+          onClick={handleSkip}
+          className="h-11 rounded-md border-white/16 bg-white/[0.04] px-5 text-white shadow-none hover:border-white/28 hover:bg-white/[0.08]"
+        >
+          Atla
         </Button>
       </div>
     </form>

@@ -7,6 +7,7 @@ import { addProjectAction, editProjectAction, deleteProjectAction } from "@/app/
 import { categoryLabels, statusLabels } from "./project-card";
 import type { ProjectRecord, ProjectCategory, ProjectStatus } from "@/lib/types/profile";
 import { appToast as toast } from "@/lib/utils/toast";
+import { normalizeProjectUrl } from "@/lib/schemas/onboarding";
 
 type ProjectFormProps = {
   project?: ProjectRecord;
@@ -30,7 +31,13 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
     if (loading) return;
 
     setLoading(true);
-    const input = { name, description, category, status, url: url || "" };
+    const input = {
+      name,
+      description,
+      category,
+      status,
+      url: normalizeProjectUrl(url),
+    };
 
     const result = isEditing
       ? await editProjectAction(project.id, input)
@@ -124,11 +131,11 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
         <Label htmlFor="url">URL (Opsiyonel)</Label>
         <Input
           id="url"
-          type="url"
+          type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           disabled={loading}
-          placeholder="https://example.com"
+          placeholder="example.com"
         />
       </div>
 

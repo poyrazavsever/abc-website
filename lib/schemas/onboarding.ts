@@ -24,6 +24,35 @@ const githubUsernameRegex =
 const linkedinUsernameRegex = /^[A-Za-z0-9][A-Za-z0-9-]{1,98}[A-Za-z0-9]$/u;
 const instagramUsernameRegex = /^[A-Za-z0-9._]{1,30}$/u;
 
+export function normalizeProjectUrl(value: string) {
+  const trimmedValue = value.trim();
+
+  if (trimmedValue.length === 0) {
+    return "";
+  }
+
+  if (/^https?:\/\//iu.test(trimmedValue)) {
+    return trimmedValue;
+  }
+
+  return `https://${trimmedValue}`;
+}
+
+function isValidProjectUrl(value: string) {
+  const normalizedUrl = normalizeProjectUrl(value);
+
+  if (normalizedUrl.length === 0) {
+    return true;
+  }
+
+  try {
+    const url = new URL(normalizedUrl);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export const onboardingProfileSchema = z.object({
   fullName: z
     .string()
@@ -87,7 +116,7 @@ export const onboardingProjectItemSchema = z.object({
     .string()
     .trim()
     .min(10, "Proje açıklaması en az 10 karakter olmalı.")
-    .max(500, "Proje açıklaması 500 karakterden uzun olamaz."),
+    .max(150, "Proje açıklaması 150 karakterden uzun olamaz."),
   category: z.enum(projectCategoryValues, {
     message: "Proje kategorisini seçin.",
   }),
@@ -95,18 +124,7 @@ export const onboardingProjectItemSchema = z.object({
     .string()
     .trim()
     .max(200, "Proje bağlantısı 200 karakterden uzun olamaz.")
-    .refine((value) => {
-      if (value.length === 0) {
-        return true;
-      }
-
-      try {
-        const url = new URL(value);
-        return url.protocol === "http:" || url.protocol === "https:";
-      } catch {
-        return false;
-      }
-    }, "Geçerli bir bağlantı girin."),
+    .refine(isValidProjectUrl, "Geçerli bir bağlantı girin."),
   technologies: z
     .string()
     .trim()
@@ -125,14 +143,7 @@ export const quickProjectSchema = z.object({
     .trim()
     .min(1, "Proje URL'i zorunlu.")
     .max(200, "Proje URL'i 200 karakterden uzun olamaz.")
-    .refine((value) => {
-      try {
-        const url = new URL(value);
-        return url.protocol === "http:" || url.protocol === "https:";
-      } catch {
-        return false;
-      }
-    }, "Geçerli bir web adresi girin."),
+    .refine(isValidProjectUrl, "Geçerli bir web adresi girin."),
   technologies: z
     .string()
     .trim()
@@ -156,6 +167,7 @@ export const onboardingProjectsSchema = z
       category: z.enum(projectCategoryValues, {
         message: "Proje kategorisini seçin.",
       }),
+      technologies: z.string().trim().optional(),
       url: z.string().trim(),
     }),
   })
