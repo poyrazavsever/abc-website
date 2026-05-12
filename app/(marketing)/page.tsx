@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import { AboutCommunity } from "@/components/marketing/about-community";
 import { AboutMission } from "@/components/marketing/about-mission";
 import { AboutTimeline } from "@/components/marketing/about-timeline";
@@ -207,19 +210,26 @@ const aboutCommunity = {
   imageAlt: "Ship In community event",
   features: [
     {
-      title: "Deep Work",
-      description: "Build side by side through uninterrupted focus sessions.",
-    },
-    {
       title: "Build Sprint",
       description:
         "High-energy, team-based execution with fast iteration loops.",
     },
     {
-      title: "Ship Day",
+      title: "Shipathon",
       description:
         "A shipping cadence centered on ending the day with something real.",
     },
+    {
+      title: "Roasting Day",
+      description:
+        "A day where builders bring the work and get sharp, honest feedback from the community.",
+    },
+    {
+      title: "Deep Work",
+      description: "Build side by side through uninterrupted focus sessions.",
+    },
+    
+    
   ],
   ctaLabel: "Explore Events",
   ctaHref: "/events",
@@ -228,14 +238,12 @@ const aboutCommunity = {
 const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
-  description:
-    "From the first gathering on International Women's Day to the long-term vision ahead, this is how the community is taking shape.",
   ctaLabel: "Join the Community",
   ctaHref: "/register",
   milestones: [
     {
-      year: "8 Mar 2026",
-      title: "First Gathering",
+      year: "8 March 2026",
+      title: "First Event",
       description:
         "Our first event took place on International Women's Day, bringing together the earliest members of the community around an inclusive builder spirit.",
     },
@@ -246,10 +254,10 @@ const aboutTimeline = {
         "The next phase is turning that first energy into recurring meetups, stronger member connections, and a steady rhythm of building together.",
     },
     {
-      year: "2026",
-      title: "Shared Output",
+      year: "Q3 2026",
+      title: "Branding and Community",
       description:
-        "As the network grows, events, collaborations, and member-led projects will create visible outcomes that strengthen the community identity.",
+        "We change the name to Ship In and build a community around shipping, creating a new identity for the community.",
     },
     {
       year: "Future Vision",
@@ -259,6 +267,58 @@ const aboutTimeline = {
     },
   ],
 };
+
+const teamMembers = [
+  {
+    name: "Ada Raimova",
+    role: "Founder & Community Lead",
+    initials: "AR",
+    imageSrc: "/team/ada1.jpeg",
+    imageAlt: "Portrait of Ada Raimova",
+    linkedinUrl: "https://www.linkedin.com/in/adalatraimova/",
+  },
+  {
+    name: "Defne Erkan",
+    role: "Founding Member & Operations",
+    initials: "DE",
+    imageSrc: "/team/defne.png",
+    imageAlt: "Portrait of Defne Erkan",
+    linkedinUrl: "https://www.linkedin.com/in/defneerkan/",
+  },
+  {
+    name: "Berkem Peker",
+    role: "Founding Member & Technical Lead",
+    initials: "BP",
+    imageSrc: "/team/berkem.jpeg",
+    imageAlt: "Portrait of Berkem Peker",
+    linkedinUrl: "https://www.linkedin.com/in/berkempeker/",
+  },
+  {
+    name: "Ayfer Kaya",
+    role: "Founding Member & Partnerships",
+    initials: "AY",
+    imageSrc: "/team/ayfer.png",
+    imageAlt: "Portrait of Ayfer",
+    imageClassName: "scale-[1.18] object-center",
+    linkedinUrl: "https://www.linkedin.com/in/ayfer-kaya/",
+  },
+  {
+    name: "Mustafa Kara",
+    role: "Founding Member & Community",
+    initials: "MK",
+    imageSrc: "/team/mustafa.png",
+    imageAlt: "Portrait of Mustafa Kara",
+    linkedinUrl: "https://www.linkedin.com/in/mustafakaraa/",
+  },
+  {
+    name: "Poyraz Avsever",
+    role: "Founding Member & Technical",
+    initials: "PO",
+    imageSrc: "/team/poyraz.png",
+    imageAlt: "Portrait of Poyraz",
+    linkedinUrl: "https://www.linkedin.com/in/poyrazavsever",
+  },
+];
 
 export default function MarketingHomePage() {
   const sponsorLoop = [...sponsorNames, ...sponsorNames];
@@ -372,6 +432,70 @@ export default function MarketingHomePage() {
           milestones={aboutTimeline.milestones}
         />
       </div>
+
+      <section className="relative overflow-hidden border-t border-white/6 bg-brand-black py-20 sm:py-24">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,112,191,0.12),transparent_20%),radial-gradient(circle_at_15%_75%,rgba(70,44,125,0.18),transparent_30%),radial-gradient(circle_at_85%_80%,rgba(131,28,145,0.16),transparent_28%)]" />
+
+        <Container width="wide" className="relative space-y-12">
+          <SectionHeader
+            eyebrow="Our Team"
+            heading="Our Team"
+            description="The people building Shipin."
+            className="mx-auto max-w-3xl text-center sm:items-center sm:justify-center [&_h2]:text-white [&_p]:text-white/70"
+          />
+
+          <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {teamMembers.map((member) => (
+              <Card
+                key={member.name}
+                surface="transparent"
+                elevated={false}
+                className="rounded-[1.75rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025))] shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-md"
+              >
+                <CardContent className="flex flex-col items-center gap-4 px-5 py-9 text-center">
+                  {member.imageSrc ? (
+                    <div className="relative h-32 w-32 overflow-hidden rounded-full border border-white/12 shadow-[0_16px_35px_rgba(70,44,125,0.28)] ring-4 ring-accent-500/10">
+                      <Image
+                        src={member.imageSrc}
+                        alt={member.imageAlt ?? member.name}
+                        fill
+                        className={`object-cover grayscale ${member.imageClassName ?? ""}`}
+                        sizes="128px"
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-white/12 bg-[radial-gradient(circle_at_30%_30%,rgba(255,112,191,0.32),rgba(131,28,145,0.14)_45%,rgba(70,44,125,0.1)_100%)] text-2xl font-semibold tracking-[-0.05em] text-white shadow-[0_16px_35px_rgba(70,44,125,0.28)]">
+                      <div className="absolute inset-[6px] rounded-full border border-white/12 bg-brand-black/50" />
+                      <span className="relative">{member.initials}</span>
+                    </div>
+                  )}
+
+                  <span className="inline-flex rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-[0.8rem] font-semibold tracking-[0.08em] text-white/72">
+                    {member.role}
+                  </span>
+
+                  <Link
+                    href={member.linkedinUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${member.name} LinkedIn profile`}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/58 transition-colors hover:border-accent-400/30 hover:bg-accent-500/10 hover:text-accent-200"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-4 w-4"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M6.94 8.5A1.44 1.44 0 1 1 6.94 5.62a1.44 1.44 0 0 1 0 2.88ZM5.7 9.74h2.47V18H5.7V9.74Zm3.87 0h2.36v1.13h.03c.33-.62 1.13-1.28 2.33-1.28 2.49 0 2.95 1.64 2.95 3.77V18h-2.46v-4.03c0-.96-.02-2.2-1.34-2.2-1.35 0-1.56 1.05-1.56 2.13V18H9.57V9.74Z" />
+                    </svg>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       <section className="border-t border-white/6 bg-brand-black py-20 sm:py-24">
         <Container width="wide" className="space-y-10">
