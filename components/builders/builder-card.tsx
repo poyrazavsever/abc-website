@@ -56,7 +56,7 @@ export function BuilderCard({ builder }: BuilderCardProps) {
 
         <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4">
           <div className="text-xs tracking-[0.18em] text-white/40">
-            Ship In
+            Shipin
           </div>
           <div className="flex items-center gap-3">
             {builder.linkedinUrl ? (

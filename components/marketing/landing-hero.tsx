@@ -141,7 +141,7 @@ export function LandingHero() {
           >
             Stop Building Start{" "}
             <SecondaryWordmark className="px-[0.03em] text-[1.02em]">
-              Shiping
+              Shipin
             </SecondaryWordmark>
           </motion.h1>
 

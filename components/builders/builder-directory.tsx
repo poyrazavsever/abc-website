@@ -110,7 +110,7 @@ export function BuilderDirectory({ initialBuilders }: BuilderDirectoryProps) {
               Builders
             </h1>
             <p className="mx-auto max-w-2xl text-base leading-7 text-white/62 sm:text-lg">
-              Discover registered builders inside Ship In, see what
+              Discover registered builders inside Shipin, see what
               people are working on, and reach the right collaborators faster.
             </p>
           </div>

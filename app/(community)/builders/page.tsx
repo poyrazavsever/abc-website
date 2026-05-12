@@ -5,7 +5,7 @@ import { getPublicBuilders } from "@/lib/services/builders.service";
 
 export const metadata: Metadata = {
   title: "Builders",
-  description: "Ship In topluluğundaki kayıtlı builder dizini.",
+  description: "The registered builder directory inside Shipin.",
 };
 
 export default async function BuildersPage() {

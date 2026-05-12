@@ -154,9 +154,9 @@ const aboutMission = {
   heading: "We believe in the power of building and shipping together.",
   accentPhrase: "building and shipping together",
   description:
-    "Ship In is more than a community. It is a shipping-driven ecosystem where people build, test, and launch together. We create the momentum builders need to turn ideas into real products.",
+    "Shipin is more than a community. It is a shipping-driven ecosystem where people build, test, and launch together. We create the momentum builders need to turn ideas into real products.",
   imageSrc: "/about/mission.png",
-  imageAlt: "Ship In community members working together",
+  imageAlt: "Shipin community members working together",
   stats: [
     { value: "200+", label: "Active Builders" },
     { value: "5+", label: "Events" },
@@ -167,6 +167,8 @@ const aboutMission = {
 const aboutValues = {
   eyebrow: "Our Foundations",
   heading: "What We Build Around",
+  description:
+    "Shipin is built on practical execution, visible learning, and recurring momentum that helps builders keep shipping.",
   items: [
     {
       title: "Making",
@@ -196,9 +198,9 @@ const aboutCommunity = {
   heading: "A community experience built around making.",
   accentPhrase: "built around making",
   description:
-    "Ship In events are more than networking. They create demo moments, shipping pressure, peer feedback, and build-in-public energy. Each format serves a different need.",
+    "Shipin events are more than networking. They create demo moments, shipping pressure, peer feedback, and build-in-public energy. Each format serves a different need.",
   imageSrc: "/about/community.png",
-  imageAlt: "Ship In community event",
+  imageAlt: "Shipin community event",
   features: [
     {
       title: "Build Sprint",
@@ -229,6 +231,8 @@ const aboutCommunity = {
 const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
+  description:
+    "From the first gathering to the next shipping cycle, Shipin is becoming a recurring space for builders to meet, focus, and launch.",
   ctaLabel: "Join the Community",
   ctaHref: "/register",
   milestones: [
@@ -248,7 +252,7 @@ const aboutTimeline = {
       year: "Q3 2026",
       title: "Branding and Community",
       description:
-        "We change the name to Ship In and build a community around shipping, creating a new identity for the community.",
+        "We change the name to Shipin and build a community around shipping, creating a new identity for the community.",
     },
     {
       year: "Future Vision",
