@@ -438,9 +438,7 @@ export default function MarketingHomePage() {
 
         <Container width="wide" className="relative space-y-12">
           <SectionHeader
-            eyebrow="Our Team"
             heading="Our Team"
-            description="The people building Shipin."
             className="mx-auto max-w-3xl text-center sm:items-center sm:justify-center [&_h2]:text-white [&_p]:text-white/70"
           />
 
