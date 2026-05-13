@@ -152,7 +152,8 @@ export function Navbar({ overlay = false }: NavbarProps) {
         <div
           className={cn(
             "relative z-10 rounded-b-[1.8rem] border-b border-white/8 bg-brand-black text-text-inverse transition-all duration-300 sm:rounded-b-[2rem]",
-            isScrolled && "bg-brand-black/96",
+            isScrolled &&
+              "bg-brand-black/96 shadow-[0_18px_46px_rgb(0_0_0_/_0.38)]",
           )}
         >
           <div

@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/shared/container";
 import { SecondaryWordmark } from "@/components/shared/secondary-wordmark";
 import { useOnceInView } from "@/components/marketing/use-once-in-view";
+import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils/cn";
 
 type CollaborationPillIcon =
@@ -175,24 +176,6 @@ function MailIcon({ className }: IconProps) {
     >
       <rect x="3.75" y="5.5" width="16.5" height="13" rx="3" />
       <path d="m5.75 8 6.25 4.75L18.25 8" />
-    </svg>
-  );
-}
-
-function ArrowRightIcon({ className }: IconProps) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.85"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={cn("h-4 w-4", className)}
-      aria-hidden="true"
-    >
-      <path d="M4.5 10h10" />
-      <path d="m10.5 5 5 5-5 5" />
     </svg>
   );
 }
@@ -428,14 +411,16 @@ export function SponsorsCollaborationPanel({
                       </span>
                     </div>
 
-                    <a
+                    <Button
                       href={ctaHref}
                       aria-label={`${ctaLabel} - ${email}`}
-                      className="group absolute right-2 top-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-white px-6 py-2.5 font-medium text-brand-black transition-all duration-300 hover:bg-ink-100"
+                      variant="ghost"
+                      size="md"
+                      leadingIcon={<MailIcon className="h-4 w-4" />}
+                      className="absolute right-2 top-2 min-h-12 border-transparent bg-brand-white px-6 py-2.5 font-medium text-brand-black shadow-none hover:bg-ink-100 hover:shadow-none"
                     >
                       <span>{ctaLabel}</span>
-                      <ArrowRightIcon className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </a>
+                    </Button>
                   </div>
                 </div>
               </div>

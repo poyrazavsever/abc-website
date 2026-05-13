@@ -7,20 +7,22 @@ import {
 import { SponsorsCommunitySummary } from "@/components/marketing/sponsors-community-summary";
 import { SponsorsHero } from "@/components/marketing/sponsors-hero";
 import { SponsorsProgramsSection } from "@/components/marketing/sponsors-programs-section";
+import { SponsorsPipelineSection } from "@/components/marketing/sponsors-pipeline-section";
+import { SponsorsRoadmapSection } from "@/components/marketing/sponsors-roadmap-section";
 import {
-  partnerContactEmail,
-  partnerContactHref,
   sponsorsPageData,
 } from "@/lib/data/sponsors.data";
 
 export const metadata: Metadata = {
-  title: "Sponsors & Partnerships",
+  title: "Sponsors & Partnership",
   description:
-    "Explore partnership opportunities with Ankara Build Club, from event sponsorships to builder enablement and community programs.",
+    "shipin sponsor and partner page. Quickly review the community structure, event cadence, and collaboration areas.",
 };
 
 export default function SponsorsPage() {
-  const { hero, programs } = sponsorsPageData;
+  const { hero, programs, pipeline, roadmap } = sponsorsPageData;
+  const partnerContactEmail = "ada.raimova@gmail.com";
+  const contactHref = `mailto:${partnerContactEmail}?subject=Ankara%20Build%20Club%20partnership%20inquiry`;
 
   const collaborationSection: {
     eyebrow: string;
@@ -30,12 +32,12 @@ export default function SponsorsPage() {
     ctaLabel: string;
     pills: CollaborationPill[];
   } = {
-    eyebrow: "Partnership opportunities",
-    heading: "Build stronger partnerships with the community.",
-    highlightPhrase: "stronger partnerships",
+    eyebrow: "Collaboration areas",
+    heading: "We are building stronger partnerships together.",
+    highlightPhrase: "stronger",
     description:
-      "If you want to support the Ankara Build Club ecosystem in a meaningful way, we'd love to hear from you.",
-    ctaLabel: "Get in Touch",
+      "Contact us if you want to start a meaningful partnership with shipin.",
+    ctaLabel: "Contact Us",
     pills: [
       {
         label: "Technology & API Partner",
@@ -68,7 +70,7 @@ export default function SponsorsPage() {
         offsetClassName: "md:translate-x-16 md:translate-y-8 md:rotate-[3deg]",
       },
       {
-        label: "Content & Launch Collaboration",
+        label: "Content & Launch Partner",
         icon: "launch",
         accent: "pink",
         offsetClassName: "md:translate-x-6 md:translate-y-10 md:rotate-[-5deg]",
@@ -77,57 +79,57 @@ export default function SponsorsPage() {
   };
 
   const communitySummary = {
-    eyebrow: "Community Snapshot",
-    heading: "Behind the numbers is a visible rhythm of building.",
+    eyebrow: "Community Summary",
+    heading: "Behind the numbers is a visible building cadence.",
     description:
-      "This is not networking for its own sake. ABC creates recurring build moments that give partners clearer touchpoints, better feedback, and more organic visibility.",
+      "This is not a networking event or a panel series. shipin provides sponsors with clearer contact, authentic feedback, and organic visibility.",
     proofTitles: [
-      "Builder-first",
-      "In-person rhythm",
-      "Visible output",
-      "Natural partner touchpoints",
+      "Builder focus",
+      "Physical repetition",
+      "Visible production",
+      "Natural partner contact",
     ],
     stats: [
       {
-        value: 5,
+        value: 2,
+        suffix: "",
+        label: "Sprints Completed",
+        detail:
+          "160+ Builders and 40+ Projects created so far with strong retention.",
+      },
+      {
+        value: 187,
+        label: "Luma Registrants",
+        detail: "Sprint #2 was sold-out. 102 registrants and 10 live projects.",
+      },
+      {
+        value: 80,
         suffix: "+",
-        label: "Building disciplines",
+        label: "Active WhatsApp Builders",
         detail:
-          "Code, product, design, growth, and operations all meet on the same build floor.",
+          "The builders in our WhatsApp rarely leave. That is the signal.",
       },
       {
-        value: programs.items.length,
-        label: "Core formats",
+        value: 3,
+        label: "Core Building Formats",
         detail:
-          "Deep Work, Build Sprint, and Ship Day keep the community moving on a repeatable cadence.",
-      },
-      {
-        value: collaborationSection.pills.length,
-        label: "Partnership tracks",
-        detail:
-          "From APIs and venues to mentorship and content, there are clear ways to engage the community directly.",
-      },
-      {
-        value: 4,
-        label: "Community layers",
-        detail:
-          "Focus, repetition, visibility, and partner interaction work together inside the same system.",
+          "Deep Work Sessions, Build Sprints, and Mini Sprints run regularly.",
       },
     ],
   };
 
   const programsSection = {
-    heading: "The community rhythm is shaped by event formats.",
-    highlightPhrase: "event formats",
+    heading: "The rhythm of the community is built with building formats.",
+    highlightPhrase: "building formats.",
     description:
-      "Deep Work, Build Sprint, and Ship Day keep the same community activated through three distinct energy levels.",
+      "Deep Work, Build Sprints, and Mini Sprints keep the same community working continuously across different energy modes.",
   };
 
   return (
     <div className="bg-background">
       <SponsorsHero
         hero={hero}
-        primaryHref={partnerContactHref}
+        primaryHref={contactHref}
         secondaryHref="/events"
       />
 
@@ -139,12 +141,29 @@ export default function SponsorsPage() {
         stats={communitySummary.stats}
       />
 
+      <SponsorsPipelineSection
+        eyebrow={pipeline.eyebrow}
+        heading={pipeline.heading}
+        description={pipeline.description}
+        stages={pipeline.stages}
+      />
+
       <SponsorsProgramsSection
         heading={programsSection.heading}
         highlightPhrase={programsSection.highlightPhrase}
         description={programsSection.description}
         items={programs.items}
       />
+
+      <SponsorsRoadmapSection
+        eyebrow={roadmap.eyebrow}
+        heading={roadmap.heading}
+        description={roadmap.description}
+        events={roadmap.events}
+        future={roadmap.future}
+      />
+
+
 
       <SponsorsCollaborationPanel
         eyebrow={collaborationSection.eyebrow}
@@ -153,7 +172,7 @@ export default function SponsorsPage() {
         description={collaborationSection.description}
         email={partnerContactEmail}
         ctaLabel={collaborationSection.ctaLabel}
-        ctaHref={partnerContactHref}
+        ctaHref={contactHref}
         pills={collaborationSection.pills}
       />
     </div>
