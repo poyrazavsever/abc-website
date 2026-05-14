@@ -4,7 +4,6 @@ import Link from "next/link";
 import { AboutCommunity } from "@/components/marketing/about-community";
 import { AboutMission } from "@/components/marketing/about-mission";
 import { AboutTimeline } from "@/components/marketing/about-timeline";
-import { AboutValues } from "@/components/marketing/about-values";
 import { LandingHero } from "@/components/marketing/landing-hero";
 import Masonry from "@/components/marketing/masonry";
 import { Container } from "@/components/shared/container";
@@ -65,11 +64,11 @@ const eventFormats = [
   },
   {
     id: "Shipathon",
-    title: "Shipathon",
+    title: "Ship Sprint",
     eyebrow: "Shipping",
     description:
       "A shipping event centered on ending the day with something real.",
-    meta: "End of day shipping",
+    meta: "End of day ship sprint",
     img: "/events/events-session-2.jpg",
     url: "/events",
     height: 760,
@@ -102,42 +101,13 @@ const aboutMission = {
   heading: "We believe in the power of building and shipping together.",
   accentPhrase: "building and shipping together",
   description:
-    "Shipin is more than a community. It is a shipping-driven ecosystem where people build, test, and launch together. We create the momentum builders need to turn ideas into real products.",
+    "It is a shipping-driven ecosystem where people build, test, and launch together. We create the momentum builders need to turn ideas into real products.",
   imageSrc: "/about/mission.png",
-  imageAlt: "Shipin community members working together",
+  imageAlt: "Ship In community members working together",
   stats: [
     { value: "200+", label: "Active Builders" },
     { value: "5+", label: "Events" },
     { value: "5", label: "Core Formats" },
-  ],
-};
-
-const aboutValues = {
-  eyebrow: "Our Foundations",
-  heading: "What We Build Around",
-  description:
-    "Shipin is built on practical execution, visible learning, and recurring momentum that helps builders keep shipping.",
-  items: [
-    {
-      title: "Making",
-      description:
-        "We do not gather just to talk. Every session is designed to push toward a real output and strengthen a culture of building together.",
-    },
-    {
-      title: "Community",
-      description:
-        "Growth is collective. We move each other forward by sharing knowledge, experience, and momentum.",
-    },
-    {
-      title: "Transparency",
-      description:
-        "Our process, decisions, and feedback stay visible. Trust is built through openness.",
-    },
-    {
-      title: "Consistency",
-      description:
-        "We create a sustainable culture of execution through recurring rhythms, not one-off bursts of energy.",
-    },
   ],
 };
 
@@ -146,28 +116,26 @@ const aboutCommunity = {
   heading: "A community experience built around making.",
   accentPhrase: "built around making",
   description:
-    "Shipin events are more than networking. They create demo moments, shipping pressure, peer feedback, and build-in-public energy. Each format serves a different need.",
+    "Ship In events are more than networking. They create demo moments, shipping pressure, peer feedback, and build-in-public energy. Each format serves a different need.",
   imageSrc: "/about/community.png",
-  imageAlt: "Shipin community event",
+  imageAlt: "Ship In community event",
   features: [
     {
       title: "Build Sprint",
       description:
         "High-energy, team-based execution with fast iteration loops.",
+      featured: true,
     },
     {
-      title: "Shipathon",
+      title: "Ship Sprint",
       description:
-        "A shipping cadence centered on ending the day with something real.",
+        "A shipping sprint centered on ending the day with something real.",
+      featured: true,
     },
     {
-      title: "Roasting Day",
+      title: "Community Events",
       description:
-        "A day where builders bring the work and get sharp, honest feedback from the community.",
-    },
-    {
-      title: "Deep Work",
-      description: "Build side by side through uninterrupted focus sessions.",
+        "Roasting Day, Deep Work, and other recurring formats that keep the community connected between bigger shipping moments.",
     },
     
     
@@ -179,34 +147,32 @@ const aboutCommunity = {
 const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
-  description:
-    "From the first gathering to the next shipping cycle, Shipin is becoming a recurring space for builders to meet, focus, and launch.",
   ctaLabel: "Join the Community",
   ctaHref: "/register",
   milestones: [
     {
-      year: "8 March 2026",
-      title: "First Event",
+      year: "Sprint #1",
+      title: "International Women's Day",
       description:
-        "Our first event took place on International Women's Day, bringing together the earliest members of the community around an inclusive builder spirit.",
+        "Our first event took place on International Women's Day with Lovable, bringing together the earliest members of the community around an inclusive builder spirit.",
     },
     {
-      year: "Spring 2026",
+      year: "Sprint #2",
       title: "Building Momentum",
       description:
-        "The next phase is turning that first energy into recurring meetups, stronger member connections, and a steady rhythm of building together.",
+        "With fal.ai, we built the first Ship Sprint, a day-long event focused on shipping a real product.",
     },
     {
-      year: "Q3 2026",
-      title: "Branding and Community",
+      year: "Hackathon #1",
+      title: "Metu Teknokent Hackathon",
       description:
-        "We change the name to Shipin and build a community around shipping, creating a new identity for the community.",
+        "We organized the first Hackathon at Metu Teknokent as a partner, a day-long event focused on building a real product.",
     },
     {
-      year: "Future Vision",
-      title: "A Lasting Builder Network",
+      year: "Ship Sprint #1",
+      title: "September 2026",
       description:
-        "Our vision is to grow into a lasting builder network that opens more space for women to learn, ship, collaborate, and lead across new formats and new cities.",
+        "We will organize the first go to market event, a day-long event focused on shipping a real product.",
     },
   ],
 };
@@ -345,13 +311,6 @@ export default function MarketingHomePage() {
           imageSrc={aboutMission.imageSrc}
           imageAlt={aboutMission.imageAlt}
           stats={aboutMission.stats}
-        />
-
-        <AboutValues
-          eyebrow={aboutValues.eyebrow}
-          heading={aboutValues.heading}
-          description={aboutValues.description}
-          values={aboutValues.items}
         />
 
         <AboutCommunity

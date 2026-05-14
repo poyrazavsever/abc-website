@@ -15,7 +15,7 @@ type AboutCommunityProps = {
   description: string;
   imageSrc: string;
   imageAlt: string;
-  features: { title: string; description: string }[];
+  features: { title: string; description: string; featured?: boolean }[];
   ctaLabel: string;
   ctaHref: string;
 };
@@ -142,12 +142,29 @@ export function AboutCommunity({
                       : `${600 + index * 100}ms`,
                   }}
                 >
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-400 shadow-[0_0_10px_rgba(255,112,191,0.6)]" />
+                  <span
+                    className={cn(
+                      "mt-1.5 h-2 w-2 shrink-0 rounded-full",
+                      feature.featured
+                        ? "bg-accent-400 shadow-[0_0_10px_rgba(255,112,191,0.6)]"
+                        : "bg-white/30",
+                    )}
+                  />
                   <div>
-                    <p className="text-sm font-semibold text-brand-white">
+                    <p
+                      className={cn(
+                        "text-sm font-semibold",
+                        feature.featured ? "text-brand-white" : "text-white/70",
+                      )}
+                    >
                       {feature.title}
                     </p>
-                    <p className="text-sm leading-6 text-ink-300">
+                    <p
+                      className={cn(
+                        "text-sm leading-6",
+                        feature.featured ? "text-ink-300" : "text-white/55",
+                      )}
+                    >
                       {feature.description}
                     </p>
                   </div>

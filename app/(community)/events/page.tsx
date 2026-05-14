@@ -59,17 +59,6 @@ const eventFormats = [
   },
   {
     step: "04",
-    title: "Fuckup Nights",
-    rhythm: "Stories from failure",
-    description: "A candid format about mistakes, lessons, and recovery.",
-    bullets: [
-      "Share what went wrong.",
-      "Talk about what changed after.",
-      "Turn failure into signal.",
-    ],
-  },
-  {
-    step: "05",
     title: "Deep Work Session",
     rhythm: "Quiet focus",
     description: "Protected time for builders who need uninterrupted work.",
