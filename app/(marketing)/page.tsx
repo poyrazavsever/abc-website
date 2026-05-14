@@ -4,7 +4,6 @@ import Link from "next/link";
 import { AboutCommunity } from "@/components/marketing/about-community";
 import { AboutMission } from "@/components/marketing/about-mission";
 import { AboutTimeline } from "@/components/marketing/about-timeline";
-import { AboutValues } from "@/components/marketing/about-values";
 import { LandingHero } from "@/components/marketing/landing-hero";
 import Masonry from "@/components/marketing/masonry";
 import { Container } from "@/components/shared/container";
@@ -19,24 +18,26 @@ const sponsorNames = [
   "Feedback Circle",
   "Work Session",
   "Shipathon",
-  "Roasting Day"
+  "Roasting Day",
 ];
 
 const analyticsHighlights = [
   {
-    value: "300+",
+    value: "200+",
     label: "community members",
-    detail: "A 300-person builder community growing out of Ankara.",
+    detail: "A 200-person builder community growing out of Ankara.",
   },
   {
     value: "64",
     label: "shipped projects",
-    detail: "Landing pages, MVPs, side projects, and collaborative sprint outputs.",
+    detail:
+      "Landing pages, MVPs, side projects, and collaborative sprint outputs.",
   },
   {
     value: "5+",
     label: "active event cycles",
-    detail: "A steady rhythm powered by Build Sprint, Shipathon, Roasting Day, and Feedback Circle formats.",
+    detail:
+      "A steady rhythm powered by Build Sprint, Shipathon, Roasting Day, and Feedback Circle formats.",
   },
 ];
 
@@ -112,35 +113,6 @@ const aboutMission = {
   ],
 };
 
-const aboutValues = {
-  eyebrow: "Our Foundations",
-  heading: "What We Build Around",
-  description:
-    "Shipin is built on practical execution, visible learning, and recurring momentum that helps builders keep shipping.",
-  items: [
-    {
-      title: "Making",
-      description:
-        "We do not gather just to talk. Every session is designed to push toward a real output and strengthen a culture of building together.",
-    },
-    {
-      title: "Community",
-      description:
-        "Growth is collective. We move each other forward by sharing knowledge, experience, and momentum.",
-    },
-    {
-      title: "Transparency",
-      description:
-        "Our process, decisions, and feedback stay visible. Trust is built through openness.",
-    },
-    {
-      title: "Consistency",
-      description:
-        "We create a sustainable culture of execution through recurring rhythms, not one-off bursts of energy.",
-    },
-  ],
-};
-
 const aboutCommunity = {
   eyebrow: "Community",
   heading: "A community experience built around making.",
@@ -169,8 +141,6 @@ const aboutCommunity = {
       title: "Deep Work",
       description: "Build side by side through uninterrupted focus sessions.",
     },
-    
-    
   ],
   ctaLabel: "Explore Events",
   ctaHref: "/events",
@@ -228,7 +198,7 @@ const teamMembers = [
     imageAlt: "Portrait of Defne Erkan",
     linkedinUrl: "https://www.linkedin.com/in/defneerkan/",
   },
-  {   
+  {
     name: "Berkem Peker",
     role: "Founding Member & Technical Lead",
     initials: "BP",
@@ -328,7 +298,9 @@ export default function MarketingHomePage() {
                       {item.value}
                     </p>
                   </div>
-                  <p className="text-sm leading-6 text-white/70">{item.detail}</p>
+                  <p className="text-sm leading-6 text-white/70">
+                    {item.detail}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -345,13 +317,6 @@ export default function MarketingHomePage() {
           imageSrc={aboutMission.imageSrc}
           imageAlt={aboutMission.imageAlt}
           stats={aboutMission.stats}
-        />
-
-        <AboutValues
-          eyebrow={aboutValues.eyebrow}
-          heading={aboutValues.heading}
-          description={aboutValues.description}
-          values={aboutValues.items}
         />
 
         <AboutCommunity
@@ -412,6 +377,10 @@ export default function MarketingHomePage() {
                       <span className="relative">{member.initials}</span>
                     </div>
                   )}
+
+                  <h3 className="mt-2 text-xl font-bold tracking-tight text-white">
+                    {member.name}
+                  </h3>
 
                   <span className="inline-flex rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-[0.8rem] font-semibold tracking-[0.08em] text-white/72">
                     {member.role}
