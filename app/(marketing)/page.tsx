@@ -18,24 +18,26 @@ const sponsorNames = [
   "Feedback Circle",
   "Work Session",
   "Shipathon",
-  "Roasting Day"
+  "Roasting Day",
 ];
 
 const analyticsHighlights = [
   {
-    value: "300+",
+    value: "200+",
     label: "community members",
-    detail: "A 300-person builder community growing out of Ankara.",
+    detail: "A 200-person builder community growing out of Ankara.",
   },
   {
     value: "64",
     label: "shipped projects",
-    detail: "Landing pages, MVPs, side projects, and collaborative sprint outputs.",
+    detail:
+      "Landing pages, MVPs, side projects, and collaborative sprint outputs.",
   },
   {
     value: "5+",
     label: "active event cycles",
-    detail: "A steady rhythm powered by Build Sprint, Shipathon, Roasting Day, and Feedback Circle formats.",
+    detail:
+      "A steady rhythm powered by Build Sprint, Shipathon, Roasting Day, and Feedback Circle formats.",
   },
 ];
 
@@ -137,8 +139,6 @@ const aboutCommunity = {
       description:
         "Roasting Day, Deep Work, and other recurring formats that keep the community connected between bigger shipping moments.",
     },
-    
-    
   ],
   ctaLabel: "Explore Events",
   ctaHref: "/events",
@@ -194,7 +194,7 @@ const teamMembers = [
     imageAlt: "Portrait of Defne Erkan",
     linkedinUrl: "https://www.linkedin.com/in/defneerkan/",
   },
-  {   
+  {
     name: "Berkem Peker",
     role: "Founding Member & Technical Lead",
     initials: "BP",
@@ -294,7 +294,9 @@ export default function MarketingHomePage() {
                       {item.value}
                     </p>
                   </div>
-                  <p className="text-sm leading-6 text-white/70">{item.detail}</p>
+                  <p className="text-sm leading-6 text-white/70">
+                    {item.detail}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -371,6 +373,10 @@ export default function MarketingHomePage() {
                       <span className="relative">{member.initials}</span>
                     </div>
                   )}
+
+                  <h3 className="mt-2 text-xl font-bold tracking-tight text-white">
+                    {member.name}
+                  </h3>
 
                   <span className="inline-flex rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-[0.8rem] font-semibold tracking-[0.08em] text-white/72">
                     {member.role}
