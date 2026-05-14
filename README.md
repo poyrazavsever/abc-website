@@ -1,5 +1,5 @@
 # ABC Site
-
+    a
 Ankara Build Club resmi web sitesi ve üye platformu.
 
 Bu repo, PRD'de tanimlanan Faz 1 -> Faz 3 kapsamini destekleyecek sekilde Next.js tabanli bir mimari iskeletle baslatilmistir.
