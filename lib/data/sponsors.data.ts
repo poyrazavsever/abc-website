@@ -195,28 +195,18 @@ export const sponsorsPageData: SponsorsPageData = {
     stages: [
       {
         step: "Stage 1",
-        title: "Builder",
-        subtitle: "Individual with capability and curiosity",
+        title: "Build Sprint",
+        subtitle: "Minimal viable product",
       },
       {
         step: "Stage 2",
-        title: "Exploration",
-        subtitle: "Connecting with peers and problem spaces",
+        title: "Ship Sprint",
+        subtitle: "Minimal viable distribution",
       },
       {
         step: "Stage 3",
-        title: "Prototype",
-        subtitle: "Rapid product creation via AI tools",
-      },
-      {
-        step: "Stage 4",
-        title: "Insight",
-        subtitle: "Validated problem–solution signal",
-      },
-      {
-        step: "Stage 5",
-        title: "Startup",
-        subtitle: "Company formation from evidence, not assumption",
+        title: "Market Readiness",
+        subtitle: "Validated problem-solution signal",
       },
     ],
   },

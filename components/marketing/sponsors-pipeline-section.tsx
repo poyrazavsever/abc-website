@@ -215,7 +215,7 @@ export function SponsorsPipelineSection({
               <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/40 via-accent-500/30 to-highlight-500/20 md:hidden" />
               <div className="hidden md:block absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-violet-500/40 via-accent-500/30 to-highlight-500/20" />
 
-              <div className="flex flex-col gap-6 md:grid md:grid-cols-5 md:gap-5">
+              <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:gap-8">
                 {stages.map((stage, i) => {
                   const accent = stageAccents[i] ?? stageAccents[0];
                   const IconComponent = stageIcons[i] ?? BuilderIcon;
