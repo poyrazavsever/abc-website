@@ -130,11 +130,36 @@ const stageIcons: ((props: IconProps) => ReactNode)[] = [
 ];
 
 const stageAccents = [
-  { ring: "border-violet-500/40", glow: "shadow-[0_0_20px_rgba(139,92,246,0.3)]", text: "text-violet-400", bg: "bg-violet-500/10" },
-  { ring: "border-primary-400/40", glow: "shadow-[0_0_20px_rgba(70,44,125,0.3)]", text: "text-primary-300", bg: "bg-primary-500/10" },
-  { ring: "border-secondary-400/40", glow: "shadow-[0_0_20px_rgba(131,28,145,0.3)]", text: "text-secondary-300", bg: "bg-secondary-500/10" },
-  { ring: "border-accent-400/40", glow: "shadow-[0_0_20px_rgba(255,112,191,0.3)]", text: "text-accent-400", bg: "bg-accent-500/10" },
-  { ring: "border-highlight-400/40", glow: "shadow-[0_0_20px_rgba(213,82,163,0.3)]", text: "text-highlight-400", bg: "bg-highlight-500/10" },
+  {
+    ring: "border-violet-500/40",
+    glow: "shadow-[0_0_20px_rgba(139,92,246,0.3)]",
+    text: "text-violet-400",
+    bg: "bg-violet-500/10",
+  },
+  {
+    ring: "border-primary-400/40",
+    glow: "shadow-[0_0_20px_rgba(70,44,125,0.3)]",
+    text: "text-primary-300",
+    bg: "bg-primary-500/10",
+  },
+  {
+    ring: "border-secondary-400/40",
+    glow: "shadow-[0_0_20px_rgba(131,28,145,0.3)]",
+    text: "text-secondary-300",
+    bg: "bg-secondary-500/10",
+  },
+  {
+    ring: "border-accent-400/40",
+    glow: "shadow-[0_0_20px_rgba(255,112,191,0.3)]",
+    text: "text-accent-400",
+    bg: "bg-accent-500/10",
+  },
+  {
+    ring: "border-highlight-400/40",
+    glow: "shadow-[0_0_20px_rgba(213,82,163,0.3)]",
+    text: "text-highlight-400",
+    bg: "bg-highlight-500/10",
+  },
 ];
 
 function GlassIconBadge({
@@ -231,7 +256,9 @@ export function SponsorsPipelineSection({
                       )}
                       style={{
                         transitionDuration: reduceMotion ? "0ms" : "760ms",
-                        transitionDelay: reduceMotion ? "0ms" : `${300 + i * 140}ms`,
+                        transitionDelay: reduceMotion
+                          ? "0ms"
+                          : `${300 + i * 140}ms`,
                       }}
                     >
                       {/* Card */}
@@ -247,10 +274,17 @@ export function SponsorsPipelineSection({
                         {/* Stage number badge */}
                         <div className="relative flex flex-col gap-4">
                           <div className="flex items-center gap-3">
-                            <GlassIconBadge className={cn(accent.ring, accent.glow)}>
+                            <GlassIconBadge
+                              className={cn(accent.ring, accent.glow)}
+                            >
                               <IconComponent className={accent.text} />
                             </GlassIconBadge>
-                            <span className={cn("text-[0.65rem] font-bold tracking-[0.3em] uppercase", accent.text)}>
+                            <span
+                              className={cn(
+                                "text-[0.65rem] font-bold tracking-[0.3em] uppercase",
+                                accent.text,
+                              )}
+                            >
                               {stage.step}
                             </span>
                           </div>
@@ -266,10 +300,12 @@ export function SponsorsPipelineSection({
                         </div>
 
                         {/* Bottom accent line */}
-                        <div className={cn(
-                          "absolute bottom-0 left-6 right-6 h-px opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-                          "bg-gradient-to-r from-transparent via-accent-400/50 to-transparent",
-                        )} />
+                        <div
+                          className={cn(
+                            "absolute bottom-0 left-6 right-6 h-px opacity-0 transition-opacity duration-500 group-hover:opacity-100",
+                            "bg-gradient-to-r from-transparent via-accent-400/50 to-transparent",
+                          )}
+                        />
                       </div>
                     </div>
                   );
