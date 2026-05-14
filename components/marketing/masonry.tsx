@@ -17,6 +17,7 @@ type MasonryItem = {
   img: string;
   url: string;
   height: number;
+  imagePosition?: string;
   eyebrow?: string;
   title?: string;
   description?: string;
@@ -346,7 +347,10 @@ export default function Masonry({
           >
             <div
               className={styles.itemImg}
-              style={{ backgroundImage: `url(${item.img})` }}
+              style={{
+                backgroundImage: `url(${item.img})`,
+                backgroundPosition: item.imagePosition ?? "center center",
+              }}
             >
               {showItemOverlay ? (
                 <div className={styles.copy}>

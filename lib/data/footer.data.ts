@@ -7,7 +7,7 @@ export const footerData: FooterData = {
   brand: {
     title: "Shipin",
     description:
-      "A product and technology community based in Ankara. It brings builders, operators, and partners into the same ecosystem through events, collaboration, and product-building programs.",
+      "A product and technology community for builders, operators, and partners coming together through events, collaboration, and product-building programs.",
   },
   sections: [
     {
@@ -51,7 +51,7 @@ export const footerData: FooterData = {
     { label: "X", href: "https://x.com/ankarabuildclub", external: true },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/company/ankara-build-club",
+      href: "https://www.linkedin.com/company/agorabuildclub",
       external: true,
     },
     {
@@ -59,7 +59,7 @@ export const footerData: FooterData = {
       href: "https://instagram.com/ankarabuildclub",
       external: true,
     },
-    { label: "Luma", href: "https://lu.ma/ankarabuildclub", external: true },
+    { label: "Luma", href: "https://luma.com/shipin", external: true },
   ],
   contact: {
     title: "Partnerships and collaborations",

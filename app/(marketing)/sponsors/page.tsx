@@ -98,9 +98,10 @@ export default function SponsorsPage() {
           "160+ Builders and 40+ Projects created so far with strong retention.",
       },
       {
-        value: 187,
-        label: "Luma Registrants",
-        detail: "Sprint #2 was sold-out. 102 registrants and 10 live projects.",
+        value: 200,
+        suffix: "+",
+        label: "Members",
+        detail: "A growing member base building consistently across the community.",
       },
       {
         value: 80,

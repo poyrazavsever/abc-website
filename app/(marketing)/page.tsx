@@ -11,21 +11,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LinkButton } from "@/components/ui/link-button";
 import { SectionHeader } from "@/components/ui/section-header";
 
-const sponsorNames = [
-  "Deep Work",
-  "Ship Day",
-  "Build Sprint",
-  "Feedback Circle",
-  "Work Session",
-  "Shipathon",
-  "Roasting Day",
-];
-
 const analyticsHighlights = [
   {
     value: "200+",
     label: "community members",
-    detail: "A 200-person builder community growing out of Ankara.",
+    detail: "A 200-person builder community growing through shared momentum.",
   },
   {
     value: "64",
@@ -42,17 +32,6 @@ const analyticsHighlights = [
 ];
 
 const eventFormats = [
-  {
-    id: "deep-work",
-    title: "Deep Work",
-    eyebrow: "Focus",
-    description:
-      "Two uninterrupted hours of building. You declare your goal first, then stay locked in.",
-    meta: "Weekly rhythm",
-    img: "/events/events-pano.jpg",
-    url: "/events",
-    height: 640,
-  },
   {
     id: "build-sprint",
     title: "Build Sprint",
@@ -75,26 +54,57 @@ const eventFormats = [
     url: "/events",
     height: 760,
   },
+];
+
+const photoGalleryItems = [
   {
-    id: "roasting-day",
-    title: "Roasting Day",
-    eyebrow: "Feedback",
-    description:
-      "A day where builders bring the work and get sharp, honest feedback from the community.",
-    meta: "Direct feedback",
-    img: "/events/events-session-3.jpg",
+    id: "lovable-logo",
+    img: "/events/lovable.jpg",
     url: "/events",
-    height: 560,
+    height: 420,
   },
   {
-    id: "community-moment",
-    title: "Community Moment",
-    eyebrow: "People",
-    description: "The social layer between sessions and shipping.",
-    meta: "Meetups",
+    id: "events-pano",
+    img: "/events/events-pano.jpg",
+    url: "/events",
+    height: 520,
+    imagePosition: "50% 38%",
+  },
+  {
+    id: "events-session-3",
+    img: "/events/events-session-3.jpg",
+    url: "/events",
+    height: 760,
+  },
+  {
+    id: "events-session-4",
     img: "/events/events-session-4.jpg",
     url: "/events",
-    height: 580,
+    height: 760,
+  },
+  {
+    id: "shebuilds-group",
+    img: "/events/shebuilds-group.png",
+    url: "/events",
+    height: 760,
+  },
+  {
+    id: "shebuilds-room-1",
+    img: "/events/shebuilds-room-1.jpg",
+    url: "/events",
+    height: 700,
+  },
+  {
+    id: "shebuilds-room-2",
+    img: "/events/shebuilds-room-2.jpg",
+    url: "/events",
+    height: 700,
+  },
+  {
+    id: "fal-logo",
+    img: "/events/fal.png",
+    url: "/events",
+    height: 420,
   },
 ];
 
@@ -115,29 +125,24 @@ const aboutMission = {
 
 const aboutCommunity = {
   eyebrow: "Community",
-  heading: "A community experience built around making.",
-  accentPhrase: "built around making",
+  heading: "Different rhythms of the community.",
+  accentPhrase: "rhythms",
   description:
-    "Ship In events are more than networking. They create demo moments, shipping pressure, peer feedback, and build-in-public energy. Each format serves a different need.",
+    "Our two main event formats are Build Sprint and Ship Sprint. Together they create the core rhythm of how the community builds and ships.",
   imageSrc: "/about/community.png",
   imageAlt: "Ship In community event",
   features: [
     {
       title: "Build Sprint",
       description:
-        "High-energy, team-based execution with fast iteration loops.",
+        "Fast, collaborative execution focused on building, iterating, and ending the session with something tangible.",
       featured: true,
     },
     {
       title: "Ship Sprint",
       description:
-        "A shipping sprint centered on ending the day with something real.",
+        "A shipping-focused format centered on turning progress into a real launch or demo moment.",
       featured: true,
-    },
-    {
-      title: "Community Events",
-      description:
-        "Roasting Day, Deep Work, and other recurring formats that keep the community connected between bigger shipping moments.",
     },
   ],
   ctaLabel: "Explore Events",
@@ -147,8 +152,7 @@ const aboutCommunity = {
 const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
-  description:
-    "From the first gathering to the next shipping cycle, Shipin is becoming a recurring space for builders to meet, focus, and launch.",
+  description: "",
   ctaLabel: "Join the Community",
   ctaHref: "/register",
   milestones: [
@@ -156,25 +160,25 @@ const aboutTimeline = {
       year: "Sprint #1",
       title: "International Women's Day",
       description:
-        "Our first event took place on International Women's Day with Lovable, bringing together the earliest members of the community around an inclusive builder spirit.",
+        "Our first gathering on International Women's Day with Lovable brought the earliest builders in the community together.",
     },
     {
       year: "Sprint #2",
       title: "Building Momentum",
       description:
-        "With fal.ai, we built the first Ship Sprint, a day-long event focused on shipping a real product.",
+        "With fal.ai, we ran our first Ship Sprint around building and shipping a real product.",
     },
     {
       year: "Hackathon #1",
       title: "Metu Teknokent Hackathon",
       description:
-        "We organized the first Hackathon at Metu Teknokent as a partner, a day-long event focused on building a real product.",
+        "We partnered on the first Metu Teknokent Hackathon focused on building a real product in a single day.",
     },
     {
       year: "Ship Sprint #1",
       title: "September 2026",
       description:
-        "We will organize the first go to market event, a day-long event focused on shipping a real product.",
+        "Our first go-to-market Ship Sprint will center on turning a real product into launch momentum.",
     },
   ],
 };
@@ -232,46 +236,9 @@ const teamMembers = [
 ];
 
 export default function MarketingHomePage() {
-  const sponsorLoop = [...sponsorNames, ...sponsorNames];
-
   return (
     <div className="bg-brand-black text-white">
       <LandingHero />
-
-      <section className="border-t border-b border-white/10 bg-brand-black py-5">
-        <Container width="full" className="overflow-hidden px-0">
-          <div className="mx-auto max-w-[110rem]">
-            <p className="mb-4 text-center text-[0.68rem] font-semibold tracking-[0.34em] text-white/45">
-              Supporters and sponsors
-            </p>
-
-            <div className="relative overflow-hidden border-y border-white/8 bg-white/3 py-5">
-              <div
-                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent sm:w-40"
-                aria-hidden="true"
-              />
-              <div
-                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-brand-black via-brand-black/80 to-transparent sm:w-40"
-                aria-hidden="true"
-              />
-
-              <div className="abc-marquee">
-                <div className="abc-marquee-track">
-                  {sponsorLoop.map((sponsor, index) => (
-                    <span
-                      key={`${sponsor}-${index}`}
-                      className="inline-flex items-center gap-5 px-6 text-lg font-semibold tracking-[-0.03em] text-white/62 sm:px-8"
-                    >
-                      <span>{sponsor}</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-white/15" />
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
 
       <section className="relative border-t border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent_26%)] py-20 sm:py-24">
         <Container className="space-y-10">
@@ -344,7 +311,6 @@ export default function MarketingHomePage() {
 
         <Container width="wide" className="relative space-y-12">
           <SectionHeader
-            eyebrow="Our Team"
             heading="Our Team"
             description="The people building Shipin."
             className="mx-auto max-w-3xl text-center sm:items-center sm:justify-center [&_h2]:text-white [&_p]:text-white/70"
@@ -358,38 +324,40 @@ export default function MarketingHomePage() {
                 elevated={false}
                 className="rounded-[1.75rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025))] shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-md"
               >
-                <CardContent className="flex flex-col items-center gap-4 px-5 py-9 text-center">
+                <CardContent className="flex items-center gap-4 px-4 py-5 text-left sm:flex-col sm:items-center sm:gap-4 sm:px-5 sm:py-9 sm:text-center">
                   {member.imageSrc ? (
-                    <div className="relative h-32 w-32 overflow-hidden rounded-full border border-white/12 shadow-[0_16px_35px_rgba(70,44,125,0.28)] ring-4 ring-accent-500/10">
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/12 shadow-[0_16px_35px_rgba(70,44,125,0.28)] ring-4 ring-accent-500/10 sm:h-32 sm:w-32">
                       <Image
                         src={member.imageSrc}
                         alt={member.imageAlt ?? member.name}
                         fill
                         className={`object-cover grayscale ${member.imageClassName ?? ""}`}
-                        sizes="128px"
+                        sizes="(max-width: 640px) 80px, 128px"
                       />
                     </div>
                   ) : (
-                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-white/12 bg-[radial-gradient(circle_at_30%_30%,rgba(255,112,191,0.32),rgba(131,28,145,0.14)_45%,rgba(70,44,125,0.1)_100%)] text-2xl font-semibold tracking-[-0.05em] text-white shadow-[0_16px_35px_rgba(70,44,125,0.28)]">
+                    <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full border border-white/12 bg-[radial-gradient(circle_at_30%_30%,rgba(255,112,191,0.32),rgba(131,28,145,0.14)_45%,rgba(70,44,125,0.1)_100%)] text-lg font-semibold tracking-[-0.05em] text-white shadow-[0_16px_35px_rgba(70,44,125,0.28)] sm:h-28 sm:w-28 sm:text-2xl">
                       <div className="absolute inset-[6px] rounded-full border border-white/12 bg-brand-black/50" />
                       <span className="relative">{member.initials}</span>
                     </div>
                   )}
 
-                  <h3 className="mt-2 text-xl font-bold tracking-tight text-white">
-                    {member.name}
-                  </h3>
+                  <div className="min-w-0 flex-1 space-y-2 sm:flex-none">
+                    <h3 className="text-lg font-bold tracking-tight text-white sm:mt-2 sm:text-xl">
+                      {member.name}
+                    </h3>
 
-                  <span className="inline-flex rounded-full border border-white/10 bg-white/6 px-4 py-1.5 text-[0.8rem] font-semibold tracking-[0.08em] text-white/72">
-                    {member.role}
-                  </span>
+                    <span className="inline-flex max-w-full rounded-full border border-white/10 bg-white/6 px-3 py-1.5 text-[0.72rem] font-semibold tracking-[0.08em] text-white/72 sm:px-4 sm:text-[0.8rem]">
+                      {member.role}
+                    </span>
+                  </div>
 
                   <Link
                     href={member.linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`${member.name} LinkedIn profile`}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/58 transition-colors hover:border-accent-400/30 hover:bg-accent-500/10 hover:text-accent-200"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/58 transition-colors hover:border-accent-400/30 hover:bg-accent-500/10 hover:text-accent-200 sm:mt-1"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -412,7 +380,7 @@ export default function MarketingHomePage() {
           <SectionHeader
             eyebrow="Our photos"
             heading="Moments from the community."
-            description="A quick look at the rooms, sessions, and builder energy that shape Shipin."
+            description="A quick look at our two main formats: Build Sprint and Ship Sprint."
             actions={
               <LinkButton
                 href="/events"
@@ -428,7 +396,7 @@ export default function MarketingHomePage() {
           <div className="space-y-5 p-4 pt-0">
             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,112,191,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3 shadow-[0_28px_72px_rgba(0,0,0,0.24)] sm:p-4">
               <Masonry
-                items={eventFormats}
+                items={photoGalleryItems}
                 ease="power3.out"
                 duration={0.7}
                 stagger={0.08}

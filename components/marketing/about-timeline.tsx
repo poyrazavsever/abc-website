@@ -69,7 +69,6 @@ function MilestoneIcon({ index }: { index: number }) {
 export function AboutTimeline({
   eyebrow,
   heading,
-  description,
   ctaLabel,
   ctaHref,
   milestones,
@@ -93,9 +92,9 @@ export function AboutTimeline({
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(70,44,125,0.14),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(131,28,145,0.08),transparent_24%)]" />
 
       <Container width="wide" className="relative">
-        <div className="grid gap-12 p-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.4fr)] lg:gap-16">
+        <div className="grid items-start gap-12 p-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,2.4fr)] lg:gap-16">
           {/* Left panel */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:pt-24">
             <p
               className={cn(
                 "transform-gpu text-xs font-semibold tracking-[0.26em] text-ink-200 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
@@ -117,17 +116,6 @@ export function AboutTimeline({
             >
               {heading}
             </h2>
-            <p
-              className={cn(
-                "max-w-md transform-gpu text-sm leading-7 text-ink-300 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-base",
-                hasAnimatedIn
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0",
-              )}
-              style={{ transitionDelay: hasAnimatedIn ? "0ms" : "160ms" }}
-            >
-              {description}
-            </p>
             <Link
               href={ctaHref}
               className={cn(
@@ -136,7 +124,7 @@ export function AboutTimeline({
                   ? "translate-y-0 opacity-100"
                   : "translate-y-6 opacity-0",
               )}
-              style={{ transitionDelay: hasAnimatedIn ? "0ms" : "240ms" }}
+              style={{ transitionDelay: hasAnimatedIn ? "0ms" : "160ms" }}
             >
               {ctaLabel}
               <ArrowRightIcon />
@@ -202,13 +190,15 @@ export function AboutTimeline({
                   </div>
 
                   {/* Content */}
-                  <div className="mt-0 space-y-2 lg:mt-4">
-                    <p className="text-sm font-semibold text-accent-400">
-                      {milestone.year}
-                    </p>
-                    <h3 className="text-lg font-semibold text-brand-white">
-                      {milestone.title}
-                    </h3>
+                  <div className="mt-0 flex flex-col space-y-3 lg:mt-4">
+                    <div className="space-y-2 lg:min-h-[6.25rem]">
+                      <p className="text-sm font-semibold text-accent-400">
+                        {milestone.year}
+                      </p>
+                      <h3 className="text-lg font-semibold text-brand-white">
+                        {milestone.title}
+                      </h3>
+                    </div>
                     <p className="max-w-[24ch] text-sm leading-6 text-ink-300">
                       {milestone.description}
                     </p>

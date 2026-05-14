@@ -6,7 +6,7 @@ import { LinkButton } from "@/components/ui/link-button";
 
 const LUMA_CALENDAR_ID = "cal-7VDaKLe8HABNOFw";
 const LUMA_CALENDAR_URL = `https://lu.ma/embed/calendar/${LUMA_CALENDAR_ID}/events`;
-const LUMA_PUBLIC_URL = "https://luma.com/ankarabuildclub";
+const LUMA_PUBLIC_URL = "https://luma.com/shipin";
 
 const eventSignals = [
   {
@@ -245,54 +245,33 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="grid gap-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.08fr)] lg:items-end">
-                  <div className="max-w-xl">
-                    <p className="text-[0.72rem] font-semibold tracking-[0.28em] text-white/42">
-                      Community events
-                    </p>
-                    <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
-                      The wider Shipin rhythm.
-                    </h3>
-                  </div>
+              <div className="max-w-4xl space-y-5">
+                <div className="max-w-xl">
+                  <p className="text-[0.72rem] font-semibold tracking-[0.28em] text-white/42">
+                    Community events
+                  </p>
                 </div>
 
-                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                <div className="space-y-5 border-t border-white/8 pt-5">
                   {communityEventFormats.map((format) => (
-                  <article
-                    key={format.title}
-                    className="group relative overflow-hidden rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5 shadow-[0_16px_36px_rgba(0,0,0,0.22)] transition-transform duration-300 hover:-translate-y-1 hover:border-white/14"
-                  >
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))]" />
-                    <div className="pointer-events-none absolute right-4 top-4 h-16 w-16 rounded-full border border-secondary-500/16 bg-secondary-500/8 blur-md transition-opacity duration-300 group-hover:opacity-100" />
-
-                    <div className="relative flex min-h-[12.5rem] h-full flex-col gap-5">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="space-y-3">
-                          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-secondary-500),var(--color-accent-500))] text-xs font-semibold text-white">
-                            {format.step}
-                          </span>
-                          <div>
-                            <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/45">
-                              {format.rhythm}
-                            </p>
-                            <h3 className="mt-2 text-[1.85rem] font-semibold tracking-[-0.04em] text-white">
-                              {format.title}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <span className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/28">
-                          {format.step}
-                        </span>
+                    <article
+                      key={format.title}
+                      className="space-y-2 border-b border-white/8 pb-5 last:border-b-0 last:pb-0"
+                    >
+                      <div className="space-y-1">
+                        <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/45">
+                          {format.rhythm}
+                        </p>
+                        <h3 className="text-2xl font-semibold tracking-tight text-white">
+                          {format.title}
+                        </h3>
                       </div>
 
-                      <p className="max-w-md text-sm leading-6 text-white/18 transition-all duration-300 group-hover:text-white/72 group-focus-within:text-white/72">
+                      <p className="max-w-2xl text-sm leading-7 text-white/70">
                         {format.description}
                       </p>
-                    </div>
-                  </article>
-                ))}
+                    </article>
+                  ))}
                 </div>
               </div>
             </div>
