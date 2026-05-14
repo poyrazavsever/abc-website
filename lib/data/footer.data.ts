@@ -1,8 +1,7 @@
-import {
-  partnerContactEmail,
-  partnerContactHref,
-} from "@/lib/data/sponsors.data";
 import type { FooterData } from "@/lib/types/footer";
+
+const footerContactEmail = "ada.raimova@gmail.com";
+const footerContactHref = `mailto:${footerContactEmail}`;
 
 export const footerData: FooterData = {
   brand: {
@@ -43,7 +42,7 @@ export const footerData: FooterData = {
       links: [
         { label: "About", href: "/#about" },
         { label: "Become a sponsor", href: "/sponsors" },
-        { label: "Contact", href: partnerContactHref },
+        { label: "Contact", href: footerContactHref },
         { label: "Press kit", href: "/" },
       ],
     },
@@ -64,16 +63,15 @@ export const footerData: FooterData = {
   ],
   contact: {
     title: "Partnerships and collaborations",
-    email: partnerContactEmail,
+    email: footerContactEmail,
     location: "Ankara, Türkiye",
-    responseWindow: "Weekdays, within 24 hours",
     cta: {
       label: "Email the partnerships team",
-      href: partnerContactHref,
+      href: footerContactHref,
     },
   },
   bottomLinks: [
-    { label: "Contact", href: partnerContactHref },
+    { label: "Contact", href: footerContactHref },
     { label: "Careers", href: "/" },
     { label: "Community rules", href: "/" },
     { label: "Privacy", href: "/privacy" },

@@ -13,7 +13,6 @@ export type FooterContact = {
   title: string;
   email: string;
   location: string;
-  responseWindow: string;
   cta: FooterLink;
 };
 

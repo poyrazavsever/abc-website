@@ -111,12 +111,6 @@ export function Footer() {
                 <span className="font-semibold text-white">Location: </span>
                 {footerData.contact.location}
               </p>
-              <p>
-                <span className="font-semibold text-white">
-                  Response time:{" "}
-                </span>
-                {footerData.contact.responseWindow}
-              </p>
             </div>
 
             <div className="flex flex-col gap-2.5 pt-1">

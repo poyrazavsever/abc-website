@@ -10,28 +10,24 @@ const LUMA_PUBLIC_URL = "https://luma.com/ankarabuildclub";
 
 const eventSignals = [
   {
-    value: "2h",
-    label: "Deep focus block",
-    detail: "Protected time to get real work done.",
+    value: "Build Sprint",
+    label: "Core builder format",
+    detail: "A focused sprint for turning momentum into visible progress.",
   },
   {
-    value: "1 day",
-    label: "Shipping window",
-    detail: "A short sprint that ends with visible output.",
-  },
-  {
-    value: "Live",
-    label: "Builder room",
-    detail: "Builders working on actual products together.",
+    value: "Ship Sprint",
+    label: "Launch-focused format",
+    detail: "A tighter push built to end with something clearly shipped.",
   },
 ] as const;
 
 const eventFormats = [
   {
     step: "01",
-    title: "Sprints",
-    rhythm: "Fast execution",
-    description: "Short, intense work blocks built for momentum.",
+    title: "Build Sprint",
+    rhythm: "Core builder format",
+    description:
+      "The main sprint format for builders who want clear momentum, tighter collaboration, and visible progress by the end.",
     bullets: [
       "Pick a clear target.",
       "Move fast with a small team.",
@@ -40,13 +36,14 @@ const eventFormats = [
   },
   {
     step: "02",
-    title: "Mini Sprints",
-    rhythm: "Smaller scope, faster loop",
-    description: "A lighter version of sprint mode for quick progress.",
+    title: "Ship Sprint",
+    rhythm: "Launch-focused format",
+    description:
+      "A sharper, deadline-led sprint built for finishing, shipping, and getting something real out into the world.",
     bullets: [
-      "Keep scope tight.",
-      "Ship one small win.",
-      "Review what changed.",
+      "Keep the scope brutally tight.",
+      "Push toward a real release.",
+      "Close with a visible ship moment.",
     ],
   },
   {
@@ -62,28 +59,6 @@ const eventFormats = [
   },
   {
     step: "04",
-    title: "Shipathon",
-    rhythm: "High-pressure shipping",
-    description: "A concentrated format built around momentum, deadlines, and showing something real by the end.",
-    bullets: [
-      "Start with a clear shipping goal.",
-      "Work against the clock.",
-      "Demo what made it out the door.",
-    ],
-  },
-  {
-    step: "05",
-    title: "Hackathon",
-    rhythm: "Collaborative build burst",
-    description: "Teams form fast, explore bold ideas, and push toward a prototype in a compressed window.",
-    bullets: [
-      "Form around an idea quickly.",
-      "Prototype with intensity.",
-      "Present the strongest version.",
-    ],
-  },
-  {
-    step: "06",
     title: "Fuckup Nights",
     rhythm: "Stories from failure",
     description: "A candid format about mistakes, lessons, and recovery.",
@@ -94,7 +69,7 @@ const eventFormats = [
     ],
   },
   {
-    step: "07",
+    step: "05",
     title: "Deep Work Session",
     rhythm: "Quiet focus",
     description: "Protected time for builders who need uninterrupted work.",
@@ -105,6 +80,9 @@ const eventFormats = [
     ],
   },
 ] as const;
+
+const featuredEventFormats = eventFormats.slice(0, 2);
+const communityEventFormats = eventFormats.slice(2);
 
 const roomPrinciples = [
   "Bring a real task, not just an idea.",
@@ -149,7 +127,7 @@ export default function EventsPage() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {eventSignals.map((signal) => (
                     <div
                       key={signal.label}
@@ -227,109 +205,106 @@ export default function EventsPage() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(131,28,145,0.12),transparent_24%),radial-gradient(circle_at_78%_26%,rgba(255,112,191,0.08),transparent_22%),linear-gradient(180deg,rgba(10,10,11,0.94),rgba(11,11,12,0.98))]" />
 
           <Container width="wide" className="relative max-w-6xl">
-            <div className="space-y-8">
-              <div className="grid gap-5 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-end">
+            <div className="space-y-7">
+              <div className="grid gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.08fr)] lg:items-center">
                 <div className="max-w-xl space-y-4">
                   <p className="text-[0.72rem] font-semibold tracking-[0.32em] text-primary-200/78">
                     Event Formats
                   </p>
                   <h2 className="text-3xl font-semibold leading-[0.96] tracking-tight text-brand-white sm:text-4xl lg:text-5xl">
-                    Not one event type. A full rhythm for builders.
+                    Two flagship formats. One wider community rhythm.
                   </h2>
                   <p className="text-sm leading-7 text-ink-300 sm:text-base">
-                    Some formats are built for silence, some for pressure, some
-                    for direct critique. Together they create Shipin&apos;s
-                    cadence.
+                    Build Sprint and Ship Sprint lead the calendar. Around
+                    them, community events keep the room active, honest, and in
+                    motion.
                   </p>
                 </div>
 
-                <article className="relative overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:p-7">
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,112,191,0.14),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(131,28,145,0.18),transparent_30%)]" />
-                  <div className="relative grid gap-6 md:grid-cols-[auto_minmax(0,1fr)] md:items-start">
-                    <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-sm font-semibold tracking-[0.18em] text-accent-300">
-                      {eventFormats[0]?.step}
-                    </span>
-                    <div className="space-y-4">
-                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                          <p className="text-[0.72rem] font-semibold tracking-[0.2em] text-white/48">
-                            Featured format
-                          </p>
-                          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                            {eventFormats[0]?.title}
-                          </h3>
+                <div className="grid max-w-[45rem] gap-3 justify-self-end md:grid-cols-2">
+                  {featuredEventFormats.map((format, index) => (
+                    <article
+                      key={format.title}
+                      className="relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 shadow-[0_20px_48px_rgba(0,0,0,0.22)] sm:p-6"
+                    >
+                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,112,191,0.14),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(131,28,145,0.18),transparent_30%)]" />
+                      <div className="relative space-y-4">
+                        <div className="flex items-start justify-between gap-4">
+                          <span className="inline-flex h-11 min-w-11 items-center justify-center rounded-[1rem] border border-white/10 bg-white/[0.06] px-3 text-sm font-semibold tracking-[0.18em] text-accent-300">
+                            {format.step}
+                          </span>
+                          <span className="inline-flex rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.68rem] font-semibold tracking-[0.18em] text-secondary-300">
+                            {index === 0 ? "Flagship format" : "Priority format"}
+                          </span>
                         </div>
-                        <span className="inline-flex rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.68rem] font-semibold tracking-[0.18em] text-secondary-300">
-                          {eventFormats[0]?.rhythm}
-                        </span>
-                      </div>
 
-                      <p className="max-w-2xl text-sm leading-7 text-ink-200 sm:text-base">
-                        {eventFormats[0]?.description}
-                      </p>
+                        <div className="space-y-3">
+                          <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/45">
+                            {format.rhythm}
+                          </p>
+                          <h3 className="text-[2rem] font-semibold tracking-tight text-white">
+                            {format.title}
+                          </h3>
+                          <p className="text-sm leading-7 text-ink-200">
+                            {format.description}
+                          </p>
+                        </div>
 
-                      <div className="grid gap-3 sm:grid-cols-3">
-                        {eventFormats[0]?.bullets.map((bullet) => (
-                          <div
-                            key={bullet}
-                            className="rounded-[1.1rem] border border-white/8 bg-brand-black/28 px-4 py-3 text-sm leading-6 text-white/74"
-                          >
-                            {bullet}
-                          </div>
-                        ))}
                       </div>
-                    </div>
-                  </div>
-                </article>
+                    </article>
+                  ))}
+                </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {eventFormats.slice(1).map((format, index) => (
+              <div className="space-y-4">
+                <div className="grid gap-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.08fr)] lg:items-end">
+                  <div className="max-w-xl">
+                    <p className="text-[0.72rem] font-semibold tracking-[0.28em] text-white/42">
+                      Community events
+                    </p>
+                    <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+                      The wider Shipin rhythm.
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                  {communityEventFormats.map((format) => (
                   <article
                     key={format.title}
-                    className="group relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-white/[0.03] p-6 shadow-[0_18px_44px_rgba(0,0,0,0.22)] transition-transform duration-300 hover:-translate-y-1"
+                    className="group relative overflow-hidden rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5 shadow-[0_16px_36px_rgba(0,0,0,0.22)] transition-transform duration-300 hover:-translate-y-1 hover:border-white/14"
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))]" />
                     <div className="pointer-events-none absolute right-4 top-4 h-16 w-16 rounded-full border border-secondary-500/16 bg-secondary-500/8 blur-md transition-opacity duration-300 group-hover:opacity-100" />
 
-                    <div className="relative flex h-full flex-col gap-6">
+                    <div className="relative flex min-h-[12.5rem] h-full flex-col gap-5">
                       <div className="flex items-start justify-between gap-4">
                         <div className="space-y-3">
-                          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-secondary-500),var(--color-accent-500))] text-xs font-semibold text-white">
+                          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-secondary-500),var(--color-accent-500))] text-xs font-semibold text-white">
                             {format.step}
                           </span>
                           <div>
                             <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/45">
                               {format.rhythm}
                             </p>
-                            <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
+                            <h3 className="mt-2 text-[1.85rem] font-semibold tracking-[-0.04em] text-white">
                               {format.title}
                             </h3>
                           </div>
                         </div>
 
                         <span className="text-[0.68rem] font-semibold tracking-[0.18em] text-white/28">
-                          0{index + 2}
+                          {format.step}
                         </span>
                       </div>
 
-                      <p className="text-sm leading-7 text-white/72 sm:text-base">
+                      <p className="max-w-md text-sm leading-6 text-white/18 transition-all duration-300 group-hover:text-white/72 group-focus-within:text-white/72">
                         {format.description}
                       </p>
-
-                      <div className="mt-auto space-y-2">
-                        {format.bullets.map((bullet) => (
-                          <div
-                            key={bullet}
-                            className="rounded-[1rem] border border-white/8 bg-brand-black/24 px-4 py-3 text-sm leading-6 text-white/70"
-                          >
-                            {bullet}
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   </article>
                 ))}
+                </div>
               </div>
             </div>
           </Container>
