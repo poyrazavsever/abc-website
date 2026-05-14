@@ -24,10 +24,9 @@ const sponsorNames = [
 
 const analyticsHighlights = [
   {
-    value: "1.2K+",
+    value: "300+",
     label: "community members",
-    detail:
-      "A builder network born in Ankara and connected at internet speed.",
+    detail: "A 300-person builder community growing out of Ankara.",
   },
   {
     value: "64",
