@@ -147,6 +147,8 @@ const aboutCommunity = {
 const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
+  description:
+    "From the first gathering to the next shipping cycle, Shipin is becoming a recurring space for builders to meet, focus, and launch.",
   ctaLabel: "Join the Community",
   ctaHref: "/register",
   milestones: [
