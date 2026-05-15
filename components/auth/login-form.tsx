@@ -27,7 +27,7 @@ function getQueryMessage(message: string | null) {
   }
 
   if (trimmedMessage === "callback") {
-    return "Oturum doğrulamasi tamamlanamadı. Google ile tekrar deneyin.";
+    return "Authentication could not be completed. Please try Google again.";
   }
 
   return trimmedMessage;
@@ -69,12 +69,12 @@ export function LoginForm() {
   const onSubmit = handleSubmit(async (values) => {
     try {
       await loginWithPassword(values);
-      appToast.success("Giriş başarılı.");
+      appToast.success("Signed in successfully.");
       router.replace(getAuthContinueHref(nextPath));
       router.refresh();
     } catch (error) {
       appToast.error(
-        error instanceof Error ? error.message : "Giriş işlemi tamamlanamadı.",
+        error instanceof Error ? error.message : "Sign-in could not be completed.",
       );
       return;
     }
@@ -82,18 +82,18 @@ export function LoginForm() {
 
   return (
     <div className="w-full">
-      <AuthHeading title="Giriş yap" />
+      <AuthHeading title="Sign in" />
 
       <form className="space-y-4" noValidate onSubmit={onSubmit}>
         <div>
           <label htmlFor="login-email" className="sr-only">
-            E-posta
+            Email
           </label>
           <input
             id="login-email"
             type="email"
             autoComplete="email"
-            placeholder="E-posta"
+            placeholder="Email"
             className={cn(inputClassName, errors.email && "border-danger-400")}
             {...register("email")}
           />
@@ -106,13 +106,13 @@ export function LoginForm() {
 
         <div>
           <label htmlFor="login-password" className="sr-only">
-            Şifre
+            Password
           </label>
           <input
             id="login-password"
             type="password"
             autoComplete="current-password"
-            placeholder="Şifre"
+            placeholder="Password"
             className={cn(
               inputClassName,
               errors.password && "border-danger-400",
@@ -131,7 +131,7 @@ export function LoginForm() {
           disabled={isSubmitting}
           className="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_18px_44px_rgb(70_44_125_/_0.28)] transition hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black disabled:cursor-not-allowed disabled:opacity-65"
         >
-          {isSubmitting ? "Giriş yapılıyor..." : "Giriş yap"}
+          {isSubmitting ? "Signing in..." : "Sign in"}
         </button>
       </form>
 
@@ -139,12 +139,12 @@ export function LoginForm() {
       <GoogleAuthButton />
 
       <p className="mt-6 text-center text-sm text-white/58">
-        Hesabın yok mu?{" "}
+        Don&apos;t have an account?{" "}
         <Link
           href={getRegisterHref(nextPath)}
           className="font-semibold text-white transition hover:text-accent-300"
         >
-          Kayıt ol
+          Sign up
         </Link>
       </p>
     </div>

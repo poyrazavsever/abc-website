@@ -8,9 +8,9 @@ import { RegisterForm } from "@/components/auth/register-form";
 import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Kayıt Ol",
+  title: "Sign Up",
   description:
-    "Ankara Build Club topluluğuna kaydolun ve onboarding akışına başlayın.",
+    "Join the Ankara Build Club community and start the onboarding flow.",
 };
 
 type RegisterPageProps = {

@@ -47,7 +47,7 @@ export function GoogleAuthButton() {
       appToast.error(
         error instanceof Error
           ? error.message
-          : "Google ile giriş işlemi başlatılamadı.",
+          : "Google sign-in could not be started.",
       );
       setIsSubmitting(false);
     }
@@ -62,7 +62,7 @@ export function GoogleAuthButton() {
     >
       <GoogleIcon />
       <span>
-        {isSubmitting ? "Google'a yönlendiriliyor..." : "Google ile devam et"}
+        {isSubmitting ? "Redirecting to Google..." : "Continue with Google"}
       </span>
     </button>
   );

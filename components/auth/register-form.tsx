@@ -58,7 +58,7 @@ export function RegisterForm() {
       });
     } catch (error) {
       appToast.error(
-        error instanceof Error ? error.message : "Kayıt işlemi tamamlanamadı.",
+        error instanceof Error ? error.message : "Sign-up could not be completed.",
       );
       return;
     }
@@ -66,7 +66,7 @@ export function RegisterForm() {
     await trackClientEvent("user_registered");
 
     if (data.session && data.user) {
-      appToast.success("Kayıt başarılı.");
+      appToast.success("Signed up successfully.");
       router.replace(getAuthContinueHref(nextPath));
       router.refresh();
       return;
@@ -78,22 +78,22 @@ export function RegisterForm() {
       password: "",
       confirmPassword: "",
     });
-    appToast.success("Doğrulama bağlantısı e-posta adresine gönderildi.");
+    appToast.success("A verification link has been sent to your email address.");
   });
 
   return (
     <div className="w-full">
-      <AuthHeading title="Kayıt ol" />
+      <AuthHeading title="Sign up" />
 
       <form className="space-y-4" noValidate onSubmit={onSubmit}>
         <div>
           <label htmlFor="register-full-name" className="sr-only">
-            Ad soyad
+            Full name
           </label>
           <input
             id="register-full-name"
             autoComplete="name"
-            placeholder="Ad soyad"
+            placeholder="Full name"
             className={cn(
               inputClassName,
               errors.fullName && "border-danger-400",
@@ -109,13 +109,13 @@ export function RegisterForm() {
 
         <div>
           <label htmlFor="register-email" className="sr-only">
-            E-posta
+            Email
           </label>
           <input
             id="register-email"
             type="email"
             autoComplete="email"
-            placeholder="E-posta"
+            placeholder="Email"
             className={cn(inputClassName, errors.email && "border-danger-400")}
             {...register("email")}
           />
@@ -128,13 +128,13 @@ export function RegisterForm() {
 
         <div>
           <label htmlFor="register-password" className="sr-only">
-            Şifre
+            Password
           </label>
           <input
             id="register-password"
             type="password"
             autoComplete="new-password"
-            placeholder="Şifre"
+            placeholder="Password"
             className={cn(
               inputClassName,
               errors.password && "border-danger-400",
@@ -150,13 +150,13 @@ export function RegisterForm() {
 
         <div>
           <label htmlFor="register-confirm-password" className="sr-only">
-            Şifre tekrarı
+            Confirm password
           </label>
           <input
             id="register-confirm-password"
             type="password"
             autoComplete="new-password"
-            placeholder="Şifre tekrarı"
+            placeholder="Confirm password"
             className={cn(
               inputClassName,
               errors.confirmPassword && "border-danger-400",
@@ -175,7 +175,7 @@ export function RegisterForm() {
           disabled={isSubmitting}
           className="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_18px_44px_rgb(70_44_125_/_0.28)] transition hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black disabled:cursor-not-allowed disabled:opacity-65"
         >
-          {isSubmitting ? "Kayıt oluşturuluyor..." : "Kayıt ol"}
+          {isSubmitting ? "Creating account..." : "Sign up"}
         </button>
       </form>
 
@@ -183,12 +183,12 @@ export function RegisterForm() {
       <GoogleAuthButton />
 
       <p className="mt-6 text-center text-sm text-white/58">
-        Zaten hesabın var mı?{" "}
+        Already have an account?{" "}
         <Link
           href={getLoginHref(nextPath)}
           className="font-semibold text-white transition hover:text-accent-300"
         >
-          Giriş yap
+          Sign in
         </Link>
       </p>
     </div>

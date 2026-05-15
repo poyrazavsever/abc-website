@@ -8,9 +8,9 @@ import { LoginForm } from "@/components/auth/login-form";
 import { resolveAuthEntryRedirect } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Giriş Yap",
+  title: "Sign In",
   description:
-    "Ankara Build Club hesabınızla giriş yapın ve platform alanına erişin.",
+    "Sign in with your Ankara Build Club account and access the platform.",
 };
 
 type LoginPageProps = {

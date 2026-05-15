@@ -141,32 +141,32 @@ export function getAuthErrorMessage(message: string | null | undefined) {
   const normalizedMessage = message?.trim().toLocaleLowerCase("en") ?? "";
 
   if (normalizedMessage.includes("invalid login credentials")) {
-    return "E-posta veya şifre hatalı.";
+    return "Incorrect email or password.";
   }
 
   if (normalizedMessage.includes("email not confirmed")) {
-    return "Devam etmek için e-posta adresinizi doğrulayın.";
+    return "Please verify your email address to continue.";
   }
 
   if (normalizedMessage.includes("user already registered")) {
-    return "Bu e-posta adresi ile daha önce hesap oluşturulmuş.";
+    return "An account with this email address already exists.";
   }
 
   if (normalizedMessage.includes("password should be at least")) {
-    return "Şifre minimum gereksinimi karşılamıyor.";
+    return "Password does not meet the minimum requirement.";
   }
 
   if (normalizedMessage.includes("signup is disabled")) {
-    return "Kayıt olma akışı şu anda kapalı.";
+    return "Sign-up is currently disabled.";
   }
 
   if (normalizedMessage.includes("email link is invalid")) {
-    return "Doğrulama bağlantısı geçersiz veya süresi dolmuş.";
+    return "The verification link is invalid or has expired.";
   }
 
   if (normalizedMessage.includes("code challenge does not match")) {
-    return "Doğrulama bağlantısı geçersiz veya süresi dolmuş.";
+    return "The verification link is invalid or has expired.";
   }
 
-  return message?.trim() || "Beklenmeyen bir auth hatasi olustu.";
+  return message?.trim() || "An unexpected authentication error occurred.";
 }

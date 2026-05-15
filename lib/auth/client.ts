@@ -7,7 +7,7 @@ import {
 import { createSupabaseClient } from "@/lib/supabase/client";
 
 const authUnavailableMessage =
-  "Auth servisi şu anda kullanılamıyor. Supabase ayarlarını kontrol edin.";
+  "Authentication is unavailable right now. Check your Supabase configuration.";
 
 function getAppUrl() {
   return process.env.NEXT_PUBLIC_APP_URL?.trim() || window.location.origin;
@@ -38,7 +38,7 @@ export async function loginWithPassword(input: {
   }
 
   if (!data.user) {
-    throw new Error("Oturum oluşturulamadı. Lütfen yeniden deneyin.");
+    throw new Error("Session could not be created. Please try again.");
   }
 
   return data.user;
