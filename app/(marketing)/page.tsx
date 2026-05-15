@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { AboutCommunity } from "@/components/marketing/about-community";
-import { AboutMission } from "@/components/marketing/about-mission";
 import { AboutTimeline } from "@/components/marketing/about-timeline";
+import { EventFormatsPreview } from "@/components/marketing/event-formats-preview";
 import { LandingHero } from "@/components/marketing/landing-hero";
 import Masonry from "@/components/marketing/masonry";
 import { Container } from "@/components/shared/container";
@@ -108,47 +107,6 @@ const photoGalleryItems = [
   },
 ];
 
-const aboutMission = {
-  eyebrow: "Our Mission",
-  heading: "We believe in the power of building and shipping together.",
-  accentPhrase: "building and shipping together",
-  description:
-    "It is a shipping-driven ecosystem where people build, test, and launch together. We create the momentum builders need to turn ideas into real products.",
-  imageSrc: "/about/mission.png",
-  imageAlt: "Ship In community members working together",
-  stats: [
-    { value: "200+", label: "Active Builders" },
-    { value: "5+", label: "Events" },
-    { value: "5", label: "Core Formats" },
-  ],
-};
-
-const aboutCommunity = {
-  eyebrow: "Community",
-  heading: "Different rhythms of the community.",
-  accentPhrase: "rhythms",
-  description:
-    "Our two main event formats are Build Sprint and Ship Sprint. Together they create the core rhythm of how the community builds and ships.",
-  imageSrc: "/about/community.png",
-  imageAlt: "Ship In community event",
-  features: [
-    {
-      title: "Build Sprint",
-      description:
-        "Fast, collaborative execution focused on building, iterating, and ending the session with something tangible.",
-      featured: true,
-    },
-    {
-      title: "Ship Sprint",
-      description:
-        "A shipping-focused format centered on turning progress into a real launch or demo moment.",
-      featured: true,
-    },
-  ],
-  ctaLabel: "Explore Events",
-  ctaHref: "/events",
-};
-
 const aboutTimeline = {
   eyebrow: "Our Journey",
   heading: "Timeline",
@@ -157,28 +115,28 @@ const aboutTimeline = {
   ctaHref: "/register",
   milestones: [
     {
-      year: "Sprint #1",
-      title: "International Women's Day",
+      year: "Build Sprint 1",
+      title: "SheBuilds on Lovable",
       description:
-        "Our first gathering on International Women's Day with Lovable brought the earliest builders in the community together.",
+        "Our first Build Sprint brought early builders together around SheBuilds with Lovable.",
     },
     {
-      year: "Sprint #2",
-      title: "Building Momentum",
+      year: "Build Sprint 2",
+      title: "Vibe-coding with Fal",
       description:
-        "With fal.ai, we ran our first Ship Sprint around building and shipping a real product.",
+        "The second Build Sprint focused on vibe-coding with Fal and pushing ideas into working outputs.",
     },
     {
-      year: "Hackathon #1",
-      title: "Metu Teknokent Hackathon",
+      year: "Hackathon 1",
+      title: "Sport Tech with the Federation & METU",
       description:
-        "We partnered on the first Metu Teknokent Hackathon focused on building a real product in a single day.",
+        "Our first hackathon centered on sport tech with the Federation and METU.",
     },
     {
-      year: "Ship Sprint #1",
-      title: "September 2026",
+      year: "Ship Sprint",
+      title: "GTM shipathon",
       description:
-        "Our first go-to-market Ship Sprint will center on turning a real product into launch momentum.",
+        "A go-to-market Ship Sprint focused on turning real products into launch momentum.",
     },
   ],
 };
@@ -273,29 +231,8 @@ export default function MarketingHomePage() {
         </Container>
       </section>
 
-      <div id="about" className="scroll-mt-28">
-        <AboutMission
-          eyebrow={aboutMission.eyebrow}
-          heading={aboutMission.heading}
-          accentPhrase={aboutMission.accentPhrase}
-          description={aboutMission.description}
-          imageSrc={aboutMission.imageSrc}
-          imageAlt={aboutMission.imageAlt}
-          stats={aboutMission.stats}
-        />
-
-        <AboutCommunity
-          eyebrow={aboutCommunity.eyebrow}
-          heading={aboutCommunity.heading}
-          accentPhrase={aboutCommunity.accentPhrase}
-          description={aboutCommunity.description}
-          imageSrc={aboutCommunity.imageSrc}
-          imageAlt={aboutCommunity.imageAlt}
-          features={aboutCommunity.features}
-          ctaLabel={aboutCommunity.ctaLabel}
-          ctaHref={aboutCommunity.ctaHref}
-        />
-
+      <div>
+        <EventFormatsPreview />
         <AboutTimeline
           eyebrow={aboutTimeline.eyebrow}
           heading={aboutTimeline.heading}

@@ -111,10 +111,10 @@ export default function SponsorsPage() {
           "The builders in our WhatsApp rarely leave. That is the signal.",
       },
       {
-        value: 3,
+        value: 2,
         label: "Core Building Formats",
         detail:
-          "Deep Work Sessions, Build Sprints, and Mini Sprints run regularly.",
+          "Build Sprint and Ship Sprint are the two main formats we run regularly.",
       },
     ],
   };
@@ -123,7 +123,7 @@ export default function SponsorsPage() {
     heading: "The rhythm of the community is built with building formats.",
     highlightPhrase: "building formats.",
     description:
-      "Deep Work, Build Sprints, and Mini Sprints keep the same community working continuously across different energy modes.",
+      "Build Sprint and Ship Sprint keep the same community moving between building momentum and real shipping moments.",
   };
 
   return (

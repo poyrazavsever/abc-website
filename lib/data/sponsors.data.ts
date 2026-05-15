@@ -151,12 +151,12 @@ export const sponsorsPageData: SponsorsPageData = {
   },
   programs: {
     eyebrow: "Building Cadence",
-    heading: "Three Formats. One Building Cadence.",
+    heading: "Two Formats. One Building Cadence.",
     description:
-      "The cadence is what keeps the pipeline flowing. Each format serves a different scope and intensity.",
+      "The cadence is what keeps the pipeline flowing. Each format serves a different kind of momentum.",
     items: [
       {
-        name: "Build Sprints",
+        name: "Build Sprint",
         rhythm: "Team-Run · Core",
         format:
           "Full-day intensive. Builders ship from scratch or meaningfully advance a project. Structured curriculum, facilitated by the core team. Vetted intake – serious builders only. No spectators.",
@@ -166,24 +166,14 @@ export const sponsorsPageData: SponsorsPageData = {
           "Ideal for tool integrations, APIs, mentoring, and identifying top talent or early products.",
       },
       {
-        name: "Deep Work Sessions",
-        rhythm: "Member-Run · Active",
+        name: "Ship Sprint",
+        rhythm: "Launch-Focused · Core",
         format:
-          "3-hour block: public intention round, focused work, closing share-out. Designed to be run by trained members – not just the core team. Scales without central coordination.",
+          "A tighter sprint built around finishing, launching, and turning momentum into something publicly shipped. Deadline-led, sharper in scope, and focused on visible release energy.",
         outcome:
-          "Keeps builders engaged, focused execution, and builds habit without heavy lifting.",
+          "Launch moments, sharper deadlines, public accountability, and products that leave the room more real than they entered.",
         partnerValue:
-          "Venue sponsorships, community credits, food & beverage support, tool trials.",
-      },
-      {
-        name: "Mini Sprints",
-        rhythm: "Team-Run Only",
-        format:
-          "Small-group format for builders past their first sprint and ready to move faster. Tighter scope, higher intensity. Announcing after Sprint #3.",
-        outcome:
-          "High-quality, specialized products, preparing for the GTM pivot point.",
-        partnerValue:
-          "Expert mentoring, VC discovery, acceleration platforms, and API usage stories.",
+          "Ideal for launch tooling, distribution support, GTM mentors, media partners, and API usage stories tied to real shipping moments.",
       },
     ],
   },
