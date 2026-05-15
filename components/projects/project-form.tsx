@@ -46,9 +46,9 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
     setLoading(false);
 
     if (result.status === "error") {
-      toast.error(result.message ?? "Bir hata oluştu.");
+      toast.error(result.message ?? "Something went wrong.");
     } else {
-      toast.success(result.message ?? "Başarılı.");
+      toast.success(result.message ?? "Success.");
       if (onSuccess) onSuccess();
       else router.refresh();
     }
@@ -56,16 +56,16 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
 
   async function handleDelete() {
     if (!isEditing || loading) return;
-    if (!confirm("Bu projeyi silmek istediğinize emin misiniz?")) return;
+    if (!confirm("Are you sure you want to delete this project?")) return;
 
     setLoading(true);
     const result = await deleteProjectAction(project.id);
     setLoading(false);
 
     if (result.status === "error") {
-      toast.error(result.message ?? "Silme işlemi başarısız.");
+      toast.error(result.message ?? "Delete failed.");
     } else {
-      toast.success("Proje silindi.");
+      toast.success("Project deleted.");
       if (onSuccess) onSuccess();
       else router.refresh();
     }
@@ -74,33 +74,33 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="name">Proje Adı</Label>
+        <Label htmlFor="name">Project Name</Label>
         <Input
           id="name"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={loading}
-          placeholder="Örn: Ankara Build Club"
+          placeholder="e.g. Ankara Build Club"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Açıklama</Label>
+        <Label htmlFor="description">Description</Label>
         <Textarea
           id="description"
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           disabled={loading}
-          placeholder="Projeniz ne yapıyor, hangi problemi çözüyor?"
+          placeholder="What does your project do, and what problem does it solve?"
           rows={3}
         />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="category">Kategori</Label>
+          <Label htmlFor="category">Category</Label>
           <Select
             id="category"
             value={category}
@@ -113,7 +113,7 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
           </Select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="status">Durum</Label>
+          <Label htmlFor="status">Status</Label>
           <Select
             id="status"
             value={status}
@@ -128,7 +128,7 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="url">URL (Opsiyonel)</Label>
+        <Label htmlFor="url">URL (Optional)</Label>
         <Input
           id="url"
           type="text"
@@ -142,7 +142,7 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
       <div className="flex items-center justify-between pt-4">
         {isEditing ? (
           <Button type="button" variant="ghost" onClick={handleDelete} disabled={loading} className="text-red-500 hover:text-red-600 hover:bg-red-50">
-            Sil
+            Delete
           </Button>
         ) : (
           <div /> // Spacer
@@ -150,11 +150,11 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
         <div className="flex gap-2">
           {onCancel && (
             <Button type="button" variant="outline" onClick={onCancel} disabled={loading}>
-              İptal
+              Cancel
             </Button>
           )}
           <Button type="submit" disabled={loading}>
-            {loading ? "Kaydediliyor..." : "Kaydet"}
+            {loading ? "Saving..." : "Save"}
           </Button>
         </div>
       </div>

@@ -64,7 +64,7 @@ export async function incrementAttendance(userId: string): Promise<{ success: bo
     .single();
 
   if (profileError) {
-    return { success: false, error: "Profil bulunamadı." };
+    return { success: false, error: "Profile not found." };
   }
 
   const newCount = (profile.event_attendance_count || 0) + 1;
@@ -76,7 +76,7 @@ export async function incrementAttendance(userId: string): Promise<{ success: bo
     .eq("id", userId);
 
   if (updateError) {
-    return { success: false, error: "Katılım güncellenemedi." };
+    return { success: false, error: "Attendance could not be updated." };
   }
 
   // 3. Check for automatic badges
@@ -102,7 +102,7 @@ export async function incrementAttendance(userId: string): Promise<{ success: bo
       const inserts = newBadgesToAssign.map((b) => ({
         user_id: userId,
         badge_id: b.id,
-        note: "Otomatik atama (Etkinlik Katılımı)",
+        note: "Automatic assignment (Event Attendance)",
       }));
 
       await adminClient.from("user_badges").insert(inserts);
@@ -140,9 +140,9 @@ export async function assignManualBadge(
   if (error) {
     // Check for unique constraint violation
     if (error.code === '23505') {
-      return { success: false, error: "Kullanıcı bu rozete zaten sahip." };
+      return { success: false, error: "The user already has this badge." };
     }
-    return { success: false, error: "Rozet atanamadı." };
+    return { success: false, error: "Badge could not be assigned." };
   }
 
   return { success: true };

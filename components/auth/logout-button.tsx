@@ -13,7 +13,7 @@ type LogoutButtonProps = Omit<ButtonProps, "loading" | "onClick" | "type"> & {
 };
 
 export function LogoutButton({
-  children = "Çıkış Yap",
+  children = "Log Out",
   onComplete,
   redirectTo = "/login",
   ...props
@@ -28,7 +28,7 @@ export function LogoutButton({
 
     if (!supabase) {
       setIsLoading(false);
-      appToast.error("Çıkış servisi şu anda kullanılamıyor.");
+      appToast.error("Logout is unavailable right now.");
       return;
     }
 
@@ -36,7 +36,7 @@ export function LogoutButton({
 
     if (error) {
       setIsLoading(false);
-      appToast.error("Çıkış sırasında bir hata oluştu.");
+      appToast.error("An error occurred during logout.");
       return;
     }
 

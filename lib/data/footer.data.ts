@@ -64,7 +64,7 @@ export const footerData: FooterData = {
   contact: {
     title: "Partnerships and collaborations",
     email: footerContactEmail,
-    location: "Ankara, Türkiye",
+    location: "Ankara, Turkey",
     cta: {
       label: "Email the partnerships team",
       href: footerContactHref,

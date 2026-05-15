@@ -27,13 +27,13 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Admin operasyon merkezi"
-        description="ABC yönetim ekibinin günlük işi tek ekranda takip edebilmesi için içerik, builder başvuruları, rozetler ve operasyon job'ları burada özetlenir."
+        title="Admin Operations Center"
+        description="Content, builder applications, badges, and operations jobs are summarized here so the ABC admin team can track day-to-day work from a single screen."
         actions={
           <>
-            <LinkButton href="/admin/operations">Başvuruları incele</LinkButton>
+            <LinkButton href="/admin/operations">Review Applications</LinkButton>
             <LinkButton href="/admin/builders" variant="outline">
-              Builder yönet
+              Manage Builders
             </LinkButton>
           </>
         }
@@ -44,14 +44,14 @@ export default async function AdminDashboardPage() {
       <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <Card>
           <CardHeader>
-            <CardTitle>Bekleyen ciddi builder başvuruları</CardTitle>
+            <CardTitle>Pending Serious Builder Applications</CardTitle>
             <CardDescription>
-              Motivasyon, beklenti ve haftalık müsaitlik okunarak karar verilir.
+              Decisions are made by reviewing motivation, expectations, and weekly availability.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <AdminTable
-              columns={["Builder", "Motivasyon", "Durum", "Aksiyon"]}
+              columns={["Builder", "Motivation", "Status", "Action"]}
             >
               {overview.recentApplications.map((application) => (
                 <tr key={application.id}>
@@ -83,7 +83,7 @@ export default async function AdminDashboardPage() {
                       size="sm"
                       variant="outline"
                     >
-                      Aç
+                      Open
                     </LinkButton>
                   </AdminTableCell>
                 </tr>
@@ -94,9 +94,9 @@ export default async function AdminDashboardPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Temel operasyonlar</CardTitle>
+            <CardTitle>Core Operations</CardTitle>
             <CardDescription>
-              Admin tarafının elle takip ettiği job ve modül durumları.
+              Job and module statuses that are manually tracked by the admin team.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -118,7 +118,7 @@ export default async function AdminDashboardPage() {
                   />
                 </div>
                 <p className="mt-3 text-xs text-text-soft">
-                  Son çalışma: {operation.lastRunAt} · {operation.owner}
+                  Last run: {operation.lastRunAt} · {operation.owner}
                 </p>
               </div>
             ))}

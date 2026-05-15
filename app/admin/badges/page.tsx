@@ -30,26 +30,26 @@ export default async function AdminBadgesPage() {
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Rozet yönetimi"
-        description="Otomatik rozet kuralları izlenir, manuel Core Builder gibi rozetler builder profiline atanır."
+        title="Badge Management"
+        description="Automatic badge rules are tracked here, and manual badges such as Core Builder can be assigned to builder profiles."
       />
 
       <div className="grid gap-6 xl:grid-cols-[1fr_420px]">
-        <AdminTable columns={["Rozet", "Tetikleyici", "Atama", "Durum"]}>
+        <AdminTable columns={["Badge", "Trigger", "Assignments", "Status"]}>
           {badges.map((badge) => (
             <tr key={badge.id}>
               <AdminTableCell>
                 <div className="space-y-1">
                   <p className="font-semibold text-text">{badge.name}</p>
                   <Badge variant={badge.isManual ? "warning" : "info"}>
-                    {badge.isManual ? "Manuel" : "Otomatik"}
+                    {badge.isManual ? "Manual" : "Automatic"}
                   </Badge>
                 </div>
               </AdminTableCell>
               <AdminTableCell>
                 <p className="max-w-md text-text-muted">{badge.trigger}</p>
               </AdminTableCell>
-              <AdminTableCell>{badge.assignmentCount} profil</AdminTableCell>
+              <AdminTableCell>{badge.assignmentCount} profiles</AdminTableCell>
               <AdminTableCell>
                 <StatusBadge label={statusLabels[badge.status]} status={badge.status} />
               </AdminTableCell>
@@ -60,9 +60,9 @@ export default async function AdminBadgesPage() {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Manuel rozet ata</CardTitle>
+              <CardTitle>Assign Manual Badge</CardTitle>
               <CardDescription>
-                Ciddi builder veya Core Builder gibi admin kontrollü etiketler için.
+                For admin-controlled labels such as Serious Builder or Core Builder.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -76,7 +76,7 @@ export default async function AdminBadgesPage() {
                     ))}
                   </Select>
                 </Field>
-                <Field label="Rozet" required>
+                <Field label="Badge" required>
                   <Select name="badgeId" required>
                     {badges.map((badge) => (
                       <option key={badge.id} value={badge.id}>
@@ -85,23 +85,23 @@ export default async function AdminBadgesPage() {
                     ))}
                   </Select>
                 </Field>
-                <Field label="Operasyon notu">
+                <Field label="Operations note">
                   <Textarea
                     name="note"
                     rows={4}
-                    placeholder="Atama sebebini kısa not olarak yaz"
+                    placeholder="Write a short note explaining the assignment"
                   />
                 </Field>
-                <Button type="submit">Rozeti ata</Button>
+                <Button type="submit">Assign Badge</Button>
               </form>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Katılım Ekle (Yoklama)</CardTitle>
+              <CardTitle>Add Attendance</CardTitle>
               <CardDescription>
-                Seçilen builder'ın etkinlik katılım sayısını 1 artırır. Eğer eşik aşılırsa otomatik rozetleri hesaplayıp atar.
+                Increases the selected builder&apos;s event attendance count by 1. If a threshold is reached, automatic badges are calculated and assigned.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -115,7 +115,7 @@ export default async function AdminBadgesPage() {
                     ))}
                   </Select>
                 </Field>
-                <Button type="submit" variant="secondary" className="w-full">Katılımı +1 Artır</Button>
+                <Button type="submit" variant="secondary" className="w-full">Increase Attendance by +1</Button>
               </form>
             </CardContent>
           </Card>
@@ -124,29 +124,29 @@ export default async function AdminBadgesPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Rozet kuralı düzenle</CardTitle>
+          <CardTitle>Edit Badge Rule</CardTitle>
           <CardDescription>
-            Otomatik eşiklerin ve görünürlük durumunun yönetileceği temel form.
+            Basic form for managing automatic thresholds and visibility.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form className="grid gap-4 lg:grid-cols-4">
-            <Field label="Rozet adı">
-              <Input name="name" placeholder="Örn. Sprint Veteran" />
+            <Field label="Badge name">
+              <Input name="name" placeholder="e.g. Sprint Veteran" />
             </Field>
-            <Field label="Tetikleyici">
-              <Input name="trigger" placeholder="Örn. 5 Build Sprint" />
+            <Field label="Trigger">
+              <Input name="trigger" placeholder="e.g. 5 Build Sprints" />
             </Field>
-            <Field label="Durum">
+            <Field label="Status">
               <Select name="status" defaultValue="published">
-                <option value="draft">Taslak</option>
-                <option value="published">Yayında</option>
-                <option value="archived">Arşiv</option>
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+                <option value="archived">Archived</option>
               </Select>
             </Field>
             <div className="flex items-end">
               <Button type="submit" variant="outline" block>
-                Kuralı kaydet
+                Save Rule
               </Button>
             </div>
           </form>

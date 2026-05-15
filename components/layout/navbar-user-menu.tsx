@@ -92,7 +92,7 @@ function UserAvatar({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={avatarUrl ?? ""}
-          alt={name || email || "Kullanıcı"}
+          alt={name || email || "User"}
           className="h-full w-full object-cover"
           onError={() => setFailedAvatarUrl(avatarUrl)}
         />
@@ -144,7 +144,7 @@ export function NavbarUserMenu({
   const [isLinkedInModalOpen, setIsLinkedInModalOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const metadata = getAuthUserMetadata(user);
-  const fullName = profile?.fullName || metadata.full_name || "Kullanıcı";
+  const fullName = profile?.fullName || metadata.full_name || "User";
   const email = user.email ?? null;
 
   useEffect(() => {
@@ -202,10 +202,10 @@ export function NavbarUserMenu({
 
             <div className="space-y-0.5">
               <MenuItem href={profileHref} icon={<ProfileIcon />} onClick={() => setIsOpen(false)}>
-                Profil
+                Profile
               </MenuItem>
               <MenuItem href={`${profileHref}?edit=true`} icon={<SettingsIcon />} onClick={() => setIsOpen(false)}>
-                Ayarlar
+                Settings
               </MenuItem>
             </div>
 
@@ -218,7 +218,7 @@ export function NavbarUserMenu({
                 setIsProjectModalOpen(true);
               }}
             >
-              Proje Ekle
+              Add Project
             </MenuItem>
             <MenuItem
               icon={<CardIcon />}
@@ -227,7 +227,7 @@ export function NavbarUserMenu({
                 setIsLinkedInModalOpen(true);
               }}
             >
-              LinkedIn Kartı Oluştur
+              Create LinkedIn Card
             </MenuItem>
 
             <div className="my-1.5 border-t border-white/10" />

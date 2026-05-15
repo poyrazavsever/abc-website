@@ -40,25 +40,25 @@ export default async function AdminContentPage({ searchParams }: ContentPageProp
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Rapor paylaşımı"
-        description="Bu ekran yalnızca topluluk, sprint veya sponsor raporlarını paylaşmak için kullanılır. Diğer içerik türleri admin kapsamından çıkarıldı."
+        title="Report Sharing"
+        description="This screen is used only for sharing community, sprint, or sponsor reports. Other content types were removed from the admin scope."
         actions={
           <form className="flex flex-wrap gap-2">
             <Select name="status" defaultValue={params?.status ?? ""}>
-              <option value="">Tüm durumlar</option>
-              <option value="draft">Taslak</option>
-              <option value="published">Yayında</option>
-              <option value="archived">Arşiv</option>
+              <option value="">All statuses</option>
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+              <option value="archived">Archived</option>
             </Select>
             <Button type="submit" variant="outline">
-              Filtrele
+              Filter
             </Button>
           </form>
         }
       />
 
       <div className="grid gap-6 xl:grid-cols-[1fr_420px]">
-        <AdminTable columns={["Rapor", "Durum", "Paylaşım", "Güncelleme", "Aksiyon"]}>
+        <AdminTable columns={["Report", "Status", "Share", "Updated", "Action"]}>
           {filteredItems.map((item) => (
             <tr key={item.id}>
               <AdminTableCell>
@@ -78,10 +78,10 @@ export default async function AdminContentPage({ searchParams }: ContentPageProp
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Rapor linki
+                    Report link
                   </a>
                 ) : (
-                  <span className="text-text-soft">Link yok</span>
+                  <span className="text-text-soft">No link</span>
                 )}
               </AdminTableCell>
               <AdminTableCell>
@@ -94,7 +94,7 @@ export default async function AdminContentPage({ searchParams }: ContentPageProp
                   size="sm"
                   variant="outline"
                 >
-                  Düzenle
+                  Edit
                 </LinkButton>
               </AdminTableCell>
             </tr>
@@ -104,19 +104,19 @@ export default async function AdminContentPage({ searchParams }: ContentPageProp
         {selectedItem ? (
           <Card>
             <CardHeader>
-              <CardTitle>Detay / güncelleme</CardTitle>
+              <CardTitle>Details / Update</CardTitle>
               <CardDescription>
-                Paylaşılacak rapor başlığı, linki, özeti ve yayın durumu.
+                Title, link, summary, and publication status of the report to be shared.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form className="space-y-5">
                 <input type="hidden" name="contentId" value={selectedItem.id} />
-                <Field label="Başlık" required>
+                <Field label="Title" required>
                   <Input name="title" defaultValue={selectedItem.title} />
                 </Field>
                 <input type="hidden" name="type" value="report" />
-                <Field label="Rapor linki">
+                <Field label="Report link">
                   <Input
                     name="reportUrl"
                     type="url"
@@ -124,14 +124,14 @@ export default async function AdminContentPage({ searchParams }: ContentPageProp
                     placeholder="https://..."
                   />
                 </Field>
-                <Field label="Durum">
+                <Field label="Status">
                   <Select name="status" defaultValue={selectedItem.status}>
-                    <option value="draft">Taslak</option>
-                    <option value="published">Yayında</option>
-                    <option value="archived">Arşiv</option>
+                    <option value="draft">Draft</option>
+                    <option value="published">Published</option>
+                    <option value="archived">Archived</option>
                   </Select>
                 </Field>
-                <Field label="Paylaşım özeti">
+                <Field label="Share summary">
                   <Textarea
                     name="summary"
                     defaultValue={selectedItem.summary}
@@ -139,19 +139,19 @@ export default async function AdminContentPage({ searchParams }: ContentPageProp
                   />
                 </Field>
                 <div className="flex flex-wrap gap-2">
-                  <Button type="submit">Kaydet</Button>
+                  <Button type="submit">Save</Button>
                   <Button type="button" variant="outline">
-                    Raporu paylaş
+                    Share Report
                   </Button>
                   <Button type="button" variant="danger">
-                    Arşivle
+                    Archive
                   </Button>
                 </div>
               </form>
             </CardContent>
           </Card>
         ) : (
-          <AdminEmptyState>İçerik kaydı bulunamadı.</AdminEmptyState>
+          <AdminEmptyState>No content record found.</AdminEmptyState>
         )}
       </div>
     </div>

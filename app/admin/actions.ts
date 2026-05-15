@@ -137,7 +137,7 @@ export async function createManualBuilderMatchAction(formData: FormData) {
   const matchedBy = getRequiredString(formData, "matchedBy", 120);
 
   if (firstBuilderId === secondBuilderId) {
-    throw new Error("Aynı builder kendiyle eşleştirilemez.");
+    throw new Error("A builder cannot be matched with themselves.");
   }
 
   const result = await createManualBuilderMatch({

@@ -33,15 +33,15 @@ export default async function AdminMatchingPage() {
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Ciddi builder eşleştirme"
-        description="Havuzdaki ciddi builder'ları manuel eşleştirin, kim kiminle eşleşmiş logunu takip edin ve operasyon notlarını saklayın."
+        title="Serious Builder Matching"
+        description="Manually match serious builders in the pool, track who was matched with whom, and keep operations notes."
       />
 
       <Card>
         <CardHeader>
-          <CardTitle>Manuel eşleştirme</CardTitle>
+          <CardTitle>Manual Matching</CardTitle>
           <CardDescription>
-            İki farklı ciddi builder seçin, eşleşme sebebini yazın ve loga ekleyin.
+            Choose two different serious builders, explain the reason for the match, and add it to the log.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -49,7 +49,7 @@ export default async function AdminMatchingPage() {
             action={createManualBuilderMatchAction}
             className="grid gap-4 lg:grid-cols-4"
           >
-            <Field label="Birinci builder" required>
+            <Field label="First builder" required>
               <Select name="firstBuilderId" required>
                 {seriousBuilders.map((builder) => (
                   <option key={builder.id} value={builder.id}>
@@ -58,7 +58,7 @@ export default async function AdminMatchingPage() {
                 ))}
               </Select>
             </Field>
-            <Field label="İkinci builder" required>
+            <Field label="Second builder" required>
               <Select name="secondBuilderId" required>
                 {seriousBuilders.map((builder) => (
                   <option key={builder.id} value={builder.id}>
@@ -67,24 +67,24 @@ export default async function AdminMatchingPage() {
                 ))}
               </Select>
             </Field>
-            <Field label="Eşleştiren" required>
+            <Field label="Matched by" required>
               <Input
                 name="matchedBy"
                 defaultValue="ABC Ops"
-                placeholder="Admin adı"
+                placeholder="Admin name"
                 required
               />
             </Field>
             <div className="flex items-end">
               <Button type="submit" block>
-                Manuel eşleştir
+                Match Manually
               </Button>
             </div>
-            <Field label="Eşleşme notu" className="lg:col-span-4" required>
+            <Field label="Match note" className="lg:col-span-4" required>
               <Textarea
                 name="note"
                 rows={3}
-                placeholder="Neden bu iki builder eşleşti?"
+                placeholder="Why were these two builders matched?"
                 required
               />
             </Field>
@@ -94,14 +94,14 @@ export default async function AdminMatchingPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Eşleşme logu</CardTitle>
+          <CardTitle>Match Log</CardTitle>
           <CardDescription>
-            Admin tarafından oluşturulan ciddi builder eşleşmeleri.
+            Serious builder matches created by the admin team.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <AdminTable
-            columns={["Eşleşenler", "Durum", "Eşleştiren", "Tarih", "Not"]}
+            columns={["Matched Builders", "Status", "Matched By", "Date", "Note"]}
           >
             {matches.map((match) => (
               <tr key={match.id}>

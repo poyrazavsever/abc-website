@@ -15,7 +15,7 @@ import {
 
 const dimensionOptions: Array<{ label: string; value: CardDimension }> = [
   { label: "Post (16:9)", value: "landscape" },
-  { label: "Kare (1:1)", value: "square" },
+  { label: "Square (1:1)", value: "square" },
   { label: "Story (9:16)", value: "portrait" },
 ];
 import { roleLabels, tagLabels } from "@/components/admin/admin-shell";
@@ -92,9 +92,9 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
         .toLocaleLowerCase("tr")}.png`;
       link.href = dataUrl;
       link.click();
-      toast.success("Görsel indirildi.");
+      toast.success("Image downloaded.");
     } catch {
-      toast.error("Görsel indirilirken bir hata oluştu.");
+      toast.error("An error occurred while downloading the image.");
     } finally {
       setIsDownloading(false);
     }
@@ -187,7 +187,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
         {/* Dimension / Resolution Selection */}
         <div className="space-y-2">
           <p className="text-xs font-semibold tracking-wider text-white/56">
-            Boyut / Format
+            Size / Format
           </p>
           <div className="grid grid-cols-3 gap-2">
             {dimensionOptions.map((option) => (
@@ -207,7 +207,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
         {/* Color Theme */}
         <div className="space-y-2">
           <p className="text-xs font-semibold tracking-wider text-white/56">
-            Renk Teması
+            Color Theme
           </p>
           <div className="grid grid-cols-2 gap-2">
             {colorThemeOptions.map((option) => (
@@ -227,7 +227,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
         {/* Content Template */}
         <div className="space-y-2">
           <p className="text-xs font-semibold tracking-wider text-white/56">
-            Mesaj Şablonu
+            Message Template
           </p>
           <div className="grid gap-1.5">
             {contentTemplateOptions.map((option) => (
@@ -256,7 +256,7 @@ export function CardGenerator({ profile }: CardGeneratorProps) {
             onClick={handleDownload}
           >
             <DownloadIcon />
-            {isDownloading ? "İndiriliyor..." : "PNG İndir"}
+            {isDownloading ? "Downloading..." : "Download PNG"}
           </button>
         </div>
       </aside>

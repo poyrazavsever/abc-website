@@ -15,61 +15,61 @@ import type {
 } from "@/lib/types/admin";
 
 export const adminNavItems = [
-  { href: "/admin", label: "Genel" },
-  { href: "/admin/analytics", label: "Analitik" },
-  { href: "/admin/content", label: "Rapor" },
-  { href: "/admin/builders", label: "Builder" },
-  { href: "/admin/badges", label: "Rozet" },
-  { href: "/admin/matching", label: "Eşleştirme" },
-  { href: "/admin/operations", label: "Operasyon" },
+  { href: "/admin", label: "Overview" },
+  { href: "/admin/analytics", label: "Analytics" },
+  { href: "/admin/content", label: "Reports" },
+  { href: "/admin/builders", label: "Builders" },
+  { href: "/admin/badges", label: "Badges" },
+  { href: "/admin/matching", label: "Matching" },
+  { href: "/admin/operations", label: "Operations" },
 ] as const;
 
 export const roleLabels: Record<BuilderRole, string> = {
-  developer: "Yazılımcı",
-  designer: "Tasarımcı",
+  developer: "Developer",
+  designer: "Designer",
   sales: "Sales",
-  product: "Ürün",
-  student: "Öğrenci",
-  other: "Diğer",
+  product: "Product",
+  student: "Student",
+  other: "Other",
 };
 
 export const tagLabels: Record<BuilderTag, string> = {
-  cofounder_looking: "Co-founder arıyor",
-  idea_looking: "Fikir arıyor",
-  team_complete: "Takım tamamlandı",
-  just_building: "Sadece build ediyor",
+  cofounder_looking: "Looking for a co-founder",
+  idea_looking: "Looking for an idea",
+  team_complete: "Team complete",
+  just_building: "Just building",
 };
 
 export const contentTypeLabels: Record<AdminContentType, string> = {
-  report: "Rapor",
+  report: "Report",
 };
 
 export const statusLabels: Record<AdminStatus, string> = {
-  draft: "Taslak",
-  published: "Yayında",
-  archived: "Arşiv",
+  draft: "Draft",
+  published: "Published",
+  archived: "Archived",
 };
 
 export const applicationStatusLabels: Record<
   SeriousBuilderApplicationStatus,
   string
 > = {
-  pending: "Bekliyor",
-  approved: "Onaylandı",
-  rejected: "Reddedildi",
+  pending: "Pending",
+  approved: "Approved",
+  rejected: "Rejected",
 };
 
 export const operationStatusLabels: Record<OperationStatus, string> = {
-  queued: "Sırada",
-  running: "Çalışıyor",
-  completed: "Tamamlandı",
-  failed: "Hatalı",
+  queued: "Queued",
+  running: "Running",
+  completed: "Completed",
+  failed: "Failed",
 };
 
 export const matchStatusLabels: Record<BuilderMatchStatus, string> = {
-  active: "Aktif",
-  completed: "Tamamlandı",
-  cancelled: "İptal",
+  active: "Active",
+  completed: "Completed",
+  cancelled: "Cancelled",
 };
 
 export function statusVariant(

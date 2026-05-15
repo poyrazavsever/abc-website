@@ -220,7 +220,7 @@ async function getSupabaseClientOrThrow() {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
-    throw new Error("Supabase bağlantısı şu anda kullanılamıyor.");
+    throw new Error("Supabase is unavailable right now.");
   }
 
   return supabase;
@@ -235,7 +235,7 @@ async function selectProfileById(userId: string) {
     .maybeSingle();
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Profil okunamadı."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Profile could not be loaded."));
   }
 
   return data ? mapProfileRow(data) : null;
@@ -251,7 +251,7 @@ export async function listProjectsForUser(userId: string) {
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Projeler okunamadı."),
+      getSupabaseErrorMessage(error.message, "Projects could not be loaded."),
     );
   }
 
@@ -303,7 +303,7 @@ export async function ensureProfileForUser(
       return concurrentProfile;
     }
 
-    throw new Error(getSupabaseErrorMessage(error.message, "Profil oluşturulamadı."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Profile could not be created."));
   }
 
   return mapProfileRow(data);
@@ -404,6 +404,7 @@ export async function saveProfileBasics(
   if (error) {
     throw new Error(
       getSupabaseErrorMessage(error.message, "Profil bilgileri kaydedilemedi."),
+      
     );
   }
 
@@ -441,7 +442,7 @@ export async function saveProfileDetails(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Profil detaylari kaydedilemedi."),
+      getSupabaseErrorMessage(error.message, "Profile details could not be saved."),
     );
   }
 
@@ -466,7 +467,7 @@ export async function saveProfileTag(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Etiket kaydedilemedi."),
+      getSupabaseErrorMessage(error.message, "Tag could not be saved."),
     );
   }
 
@@ -486,7 +487,7 @@ export async function replaceProjectsForUser(
 
   if (deleteError) {
     throw new Error(
-      getSupabaseErrorMessage(deleteError.message, "Projeler güncellenemedi."),
+      getSupabaseErrorMessage(deleteError.message, "Projects could not be updated."),
     );
   }
 
@@ -513,7 +514,7 @@ export async function replaceProjectsForUser(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Projeler kaydedilemedi."),
+      getSupabaseErrorMessage(error.message, "Projects could not be saved."),
     );
   }
 
@@ -541,7 +542,7 @@ export async function markProfileOnboardingComplete(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Onboarding tamamlanamadı."),
+      getSupabaseErrorMessage(error.message, "Onboarding could not be completed."),
     );
   }
 
@@ -573,7 +574,7 @@ export async function syncAuthProfileMetadata(
 
   if (error) {
     throw new Error(
-      getSupabaseErrorMessage(error.message, "Auth profili senkronize edilemedi."),
+      getSupabaseErrorMessage(error.message, "Auth profile could not be synchronized."),
     );
   }
 }

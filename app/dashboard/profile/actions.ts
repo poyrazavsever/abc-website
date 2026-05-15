@@ -8,8 +8,8 @@ export async function updateActiveTagAction(activeTag: BuilderTag | null) {
   try {
     const user = await requireAuthenticatedUser("/dashboard/profile");
     await saveProfileTag(user, activeTag);
-    return { status: "success", message: "Profil güncellendi" };
+    return { status: "success", message: "Profile updated." };
   } catch (error) {
-    return { status: "error", message: error instanceof Error ? error.message : "Bilinmeyen hata" };
+    return { status: "error", message: error instanceof Error ? error.message : "Unknown error" };
   }
 }

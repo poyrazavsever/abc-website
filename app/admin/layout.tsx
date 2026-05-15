@@ -15,19 +15,19 @@ export default async function AdminLayout({ children }: { children: ReactNode })
         <div className="mx-auto grid min-h-20 w-full max-w-7xl grid-cols-1 gap-4 px-4 py-4 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-2xl font-bold tracking-wide text-white">
-              ABC Yönetim
+              ABC Admin
             </p>
           </div>
           <nav
             className="flex flex-wrap items-center justify-center gap-1"
-            aria-label="Admin navigasyon"
+            aria-label="Admin navigation"
           >
             {adminNavItems.map((item) => (
               <AdminNavLink key={item.href} href={item.href} label={item.label} />
             ))}
           </nav>
           <div className="flex justify-start lg:justify-end">
-            <AdminNavLink href="/profile" label="Profil Sayfası" />
+            <AdminNavLink href="/profile" label="Profile Page" />
           </div>
         </div>
       </header>

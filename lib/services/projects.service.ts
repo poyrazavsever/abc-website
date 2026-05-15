@@ -74,7 +74,7 @@ function getSupabaseErrorMessage(message: string | null | undefined, fallback: s
 async function getSupabaseClientOrThrow() {
   const supabase = await createSupabaseServerClient();
   if (!supabase) {
-    throw new Error("Supabase bağlantısı şu anda kullanılamıyor.");
+    throw new Error("Supabase is unavailable right now.");
   }
   return supabase;
 }
@@ -88,7 +88,7 @@ export async function getPublicProjects(): Promise<ProjectWithOwner[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Projeler okunamadı."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Projects could not be loaded."));
   }
 
   const projects = (data ?? []).map(mapProjectRow);
@@ -105,7 +105,7 @@ export async function getPublicProjects(): Promise<ProjectWithOwner[]> {
 
     if (ownersError) {
       throw new Error(
-        getSupabaseErrorMessage(ownersError.message, "Proje sahipleri okunamadı."),
+        getSupabaseErrorMessage(ownersError.message, "Project owners could not be loaded."),
       );
     }
 
@@ -113,7 +113,7 @@ export async function getPublicProjects(): Promise<ProjectWithOwner[]> {
       const ownerRecord = asRecord(owner);
 
       ownersById.set(asString(ownerRecord.id), {
-        fullName: asString(ownerRecord.full_name, "Bilinmeyen Kullanıcı"),
+        fullName: asString(ownerRecord.full_name, "Unknown User"),
         role: asString(ownerRecord.role, "other") as BuilderRole,
       });
     }
@@ -124,7 +124,7 @@ export async function getPublicProjects(): Promise<ProjectWithOwner[]> {
       ...project,
       owner:
         ownersById.get(project.ownerId) ?? {
-          fullName: "Bilinmeyen Kullanıcı",
+          fullName: "Unknown User",
           role: "other",
         },
     };
@@ -151,7 +151,7 @@ export async function createProject(user: Pick<User, "id">, input: OnboardingPro
     .single();
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Proje oluşturulamadı."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Project could not be created."));
   }
 
   return mapProjectRow(data);
@@ -183,7 +183,7 @@ export async function updateProject(
     .single();
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Proje güncellenemedi."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Project could not be updated."));
   }
 
   return mapProjectRow(data);
@@ -199,6 +199,6 @@ export async function deleteProject(user: Pick<User, "id">, projectId: string) {
     .eq("owner_id", user.id);
 
   if (error) {
-    throw new Error(getSupabaseErrorMessage(error.message, "Proje silinemedi."));
+    throw new Error(getSupabaseErrorMessage(error.message, "Project could not be deleted."));
   }
 }

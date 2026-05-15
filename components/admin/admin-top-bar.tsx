@@ -40,7 +40,7 @@ export function AdminTopBar() {
     >
       <nav
         className="mx-auto flex h-8 w-full max-w-7xl items-center gap-6 px-4 text-xs font-semibold sm:px-6 lg:px-8"
-        aria-label="Build Club bağlantıları"
+        aria-label="Build Club links"
       >
         {topBarItems.map((item) => (
           <a

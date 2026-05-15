@@ -146,7 +146,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -156,12 +156,12 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
 
       if (avatarFile) {
         if (!avatarFile.type.startsWith("image/")) {
-          appToast.error("Profil fotoğrafı bir görsel dosyası olmalı.");
+          appToast.error("Profile photo must be an image file.");
           return;
         }
 
         if (avatarFile.size > 5 * 1024 * 1024) {
-          appToast.error("Profil fotoğrafı en fazla 5 MB olabilir.");
+          appToast.error("Profile photo must be 5 MB or smaller.");
           return;
         }
 
@@ -212,12 +212,12 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
         },
       });
 
-      appToast.success("Profil güncellendi.");
+      appToast.success("Profile updated.");
       handleOpenChange(false);
       router.refresh();
     } catch (error) {
       appToast.error(
-        error instanceof Error ? error.message : "Profil güncellenemedi.",
+        error instanceof Error ? error.message : "Profile could not be updated.",
       );
     }
   });
@@ -231,7 +231,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
         className="h-11 rounded-full border-white/14 bg-white/[0.08] px-5 text-white shadow-none hover:border-white/28 hover:bg-white/[0.12]"
         onClick={() => setOpen(true)}
       >
-        Düzenle
+        Edit
       </Button>
 
       <Dialog
@@ -241,9 +241,9 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
         className="border-white/12 bg-ink-950 text-white shadow-[0_32px_90px_rgb(0_0_0_/_0.55)]"
       >
         <DialogHeader className="border-b border-white/10 pr-16">
-          <DialogTitle className="text-white">Profili düzenle</DialogTitle>
+          <DialogTitle className="text-white">Edit profile</DialogTitle>
           <DialogDescription className="text-ink-300">
-            Profil fotoğrafı, konum, bio ve sosyal kullanıcı adlarını güncelle.
+            Update your profile photo, location, bio, and social usernames.
           </DialogDescription>
         </DialogHeader>
 
@@ -260,7 +260,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
                     ? { backgroundImage: `url(${avatarPreview})` }
                     : undefined
                 }
-                aria-label="Profil fotoğrafı önizlemesi"
+                aria-label="Profile photo preview"
               >
                 {profile.fullName.slice(0, 2).toUpperCase()}
               </div>
@@ -269,7 +269,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
                   htmlFor="profile-avatar"
                   className="inline-flex h-10 cursor-pointer items-center justify-center rounded-full border border-white/16 bg-white/[0.05] px-4 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.1]"
                 >
-                  Fotoğraf seç
+                  Choose photo
                 </label>
                 <input
                   id="profile-avatar"
@@ -295,7 +295,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
                   }}
                 />
                 <p className="mt-2 text-xs text-white/48">
-                  PNG, JPG, WEBP veya GIF. Maksimum 5 MB.
+                  PNG, JPG, WEBP, or GIF. Maximum 5 MB.
                 </p>
               </div>
             </div>
@@ -303,7 +303,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="edit-fullName" className={labelClassName}>
-                  Ad soyad
+                  Full name
                 </label>
                 <Input
                   id="edit-fullName"
@@ -320,7 +320,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
 
               <div>
                 <label htmlFor="edit-city" className={labelClassName}>
-                  Konum
+                  Location
                 </label>
                 <Select
                   id="edit-city"
@@ -344,7 +344,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
 
               <div>
                 <label htmlFor="edit-role" className={labelClassName}>
-                  Genel ünvan
+                  Role
                 </label>
                 <Select
                   id="edit-role"
@@ -410,7 +410,7 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
                     inputClassName,
                     errors.linkedinUsername && "border-danger-400",
                   )}
-                  placeholder="ad-soyad"
+                  placeholder="name-surname"
                   {...register("linkedinUsername")}
                 />
               </div>
@@ -437,14 +437,14 @@ export function ProfileEditModal({ profile }: ProfileEditModalProps) {
                 className="rounded-full border-white/14 bg-white/[0.04] text-white shadow-none hover:bg-white/[0.08]"
                 onClick={() => handleOpenChange(false)}
               >
-                Vazgeç
+                Cancel
               </Button>
               <Button
                 type="submit"
                 loading={isSubmitting}
                 className="rounded-full"
               >
-                Kaydet
+                Save
               </Button>
             </div>
           </form>

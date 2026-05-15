@@ -43,16 +43,16 @@ export default async function AdminOperationsPage({
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Temel operasyon yönetimi"
-        description="Ciddi builder başvurularını okuyun, onaylayın veya reddedin. Luma sync, rozet motoru ve eşleştirme gibi operasyonların durumunu takip edin."
+        title="Core Operations Management"
+        description="Review serious builder applications, approve or reject them, and track the status of operations such as Luma sync, the badge engine, and matching."
       />
 
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <Card>
           <CardHeader>
-            <CardTitle>Ciddi builder başvuruları</CardTitle>
+            <CardTitle>Serious Builder Applications</CardTitle>
             <CardDescription>
-              Başvuru metni, beklenti ve haftalık müsaitlik karar öncesi okunur.
+              Review application text, expectations, and weekly availability before making a decision.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -86,7 +86,7 @@ export default async function AdminOperationsPage({
                   href={`/admin/operations?application=${application.id}`}
                   className="mt-3 inline-flex text-sm font-semibold text-primary transition hover:text-primary-700"
                 >
-                  Başvuruyu aç
+                  Open Application
                 </Link>
               </div>
             ))}
@@ -95,9 +95,9 @@ export default async function AdminOperationsPage({
 
         <Card>
           <CardHeader>
-            <CardTitle>Başvuru detayı</CardTitle>
+            <CardTitle>Application Details</CardTitle>
             <CardDescription>
-              Onay, kullanıcıya ciddi builder etiketi verir ve havuza dahil eder.
+              Approval gives the user the serious builder label and adds them to the pool.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -118,19 +118,19 @@ export default async function AdminOperationsPage({
                   </div>
                   <dl className="mt-4 grid gap-4 text-sm md:grid-cols-3">
                     <div>
-                      <dt className="font-semibold text-text">Rol</dt>
+                      <dt className="font-semibold text-text">Role</dt>
                       <dd className="text-text-muted">
                         {roleLabels[selectedApplication.role]}
                       </dd>
                     </div>
                     <div>
-                      <dt className="font-semibold text-text">Aktif etiket</dt>
+                      <dt className="font-semibold text-text">Active tag</dt>
                       <dd className="text-text-muted">
                         {tagLabels[selectedApplication.activeTag]}
                       </dd>
                     </div>
                     <div>
-                      <dt className="font-semibold text-text">Başvuru tarihi</dt>
+                      <dt className="font-semibold text-text">Application date</dt>
                       <dd className="text-text-muted">
                         {selectedApplication.submittedAt}
                       </dd>
@@ -139,21 +139,21 @@ export default async function AdminOperationsPage({
                 </div>
 
                 <div className="grid gap-4">
-                  <Field label="Motivasyon">
+                  <Field label="Motivation">
                     <Textarea
                       readOnly
                       rows={4}
                       value={selectedApplication.motivation}
                     />
                   </Field>
-                  <Field label="Beklenti">
+                  <Field label="Expectation">
                     <Textarea
                       readOnly
                       rows={3}
                       value={selectedApplication.expectation}
                     />
                   </Field>
-                  <Field label="Haftalık müsaitlik">
+                  <Field label="Weekly availability">
                     <Input readOnly value={selectedApplication.weeklyAvailability} />
                   </Field>
                 </div>
@@ -175,7 +175,7 @@ export default async function AdminOperationsPage({
                       variant="success"
                       disabled={selectedApplication.status === "approved"}
                     >
-                      Onayla ve ciddi builder yap
+                      Approve and mark as serious builder
                     </Button>
                   </form>
                   <form action={rejectSeriousBuilderApplicationAction}>
@@ -194,13 +194,13 @@ export default async function AdminOperationsPage({
                       variant="danger"
                       disabled={selectedApplication.status === "rejected"}
                     >
-                      Reddet
+                      Reject
                     </Button>
                   </form>
                 </div>
               </div>
             ) : (
-              <p className="text-sm text-text-muted">Başvuru bulunamadı.</p>
+              <p className="text-sm text-text-muted">No application found.</p>
             )}
           </CardContent>
         </Card>
@@ -208,9 +208,9 @@ export default async function AdminOperationsPage({
 
       <Card>
         <CardHeader>
-          <CardTitle>Operasyon job&apos;ları</CardTitle>
+          <CardTitle>Operations Jobs</CardTitle>
           <CardDescription>
-            Sync ve eşleştirme işlerinin son çalışma bilgisi.
+            Last run information for sync and matching jobs.
           </CardDescription>
         </CardHeader>
         <CardContent>

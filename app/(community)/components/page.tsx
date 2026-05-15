@@ -91,39 +91,39 @@ export default function ComponentsShowcasePage() {
       <SectionHeader
         eyebrow="UI Kit"
         heading="Components Showcase"
-        description="Tüm temel UI-kit parçalarını tek sayfada görmek için sade bir demo alanı."
+        description="A simple demo area for seeing all core UI kit pieces on a single page."
         actions={
-          <Button onClick={() => appToast.success("Toast helper aktif")}>
-            Toast Goster
+          <Button onClick={() => appToast.success("Toast helper is active")}>
+            Show Toast
           </Button>
         }
       />
 
       <ShowcaseSection
         title="Actions"
-        description="Buton ailesi ve temel etkileşim aksiyonları."
+        description="Button family and core interaction actions."
       >
         <div className="flex flex-wrap gap-3">
           <Button>Primary</Button>
           <Button leadingIcon={<DemoIcon />}>Builder Flow</Button>
           <Button href="/events" variant="outline">
-            Href CTA
+            Link CTA
           </Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
           <Button variant="danger">Danger</Button>
           <Button loading>Loading</Button>
-          <IconButton icon={<DemoIcon />} label="Favori" />
+          <IconButton icon={<DemoIcon />} label="Favorite" />
           <LinkButton href="/events" variant="ghost">
-            Etkinlikler
+            Events
           </LinkButton>
         </div>
       </ShowcaseSection>
 
       <ShowcaseSection
         title="Identity"
-        description="Rozet, avatar, kart ve ayirici gibi temel gorsel tasiyicilar."
+        description="Core visual carriers such as badges, avatars, cards, and dividers."
       >
         <div className="flex flex-wrap items-center gap-4">
           <Avatar alt="Ankara Build Club" fallback="AB" />
@@ -138,55 +138,55 @@ export default function ComponentsShowcasePage() {
 
         <Card surface="muted">
           <CardHeader>
-            <CardTitle>Card Basligi</CardTitle>
+            <CardTitle>Card Title</CardTitle>
             <CardDescription>
-              Reusable card composition ornegi.
+              Reusable card composition example.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            Bu kart, ortak UI-kit yuzey kurallarini göstermek icin kullaniliyor.
+            This card is used to demonstrate shared UI-kit surface rules.
           </CardContent>
           <CardFooter>
-            <Button size="sm">Aksiyon</Button>
+            <Button size="sm">Action</Button>
           </CardFooter>
         </Card>
       </ShowcaseSection>
 
       <ShowcaseSection
         title="Forms"
-        description="Field, text inputlari ve secim kontrolleri."
+        description="Field, text input, and selection controls."
       >
         <div className="grid gap-6 lg:grid-cols-2">
           <Field
-            label="Ad Soyad"
-            description="Temel text input wrapper."
+            label="Full Name"
+            description="Basic text input wrapper."
             required
           >
             <Input placeholder="Mustafa Kara" />
           </Field>
 
           <Field
-            label="Rol"
-            description="Native select gorunumu."
+            label="Role"
+            description="Native select appearance."
           >
             <Select defaultValue="developer">
-              <option value="developer">Yazilimci</option>
-              <option value="designer">Tasarimci</option>
-              <option value="product">Urun</option>
+              <option value="developer">Developer</option>
+              <option value="designer">Designer</option>
+              <option value="product">Product</option>
             </Select>
           </Field>
 
           <Field
             label="Bio"
-            description="Cok satirli alan."
+            description="Multiline input."
           >
-            <Textarea placeholder="Ne ürettiğini kısaca anlat..." />
+            <Textarea placeholder="Briefly describe what you build..." />
           </Field>
 
           <Field
             label="LinkedIn"
-            description="Error state ornegi."
-            error="Geçerli bir profil URL'si gir."
+            description="Error state example."
+            error="Enter a valid profile URL."
             invalid
           >
             <Input
@@ -200,15 +200,15 @@ export default function ComponentsShowcasePage() {
         <div className="grid gap-5 lg:grid-cols-3">
           <Checkbox
             checked={checkboxValue}
-            label="Topluluk sozlesmesini kabul ediyorum"
-            description="Checkbox kontrol ornegi."
+            label="I accept the community agreement"
+            description="Checkbox control example."
             onCheckedChange={setCheckboxValue}
           />
 
           <Switch
             checked={switchValue}
-            label="Bildirimleri ac"
-            description="Switch kontrol ornegi."
+            label="Enable notifications"
+            description="Switch control example."
             onCheckedChange={setSwitchValue}
           />
 
@@ -218,13 +218,13 @@ export default function ComponentsShowcasePage() {
           >
             <RadioItem
               value="design"
-              label="Tasarim"
-              description="UI ve gorsel dil."
+              label="Design"
+              description="UI and visual language."
             />
             <RadioItem
               value="product"
-              label="Urun"
-              description="Strateji ve kapsam."
+              label="Product"
+              description="Strategy and scope."
             />
           </RadioGroup>
         </div>
@@ -232,12 +232,12 @@ export default function ComponentsShowcasePage() {
 
       <ShowcaseSection
         title="Feedback"
-        description="Durum mesajlari, bos ekranlar ve yuklenme göstergeleri."
+        description="Status messages, empty states, and loading indicators."
       >
         <Alert variant="info" icon={<DemoIcon />}>
-          <AlertTitle>Bilgilendirme</AlertTitle>
+          <AlertTitle>Info</AlertTitle>
           <AlertDescription>
-            Event sync tamamlandığında burada kullanılabilecek bir alert yapısı.
+            An alert structure that could be used here when event sync completes.
           </AlertDescription>
         </Alert>
 
@@ -247,24 +247,24 @@ export default function ComponentsShowcasePage() {
           <Skeleton variant="circle" className="h-10 w-10" />
         </div>
 
-        <Progress label="Onboarding ilerlemesi" showValue value={66} />
+        <Progress label="Onboarding progress" showValue value={66} />
 
         <EmptyState
-          title="Henuz proje yok"
-          description="Kullanici ilk projesini ekleyene kadar bu bos durum kullanilabilir."
-          actions={<Button size="sm">Proje Ekle</Button>}
+          title="No project yet"
+          description="This empty state can be used until the user adds their first project."
+          actions={<Button size="sm">Add Project</Button>}
           icon={<DemoIcon />}
         />
       </ShowcaseSection>
 
       <ShowcaseSection
         title="Overlays"
-        description="Dialog, sheet ve tabs gibi interaction componentleri."
+        description="Interaction components such as dialog, sheet, and tabs."
       >
         <div className="flex flex-wrap gap-3">
-          <Button onClick={() => setDialogOpen(true)}>Dialog Ac</Button>
+          <Button onClick={() => setDialogOpen(true)}>Open Dialog</Button>
           <Button variant="outline" onClick={() => setSheetOpen(true)}>
-            Sheet Ac
+            Open Sheet
           </Button>
         </div>
 
@@ -275,13 +275,13 @@ export default function ComponentsShowcasePage() {
             <TabsTrigger value="tabs">Tabs</TabsTrigger>
           </TabsList>
           <TabsContent value="dialog">
-            Dialog modali, odak yönetimi ve overlay kapama davranisini gösterir.
+            The dialog modal demonstrates focus management and overlay close behavior.
           </TabsContent>
           <TabsContent value="sheet">
-            Sheet paneli, sagdan acilan drawer ihtiyaclari icin kullanilir.
+            The sheet panel is used for right-side drawer patterns.
           </TabsContent>
           <TabsContent value="tabs">
-            Tabs trigger ve content parcaciklari controlled veya uncontrolled çalışir.
+            Tabs triggers and content sections work in both controlled and uncontrolled modes.
           </TabsContent>
         </Tabs>
 
@@ -289,17 +289,17 @@ export default function ComponentsShowcasePage() {
           <DialogHeader>
             <DialogTitle>Dialog Showcase</DialogTitle>
             <DialogDescription>
-              Bu alan, modal ic yapisini ve close davranisini göstermek icin var.
+              This area exists to demonstrate modal layout and close behavior.
             </DialogDescription>
           </DialogHeader>
           <DialogBody>
-            Dialog icerigine form veya onay akislari yerlestirilebilir.
+            Forms or confirmation flows can be placed inside the dialog.
           </DialogBody>
           <DialogFooter>
             <Button variant="ghost" onClick={() => setDialogOpen(false)}>
-              Kapat
+              Close
             </Button>
-            <Button onClick={() => setDialogOpen(false)}>Tamam</Button>
+            <Button onClick={() => setDialogOpen(false)}>Done</Button>
           </DialogFooter>
         </Dialog>
 
@@ -307,22 +307,22 @@ export default function ComponentsShowcasePage() {
           <SheetHeader>
             <SheetTitle>Sheet Showcase</SheetTitle>
             <SheetDescription>
-              Bu panel, drawer pattern&apos;ini test etmek icin kullaniliyor.
+              This panel is used to test the drawer pattern.
             </SheetDescription>
           </SheetHeader>
           <SheetBody className="space-y-4">
-            <Field label="Arama">
-              <Input placeholder="Builder ara..." />
+            <Field label="Search">
+              <Input placeholder="Search builder..." />
             </Field>
-            <Field label="Not">
-              <Textarea placeholder="Kisa bir not..." rows={3} />
+            <Field label="Note">
+              <Textarea placeholder="A short note..." rows={3} />
             </Field>
           </SheetBody>
           <SheetFooter>
             <Button variant="outline" onClick={() => setSheetOpen(false)}>
-              Vazgec
+              Cancel
             </Button>
-            <Button onClick={() => setSheetOpen(false)}>Kaydet</Button>
+            <Button onClick={() => setSheetOpen(false)}>Save</Button>
           </SheetFooter>
         </Sheet>
       </ShowcaseSection>

@@ -12,9 +12,9 @@ export async function addProjectAction(input: OnboardingProjectInput & { status?
     revalidatePath("/dashboard/my-projects");
     revalidatePath("/dashboard/profile");
     revalidatePath("/projects");
-    return { status: "success", message: "Proje başarıyla eklendi." };
+    return { status: "success", message: "Project added successfully." };
   } catch (error) {
-    return { status: "error", message: error instanceof Error ? error.message : "Proje eklenemedi." };
+    return { status: "error", message: error instanceof Error ? error.message : "Project could not be added." };
   }
 }
 
@@ -25,9 +25,9 @@ export async function editProjectAction(projectId: string, input: Partial<Onboar
     revalidatePath("/dashboard/my-projects");
     revalidatePath("/dashboard/profile");
     revalidatePath("/projects");
-    return { status: "success", message: "Proje güncellendi." };
+    return { status: "success", message: "Project updated." };
   } catch (error) {
-    return { status: "error", message: error instanceof Error ? error.message : "Proje güncellenemedi." };
+    return { status: "error", message: error instanceof Error ? error.message : "Project could not be updated." };
   }
 }
 
@@ -38,8 +38,8 @@ export async function deleteProjectAction(projectId: string) {
     revalidatePath("/dashboard/my-projects");
     revalidatePath("/dashboard/profile");
     revalidatePath("/projects");
-    return { status: "success", message: "Proje silindi." };
+    return { status: "success", message: "Project deleted." };
   } catch (error) {
-    return { status: "error", message: error instanceof Error ? error.message : "Proje silinemedi." };
+    return { status: "error", message: error instanceof Error ? error.message : "Project could not be deleted." };
   }
 }

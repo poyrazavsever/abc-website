@@ -14,48 +14,48 @@ export default async function AnalyticsDashboardPage() {
 
   const metrics = [
     {
-      label: "Sayfa Görüntülenme",
+      label: "Page Views",
       value: String(overview.totalPageViews),
-      hint: "Tüm sayfalardaki toplam tıklama/görüntüleme sayısı",
+      hint: "Total clicks and views across all pages",
     },
     {
-      label: "Yeni Kayıtlar",
+      label: "New Sign-Ups",
       value: String(overview.totalRegistrations),
-      hint: "Sisteme başarıyla kayıt olan kullanıcılar",
+      hint: "Users who successfully registered",
     },
     {
-      label: "Tamamlanan Onboarding",
+      label: "Completed Onboarding",
       value: String(overview.totalOnboardings),
-      hint: "Profil bilgilerini dolduran kullanıcılar",
+      hint: "Users who completed their profile information",
     },
     {
-      label: "Dönüşüm Oranı",
+      label: "Conversion Rate",
       value: overview.totalRegistrations > 0 
         ? `${Math.round((overview.totalOnboardings / overview.totalRegistrations) * 100)}%` 
         : "0%",
-      hint: "Kayıt olup onboarding tamamlayanların oranı",
+      hint: "Share of registered users who completed onboarding",
     },
   ];
 
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Analitik & Veri Toplama"
-        description="Sistemdeki kullanıcıların etkileşimlerini, kayıt akışlarını ve genel kullanım istatistiklerini buradan takip edebilirsiniz."
+        title="Analytics & Data Collection"
+        description="Track user interactions, registration flows, and overall usage metrics from here."
       />
 
       <AdminMetricGrid metrics={metrics} />
 
       <Card>
         <CardHeader>
-          <CardTitle>Son Etkinlikler</CardTitle>
+          <CardTitle>Recent Events</CardTitle>
           <CardDescription>
-            Sistemde son gerçekleşen kullanıcı ve sistem olaylarının detaylı dökümü.
+            A detailed log of the most recent user and system events.
           </CardDescription>
         </CardHeader>
         <CardContent>
           {overview.recentEvents.length > 0 ? (
-            <AdminTable columns={["Tarih", "Olay Adı", "Kullanıcı ID", "Detaylar"]}>
+            <AdminTable columns={["Date", "Event Name", "User ID", "Details"]}>
               {overview.recentEvents.map((event) => (
                 <tr key={event.id}>
                   <AdminTableCell className="whitespace-nowrap text-xs text-text-muted">
@@ -76,7 +76,7 @@ export default async function AnalyticsDashboardPage() {
               ))}
             </AdminTable>
           ) : (
-            <div className="py-8 text-center text-sm text-text-muted">Henüz veri toplanmadı.</div>
+            <div className="py-8 text-center text-sm text-text-muted">No data has been collected yet.</div>
           )}
         </CardContent>
       </Card>

@@ -59,7 +59,7 @@ function mapContentItem(row: unknown): AdminContentItem {
 
   return {
     id: asString(record.id),
-    title: asString(record.title, "Başlıksız içerik"),
+    title: asString(record.title, "Untitled content"),
     type: asString(record.type, "report") as AdminContentItem["type"],
     status: asString(record.status, "draft") as AdminContentItem["status"],
     ownerName: asString(record.owner_name, "Admin"),
@@ -75,9 +75,9 @@ function mapMatch(row: unknown): BuilderMatch {
   return {
     id: asString(record.id),
     firstBuilderId: asString(record.first_builder_id),
-    firstBuilderName: asString(record.first_builder_name, "İsimsiz builder"),
+    firstBuilderName: asString(record.first_builder_name, "Unnamed builder"),
     secondBuilderId: asString(record.second_builder_id),
-    secondBuilderName: asString(record.second_builder_name, "İsimsiz builder"),
+    secondBuilderName: asString(record.second_builder_name, "Unnamed builder"),
     status: asString(record.status, "active") as BuilderMatch["status"],
     matchedAt: asString(record.matched_at),
     matchedBy: asString(record.matched_by, "Admin"),
@@ -90,10 +90,10 @@ function mapBuilder(row: unknown): AdminBuilder {
 
   return {
     id: asString(record.id),
-    fullName: asString(record.full_name, "İsimsiz builder"),
+    fullName: asString(record.full_name, "Unnamed builder"),
     email: asString(record.email),
     role: asString(record.role, "other") as BuilderRole,
-    city: asString(record.city, "Belirtilmedi"),
+    city: asString(record.city, "Not specified"),
     activeTag: asString(record.active_tag, "just_building") as BuilderTag,
     isBanned: asBoolean(record.is_banned),
     isSeriousBuilder: asBoolean(record.is_serious_builder),
@@ -109,7 +109,7 @@ function mapBadge(row: unknown): AdminBadge {
 
   return {
     id: asString(record.id),
-    name: asString(record.name, "İsimsiz rozet"),
+    name: asString(record.name, "Unnamed badge"),
     trigger: asString(record.trigger),
     assignmentCount: asNumber(record.assignment_count),
     isManual: asBoolean(record.is_manual),
@@ -123,7 +123,7 @@ function mapApplication(row: unknown): SeriousBuilderApplication {
   return {
     id: asString(record.id),
     builderId: asString(record.builder_id),
-    builderName: asString(record.builder_name, "İsimsiz builder"),
+    builderName: asString(record.builder_name, "Unnamed builder"),
     role: asString(record.role, "other") as BuilderRole,
     activeTag: asString(record.active_tag, "just_building") as BuilderTag,
     motivation: asString(record.motivation),
@@ -139,7 +139,7 @@ function mapOperation(row: unknown): AdminOperation {
 
   return {
     id: asString(record.id),
-    name: asString(record.name, "Operasyon"),
+    name: asString(record.name, "Operation"),
     description: asString(record.description),
     status: asString(record.status, "queued") as AdminOperation["status"],
     lastRunAt: asString(record.last_run_at),
@@ -198,32 +198,32 @@ export async function getAdminDataset(): Promise<AdminDataset> {
   const overview: AdminOverview = {
     metrics: [
       {
-        label: "Bekleyen başvuru",
+        label: "Pending applications",
         value: String(
           applications.filter((application) => application.status === "pending").length,
         ),
-        hint: "Ciddi builder havuzu için karar bekliyor",
+        hint: "Waiting for a decision for the serious builder pool",
       },
       {
-        label: "Aktif builder",
+        label: "Active builders",
         value: String(
           builders.filter((builder) => !builder.isBanned).length,
         ),
-        hint: "Banlı olmayan tamamlanmış profiller",
+        hint: "Completed profiles that are not banned",
       },
       {
-        label: "Ciddi builder",
+        label: "Serious builders",
         value: String(
           builders.filter(
             (builder) => builder.isSeriousBuilder && !builder.isBanned,
           ).length,
         ),
-        hint: "Eşleşme havuzundaki aktif builder sayısı",
+        hint: "Active builders in the matching pool",
       },
       {
-        label: "Aktif eşleşme",
+        label: "Active matches",
         value: String(matches.filter((match) => match.status === "active").length),
-        hint: "Şu anda devam eden ciddi builder eşleşmeleri",
+        hint: "Serious builder matches currently in progress",
       },
     ],
     recentApplications: applications.filter(

@@ -133,7 +133,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -143,7 +143,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
     } = await supabase.auth.getUser();
 
     if (userError || !user) {
-      appToast.error("Proje eklemek için giriş yapmalısınız.");
+      appToast.error("You must be signed in to add a project.");
       return;
     }
 
@@ -153,12 +153,12 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
 
     if (imageFile) {
       if (!imageFile.type.startsWith("image/")) {
-        appToast.error("Proje fotoğrafı bir görsel dosyası olmalı.");
+        appToast.error("Project image must be an image file.");
         return;
       }
 
       if (imageFile.size > 5 * 1024 * 1024) {
-        appToast.error("Proje fotoğrafı en fazla 5 MB olabilir.");
+        appToast.error("Project image must be 5 MB or smaller.");
         return;
       }
 
@@ -173,7 +173,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
         });
 
       if (uploadError) {
-        appToast.error(uploadError.message || "Proje fotoğrafı yüklenemedi.");
+        appToast.error(uploadError.message || "Project image could not be uploaded.");
         return;
       }
 
@@ -197,11 +197,11 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
     });
 
     if (error) {
-      appToast.error(error.message || "Proje eklenemedi.");
+      appToast.error(error.message || "Project could not be added.");
       return;
     }
 
-    appToast.success("Proje eklendi.");
+    appToast.success("Project added.");
     onClose();
     reset();
     setImageFile(null);
@@ -224,7 +224,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
           <button
             type="button"
             className="absolute inset-0 cursor-default"
-            aria-label="Modalı kapat"
+            aria-label="Close modal"
             onClick={closeAndReset}
           />
 
@@ -237,7 +237,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
           >
             <button
               type="button"
-              aria-label="Kapat"
+              aria-label="Close"
               className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/10 text-white/70 transition hover:border-white/24 hover:text-white"
               onClick={closeAndReset}
             >
@@ -246,16 +246,16 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
 
             <div className="border-b border-white/10 px-6 py-5 pr-16">
               <h2 className="text-lg font-semibold text-white">
-                Yeni Proje Ekle
+                Add New Project
               </h2>
               <p className="mt-1 text-sm leading-6 text-white/52">
-                Profilinde sergilenecek kısa bir proje kaydı oluştur.
+                Create a short project entry to showcase on your profile.
               </p>
             </div>
 
             <form className="space-y-5 px-6 py-5" noValidate onSubmit={onSubmit}>
               <div>
-                <p className={labelClassName}>Proje Fotoğrafı</p>
+                <p className={labelClassName}>Project Image</p>
                 <div className="mt-2 grid gap-3 sm:grid-cols-[8rem_1fr] sm:items-center">
                   <div
                     className="aspect-square rounded-md border border-white/12 bg-white/[0.03] bg-cover bg-center"
@@ -264,14 +264,14 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
                         ? { backgroundImage: `url(${imagePreviewUrl})` }
                         : undefined
                     }
-                    aria-label="Proje fotoğrafı önizlemesi"
+                    aria-label="Project image preview"
                   />
                   <div>
                     <label
                       htmlFor="project-image"
                       className="inline-flex h-10 cursor-pointer items-center justify-center rounded-md border border-white/12 px-4 text-sm font-medium text-white/78 transition hover:border-white/24 hover:text-white"
                     >
-                      Fotoğraf seç
+                      Choose photo
                     </label>
                     <input
                       id="project-image"
@@ -291,7 +291,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
                       }}
                     />
                     <p className="mt-2 text-xs text-white/38">
-                      PNG, JPG, WEBP veya GIF. Maksimum 5 MB.
+                      PNG, JPG, WEBP, or GIF. Maximum 5 MB.
                     </p>
                   </div>
                 </div>
@@ -299,7 +299,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
 
               <div>
                 <label htmlFor="project-name" className={labelClassName}>
-                  Proje Adı
+                  Project Name
                 </label>
                 <input
                   id="project-name"
@@ -318,7 +318,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
 
               <div>
                 <label htmlFor="project-url" className={labelClassName}>
-                  Proje URL&apos;i
+                  Project URL
                 </label>
                 <input
                   id="project-url"
@@ -338,7 +338,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
 
               <div>
                 <label htmlFor="project-tech" className={labelClassName}>
-                  Kullanılan Teknolojiler
+                  Technologies Used
                 </label>
                 <input
                   id="project-tech"
@@ -358,7 +358,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
               <div>
                 <div className="flex items-center justify-between gap-3">
                   <label htmlFor="project-description" className={labelClassName}>
-                    Kısa Açıklama
+                    Short Description
                   </label>
                   <span className="text-xs text-white/38">
                     {descriptionLength}/150
@@ -373,7 +373,7 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
                     "resize-none",
                     errors.description && "border-red-400/70",
                   )}
-                  placeholder="Proje ne yapıyor?"
+                  placeholder="What does the project do?"
                   disabled={isSubmitting}
                   {...register("description")}
                 />
@@ -389,14 +389,14 @@ export function AddProjectModal({ isOpen, onClose }: AddProjectModalProps) {
                   disabled={isSubmitting}
                   onClick={closeAndReset}
                 >
-                  İptal
+                  Cancel
                 </button>
                 <button
                   type="submit"
                   className="inline-flex h-10 items-center justify-center rounded-md border border-white bg-white px-4 text-sm font-semibold text-black transition hover:bg-white/88 disabled:pointer-events-none disabled:opacity-60"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Ekleniyor..." : "Ekle"}
+                  {isSubmitting ? "Adding..." : "Add"}
                 </button>
               </div>
             </form>

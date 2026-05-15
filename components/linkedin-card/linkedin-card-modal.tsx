@@ -147,7 +147,7 @@ export function LinkedInCardModal({
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -168,7 +168,7 @@ export function LinkedInCardModal({
       setIsLoading(false);
 
       if (error || !data) {
-        appToast.error("Profil bilgileri okunamadı.");
+        appToast.error("Profile information could not be loaded.");
         return;
       }
 
@@ -197,7 +197,7 @@ export function LinkedInCardModal({
           <button
             type="button"
             className="absolute inset-0 cursor-default"
-            aria-label="Modalı kapat"
+            aria-label="Close modal"
             onClick={onClose}
           />
 
@@ -210,7 +210,7 @@ export function LinkedInCardModal({
           >
             <button
               type="button"
-              aria-label="Kapat"
+              aria-label="Close"
               className="absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/10 text-white/70 transition hover:border-white/24 hover:text-white"
               onClick={onClose}
             >
@@ -219,23 +219,23 @@ export function LinkedInCardModal({
 
             <div className="border-b border-white/10 px-6 py-5 pr-16">
               <h2 className="text-lg font-semibold text-white">
-                LinkedIn Kartı Oluştur
+                Create LinkedIn Card
               </h2>
               <p className="mt-1 text-sm leading-6 text-white/52">
-                Profil bilgilerinle paylaşılabilir bir Shipin kartı oluştur.
+                Create a shareable Shipin card using your profile details.
               </p>
             </div>
 
             <div className="p-6">
               {isLoading ? (
                 <div className="rounded-md border border-white/10 p-10 text-center text-sm text-white/52">
-                  Profil bilgileri yükleniyor...
+                  Loading profile information...
                 </div>
               ) : profile ? (
                 <CardGenerator profile={profile} />
               ) : (
                 <div className="rounded-md border border-white/10 p-10 text-center text-sm text-white/52">
-                  Kart oluşturmak için profil bilgileri bulunamadı.
+                  Profile information could not be found to create a card.
                 </div>
               )}
             </div>

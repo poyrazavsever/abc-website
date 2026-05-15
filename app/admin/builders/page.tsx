@@ -59,27 +59,27 @@ export default async function AdminBuildersPage({
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        title="Builder yönetimi"
-        description="Üyeleri arayın, ban durumunu yönetin, ciddi builder etiketini verin veya geri alın. Aksiyonlar server action üzerinden servis katmanına bağlıdır."
+        title="Builder Management"
+        description="Search members, manage ban status, and add or remove the serious builder label. Actions are wired to the service layer through server actions."
         actions={
           <form className="grid gap-2 sm:grid-cols-[180px_160px_160px_auto]">
-            <Input name="q" placeholder="İsim, e-posta, şehir" defaultValue={params?.q} />
+            <Input name="q" placeholder="Name, email, city" defaultValue={params?.q} />
             <Select name="status" defaultValue={selectedStatus}>
-              <option value="">Tüm durumlar</option>
-              <option value="serious">Ciddi builder</option>
-              <option value="banned">Banlı</option>
+              <option value="">All statuses</option>
+              <option value="serious">Serious builder</option>
+              <option value="banned">Banned</option>
             </Select>
             <Select name="role" defaultValue={selectedRole}>
-              <option value="">Tüm roller</option>
-              <option value="developer">Yazılımcı</option>
-              <option value="designer">Tasarımcı</option>
+              <option value="">All roles</option>
+              <option value="developer">Developer</option>
+              <option value="designer">Designer</option>
               <option value="sales">Sales</option>
-              <option value="product">Ürün</option>
-              <option value="student">Öğrenci</option>
-              <option value="other">Diğer</option>
+              <option value="product">Product</option>
+              <option value="student">Student</option>
+              <option value="other">Other</option>
             </Select>
             <Button type="submit" variant="outline">
-              Filtrele
+              Filter
             </Button>
           </form>
         }
@@ -88,10 +88,10 @@ export default async function AdminBuildersPage({
       <AdminTable
         columns={[
           "Builder",
-          "Profil",
-          "Durum",
-          "Ciddi builder",
-          "Ban yönetimi",
+          "Profile",
+          "Status",
+          "Serious builder",
+          "Ban management",
         ]}
       >
         {filteredBuilders.map((builder) => (
@@ -112,17 +112,17 @@ export default async function AdminBuildersPage({
               <div className="flex flex-wrap gap-2">
                 <Badge variant="info">{roleLabels[builder.role]}</Badge>
                 <Badge>{tagLabels[builder.activeTag]}</Badge>
-                <Badge variant="secondary">{builder.badgeCount} rozet</Badge>
-                <Badge variant="secondary">{builder.projectCount} proje</Badge>
+                <Badge variant="secondary">{builder.badgeCount} badges</Badge>
+                <Badge variant="secondary">{builder.projectCount} projects</Badge>
               </div>
               <p className="mt-2 text-xs text-text-soft">
-                Son aktif: {builder.lastActiveAt}
+                Last active: {builder.lastActiveAt}
               </p>
             </AdminTableCell>
             <AdminTableCell>
               <div className="flex flex-col gap-2">
                 <StatusBadge
-                  label={builder.isBanned ? "Banlı" : "Aktif"}
+                  label={builder.isBanned ? "Banned" : "Active"}
                   status={builder.isBanned ? "banned" : "active"}
                 />
                 {builder.banReason ? (
@@ -143,7 +143,7 @@ export default async function AdminBuildersPage({
               >
                 <input type="hidden" name="builderId" value={builder.id} />
                 <StatusBadge
-                  label={builder.isSeriousBuilder ? "Etiketli" : "Etiketsiz"}
+                  label={builder.isSeriousBuilder ? "Tagged" : "Untagged"}
                   status={builder.isSeriousBuilder ? "approved" : "draft"}
                 />
                 <Button
@@ -151,36 +151,36 @@ export default async function AdminBuildersPage({
                   size="sm"
                   variant={builder.isSeriousBuilder ? "outline" : "success"}
                 >
-                  {builder.isSeriousBuilder ? "Etiketi kaldır" : "Ciddi builder yap"}
+                  {builder.isSeriousBuilder ? "Remove Tag" : "Make Serious Builder"}
                 </Button>
               </form>
             </AdminTableCell>
             <AdminTableCell>
               <details className="group min-w-56">
                 <summary className="cursor-pointer text-sm font-semibold text-text-muted transition hover:text-text">
-                  Ban işlemleri
+                  Ban Actions
                 </summary>
                 <div className="mt-3 rounded-md border border-border bg-surface-muted p-3">
                   {builder.isBanned ? (
                     <form action={unbanBuilderAction}>
                       <input type="hidden" name="builderId" value={builder.id} />
                       <Button type="submit" size="sm" variant="outline">
-                        Banı kaldır
+                        Remove Ban
                       </Button>
                     </form>
                   ) : (
                     <form action={banBuilderAction} className="space-y-2">
                       <input type="hidden" name="builderId" value={builder.id} />
-                      <Field label="Ban nedeni">
+                      <Field label="Ban reason">
                         <Textarea
                           name="reason"
                           rows={2}
-                          placeholder="Kısa operasyon notu"
+                          placeholder="Short operations note"
                           required
                         />
                       </Field>
                       <Button type="submit" size="sm" variant="danger">
-                        Kullanıcıyı banla
+                        Ban User
                       </Button>
                     </form>
                   )}

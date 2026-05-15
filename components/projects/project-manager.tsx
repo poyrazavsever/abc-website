@@ -14,15 +14,15 @@ export function ProjectManager({ initialProjects }: { initialProjects: ProjectRe
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-text">Projeleriniz ({initialProjects.length})</h2>
-        <Button onClick={() => setIsAdding(true)}>Yeni Proje Ekle</Button>
+        <h2 className="text-xl font-bold text-text">Your Projects ({initialProjects.length})</h2>
+        <Button onClick={() => setIsAdding(true)}>Add New Project</Button>
       </div>
 
       {(isAdding || editingProject) && (
         <Card className="border-primary/20 bg-surface shadow-md">
           <CardHeader>
-            <CardTitle>{isAdding ? "Yeni Proje" : "Projeyi Düzenle"}</CardTitle>
-            <CardDescription>Proje detaylarını girin ve kaydedin.</CardDescription>
+            <CardTitle>{isAdding ? "New Project" : "Edit Project"}</CardTitle>
+            <CardDescription>Enter your project details and save them.</CardDescription>
           </CardHeader>
           <CardContent>
             <ProjectForm
@@ -62,12 +62,12 @@ export function ProjectManager({ initialProjects }: { initialProjects: ProjectRe
                 <div>
                   {project.url && (
                     <Link href={project.url.startsWith("http") ? project.url : `https://${project.url}`} target="_blank" className="text-xs text-primary hover:underline">
-                      Siteyi Aç
+                      Open Site
                     </Link>
                   )}
                 </div>
                 <Button variant="outline" size="sm" onClick={() => setEditingProject(project)}>
-                  Düzenle
+                  Edit
                 </Button>
               </CardContent>
             </Card>
@@ -75,11 +75,11 @@ export function ProjectManager({ initialProjects }: { initialProjects: ProjectRe
         </div>
       ) : (
         <div className="rounded-md border border-dashed border-border p-12 text-center">
-          <h3 className="mb-2 text-lg font-semibold text-text">Proje bulunamadı</h3>
+          <h3 className="mb-2 text-lg font-semibold text-text">No project found</h3>
           <p className="text-sm text-text-soft mb-6">
-            Henüz bir proje eklemediniz. Hemen yeni bir tane ekleyerek portföyünüzü oluşturun.
+            You haven&apos;t added a project yet. Add one now to start building your portfolio.
           </p>
-          <Button onClick={() => setIsAdding(true)}>Yeni Proje Ekle</Button>
+          <Button onClick={() => setIsAdding(true)}>Add New Project</Button>
         </div>
       )}
     </div>

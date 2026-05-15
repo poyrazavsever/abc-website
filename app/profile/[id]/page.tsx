@@ -52,20 +52,20 @@ export async function generateMetadata({
   const { id } = await params;
 
   if (!isUuid(id)) {
-    return { title: "Profil bulunamadı" };
+    return { title: "Profile not found" };
   }
 
   const snapshot = await getPublicProfileSnapshotById(id);
 
   if (!snapshot?.profile) {
-    return { title: "Profil bulunamadı" };
+    return { title: "Profile not found" };
   }
 
   return {
-    title: `${snapshot.profile.fullName} Profili`,
+    title: `${snapshot.profile.fullName} Profile`,
     description:
       snapshot.profile.bio ||
-      `${snapshot.profile.fullName} Ankara Build Club public profili.`,
+      `${snapshot.profile.fullName}'s public Ankara Build Club profile.`,
   };
 }
 
@@ -121,7 +121,7 @@ function ProfileAvatar({ profile }: { profile: ProfileRecord }) {
           ? { backgroundImage: `url(${profile.avatarUrl})` }
           : undefined
       }
-      aria-label={`${profile.fullName} profil fotoğrafı`}
+      aria-label={`${profile.fullName} profile photo`}
     >
       {getInitials(profile)}
     </div>
@@ -198,7 +198,7 @@ function ProjectTile({ project }: { project: ProjectRecord }) {
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-300 transition hover:text-accent-200"
           >
-            İncele
+            View
             <ArrowUpRightIcon />
           </Link>
         ) : null}
@@ -282,7 +282,7 @@ export default async function PublicProfilePage({
                   {profile.fullName}
                 </h1>
                 <p className="max-w-2xl text-sm leading-7 text-ink-300 sm:text-base">
-                  {profile.bio || "Bu builder henüz bio eklemedi."}
+                  {profile.bio || "This builder hasn't added a bio yet."}
                 </p>
               </div>
 
@@ -297,13 +297,13 @@ export default async function PublicProfilePage({
               value="projects"
               className="flex-1 rounded-md text-ink-300 data-[state=active]:bg-white data-[state=active]:text-brand-black"
             >
-              Projeler
+              Projects
             </TabsTrigger>
             <TabsTrigger
               value="badges"
               className="flex-1 rounded-md text-ink-300 data-[state=active]:bg-white data-[state=active]:text-brand-black"
             >
-              Rozetler
+              Badges
             </TabsTrigger>
           </TabsList>
 
@@ -316,7 +316,7 @@ export default async function PublicProfilePage({
               </div>
             ) : (
               <div className="rounded-lg border border-dashed border-white/12 bg-white/[0.04] p-10 text-center text-sm text-ink-300">
-                Henüz sergilenen bir proje yok.
+                No projects are being showcased yet.
               </div>
             )}
           </TabsContent>
@@ -358,7 +358,7 @@ export default async function PublicProfilePage({
               </div>
             ) : (
               <div className="rounded-lg border border-dashed border-white/12 bg-white/[0.04] p-10 text-center text-sm text-ink-300">
-                Henüz kazanılmış bir rozet yok.
+                No badges have been earned yet.
               </div>
             )}
           </TabsContent>

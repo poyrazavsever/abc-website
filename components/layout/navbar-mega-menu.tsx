@@ -148,7 +148,7 @@ export function NavbarMegaMenu({
                         {item.featured.icon ? (
                           <Icon icon={item.featured.icon} className="h-4 w-4" />
                         ) : null}
-                        <span>Öne Çıkan</span>
+                        <span>Featured</span>
                       </div>
                       <h3
                         className={cn(
@@ -167,7 +167,7 @@ export function NavbarMegaMenu({
                         {item.featured.description}
                       </p>
                       <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                        İncele
+                        Explore
                         <Icon icon="lucide:arrow-right" className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>

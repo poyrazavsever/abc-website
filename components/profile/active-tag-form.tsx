@@ -27,9 +27,9 @@ export function ActiveTagForm({ currentTag }: ActiveTagFormProps) {
     setLoading(false);
 
     if (result.status === "error") {
-      toast.error(result.message ?? "Bir hata oluştu.");
+      toast.error(result.message ?? "Something went wrong.");
     } else {
-      toast.success("Etiket güncellendi.");
+      toast.success("Tag updated.");
       router.refresh();
     }
   }
@@ -37,15 +37,15 @@ export function ActiveTagForm({ currentTag }: ActiveTagFormProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Aktif Etiket</CardTitle>
+        <CardTitle>Active Tag</CardTitle>
         <CardDescription>
-          Mevcut durumunuzu veya arayışınızı belirterek diğer üyelerle eşleşme şansınızı artırın.
+          Improve your chances of matching with other members by sharing your current status or what you&apos;re looking for.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex items-end gap-4">
           <div className="flex-1 space-y-2">
-            <Label htmlFor="active-tag">Durumunuz</Label>
+            <Label htmlFor="active-tag">Your status</Label>
             <Select
               id="active-tag"
               value={selectedTag}
@@ -53,7 +53,7 @@ export function ActiveTagForm({ currentTag }: ActiveTagFormProps) {
               disabled={loading}
               className="w-full"
             >
-              <option value="">Belirtilmemiş</option>
+              <option value="">Not specified</option>
               {Object.entries(tagLabels).map(([key, label]) => (
                 <option key={key} value={key}>
                   {label}
@@ -62,7 +62,7 @@ export function ActiveTagForm({ currentTag }: ActiveTagFormProps) {
             </Select>
           </div>
           <Button type="submit" disabled={loading || selectedTag === (currentTag ?? "")}>
-            {loading ? "Kaydediliyor..." : "Güncelle"}
+            {loading ? "Saving..." : "Update"}
           </Button>
         </form>
       </CardContent>

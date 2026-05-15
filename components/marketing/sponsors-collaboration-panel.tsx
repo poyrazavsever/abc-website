@@ -251,7 +251,7 @@ function OrbitField({ reduceMotion }: { reduceMotion: boolean }) {
 }
 
 export function SponsorsCollaborationPanel({
-  eyebrow = "İş birliği alanları",
+  eyebrow = "Collaboration areas",
   heading,
   description,
   highlightPhrase,

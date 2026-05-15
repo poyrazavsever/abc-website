@@ -34,21 +34,21 @@ type CardRendererProps = {
 /* ------------------------------------------------------------------ */
 
 export const contentTemplateLabels: Record<CardContentTemplate, string> = {
-  default: "Genel",
-  cofounder: "Co-founder Arıyorum",
-  team: "Ekip Kuruyorum",
-  idea: "Fikir Aşamasındayım",
-  launch: "Ürün Launch",
+  default: "General",
+  cofounder: "Looking for a Co-Founder",
+  team: "Building My Team",
+  idea: "Idea Stage",
+  launch: "Product Launch",
   sprint: "Build Sprint",
 };
 
 const contentTemplateMessages: Record<CardContentTemplate, string> = {
-  default: "Üreten, paylaşan ve topluluk içinde görünür olan builder.",
-  cofounder: "Teknik / iş geliştirme ortağı arıyorum.",
-  team: "Ekibimi kuruyorum, doğru insanı bulmak için buradayım.",
-  idea: "Fikir aşamasındayım — konuşmak ve test etmek istiyorum.",
-  launch: "Ürünümü yayına aldım, build in public devam ediyor.",
-  sprint: "Build Sprint'teydim — üretmeye devam.",
+  default: "A builder who creates, shares, and stays visible within the community.",
+  cofounder: "I'm looking for a technical or business co-founder.",
+  team: "I'm building my team and here to find the right people.",
+  idea: "I'm at the idea stage and want to talk and test it out.",
+  launch: "My product is live, and I'm still building in public.",
+  sprint: "I joined Build Sprint and I'm still shipping.",
 };
 
 export function getContentMessage(template: CardContentTemplate) {
