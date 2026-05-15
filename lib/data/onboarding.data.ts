@@ -78,13 +78,16 @@ export const projectIntentOptions: ReadonlyArray<Option<"yes" | "no">> = [
 ] as const;
 
 export const turkiyeCityOptions: ReadonlyArray<Option<string>> = [
+  { value: "Ankara", label: "Ankara" },
+  { value: "İstanbul", label: "İstanbul" },
+  { value: "İzmir", label: "İzmir" },
+  { value: "Tashkent", label: "Tashkent" },
   { value: "Adana", label: "Adana" },
   { value: "Adıyaman", label: "Adıyaman" },
   { value: "Afyonkarahisar", label: "Afyonkarahisar" },
   { value: "Ağrı", label: "Ağrı" },
   { value: "Aksaray", label: "Aksaray" },
   { value: "Amasya", label: "Amasya" },
-  { value: "Ankara", label: "Ankara" },
   { value: "Antalya", label: "Antalya" },
   { value: "Ardahan", label: "Ardahan" },
   { value: "Artvin", label: "Artvin" },
@@ -117,8 +120,6 @@ export const turkiyeCityOptions: ReadonlyArray<Option<string>> = [
   { value: "Hatay", label: "Hatay" },
   { value: "Iğdır", label: "Iğdır" },
   { value: "Isparta", label: "Isparta" },
-  { value: "İstanbul", label: "İstanbul" },
-  { value: "İzmir", label: "İzmir" },
   { value: "Kahramanmaraş", label: "Kahramanmaraş" },
   { value: "Karabük", label: "Karabük" },
   { value: "Karaman", label: "Karaman" },
