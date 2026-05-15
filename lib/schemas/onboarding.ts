@@ -57,16 +57,16 @@ export const onboardingProfileSchema = z.object({
   fullName: z
     .string()
     .trim()
-    .min(2, "Ad soyad en az 2 karakter olmalı.")
-    .max(80, "Ad soyad 80 karakterden uzun olamaz."),
+    .min(2, "Full name must be at least 2 characters.")
+    .max(80, "Full name cannot exceed 80 characters."),
   city: z
     .string()
     .trim()
     .refine((value) => cityValues.includes(value), {
-      message: "Türkiye içindeki bir şehir seçin.",
+      message: "Select a city in Turkey.",
     }),
   role: z.enum(builderRoleValues, {
-    message: "Genel ünvanınızı seçin.",
+    message: "Select your role.",
   }),
 });
 
@@ -74,31 +74,31 @@ export const onboardingDetailsSchema = z.object({
   bio: z
     .string()
     .trim()
-    .min(20, "Bio en az 20 karakter olmalı.")
-    .max(500, "Bio 500 karakterden uzun olamaz."),
+    .min(20, "Bio must be at least 20 characters.")
+    .max(500, "Bio cannot exceed 500 characters."),
   githubUsername: z
     .string()
     .trim()
-    .max(39, "GitHub kullanıcı adı 39 karakterden uzun olamaz.")
+    .max(39, "GitHub username cannot exceed 39 characters.")
     .refine(
       (value) => value.length === 0 || githubUsernameRegex.test(value),
-      "Geçerli bir GitHub kullanıcı adı girin.",
+      "Enter a valid GitHub username.",
     ),
   linkedinUsername: z
     .string()
     .trim()
-    .max(100, "LinkedIn kullanıcı adı 100 karakterden uzun olamaz.")
+    .max(100, "LinkedIn username cannot exceed 100 characters.")
     .refine(
       (value) => value.length === 0 || linkedinUsernameRegex.test(value),
-      "Geçerli bir LinkedIn kullanıcı adı girin.",
+      "Enter a valid LinkedIn username.",
     ),
   instagramUsername: z
     .string()
     .trim()
-    .max(30, "Instagram kullanıcı adı 30 karakterden uzun olamaz.")
+    .max(30, "Instagram username cannot exceed 30 characters.")
     .refine(
       (value) => value.length === 0 || instagramUsernameRegex.test(value),
-      "Geçerli bir Instagram kullanıcı adı girin.",
+      "Enter a valid Instagram username.",
     ),
 });
 
@@ -110,25 +110,25 @@ export const onboardingProjectItemSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Proje adı en az 2 karakter olmalı.")
-    .max(80, "Proje adı 80 karakterden uzun olamaz."),
+    .min(2, "Project name must be at least 2 characters.")
+    .max(80, "Project name cannot exceed 80 characters."),
   description: z
     .string()
     .trim()
-    .min(10, "Proje açıklaması en az 10 karakter olmalı.")
-    .max(150, "Proje açıklaması 150 karakterden uzun olamaz."),
+    .min(10, "Project description must be at least 10 characters.")
+    .max(150, "Project description cannot exceed 150 characters."),
   category: z.enum(projectCategoryValues, {
-    message: "Proje kategorisini seçin.",
+    message: "Select a project category.",
   }),
   url: z
     .string()
     .trim()
-    .max(200, "Proje bağlantısı 200 karakterden uzun olamaz.")
-    .refine(isValidProjectUrl, "Geçerli bir bağlantı girin."),
+    .max(200, "Project URL cannot exceed 200 characters.")
+    .refine(isValidProjectUrl, "Enter a valid URL."),
   technologies: z
     .string()
     .trim()
-    .max(160, "Kullanılan teknolojiler 160 karakterden uzun olamaz.")
+    .max(160, "Technologies cannot exceed 160 characters.")
     .optional(),
 });
 
@@ -136,36 +136,36 @@ export const quickProjectSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Proje adı en az 2 karakter olmalı.")
-    .max(80, "Proje adı 80 karakterden uzun olamaz."),
+    .min(2, "Project name must be at least 2 characters.")
+    .max(80, "Project name cannot exceed 80 characters."),
   url: z
     .string()
     .trim()
-    .min(1, "Proje URL'i zorunlu.")
-    .max(200, "Proje URL'i 200 karakterden uzun olamaz.")
-    .refine(isValidProjectUrl, "Geçerli bir web adresi girin."),
+    .min(1, "Project URL is required.")
+    .max(200, "Project URL cannot exceed 200 characters.")
+    .refine(isValidProjectUrl, "Enter a valid website URL."),
   technologies: z
     .string()
     .trim()
-    .max(160, "Kullanılan teknolojiler 160 karakterden uzun olamaz.")
+    .max(160, "Technologies cannot exceed 160 characters.")
     .optional(),
   description: z
     .string()
     .trim()
-    .min(10, "Kısa açıklama en az 10 karakter olmalı.")
-    .max(150, "Kısa açıklama 150 karakterden uzun olamaz."),
+    .min(10, "Short description must be at least 10 characters.")
+    .max(150, "Short description cannot exceed 150 characters."),
 });
 
 export const onboardingProjectsSchema = z
   .object({
     hasProjects: z.enum(["yes", "no"], {
-      message: "Lütfen proje durumunuzu seçin.",
+      message: "Please select your project status.",
     }),
     project: z.object({
       name: z.string().trim(),
       description: z.string().trim(),
       category: z.enum(projectCategoryValues, {
-        message: "Proje kategorisini seçin.",
+        message: "Select a project category.",
       }),
       technologies: z.string().trim().optional(),
       url: z.string().trim(),

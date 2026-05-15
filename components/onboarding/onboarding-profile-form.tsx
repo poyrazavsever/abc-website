@@ -100,7 +100,7 @@ export function OnboardingProfileForm({
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -110,12 +110,12 @@ export function OnboardingProfileForm({
 
       if (avatarFile) {
         if (!avatarFile.type.startsWith("image/")) {
-          appToast.error("Profil fotoğrafı bir görsel dosyası olmalı.");
+          appToast.error("Profile photo must be an image file.");
           return;
         }
 
         if (avatarFile.size > 5 * 1024 * 1024) {
-          appToast.error("Profil fotoğrafı en fazla 5 MB olabilir.");
+          appToast.error("Profile photo must be 5 MB or smaller.");
           return;
         }
 
@@ -163,14 +163,14 @@ export function OnboardingProfileForm({
         },
       });
 
-      appToast.success("Profil bilgileri kaydedildi.");
+      appToast.success("Profile information saved.");
       router.push(getOnboardingHref("details"));
       router.refresh();
     } catch (error) {
       appToast.error(
         error instanceof Error
           ? error.message
-          : "Profil bilgileri kaydedilemedi.",
+          : "Profile information could not be saved.",
       );
     }
   });
@@ -179,10 +179,10 @@ export function OnboardingProfileForm({
     <form className="space-y-6" noValidate onSubmit={onSubmit}>
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-normal text-white">
-          Profilini oluştur
+          Create your profile
         </h1>
         <p className="text-sm text-white/66">
-          ABC içinde nasıl görüneceğini belirleyen temel bilgileri ekleyin.
+          Add the core details that define how you appear in ABC.
         </p>
       </div>
 
@@ -195,7 +195,7 @@ export function OnboardingProfileForm({
           style={
             avatarPreview ? { backgroundImage: `url(${avatarPreview})` } : undefined
           }
-          aria-label="Profil fotoğrafı önizlemesi"
+          aria-label="Profile photo preview"
         >
           {initials.toUpperCase()}
         </div>
@@ -204,7 +204,7 @@ export function OnboardingProfileForm({
             htmlFor="avatar"
             className="inline-flex h-10 cursor-pointer items-center justify-center rounded-full border border-white/18 bg-white/[0.04] px-4 text-sm font-semibold text-white transition hover:border-white/32 hover:bg-white/[0.08]"
           >
-            Fotoğraf seç
+            Choose photo
           </label>
           <input
             id="avatar"
@@ -232,7 +232,7 @@ export function OnboardingProfileForm({
             }}
           />
           <p className="mt-2 text-xs text-white/48">
-            PNG, JPG, WEBP veya GIF. Maksimum 5 MB.
+            PNG, JPG, WEBP, or GIF. Maximum 5 MB.
           </p>
         </div>
       </div>
@@ -240,13 +240,13 @@ export function OnboardingProfileForm({
       <div className="space-y-4">
         <div>
           <label htmlFor="fullName" className={labelClassName}>
-            Ad soyad
+            Full name
           </label>
           <Input
             id="fullName"
             autoComplete="name"
             className={cn(inputClassName, errors.fullName && "border-danger-400")}
-            placeholder="Adınızı ve soyadınızı girin"
+            placeholder="Enter your full name"
             {...register("fullName")}
           />
           {errors.fullName?.message ? (
@@ -256,7 +256,7 @@ export function OnboardingProfileForm({
 
         <div>
           <label htmlFor="email" className={labelClassName}>
-            E-posta
+            Email
           </label>
           <Input
             id="email"
@@ -269,7 +269,7 @@ export function OnboardingProfileForm({
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="city" className={labelClassName}>
-              Konum
+              Location
             </label>
             <Select
               id="city"
@@ -293,7 +293,7 @@ export function OnboardingProfileForm({
 
           <div>
             <label htmlFor="role" className={labelClassName}>
-              Genel ünvan
+              Role
             </label>
             <Select
               id="role"
@@ -323,7 +323,7 @@ export function OnboardingProfileForm({
           loading={isSubmitting}
           className="h-11 min-w-28 rounded-md border-white bg-white px-6 text-brand-black shadow-none hover:border-white hover:bg-white/90"
         >
-          İleri
+          Next
         </Button>
       </div>
     </form>

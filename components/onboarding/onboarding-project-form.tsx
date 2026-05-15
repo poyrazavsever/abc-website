@@ -98,7 +98,7 @@ export function OnboardingProjectForm({
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -110,12 +110,12 @@ export function OnboardingProjectForm({
 
         if (imageFile) {
           if (!imageFile.type.startsWith("image/")) {
-            appToast.error("Proje fotoğrafı bir görsel dosyası olmalı.");
+            appToast.error("Project image must be an image file.");
             return;
           }
 
           if (imageFile.size > 5 * 1024 * 1024) {
-            appToast.error("Proje fotoğrafı en fazla 5 MB olabilir.");
+            appToast.error("Project image must be 5 MB or smaller.");
             return;
           }
 
@@ -185,12 +185,12 @@ export function OnboardingProjectForm({
 
       await trackClientEvent("onboarding_completed");
 
-      appToast.success("Onboarding tamamlandı.");
+      appToast.success("Onboarding completed.");
       router.replace(`/profile/${profile.id}`);
       router.refresh();
     } catch (error) {
       appToast.error(
-        error instanceof Error ? error.message : "Onboarding tamamlanamadı.",
+        error instanceof Error ? error.message : "Onboarding could not be completed.",
       );
     }
   });
@@ -199,16 +199,16 @@ export function OnboardingProjectForm({
     <form className="space-y-6" noValidate onSubmit={onSubmit}>
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-normal text-white">
-          Projeni ekle
+          Add your project
         </h1>
         <p className="text-sm text-white/66">
-          İlk projeni şimdi ekleyebilir ya da profil menüsünden daha sonra
-          tamamlayabilirsin.
+          Add your first project now, or complete this step later from your
+          profile menu.
         </p>
       </div>
 
       <fieldset className="grid gap-3">
-        <legend className="sr-only">Proje ekleme tercihi</legend>
+        <legend className="sr-only">Project intent</legend>
         {projectIntentOptions.map((option) => (
           <label
             key={option.value}
@@ -240,7 +240,7 @@ export function OnboardingProjectForm({
       {hasProjects === "yes" ? (
         <div className="space-y-4">
           <div>
-            <p className={labelClassName}>Proje fotoğrafı</p>
+            <p className={labelClassName}>Project image</p>
             <div className="mt-2 grid gap-3 sm:grid-cols-[8rem_1fr] sm:items-center">
               <div
                 className="aspect-square rounded-md border border-white/12 bg-white/[0.03] bg-cover bg-center"
@@ -249,14 +249,14 @@ export function OnboardingProjectForm({
                     ? { backgroundImage: `url(${projectImagePreview})` }
                     : undefined
                 }
-                aria-label="Proje fotoğrafı önizlemesi"
+                aria-label="Project image preview"
               />
               <div>
                 <label
                   htmlFor="projectImage"
                   className="inline-flex h-10 cursor-pointer items-center justify-center rounded-md border border-white/12 px-4 text-sm font-medium text-white/78 transition hover:border-white/24 hover:text-white"
                 >
-                  Fotoğraf seç
+                  Choose photo
                 </label>
                 <input
                   id="projectImage"
@@ -285,7 +285,7 @@ export function OnboardingProjectForm({
                   }}
                 />
                 <p className="mt-2 text-xs text-white/38">
-                  PNG, JPG, WEBP veya GIF. Maksimum 5 MB.
+                  PNG, JPG, WEBP, or GIF. Maximum 5 MB.
                 </p>
               </div>
             </div>
@@ -293,7 +293,7 @@ export function OnboardingProjectForm({
 
           <div>
             <label htmlFor="projectName" className={labelClassName}>
-              Proje adı
+              Project name
             </label>
             <Input
               id="projectName"
@@ -301,7 +301,7 @@ export function OnboardingProjectForm({
                 inputClassName,
                 errors.project?.name && "border-danger-400",
               )}
-              placeholder="Proje adını girin"
+              placeholder="Enter your project name"
               {...register("project.name")}
             />
             {errors.project?.name?.message ? (
@@ -312,7 +312,7 @@ export function OnboardingProjectForm({
           <div>
             <div className="flex items-center justify-between gap-3">
               <label htmlFor="projectDescription" className={labelClassName}>
-                Kısa açıklama
+                Short description
               </label>
               <span className="text-xs text-white/38">
                 {descriptionLength}/150
@@ -326,7 +326,7 @@ export function OnboardingProjectForm({
                 "min-h-28 resize-none",
                 errors.project?.description && "border-danger-400",
               )}
-              placeholder="Proje ne yapıyor, kim için değer üretiyor?"
+              placeholder="What does the project do, and who is it for?"
               {...register("project.description")}
             />
             {errors.project?.description?.message ? (
@@ -338,7 +338,7 @@ export function OnboardingProjectForm({
 
           <div>
             <label htmlFor="projectUrl" className={labelClassName}>
-              Proje URL&apos;i
+              Project URL
             </label>
             <Input
               id="projectUrl"
@@ -357,7 +357,7 @@ export function OnboardingProjectForm({
 
           <div>
             <label htmlFor="projectTechnologies" className={labelClassName}>
-              Kullanılan teknolojiler
+              Technologies used
             </label>
             <Input
               id="projectTechnologies"
@@ -383,14 +383,14 @@ export function OnboardingProjectForm({
           variant="ghost"
           className="h-11 rounded-md border-white/16 bg-white/[0.04] px-5 text-white shadow-none hover:border-white/28 hover:bg-white/[0.08]"
         >
-          Geri
+          Back
         </Button>
         <Button
           type="submit"
           loading={isSubmitting}
           className="h-11 min-w-32 rounded-md border-white bg-white px-6 text-brand-black shadow-none hover:border-white hover:bg-white/90"
         >
-          Tamamla
+          Finish
         </Button>
       </div>
     </form>

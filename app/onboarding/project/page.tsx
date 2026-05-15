@@ -5,9 +5,9 @@ import { OnboardingProjectForm } from "@/components/onboarding/onboarding-projec
 import { requireOnboardingStep } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Proje Onboarding",
+  title: "Project Onboarding",
   description:
-    "Ankara Build Club onboarding proje adımı. İlk projenizi ekleyin veya bu adımı daha sonra tamamlamak üzere atlayın.",
+    "Ankara Build Club project onboarding step. Add your first project or skip this step and complete it later.",
 };
 
 export default async function OnboardingProjectPage() {

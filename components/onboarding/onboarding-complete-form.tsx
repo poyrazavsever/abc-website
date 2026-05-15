@@ -26,7 +26,7 @@ export function OnboardingCompleteForm() {
 
     if (!supabase) {
       setIsSubmitting(false);
-      setSubmitError("Onboarding servisi şu anda kullanılamıyor.");
+      setSubmitError("Onboarding service is unavailable right now.");
       return;
     }
 
@@ -57,13 +57,13 @@ export function OnboardingCompleteForm() {
     <div className="space-y-4">
       {submitError ? (
         <Alert variant="danger">
-          <AlertTitle>Onboarding tamamlanamadı</AlertTitle>
+          <AlertTitle>Onboarding could not be completed</AlertTitle>
           <AlertDescription>{submitError}</AlertDescription>
         </Alert>
       ) : null}
 
       <Button type="button" loading={isSubmitting} onClick={handleComplete}>
-        Devam Et
+        Continue
       </Button>
     </div>
   );

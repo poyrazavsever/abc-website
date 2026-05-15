@@ -18,24 +18,24 @@ export const onboardingSteps: ReadonlyArray<{
 }> = [
   {
     id: "profile",
-    label: "Profil",
-    heading: "Profilini oluştur",
+    label: "Profile",
+    heading: "Create your profile",
     description:
-      "Fotoğraf, konum ve genel ünvan bilgileri topluluk içindeki temel kimliğini oluşturur.",
+      "Your photo, location, and role define how you appear across the community.",
   },
   {
     id: "details",
-    label: "Detaylar",
-    heading: "Kendini kısaca anlat",
+    label: "Details",
+    heading: "Tell us about yourself",
     description:
-      "Bio ve sosyal medya kullanıcı adları, topluluk içinde doğru kişilerle görünür olmanı sağlar.",
+      "Your bio and social handles help the right people discover you in the community.",
   },
   {
     id: "project",
-    label: "Proje",
-    heading: "Projeni ekle",
+    label: "Project",
+    heading: "Add your project",
     description:
-      "İstersen ilk projeni şimdi ekle, istersen bu adımı daha sonra tamamla.",
+      "Add your first project now, or come back and complete this step later.",
   },
 ] as const;
 
@@ -45,7 +45,7 @@ export const builderRoleOptions: ReadonlyArray<Option<BuilderRole>> = [
   { value: "sales", label: "Sales" },
   { value: "product", label: "Product" },
   { value: "student", label: "Student" },
-  { value: "other", label: "Diğer" },
+  { value: "other", label: "Other" },
 ] as const;
 
 export const builderRoleLabels = Object.fromEntries(
@@ -57,7 +57,7 @@ export const projectCategoryOptions: ReadonlyArray<Option<ProjectCategory>> = [
   { value: "saas", label: "SaaS" },
   { value: "mobile", label: "Mobile" },
   { value: "social_impact", label: "Social Impact" },
-  { value: "other", label: "Diğer" },
+  { value: "other", label: "Other" },
 ] as const;
 
 export const projectCategoryLabels = Object.fromEntries(
@@ -67,14 +67,13 @@ export const projectCategoryLabels = Object.fromEntries(
 export const projectIntentOptions: ReadonlyArray<Option<"yes" | "no">> = [
   {
     value: "no",
-    label: "Şu anda ekleyecek projem yok",
-    description: "Profili tamamlayıp daha sonra proje ekleyebilirsiniz.",
+    label: "I don't have a project to add right now",
+    description: "You can finish your profile and add a project later.",
   },
   {
     value: "yes",
-    label: "Projemi eklemek istiyorum",
-    description:
-      "Bir proje ekleyerek topluluğa ne ürettiğinizi gösterebilirsiniz.",
+    label: "I want to add my project",
+    description: "Adding a project helps show the community what you're building.",
   },
 ] as const;
 

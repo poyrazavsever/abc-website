@@ -5,9 +5,9 @@ import { OnboardingFlowCard } from "@/components/onboarding/onboarding-flow-card
 import { requireOnboardingStep } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Profil Detayları",
+  title: "Profile Details",
   description:
-    "Ankara Build Club onboarding detay adımı. Bio ve sosyal medya kullanıcı adlarınızı tamamlayın.",
+    "Ankara Build Club onboarding details step. Complete your bio and social media usernames.",
 };
 
 export default async function OnboardingDetailsPage() {

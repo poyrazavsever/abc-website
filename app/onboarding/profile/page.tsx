@@ -5,9 +5,9 @@ import { OnboardingProfileForm } from "@/components/onboarding/onboarding-profil
 import { requireOnboardingStep } from "@/lib/auth/server";
 
 export const metadata: Metadata = {
-  title: "Profil Onboarding",
+  title: "Profile Onboarding",
   description:
-    "Ankara Build Club profil onboarding adımı. Profil fotoğrafı, konum ve genel ünvan bilgilerinizi tamamlayın.",
+    "Ankara Build Club profile onboarding step. Complete your profile photo, location, and role information.",
 };
 
 export default async function OnboardingProfilePage() {

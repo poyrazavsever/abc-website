@@ -47,7 +47,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -67,14 +67,14 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
         throw error;
       }
 
-      appToast.success("Profil detayları kaydedildi.");
+      appToast.success("Profile details saved.");
       router.push(getOnboardingHref("project"));
       router.refresh();
     } catch (error) {
       appToast.error(
         error instanceof Error
           ? error.message
-          : "Profil detayları kaydedilemedi.",
+          : "Profile details could not be saved.",
       );
     }
   });
@@ -83,7 +83,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
     const supabase = createSupabaseClient();
 
     if (!supabase) {
-      appToast.error("Supabase bağlantısı şu anda kullanılamıyor.");
+      appToast.error("Supabase is unavailable right now.");
       return;
     }
 
@@ -101,7 +101,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
       router.refresh();
     } catch (error) {
       appToast.error(
-        error instanceof Error ? error.message : "Bu adım atlanamadı.",
+        error instanceof Error ? error.message : "This step could not be skipped.",
       );
     }
   }
@@ -110,10 +110,10 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
     <form className="space-y-6" noValidate onSubmit={onSubmit}>
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-normal text-white">
-          Kendini kısaca anlat
+          Tell us about yourself
         </h1>
         <p className="text-sm text-white/66">
-          Bio ve sosyal hesaplar profil kartlarında görünür olacak.
+          Your bio and social handles will appear on your profile card.
         </p>
       </div>
 
@@ -129,7 +129,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
               "min-h-32 resize-none",
               errors.bio && "border-danger-400",
             )}
-            placeholder="Ne üretiyorsun, hangi konulara odaklanıyorsun?"
+            placeholder="What are you building, and what are you focused on?"
             {...register("bio")}
           />
           {errors.bio?.message ? (
@@ -140,7 +140,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
         <div className="grid gap-4">
           <div>
             <label htmlFor="githubUsername" className={labelClassName}>
-              GitHub kullanıcı adı
+              GitHub username
             </label>
             <Input
               id="githubUsername"
@@ -158,7 +158,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
 
           <div>
             <label htmlFor="linkedinUsername" className={labelClassName}>
-              LinkedIn kullanıcı adı
+              LinkedIn username
             </label>
             <Input
               id="linkedinUsername"
@@ -178,7 +178,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
 
           <div>
             <label htmlFor="instagramUsername" className={labelClassName}>
-              Instagram kullanıcı adı
+              Instagram username
             </label>
             <Input
               id="instagramUsername"
@@ -204,14 +204,14 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
           variant="ghost"
           className="h-11 rounded-md border-white/16 bg-white/[0.04] px-5 text-white shadow-none hover:border-white/28 hover:bg-white/[0.08]"
         >
-          Geri
+          Back
         </Button>
         <Button
           type="submit"
           loading={isSubmitting}
           className="h-11 min-w-28 rounded-md border-white bg-white px-6 text-brand-black shadow-none hover:border-white hover:bg-white/90"
         >
-          İleri
+          Next
         </Button>
         <Button
           type="button"
@@ -220,7 +220,7 @@ export function OnboardingDetailsForm({ profile }: OnboardingDetailsFormProps) {
           onClick={handleSkip}
           className="h-11 rounded-md border-white/16 bg-white/[0.04] px-5 text-white shadow-none hover:border-white/28 hover:bg-white/[0.08]"
         >
-          Atla
+          Skip
         </Button>
       </div>
     </form>
